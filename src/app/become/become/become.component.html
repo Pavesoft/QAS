@@ -1,0 +1,263 @@
+<div *ngIf="loading">
+  <br><br><br><br><br><br><br><br>
+  <div class="loading-spinner" style="width: 80px; height: 80px;">
+      <!-- <div class="logo-pre">
+          <img src="../../../../assets/lg.gif" alt="Logo" class="img-fluid" height="40px;width:40px;">
+      </div> -->
+  </div>
+  <br><br><br><br><br><br><br><br>
+</div>
+
+<div class="container-fluid" *ngIf="!loading">
+
+  <div class="row">
+    <div class="col-sm-12" style="padding: 0;">
+      <div class="carimg">
+        <h2 class="bect">Become a Client</h2>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row" style="background-color: #eaeaea; height: 500px;">
+    <div class="col-sm-6">
+      <h2 class="help">We're ready to help.</h2>
+      <p class="becdec">Complete the form to start exploring how your growth initiatives can find success through world
+        class research, data, and events.</p>
+      <h4 class="ac">Already a Client?</h4>
+      <p class="lo">Login</p>
+      <p class="cre">Create an account</p>
+      <h4 class="talk">Talk to Analysts</h4>
+      <p class="sub">Submit a request</p>
+    </div>
+    <div class="col-sm-6">
+      <div class="container mt-5 fm">
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div>
+            <!-- <label for="fName"> Name:</label> -->
+            <input type="text" id="fName" formControlName="fName" maxlength="50" class="form-control" required
+              placeholder="Name*" onkeyup=" this.value = this.value.replace(/[^a-z0-9 .]/gi,'')" oninput=" this.value = this.value.replace(/[0-9]/g,'')">
+            <div *ngIf="form.controls['fName'].invalid && (form.controls['fName'].dirty)">
+              <div *ngIf="form.controls['fName'].errors?.['required']" style="color: red;"> Name is required.</div>
+            </div>
+          </div>
+          <!-- <div>
+                  <label for="lName">Last Name:</label>
+                  <input type="text" id="lName" formControlName="lName">
+                  
+                </div> -->
+          <div>
+            <!-- <label for="officeEmail">Office Email:</label> -->
+            <input type="email" id="officeEmail" class="form-control" maxlength="50" formControlName="officeEmail"
+              required placeholder="Official Email*">
+            <div *ngIf="form.controls['officeEmail'].invalid && (form.controls['officeEmail'].dirty)">
+              <div *ngIf="form.controls['officeEmail'].errors?.['required']" style="color: red;">Office Email is required.</div>
+              <div *ngIf="form.controls['officeEmail'].errors?.['email']" style="color: red;">Invalid email format.</div>
+            </div>
+          </div>
+          <div>
+            <!-- <label for="businessPhone">Business Phone:</label> -->
+            <input type="tel" id="businessPhone1" formControlName="businessPhone" maxlength="16" class="form-control" required
+              placeholder="Phone*" style="margin-bottom:20px;"
+              onkeyup="this.value = this.value.replace(/[^0-9-]/g, '');">
+
+
+            <!-- Add other validation messages for businessPhone if needed -->
+          </div>
+
+          <div>
+            <!-- <label for="fName"> Name:</label> -->
+            <input type="text" id="companyName" formControlName="companyName" maxlength="50" class="form-control"
+              required placeholder=" Company Name*" oninput=" this.value = this.value.replace(/[0-9]/g,'')">
+            <div *ngIf="form.controls['companyName'].invalid && (form.controls['companyName'].dirty)">
+              <div *ngIf="form.controls['companyName'].errors?.['required']" style="color: red;">Company Name is required.</div>
+            </div>
+          </div>
+
+          <div>
+            <!-- <label for="fName"> Name:</label> -->
+            <input type="text" id="jobTitle" formControlName="jobTitle" maxlength="50" class="form-control" required
+              placeholder="Designation*" oninput=" this.value = this.value.replace(/[0-9]/g,'')">
+            <div *ngIf="form.controls['jobTitle'].invalid && (form.controls['jobTitle'].dirty)">
+              <div *ngIf="form.controls['jobTitle'].errors?.['required']" style="color: red;"> Designation is required.</div>
+            </div>
+          </div>
+
+          <div>
+            <!-- <label for="fName"> Name:</label> -->
+            <textarea type="textarea" id="description" formControlName="description" maxlength="600"
+              class="form-control " required placeholder="Message To Quadrant*"></textarea>
+            <div *ngIf="form.controls['description'].invalid && (form.controls['description'].dirty)">
+              <div *ngIf="form.controls['description'].errors?.['required']" style="color: red;"> Message is required.</div>
+            </div>
+          </div>
+          <!-- Add other form fields similarly -->
+          <br>
+          <p>This website is secure and we do not share your personal information with any third party. <a
+              href="/PersonalInformation" style="text-decoration: none;">Privacy Policy</a></p>
+
+          <!-- <button type="submit" class="becobtn" [disabled]="form.invalid">Submit Application</button> -->
+          <button type="submit" class=" becobtn btn btBtn btn-primary btnNormalWidth step-submit-action-button form-submit-button"  [disabled]="buttonDisabled" id="submit" errormessage="All fields are required.">         
+            Submit Application</button>
+        </form>
+
+       
+        
+
+
+        <!-- <form>
+                  <div class="mb-3">
+                    <input type="text" class="form-control" id="name" placeholder="Name*" required>
+                  </div>
+                  <div class="mb-3">      
+                    <input type="email" class="form-control" id="email" placeholder="Official Email*" required>
+                  </div>
+                  <div class="mb-3">      
+                    <input type="text" class="form-control" id="name" placeholder="Company Name*" required>
+                  </div>
+                  <div class="mb-3">      
+                    <input type="text" class="form-control" id="name" placeholder="Designation*" required>
+                  </div>
+                  <div class="mb-3"> 
+                  <select class="form-control">
+      
+                    <option value="Domain">Select Domain</option>
+
+                    <option value="Domain">Domain</option>
+
+                    <option value="Domain">Domain</option>
+                  </select>
+                  </div>
+                  <div class="mb-3">
+      
+                    <div class="input-group">
+      
+                      <input type="tel" id="phone" class="form-control" placeholder="Phone*" style="width: 16pc;" />
+      
+                    </div>
+      
+                  </div>
+      
+                  <div class="mb-3">      
+                    <textarea class="form-control" id="message" rows="4" placeholder="Message to Quadrant*" required></textarea>
+      
+                  </div>
+                  
+                  <button type="submit" class="becobtn btn-primary">Submit Application</button>
+      
+                </form> -->
+
+      </div>
+
+    </div>
+
+
+
+
+  </div>
+
+  <!-- FAQ -->
+
+  <div class="row" id="acctop">
+    <div class="col-sm-12">
+      <p class="text-center st">FAQS</p>
+      <h2 class="mt text-center">Questions? Look Here.</h2>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom: 6%;">
+    <div class="col-sm-12">
+      <div class="accordion acc" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item" style="background-color: #DADADA;">
+          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button btt" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+              aria-controls="panelsStayOpen-collapseOne" style="background-color: #DADADA;">
+              How do I become a client with your company?
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+            aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body">
+              To schedule a conversation with one of our experienced analysts, please visit our website's "Contact Us"
+              page or reach out to our client support team. You can become a client by filling up the questionnaire form
+              and also write to us at <a href="mailto:ajinkya@quadrant-solutions.com">ajinkya@quadrant-solutions.com</a>
+              or call us in this number <a href="tel:(+1) 978-344-2770">(+1) 978-344-2770.</a>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" style="background-color: #DADADA;">
+          <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+              aria-controls="panelsStayOpen-collapseTwo" style="background-color: #DADADA;">
+              What services or products do you offer to clients?
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+            aria-labelledby="panelsStayOpen-headingTwo">
+            <div class="accordion-body">
+              Quadrant Knowledge Solutions is a global advisory and consulting firm focused on helping clients in
+              achieving business transformation goals with Strategic Business, and Growth Advisory Services. Our
+              services include Content Strategy Services, Custom Research and Consulting, Quadrant Advisory Services and
+              TechnoNXT.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" style="background-color: #DADADA;">
+          <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+            <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+              aria-controls="panelsStayOpen-collapseThree" style="background-color: #DADADA;">
+              What are the tools that are offered to clients? </button>
+          </h2>
+          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+            aria-labelledby="panelsStayOpen-headingThree">
+            <div class="accordion-body">
+              Quadrant offers advisory and consulting through tools namely, MARINE, ROI Benchmark, WHAO Assessment and
+              SPARK Matrix.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" style="background-color: #DADADA;">
+          <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+            <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+              aria-controls="panelsStayOpen-collapseFour" style="background-color: #DADADA;">
+              What documents or information do I need to provide during the client onboarding process? </button>
+          </h2>
+          <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
+            aria-labelledby="panelsStayOpen-headingFour">
+            <div class="accordion-body">
+              There are no documents required when one is filling the questionnaire form. When the briefing call is
+              scheduled, analysts will send an RFI which will include all the documents required from vendor’s end.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" style="background-color: #DADADA;">
+          <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+            <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false"
+              aria-controls="panelsStayOpen-collapseFive" style="background-color: #DADADA;">
+              How long does the client onboarding process typically take?
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse"
+            aria-labelledby="panelsStayOpen-headingFive">
+            <div class="accordion-body">
+              Right from filling out the questionnaire form, to scheduling the briefing call and finally onboarding
+              clients, the whole process can be completed within a span of one month. However, it also depends on the
+              availability of clients.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- FAQ end -->
+
+</div>
+<app-searchbar></app-searchbar>

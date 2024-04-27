@@ -1,0 +1,180 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm-12" style="padding: 0;">
+            <div class="carimg">
+                <h2 class="bect">Talk to Analysts</h2>
+            </div>
+            
+        </div>
+
+      </div>
+
+      <div class="row" style="background-color: #eaeaea; height: 500px;">
+        <div class="col-sm-6">
+            <h2 class="help">Request an Analyst<br> Briefing</h2>
+            <p class="becdec">Meetings are scheduled based upon analyst availability and appropriateness of content to the coverage area. For more information please read our terms and conditions.</p>
+            <h4 class="ac">Become a Client?</h4>
+            <p class="lo">Login</p>
+            <p class="cre">Create an account</p>
+            <!-- <h4 class="talk">Talk to Analysts</h4>
+            <p class="sub">Submit a request</p> -->
+            
+        </div>
+        <div class="col-sm-6">
+            <div class="container mt-5 fm">      
+
+              <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div>
+                
+                  <input type="text" id="fName" formControlName="fName" maxlength="50"  class="form-control" required placeholder="Name*" onkeyup=" this.value = this.value.replace(/[^a-z0-9 .]/gi,'')" oninput=" this.value = this.value.replace(/[0-9]/g,'')">
+                  <div *ngIf="form.controls['fName'].invalid && (form.controls['fName'].dirty || form.controls['fName'].touched)">
+                    <div *ngIf="form.controls['fName'].errors?.['required']" style="color: red;"> Name is required.</div>
+                  </div>
+                </div>
+
+               
+            
+                <!-- <div>
+                  <label for="lName">Last Name:</label>
+                  <input type="text" id="lName" formControlName="lName">
+                  
+                </div> -->
+                <div>
+                  <!-- <label for="officeEmail">Office Email:</label> -->
+                  <input type="email" id="officeEmail" class="form-control" maxlength="50" formControlName="officeEmail" required placeholder="Official Email*">
+                  <div *ngIf="form.controls['officeEmail'].invalid && (form.controls['officeEmail'].dirty || form.controls['officeEmail'].touched)">
+                    <div *ngIf="form.controls['officeEmail'].errors?.['required']" style="color: red;">Office Email is required.</div>
+                    <div *ngIf="form.controls['officeEmail'].errors?.['email']" style="color: red;">Invalid email format.</div>
+                  </div>
+                </div>
+                <div>
+                  <!-- <label for="businessPhone">Business Phone:</label> -->
+                  <input type="tel" id="businessPhone" formControlName="businessPhone" maxlength="16" class="form-control" placeholder="Phone*" style="margin-bottom:20px;" onkeyup="this.value = this.value.replace(/[^0-9-]/g, '');">
+                  <!-- Add other validation messages for businessPhone if needed -->
+                </div>
+
+                <div>
+                  <!-- <label for="fName"> Name:</label> -->
+                  <input type="text" id="companyName" formControlName="companyName" maxlength="50" class="form-control" required placeholder=" Company Name*" oninput=" this.value = this.value.replace(/[0-9]/g,'')">
+                  <div *ngIf="form.controls['companyName'].invalid && (form.controls['companyName'].dirty || form.controls['companyNames'].touched)">
+                    <div *ngIf="form.controls['companyName'].errors?.['required']" style="color: red;">Company Name is required.</div>
+                  </div>
+                </div>
+
+                <div>
+                  <!-- <label for="fName"> Name:</label> -->
+                  <input type="text" id="jobTitle" formControlName="jobTitle" maxlength="50"  class="form-control" required placeholder="Designation*" oninput=" this.value = this.value.replace(/[0-9]/g,'')">
+                  <div *ngIf="form.controls['jobTitle'].invalid && (form.controls['jobTitle'].dirty || form.controls['jobTitle'].touched)">
+                    <div *ngIf="form.controls['jobTitle'].errors?.['required']" style="color: red;"> Designation is required.</div>
+                  </div>
+                </div>
+
+                <div>
+                  <!-- <label for="fName"> Name:</label> -->
+                  <textarea type="textarea" id="description" formControlName="description" maxlength="600" class="form-control " required placeholder="Message To Quadrant*"></textarea>
+                  <div *ngIf="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)">
+                    <div *ngIf="form.controls['description'].errors?.['required']" style="color: red;"> Message is required.</div>
+                  </div>
+                </div>
+                <!-- Add other form fields similarly -->
+                <br>
+                <p>This website is secure and we do not share your personal information with any third party. <a href="/PersonalInformation" style="text-decoration: none;">Privacy Policy</a></p>
+
+                <button type="submit" class="becobtn btn btBtn btn-primary btnNormalWidth step-submit-action-button form-submit-button" [disabled]="buttonDisabled">Submit Application</button>
+              </form>
+              
+      
+              </div>
+              
+        </div>
+
+      </div>
+
+      <!-- FAQ -->
+
+      <div class="row" id="acctop" style="margin-top: 30px;">
+        <div class="col-sm-12">
+          <p class="text-center st">FAQS</p>
+                <h2 class="mt text-center">Questions? Look Here.</h2>
+        </div>
+       </div>
+      <div class="row" style="margin-bottom: 6%;">
+        <div class="col-sm-12">
+            <div class="accordion acc" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item" style="background-color: #DADADA;">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button btt" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne" style="background-color: #DADADA;">
+                      What is the purpose of talking to an analyst?
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                      Talking to our analysts allows you to gain valuable insights and expert guidance on industry trends, market opportunities, technology assessments, and strategic decision-making to drive your business forward.                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item" style="background-color: #DADADA;">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo" style="background-color: #DADADA;">
+                      What topics can I discuss with an analyst?
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                      Our analysts cover a wide range of topics spanning across twenty-one domain, including market research reports, technology evaluations, competitive landscapes, growth strategies, and more.                     </div>
+                  </div>
+                </div>
+                <div class="accordion-item" style="background-color: #DADADA;">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                    <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree" style="background-color: #DADADA;">
+                      Can I request a specific analyst for my conversation?
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                    <div class="accordion-body">
+                      Absolutely! If you have a preference for a particular analyst, we will do our best to accommodate your request, based on their availability.                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item" style="background-color: #DADADA;">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                      <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour" style="background-color: #DADADA;">
+                        Are analyst conversations confidential?
+                      </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+                      <div class="accordion-body">
+                        Yes, all discussions with our analysts are treated with the utmost confidentiality. We prioritize the privacy and security of our clients' information.                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="accordion-item" style="background-color: #DADADA;">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+                      <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive" style="background-color: #DADADA;">
+                          Lorem ipsum dolor sit amet, consetetur sadipscing elitr?
+                      </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
+                      <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the, though the transition does limit overflow.
+                      </div>
+                    </div>
+                  </div> -->
+                  <!-- <div class="accordion-item" style="background-color: #DADADA;">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingSix">
+                      <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false" aria-controls="panelsStayOpen-collapseSix" style="background-color: #DADADA;">
+                          Lorem ipsum dolor sit amet, consetetur sadipscing elitr?
+                      </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSix">
+                      <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the, though the transition does limit overflow.
+                      </div>
+                    </div>
+                  </div> -->
+              </div>
+        </div>
+
+      </div>
+      <!-- FAQ end -->
+
+</div>
+<app-searchbar></app-searchbar>

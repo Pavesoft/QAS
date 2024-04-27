@@ -1,0 +1,216 @@
+<div class="row" style="padding-bottom: 3%;margin-top:-33px;">
+  <div class="col-sm-12">
+    <p class="ct1">Job Opening</p>
+    <h1 class="ct">Market Intelligence Analyst</h1>
+    <h1 class="ct2"><b>Location :</b> Pune</h1>
+
+    <div class="myimg">
+      <img class="myimage" src="assets/intelligence analyst.png">
+
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4" id="marintell">
+      <h3 class="title">Department</h3>
+      <p class="contetnt">Business Development<br> Manager</p>
+
+      <h3 class="title">Job Type</h3>
+      <p class="contetnt">Full-Time</p>
+
+      <h3 class="title">Education</h3>
+      <p class="contetnt">MBA in Marketing</p>
+
+      <h3 class="title">Experience</h3>
+      <p class="contetnt">4 years</p>
+
+    </div>
+
+    <div class="col-sm-8">
+
+      <h3 class="title">Roles & Responsibilities</h3>
+      <ul class="list">
+        <li>Conduct the market research study for the ICT domain (Qualitative (30%) and Quantitative (70%) research)
+        </li>
+        <li>On a half yearly basis, Candidate have to model approximately 100 software/cloud companies tracked by QKS.
+        </li>
+        <li>Candidate must have experience in the secondary research (e.g. Identification of the company revenue,
+          Segmentation of the products/solutions/services based on business functions for global and regional software
+          vendors)</li>
+        <li>Candidate should know about the primary research process (Identification of the industry experts, schedule
+          and conduct interviews)</li>
+        <li>Review and interpret quarterly vendor survey responses or vendor briefings from QKS domain analysts to
+          estimate revenue</li>
+        <li>Create company revenue models that map source data to the QKS taxonomies and update these models on a
+          quarterly basis</li>
+        <li>Work with QKS’s domain experts to reconcile the worldwide vendor revenue models</li>
+        <li>Regularly interact with QKS Manager, Market Intelligence and other company modelers (Data Intelligence
+          Analysts) with respect to the vendor models to understand various scenarios and issue resolving techniques for
+          estimating revenue</li>
+        <li>Candidate should be familiar with the Top-Down/Bottom-Up approach</li>
+        <li>Candidate should know about the product mapping</li>
+      </ul>
+
+      <h3 class="title">Roles & Responsibilities</h3>
+      <ul class="list">
+        <li>MBA graduates with min 1 experience with quantitative research projects and background</li>
+        <li>B.E IT, CS, Electronics and Telecommunication, Electrical is must.</li>
+        <li>Expert level Excel data manipulation. Excellent written and oral communication skills coupled with strong
+          analytical, numerical and data manipulation skills.</li>
+      </ul>
+
+      <h3 class="title">Our Commitment to Diversity and Inclusion</h3>
+
+      <p class="con">At Quadrant Knowledge Solutions, we believe the best teams are diverse and inclusive, and we are on
+        a journey to create a workplace where every employee can grow and achieve their best. We are committed to fair
+        and equal treatment of employee and applicants. We recruit, hire, promote, transfer, and provide opportunities
+        for advancement on the basis of individual qualifications and job performance. In all matters affecting
+        employment, compensation, benefits, working conditions, and opportunities for advancement, we will not
+        discriminate against any employee or applicant for employment because of race, religion, color, creed, national
+        origin, citizenship status, sex, sexual orientation, gender identity and expressions, genetic information,
+        marital status, age, disability, or status as a covered veteran.</p>
+
+      <br><br><br><Br>
+
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" id="apply" style="background-color: #EAEAEA;padding: 50px 120px 80px 120px;">
+  <div class="row">
+    <h1 style="text-align: center;font-family: 'Arial Nova Bold';color:#011F41;font-size: 36px;padding-bottom: 20px;">
+      Apply Now</h1>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div>
+        <!-- <label for="fName"> Name:</label> -->
+        <input type="text" id="fName" formControlName="fName" maxlength="50" class="form-control" required
+          placeholder="Name" onkeyup=" this.value = this.value.replace(/[^a-z0-9 .]/gi,'')"
+          oninput=" this.value = this.value.replace(/[0-9]/g,'')">
+        <div *ngIf="form.controls['fName'].invalid && (form.controls['fName'].dirty || form.controls['fName'].touched)">
+          <div *ngIf="form.controls['fName'].errors?.['required']" style="color: red;"> Name is required.</div>
+        </div>
+      </div>
+      <!-- <div>
+          <label for="lName">Last Name:</label>
+          <input type="text" id="lName" formControlName="lName">
+          
+        </div> -->
+      <div class="row">
+        <div class="col-md-6">
+          <input type="email" id="officeEmail" class="form-control" maxlength="50" formControlName="officeEmail" required
+          placeholder="Official Email*">
+        <div
+          *ngIf="form.controls['officeEmail'].invalid && (form.controls['officeEmail'].dirty || form.controls['officeEmail'].touched)">
+          <div *ngIf="form.controls['officeEmail'].errors?.['required']" style="color: red;">Office Email is required.
+          </div>
+          <div *ngIf="form.controls['officeEmail'].errors?.['email']" style="color: red;">Invalid email format.</div>
+        </div>
+        </div>
+        <div class="col-md-6">
+            <!-- <label for="businessPhone">Business Phone:</label> -->
+            <input type="tel" id="businessPhone" formControlName="businessPhone" maxlength="16" class="form-control"
+              placeholder="Phone" style="margin-bottom:20px;" onkeyup="this.value = this.value.replace(/[^0-9-]/g, '');">
+            <!-- Add other validation messages for businessPhone if needed -->
+        </div>
+        
+      </div>
+      
+
+      <div>
+        <!-- <label for="fName"> Name:</label> -->
+        <input type="text" id="companyName" formControlName="companyName" maxlength="50" class="form-control" required
+          placeholder=" Position Name" oninput=" this.value = this.value.replace(/[0-9]/g,'')">
+        <div
+          *ngIf="form.controls['companyName'].invalid && (form.controls['companyName'].dirty || form.controls['companyNames'].touched)">
+          <div *ngIf="form.controls['companyName'].errors?.['required']" style="color: red;">Position Name is required.
+          </div>
+        </div>
+      </div>
+
+      <!-- <div>
+          <input type="text" id="jobTitle" formControlName="jobTitle"  class="form-control" required placeholder="Designation">
+          <div *ngIf="form.controls['jobTitle'].invalid && (form.controls['jobTitle'].dirty || form.controls['jobTitle'].touched)">
+            <div *ngIf="form.controls['jobTitle'].errors?.['required']"> Designation is required.</div>
+          </div>
+        </div> -->
+
+      <div>
+        <!-- <label for="fName"> Name:</label> -->
+        <textarea type="textarea" id="description" formControlName="description" maxlength="600" class="form-control "
+          required placeholder=" Describe Your Role"></textarea>
+        <div
+          *ngIf="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)">
+          <div *ngIf="form.controls['description'].errors?.['required']" style="color: red;"> Job Role is required.
+          </div>
+        </div>
+      </div><br><bR>
+
+      <input type="file" id="resume" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx">
+      <button (click)="uploadResume()">Upload Resume</button>
+
+      <br><br>
+      <!-- Add other form fields similarly -->
+      <button type="submit"
+        class="becobtn btn btBtn btn-primary btnNormalWidth step-submit-action-button form-submit-button"
+        [disabled]="buttonDisabled">Submit Application</button>
+    </form>
+
+
+    <!-- <div class="col-xl-12 col-lg-12 col-12">
+            <input class="form-control" id="name" type="text" placeholder="Name" data-sb-validations="required" />
+            <div class="invalid-feedback" data-sb-feedback="name:required">Name is required.</div>
+        </div>
+        <br><br><br>
+        
+       
+
+        <div class="row">
+            <div class="col">
+              <input class="form-control" id="emailAddress" type="email" placeholder="Offical Email" data-sb-validations="required, email" />
+              <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.</div>
+              <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
+            </div>
+            <div class="col">
+              <input type="tel" id="phone" class="form-control" placeholder="Phone*" style="width:35pc;"/>
+
+            </div>
+          </div>
+        <br><br><br>
+        
+        <div class="col-xl-12 col-lg-12 col-12">
+            <div class="form-group">
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>Position For Applied</option>
+                  <option>Market Intelligence Analyst</option>
+                  <option>Market Research Director</option>
+                  <option>Graphics Designer</option>
+                  <option>SEO Executive</option>
+                  <option>Digital Marketing Executive</option>
+                </select>
+              </div>
+        </div>
+
+        <div class="col-xl-12 col-lg-12 col-12">
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Choose File</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+              </div>
+        </div>
+
+        <button type="submit" class="becobtn btn-primary">Submit Application</button> -->
+
+
+
+
+
+
+  </div>
+
+</div>
+<bR><br><br>
+
+<app-searchbar></app-searchbar>

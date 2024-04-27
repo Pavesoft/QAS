@@ -1,0 +1,218 @@
+<div class="container-fluid">
+    <div class="row" style="padding-bottom: 3%;">
+        <div class="col-sm-12" style="padding: 0;">
+            <div class="carimg">
+                <h2 class="cart">Life @ Quadrant</h2>
+            </div>
+            
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+                <h2 class="cartit text-center">We’re Looking For Talented People</h2>
+                <p class=" cardec text-center">It all begins with an intense curiosity about clients, colleagues, and the future. We, at Quadrant, bring a diverse set of perspectives as well as the courage of their convictions to work on ideas and initiatives that shift the trajectory of business. As a trusted advisor to the world's most prominent firms, we live at the crossroads of what's next.</p>
+        </div>
+       </div>
+
+       <div class="row" style="margin-bottom: 20px;margin-top: 20px;">
+        <div class="col-sm-12">
+                <h2 class="cartit1 text-center">Open Positions</h2>
+        </div>
+       </div>
+
+       <div class="row">
+        <div class="col-sm-6 box" style="border-left: 5px solid #0972EA; margin-bottom: 50px;">
+          <div class="hvvrr">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4 class="mart1">Market Intelligence Analyst</h4>
+                </div>
+                <div class="col-sm-6">
+                    <a href="/market-intelligence-analyst"><button class="cbtn1">View</button></a>
+                </div>
+            </div>
+            <p class="l2"><b>Location:</b> Pune</p>
+            <p class="cdec1">At Quadrant Knowledge Solutions, we believe the best teams are diverse and inclusive, and we are on a journey to create a workplace where every employee can grow and achieve their best.</p>
+          </div>
+          </div>
+        <div class="col-sm-6 box1" style="border-left: 5px solid #0972EA; margin-bottom: 50px;">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4 class="mart">Client Partner /
+                      Sr. Client Partner</h4>
+                </div>
+                <div class="col-sm-6">
+                    <a href="/client-partner"><button class="cbtn">View</button></a>
+                </div>
+            </div>
+            <p class="l1"><b>Location:</b> Pune</p>
+            <p class="cdec">At Quadrant Knowledge Solutions, we believe the best teams are diverse and inclusive, and we are on a journey to create a workplace where every employee can grow and achieve their best.</p>
+        </div>
+       </div>
+
+       <div class="row">
+        <!-- <div class="col-sm-6 box" style="border-left: 5px solid #0972EA; margin-bottom: 100px;">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4 class="mart">Key Account Manager</h4>
+                </div>
+                <div class="col-sm-6">
+                    <a href="#"><button class="cbtn">View</button></a>
+                </div>
+            </div>
+            <p class="l1"><b>Location:</b> Pune</p>
+            <p class="cdec">At Quadrant Knowledge Solutions, we believe the best teams are diverse and inclusive, and we are on a journey to create a workplace where every employee can grow and achieve their best.</p>
+        </div> -->
+        <div class="col-sm-6 box" style="border-left: 5px solid #0972EA; margin-bottom: 100px;">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4 class="mart">Conference Producer</h4>
+                </div>
+                <div class="col-sm-6">
+                    <a href="#"><button class="cbtn">View</button></a>
+                </div>
+            </div>
+            <p class="l1"><b>Location:</b> Pune</p>
+            <p class="cdec">At Quadrant Knowledge Solutions, we believe the best teams are diverse and inclusive, and we are on a journey to create a workplace where every employee can grow and achieve their best.</p>
+        </div>
+       </div>
+
+       <div class="row" style="padding-bottom: 3%;">
+        <div class="col-sm-12" style="padding: 0;">
+            <div class="hunimg">
+                <h2 class="strt">Let’s start building your career now.</h2>
+                <!-- <form (ngSubmit)="onSubmit1()" [formGroup]="form">
+                <div class="input-group mb-3 snbt">
+                  <input type="email" id="officeEmail" class="form-control bdr" maxlength="50" formControlName="officeEmail" required placeholder="Official Email*"  style="border-radius:20px 20px 20px 20px;">
+
+                    <div *ngIf="form.controls['officeEmail'].invalid && (form.controls['officeEmail'].dirty || form.controls['officeEmail'].touched)">
+                      <div *ngIf="form.controls['officeEmail'].errors?.['required']">Office Email is required.</div>
+                      <div *ngIf="form.controls['officeEmail'].errors?.['email']">Invalid email format.</div>
+                    </div>
+                    <button class="btn btn-primary bdr1" type="button" [disabled]="form.invalid">Subscribe Now</button>
+                  </div>
+                </form>  -->
+
+                <!-- <form (ngSubmit)="onSubmit()" [formGroup]="form" class="mb"> -->
+
+                <form  [formGroup]="form" class="mb">
+                 
+             
+                  <div class="single">
+                    <div class="input-group" style="border-radius:  0px 0px 10px!important;color:white;width: 100%; " [ngClass]="{ 'full-width': form.controls['officeEmail'].invalid || form.controls['officeEmail'].value === '' }" style="border-radius: 0px 0px 10px!important; color: white;" >
+                           <input type="email"  id="officeEmail" class="form-control" maxlength="50"  formControlName="officeEmail" required placeholder="Official Email*"  style="margin-top: 0px!important;background-color: #011f41;color:white;::placeholder { color: white; }" >
+                           <div *ngIf="form.controls['officeEmail'].invalid && (form.controls['officeEmail'].dirty || form.controls['officeEmail'].touched)">
+                            <div class="invalidemail" *ngIf="form.controls['officeEmail'].errors?.['required']" style="margin-top: 43px!important;">Office Email is required.</div>
+                            
+                            
+        
+                            <div class="invd" *ngIf="form.controls['officeEmail'].errors?.['email']">Invalid email format.</div>
+                            <div *ngIf="form.controls['officeEmail'].errors?.['maxLength']">Email length exceeded the limit.</div>
+            
+                          </div>
+                           <span class="input-group-btn" style="font-family: 'Arial Nova Bold';">
+                           <button class="btn btn-theme" type="submit" style="color:black;background-color:white;border-radius: 0px 8px 8px 0px !important;">Subscribe Now</button>
+                           </span>
+                            </div>
+                    </div> 
+        
+                  </form><Br><Br>
+            </div>
+            
+        </div>
+
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-sm-12">
+          <p class="text-center st">FAQS</p>
+                <h2 class="mt text-center">Questions? Look Here.</h2>
+        </div>
+       </div> -->
+      <!-- <div class="row" style="margin-bottom: 5%;">
+        <div class="col-sm-12">
+            <div class="accordion acc" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item" style="background-color: #DADADA;">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button btt" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne" style="background-color: #DADADA;">
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr?
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item" style="background-color: #DADADA;">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo" style="background-color: #DADADA;">
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr?
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                      This is the second item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the, though the transition does limit overflow.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item" style="background-color: #DADADA;">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                    <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree" style="background-color: #DADADA;">
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr?
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                    <div class="accordion-body">
+                      <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the, though the transition does limit overflow.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item" style="background-color: #DADADA;">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                      <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour" style="background-color: #DADADA;">
+                          Lorem ipsum dolor sit amet, consetetur sadipscing elitr?
+                      </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+                      <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the, though the transition does limit overflow.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item" style="background-color: #DADADA;">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+                      <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive" style="background-color: #DADADA;">
+                          Lorem ipsum dolor sit amet, consetetur sadipscing elitr?
+                      </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
+                      <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the, though the transition does limit overflow.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item" style="background-color: #DADADA;">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingSix">
+                      <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false" aria-controls="panelsStayOpen-collapseSix" style="background-color: #DADADA;">
+                          Lorem ipsum dolor sit amet, consetetur sadipscing elitr?
+                      </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSix">
+                      <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the, though the transition does limit overflow.
+                      </div>
+                    </div>
+                  </div>
+              </div>
+        </div>
+
+      </div> -->
+      
+
+</div>
+<div #topElement></div>
+
+<app-searchbar></app-searchbar>

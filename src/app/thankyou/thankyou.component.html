@@ -1,0 +1,145 @@
+
+
+
+<div class="container-fluid" id="thankyoupage" style="background-color:#e6eaee;width:1300px;padding-top: 30px;">
+<div class="container" style="background-color: white;;">
+
+<img src="assets/mailsucc.png" class="center" style="text-align: center;">
+<h1 style="text-align: center;color:#0d6efd;font-weight: 700;font-size: 36px;">Thank You!!</h1>
+<p style="text-align: center;">We have received your request </p>
+<p style="text-align: center;">Our team will connect with you within 2 to 4 hours.  </p>
+
+<hr class="new1" style="border-bottom: 2px solid black;width:50pc;margin-left: 106px;">
+
+<div class="sociallinks" style="text-align: center;">
+<a href="https://www.facebook.com/quadrantknowledgesolutions" target="_blank" class="fa fa-facebook"></a>
+<a href="https://www.instagram.com/lifeatquadrant/" target="_blank" class="fa fa-instagram"></a>
+
+<a href="https://www.linkedin.com/company/quadrant-knowledge-solutions/" target="_blank" class="fa fa-linkedin"></a>
+<a href="https://twitter.com/QKS_Quadrant" target="_blank" class="fa fa-times"></a>
+<a href="https://www.youtube.com/channel/UC3m0FzPazwQCREA5Vc9-9VQ" target="_blank" class="fa fa-youtube"></a>
+
+
+</div>
+</div>
+
+
+
+  <div class="container-fluid" style="background-color: #e6eaee;">
+<div class="container" id="mobr" style="background-color: white;padding-bottom: 30px;padding-top: 25px;">
+  
+      
+    <div class="row">
+      <div class="col-sm-2">
+
+      </div>
+      <div class="col-sm-4">
+        <h3 >For Further Queries Contact Us</h3>
+        <div style="margin-left: 20px;">
+        <b>Email: </b> <a href="mailto:ajinkya@quadrant-solutions.com"> ajinkya@quadrant-solutions.com</a><br><br>
+        <b>Phone: </b> <a href="tel: (+1) 978-344-2770"> (+1) 978-344-2770</a>
+      </div>
+      </div>
+      <div class="col-sm-4">
+        <h3 id="alignleft">Need a brief overview?</h3>
+        <h3 style="color:#0d6efd;font-weight: 800;font-family: 'Arial Nova Bold';"><a href="/contact-us" style="text-decoration: none;font-weight: 700;font-size: 18px;">Contact Us</a></h3>
+
+      </div>
+      <div class="col-sm-2">
+        
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+  <h3><b style="font-weight: 800;"><u>Other Related Reports</u></b></h3>
+
+
+  <div class="col-md-12" id="reslistdata" style="width:1300px;">
+    <!-- Research results section -->
+    <div class="container-fluid" style="background-color: #EAEAEA;">
+        <div class="row">
+            <div class="col-md-4" style="background-color:white;padding: 20px;border-right: 35px solid #e6eaee;border-bottom: 35px solid #e6eaee;"
+                *ngFor="let research of collection | paginate: { itemsPerPage: 6, currentPage: p }">
+                <!-- Research Result Item -->
+                <div class="research-item">
+                    <div class="row">
+                        <a routerLink="{{ getUrlFriendlyString(research.report) }}-{{ research.id }}"
+                            class="col-md-9 research-title text-left"
+                            (click)="showResearchDetails(research)">
+                            {{ research.report }}
+                        </a>
+                        
+                    </div><br>
+                    <!-- Description, date, and buttons -->
+                    <div class="row">
+                      <div class="col-md-6 date" style="width: 100%!important;">
+                        <b style="font-weight: 500;">Date :</b> <span> {{ research.publishDate | date }}
+                        </span>
+                    </div>
+  
+                      <div class="col-md-6 author">
+                        <b id="auth" style="font-weight: 500;margin-left: 0px;">Author :</b> <span
+                            style="font-weight: 400;"> {{ capitalizeFirstChar(research.author)
+                            }}</span>
+                    </div>
+                    </div><br>
+
+                   
+
+                    <div class="row">
+                        <div class="col-md-9 research-description" style="width:100%important;">
+                            {{ getFormattedDescription(research.description) | slice:0:100 }}{{
+                            research.description.length > 20 ? '...' : '' }}
+                        </div>
+                        
+                    </div><br>
+                    <!-- Research Category, Report Type, and Price -->
+                    <div class="row" style="margin-top: 10px;">
+                      <div class="col-md-5">
+                        <span class="research-category" style="width: 50pc;display: block;margin-left: -2px;line-height: 20px;">Category : <span
+                                style="color: #0d6efd;font-weight:500;">{{
+                                research.categoryName }}</span></span>
+                    </div>
+                   
+                </div>
+
+                <div class="col-md-4">
+                  <span class="research-category" style="width: 50pc;display: block;margin-left: -20px;line-height: 20px;">Report Type : <span
+                          style="color: #0d6efd;font-weight:500;">{{
+                          research.reportType }}</span></span>
+              </div>
+
+              <div class=" text-left" style="margin-left: -5px;display: flex;">
+                <b style="font-weight: 500;display: block;">Price : $ </b><span style="font-weight: 500;">  {{research.price }} </span>
+            </div> 
+              
+
+              <div class="col-md-3 text-right" style="margin-top: -10px;">
+                <button class="btn btn-primary"  (click)="addToCart(research)"
+                    style="background-color: #011F41;width:8pc;margin-top: 20px;">Add to Cart</button>
+            </div>
+              </div>
+             
+
+          
+
+          <div class="col-md-3 text-right">
+            <button class="btn btn-success" (click)="buyNow(research)"
+                style="background-color: #0d6efd;width:8pc;margin-left:140px;margin-top: -58px;">Buy Now</button>
+        </div>
+              
+            </div>
+            <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+        </div>
+
+    </div>
+</div>
+
+    
+
+      <Br><Br>
+        <Br><Br>
+
+          <div #topElement></div>
+<app-searchbar></app-searchbar>

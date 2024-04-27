@@ -1,0 +1,31 @@
+
+<app-banner></app-banner>
+<app-productpagination></app-productpagination>
+<app-card></app-card>
+<app-home></app-home>
+<app-recentremerkable></app-recentremerkable>
+<app-game-changing-tool></app-game-changing-tool>
+ <app-upcomingevents></app-upcomingevents> 
+<!-- <<<<<<< Updated upstream -->
+<!-- <app-howwedifferent></app-howwedifferent> -->
+<!-- ======= -->
+<app-howwedifferent></app-howwedifferent>
+<!-- >>>>>>> Stashed changes -->
+ <!-- <app-testimonial></app-testimonial>  -->
+<!-- <app-workinprogress></app-workinprogress> -->
+<app-ourclients></app-ourclients>
+<app-searchbar></app-searchbar>
+<!-- <router-outlet></router-outlet> -->
+
+<div class="cookiebox" *ngIf="cookiebox">
+    <div class="txtbox">
+        <span>By using our site, you acknowledge that you read and understand our <a href="/CookiePolicy" style="text-decoration: none;">Cookie Policy</a>, 
+            Privacy Policy and our Terms of Service </span>
+    </div>
+    <div class="btnbox">
+        <button class="btn1" (click)="Decline()">Decline</button>
+        <button class="btn2" (click)="Allow()">Allow Cookie</button>
+    </div>
+</div>
+
+

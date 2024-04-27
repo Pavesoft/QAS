@@ -1,0 +1,16 @@
+<div class="cart-container">
+  <h2>Your Cart</h2>
+  <div *ngFor="let item of cartItems" class="cart-item">
+    <span>{{ item.name }}</span>
+    <div class="quantity-controls">
+      <button (click)="decrementQuantity(item)" class="control-button">-</button>
+      <span>{{ item.quantity }}</span>
+      <button (click)="incrementQuantity(item)" class="control-button">+</button>
+    </div>
+    <span class="price">{{ item.price | currency }}</span>
+    <button (click)="removeItem(item.id)" class="delete-button">Delete</button>
+  </div>
+  <div class="total-price">
+    Total Price: {{ getTotalPrice() | currency }}
+  </div>
+</div>

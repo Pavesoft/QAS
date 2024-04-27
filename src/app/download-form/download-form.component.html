@@ -1,0 +1,187 @@
+
+<div class="container-fluid" style="margin-bottom: 2%; background-color: #EAEAEA; height: 690px;">
+  
+  <div class="breadcrumbs" *ngIf="isReportState">
+    <a routerLink="/market-research" style="color:white;text-decoration: none;"> research ></a> 
+    <span style="color:white;"> > </span> 
+    <a href="market-research/{{getUrlFriendlyString(reportName)}}-{{reportId}}" style="text-decoration: none;"> {{reportName}} </a> 
+
+    <span style="color:white;"> > </span> 
+    <a style="color:white;"> download-form </a>
+  </div>
+
+  <div class="breadcrumbs" *ngIf="isBlogState">
+    
+    <a routerLink="/blogs" style="color:white;text-decoration: none;"> blogs ></a> 
+    <span style="color:white;"> > </span> 
+    <a href="blogs/{{getUrlFriendlyString(reportName)}}-{{reportId}}" style="text-decoration: none;"> {{reportName}} </a> 
+    <span style="color:white;"> > </span> 
+    <a style="color:white;"> download-form </a>
+  </div>
+
+  <div class="breadcrumbs" *ngIf="isPressState">
+    <a routerLink="/press-release" style="color:white;text-decoration: none;"> Press-Relese ></a> 
+    <span style="color:white;"> > </span> 
+    <a href="press-release/{{getUrlFriendlyString(reportName)}}-{{reportId}}" style="text-decoration: none;"> {{reportName}} </a> 
+    
+    <span style="color:white;"> > </span> 
+    <a style="color:white;"> download-form </a>
+  </div>
+
+
+  <div class="row lt" *ngIf="isBlogState || isReportState || isPressState">
+    <div class="col-md-6" id="mobresp">
+      <div class="left-sec">
+        <div class="row">
+          <h2 style="color: #0972EA;">{{reportName}}</h2>
+
+          <p>
+            {{ getFormattedDescription(reportDesc) | slice:0:200 }}{{
+            reportDesc.length > 30 ? '...' : '' }}
+          </p>
+
+          <!-- <div class="col-md-6">
+                        <b style="font-weight: 500;">Date :</b><br>
+                        <b class="research-category">Report Type : </b>
+                    </div>
+                    <div class="col-md-6">
+                        <b  style="font-weight: 500;">Author :</b><br>
+                        <b class="research-category">Research Coverage : </b>
+                    </div> -->
+        </div>
+        <h3>Questions</h3>
+        <p>For more information, please contact your account manager:</p>
+        <h3>Quadrant Sales</h3>
+        <p>Phone: <a href="tel:(+1) 978-344-2770">(+1) 978-344-2770</a> <br>Email: <a href="mailto:ajinkya@quadrant-solutions.com">ajinkya@quadrant-solutions.com</a></p>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <div class="right-sec">
+
+        <h3 style="text-align: center;"><b class="mobleft">To request a free sample copy of this report, please complete the form below. </b></h3>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+         
+          <div>
+            <!-- <label for="fName"> Name:</label> -->
+            <input type="text" id="fName" formControlName="fName" maxlength="50" class="form-control" required
+              placeholder="Full Name" onkeyup=" this.value = this.value.replace(/[^a-z0-9 .]/gi,'')" oninput=" this.value = this.value.replace(/[0-9]/g,'')">
+              <!-- replace(/[$&+,:;=?[\]@#|{}'<>.^*()%!-/]/,)"/ -->
+            <div *ngIf="form.controls['fName'].invalid && (form.controls['fName'].dirty || form.controls['fName'].touched)">
+              <div *ngIf="form.controls['fName'].errors?.['required']" style="color: red;"> Full Name is required.</div>
+            </div>
+          </div>
+          <!-- <div>
+                  <label for="lName">Last Name:</label>
+                  <input type="text" id="lName" formControlName="lName"> 
+                </div> -->
+          <!-- <div>
+            <input type="email" id="officeEmail" class="form-control" maxlength="50" formControlName="Official Email*"
+              required placeholder="Business Email">
+            <div
+              *ngIf="form.controls['officeEmail'].invalid && (form.controls['officeEmail'].dirty || form.controls['officeEmail'].touched)">
+              <div *ngIf="form.controls['officeEmail'].errors?.['required']"  style="color: red;">Business Email is required.</div>
+              <div *ngIf="form.controls['officeEmail'].errors?.['email']"  style="color: red;">Invalid email format.</div>
+            </div>
+          </div> -->
+
+          <div>
+            <!-- <label for="officeEmail">Office Email:</label> -->
+            <input type="email" id="officeEmail" class="form-control" maxlength="50" formControlName="officeEmail" required placeholder="Business Email">
+            <div *ngIf="form.get('officeEmail')?.invalid && (form.get('officeEmail')?.dirty || form.get('officeEmail')?.touched)">
+              <div *ngIf="form.get('officeEmail')?.hasError('required')" style="color: red;">Business Email is required.</div>
+              <div *ngIf="form.get('officeEmail')?.hasError('email')" style="color: red;">Invalid email format.</div>
+            </div>
+          </div>
+
+        
+
+          <div style="display: grid;">
+            
+             <input type="tel" id="businessPhone"  formControlName="businessPhone" maxlength="16" class="form-control" required placeholder="Phone" style="margin-bottom:20px;"
+              onkeyup="this.value = this.value.replace(/[^0-9-]/g, '');">
+            <!-- Add other validation messages for businessPhone if needed -->
+          </div>
+
+          <div>
+            <!-- <label for="fName"> Name:</label> -->
+            <input type="text" id="companyName" formControlName="companyName" maxlength="50" class="form-control"
+              required placeholder=" Company Name" oninput=" this.value = this.value.replace(/[0-9]/g,'')">
+            <div
+              *ngIf="form.controls['companyName'].invalid && (form.controls['companyName'].dirty || form.controls['companyNames'].touched)">
+              <div *ngIf="form.controls['companyName'].errors?.['required']" style="color: red;">Company Name is required.</div>
+            </div>
+          </div>
+
+          <!-- <div>
+                  <input type="text" id="jobTitle" formControlName="jobTitle"  class="form-control" required placeholder="Designation">
+                  <div *ngIf="form.controls['jobTitle'].invalid && (form.controls['jobTitle'].dirty || form.controls['jobTitle'].touched)">
+                    <div *ngIf="form.controls['jobTitle'].errors?.['required']"> Designation is required.</div>
+                  </div>
+                </div> -->
+
+          <div>
+            <!-- <label for="fName"> Name:</label> -->
+            <textarea type="textarea" id="description" formControlName="description" maxlength="600"
+              class="form-control " required placeholder="Message To Quadrant"></textarea>
+            <div
+              *ngIf="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)">
+              <div *ngIf="form.controls['description'].errors?.['required']" style="color: red;"> Message is required.</div>
+            </div>
+          </div>
+          <!-- Add other form fields similarly -->
+          <br>
+          <p>This website is secure and we do not share your personal information with any third party. <a
+              href="/PersonalInformation" style="text-decoration: none;">Privacy Policy</a></p>
+          <button type="submit" class="becobtn btn btBtn btn-primary btnNormalWidth step-submit-action-button form-submit-button" [disabled]="buttonDisabled">Download Sample Report</button>
+        
+        </form>
+        
+
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="container" style="padding-top: 40px;">
+  <div class="row align-items-center">
+    <div class="container rounded">
+      <h3 class="text-center tt">Our Clients</h3>
+      <div class="slider">
+        <div class="logos">
+          <img class="pad" src="assets/Picture21.png">
+          <img class="pad"src="assets/Picture13.png">
+          <img class="pad" src="assets/Picture21.png">
+          <img class="pad"src="assets/PTC.png"> 
+          <img class="pad"src="assets/radware.png"> 
+          <img class="pad"src="assets/datamatics.png"> 
+          <img class="pad"src="assets/korber.png"> 
+         <img class="pad"src="assets/dialpad.png">  
+
+          
+        </div>
+        <div class="logos">
+          <img class="pad" src="assets/Picture21.png">
+          <img class="pad" src="assets/Picture13.png">
+           <img class="pad" src="assets/Picture21.png">
+          <img class="pad" src="assets/PTC.png"> 
+          <img class="pad"src="assets/radware.png"> 
+          <img class="pad"src="assets/datamatics.png">
+          <img class="pad"src="assets/dialpad.png"> 
+          <img class="pad"src="assets/korber.png"> 
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<br>
+<app-searchbar></app-searchbar>

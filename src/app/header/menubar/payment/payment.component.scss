@@ -1,0 +1,42 @@
+/* Custom styles */
+body {
+    background-color: #f8f9fa;
+    /* padding: 20px; */
+}
+
+.container {
+    padding-top: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.payment-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px #0000001a;
+}
+
+.payment-heading {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.payment-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.payment-button:hover {
+    background-color: #0056b3;
+}

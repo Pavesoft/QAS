@@ -1,0 +1,134 @@
+.bg-fit{
+    height: 360px;
+    object-fit: cover;
+}
+.tbox{
+    width: 450px;
+    height: 335px;
+    position: absolute;
+    background-color: #ffffff;
+    top: -60px;
+    left: 75px;
+    border-top: 7px solid #0972EA;
+}
+.tt{
+    font-size: 18px !important;
+    color: #0972EA;
+    position: relative;
+    left: 20px;
+    top: 30px;
+    font-family: 'Arial Nova';
+}
+.tit{
+    font-size: 18px;
+    font-family: 'Arial Nova Bold';
+    position: relative;
+    left: 20px;
+    top: 30px;
+    line-height: 30px;
+    color: #343434;
+}
+.dec{
+    font-size: 14px;
+    font-family: Arial Nova, Regular;
+    position: relative;
+    left: 20px;
+    width: 400px;
+    top: 30px;
+    text-align: justify;
+    color: #343434;
+}
+.bt{
+    font-size: 18px;
+    font-family: 'Arial Nova Bold';
+    width: 135px;
+    height: 37px;
+    position: relative;
+    left: 20px;
+    top: 36px;
+    color: #ffffff;
+    border: none;
+    background: #011F41;
+    padding: 10px;
+    box-shadow: 5px 5px #0972EA;
+    text-align: center;
+}
+.d-block.w-100.size{
+    width: 500px!important;
+    height: 300px!important;
+    padding-left: 40px!important;
+}
+
+.d-block.w-100.sizes{
+    width: 500px!important;
+    height: 300px!important;
+    // padding-left: 40px!important;
+}
+
+.text-center.event {
+    font-family: Arial Nova Bold;
+    font-size: 30px;
+  }
+
+
+  @media screen and (max-width: 480px){
+
+    .tbox {
+        width: 350px;
+        height: 275px;
+        position: absolute;
+        background-color: #ffffff;
+        top: 45px;
+        left: 30px !important;
+        border-top: 7px solid #0972EA;
+    }
+    .tt{
+        font-size: 14px !important;
+        color: #0972EA;
+        position: relative;
+        left: 20px;
+        top: 15px;
+        font-family: "Arial Nova";
+    }
+    .tit{
+        font-size: 14px;
+        font-family: "Arial Nova Bold";
+        position: relative;
+        left: 20px;
+        top: 14px;
+        line-height: 22px;
+        color: #343434;
+    }
+    .dec{
+        font-size: 12px;
+        font-family: Arial Nova, Regular;
+        position: relative;
+        left: 20px;
+        top: 12px;
+        text-align: justify;
+        color: #343434;
+        width:280px!important;
+    }
+    .bt{
+        font-size: 14px;
+        font-family: "Arial Nova Bold";
+        width: 115px;
+        height: 27px;
+        position: relative;
+        left: 20px;
+        top: 16px;
+        color: #ffffff;
+        border: none;
+        background: #011F41;
+        padding: 2px;
+        box-shadow: 5px 5px #0972EA;
+        text-align: center;
+    }
+    .bg-fit{
+        height: 200px;
+        object-fit: cover;
+        position: relative;
+        top: -60px;
+    }
+    
+  }

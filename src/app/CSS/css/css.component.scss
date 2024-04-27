@@ -1,0 +1,311 @@
+.marimg9{
+  background-color: #011F41;
+  height: 420px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.mr2{
+  width: 460px;
+  border: 10px solid #ffffff;
+  border-radius: 10px;
+  position: relative;
+  top: -460px;
+  left: 500px;
+  height: 270px;
+}
+
+.mr4{
+  width: 430px;
+  border: 10px solid #ffffff;
+  border-radius: 10px;
+  position: relative;
+  top: -360px;
+  left: 30px;
+}
+
+.marbtn8 {
+  color: white;
+  font-size: 24px;
+  font-family: 'arial nova bold';
+  background: none;
+  border: none;
+  position: relative;
+  left: 95px;
+  top: -300px;
+}
+
+.mardec7 {
+  color: #ffffff;
+  position: relative;
+  font-size: 14px;
+  font-family: 'Arial Nova';
+  left: 100px;
+  top: -330px;
+}
+.marimg9::before{
+  background-image: url(../../../assets/CSS1.png);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 40%;
+}
+.fx{
+  left: 12px;
+}
+.mt{
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    margin-bottom: 40px;
+  }
+
+  .mart2 {
+    color: #ffffff;
+    position: relative;
+    font-size: 40px;
+    font-family: 'Arial Nova Bold';
+    left: 100px;
+    top: -350px;
+}
+
+  
+
+  .what {
+    color: #ffffff;
+    position: relative;
+    font-size: 40px;
+    font-family: 'Arial Nova Bold';
+    left: 100px;
+    top: -310px;
+}
+.whadec {
+    color: #ffffff;
+    position: relative;
+    font-size: 16px;
+    font-family: 'Arial Nova';
+    left: 100px;
+    top: -300px;
+}
+.whabtn {
+    color: white;
+    font-size: 24px;
+    font-family: 'arial nova bold';
+    background: none;
+    border: none;
+    position: relative;
+    left: 95px;
+    top: -520px;
+}
+.arr{
+    position: relative;
+    left: 240px;
+    top: -25px;
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+    border: 3px solid #fff;
+    padding: 5px;
+}
+
+  .whaimg{
+    background-color: #011F41;
+    height: 420px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+.whaimg::before{
+    background-image: url(../../../assets/CSS1.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 40%;
+}
+
+  .ct {
+    position: relative;
+    top: 30%;
+    left: 2%;
+    font-size: 40px;
+    font-family: 'arial nova bold';
+    color: #ffffff;
+}
+.ct1 {
+    position: relative;
+    top: 30%;
+    left: 2%;
+    font-size: 16px;
+    font-family: 'arial nova';
+    color: #ffffff;
+    line-height: 25px;
+}
+
+.ct2 {
+    position: relative;
+    top: 30%;
+    left: 2%;
+    font-size: 24px;
+    font-family: 'arial nova Bold';
+    color: #ffffff;
+    line-height: 20px;
+    margin-top: 20px;
+}
+
+.myimg{
+    background-color: #011F41;
+    margin-top: -200px;
+    }
+
+    .myimage{
+        width: 100%;
+        height: 450px;
+        object-fit: cover;
+        opacity: 20%;
+      }
+
+      // .myimage1{
+      //   width: 100%;
+      //   height: 450px;
+      //   object-fit: cover;
+      //   opacity: 20%;
+      // }
+   
+
+  .st{
+    font-size: 18px;
+      font-family: "Arial Nova";
+      color: #0972EA;
+  }
+  .acc{
+    margin-left: 70px;
+    margin-right: 70px;
+}
+.btt{
+    font-family: 'Arial Nova Bold';
+    color: #343434;
+    font-size: 18px;
+  }
+
+
+  .recent{
+    font-family: "Arial Nova Bold";
+    font-size: 30px;
+
+}
+
+.Featured{
+    font-family: "Arial Nova";
+    font-size: 18px;
+    color: #0972EA;;
+
+}
+
+.col-sm-6.right {
+    padding-left: 48px !important;
+  }
+  .font{
+    font-family: "Arial Nova Bold";
+    font-size: 22px;
+    line-height: 35px;
+    color:white;
+  }
+
+.fnt{
+    font-family: "Arial Nova";
+    font-size: 16px;
+}
+
+.jumbotron text-center .padding{
+
+    padding:2rem 2rem!important;
+    margin:0px 0px;
+}
+.jumbotron {
+    margin-bottom: 0 !important;
+}
+  /*.contbtn{
+    font-size: 18px;
+    font-family: 'Arial Nova Bold';
+    width: 135px;
+    height: 37px;
+    position: relative;
+    left: 38%;
+    top: 10px;
+    color: #ffffff;
+    border: none;
+    background: #011F41;
+    padding: 10px;
+    box-shadow: 5px 5px #0972EA;
+    text-align: center;
+  }*/
+
+
+
+  @media screen and (max-width: 480px){
+
+    .mt{
+      font-size: 25px!important;
+    }
+    .acc{
+      margin-left: 25px!important;
+      margin-right: 25px!important;
+    }
+    .recent{
+      font-size: 22px!important;
+    }
+    div#rescss {
+      width: 50%!important;
+  }
+  img#iconcss {
+    padding-left: 30px!important;
+    width: 8pc!important;
+}
+div#resres {
+  padding-left: 50px!important;
+}
+
+div#blogcss {
+  margin-left: 0px!important;
+  margin-bottom: 30px!important;
+}
+
+div#blogcss1 {
+  margin-right: 0px!important;
+  margin-top: 30px!important;
+}
+
+.what{
+  left: 20px!important;
+  top:-360px!important;
+  font-size: 25px!important;
+}
+.whadec{
+  font-size: 13px!important;
+  left: 20px!important;
+  top:-350px!important;
+}
+
+.whabtn{
+  left: 15px!important;
+  top:-320px!important;
+}
+
+.mr2 {
+    width: 460px;
+    border: 10px solid #ffffff;
+    border-radius: 10px;
+    position: relative;
+    top: -310px!important;
+    left: 0px!important;
+    height: 270px!important;
+}
+
+}

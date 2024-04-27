@@ -1,0 +1,545 @@
+.roimg{
+    background-color: #011F41;
+    height: 420px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.whabtn {
+    color: white;
+    font-size: 24px;
+    font-family: 'arial nova bold';
+    background: none;
+    border: none;
+    position: relative;
+    left: 95px;
+    top: -280px;
+}
+
+.roimg::before{
+    background-image: url(../../../assets/ROI_Hero.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 40%;
+}
+.rot {
+    color: #ffffff;
+    position: relative;
+    font-size: 40px;
+    font-family: 'Arial Nova Bold';
+    left: 100px;
+    top: -310px;
+}
+.rodec {
+    color: #ffffff;
+    position: relative;
+    font-size: 14px;
+    font-family: 'Arial Nova';
+    left: 100px;
+    top: -300px;
+}
+.robtn {
+    color: white;
+    font-size: 24px;
+    font-family: 'arial nova bold';
+    background: none;
+    border: none;
+    position: relative;
+    left: 95px;
+    top: -280px;
+}
+.arr{
+    position: relative;
+    left: 235px;
+    top: -25px;
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+    border: 3px solid #fff;
+    padding: 5px;
+}
+.roinfo {
+    width: 420px;
+    position: relative;
+    left: 440px;
+    top: 10px;
+}
+.mr1{
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    margin-bottom: 40px;
+  }
+  .mr{
+    font-size: 18px;
+      font-family: "Arial Nova";
+      color: #0972EA;
+  }
+  .rep{
+    font-size: 14px;
+    font-family: 'arial nova';
+    color: #404040;
+    position: relative;
+    left: 105px;
+    width: 525px;
+    
+}
+.whp {
+    width: 80%;
+    position: relative;
+    left: 135px;
+}
+.anon {
+    width: 230px;
+}
+.an {
+    font-size: 18px;
+    text-align: center;
+    font-family: "Arial Nova Bold";
+    color: #0972EA;
+}
+.an1 {
+    font-size: 18px;
+    text-align: center;
+    font-family: "Arial Nova Bold";
+    color: #0656B2;
+}
+.an2 {
+    font-size: 18px;
+    text-align: center;
+    font-family: "Arial Nova Bold";
+    color: #043B79;
+}
+.an3 {
+    font-size: 18px;
+    text-align: center;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+}
+.high {
+    font-size: 15px;
+    font-family: "Arial Nova";
+    text-align: center;
+    position: relative;
+    bottom: 185px;
+    right: 5px;
+    color: #ffffff;
+}
+.bene{
+    width: 60px;
+    position: relative;
+    left: 90px;
+}
+.c3 {
+    font-size: 18px;
+    text-align: center;
+    font-family: "Arial Nova Bold";
+    color: #404040;
+    position: relative;
+    top: 30px;
+}
+.lt{
+    position: relative;
+    left: 80px;
+}
+.thum {
+    width: 430px;
+    position: absolute;
+    left: 40px;
+    border: 10px solid #f2f2f2;
+    border-radius: 10px;
+}
+.det{
+    font-size: 14px;
+    font-family: 'arial nova bold';
+    color: #404040;
+    position: relative;
+    left: 30px;
+    top: -20px;
+}
+.exte{
+    font-size: 14px;
+    font-family: 'arial nova';
+    color: #011F41;
+    position: relative;
+    left: 0px;
+    width: 420px;
+    
+}
+.a1{
+    margin-top: -35px;
+}
+.cont{
+    position: relative;
+    top: 60px;
+    left: 30px;
+}
+.connbtn{
+    font-size: 18px;
+    font-family: "Arial Nova Bold";
+    height: 37px;
+    position: relative;
+    top: 30px;
+    left: 170px;
+    color: #ffffff;
+    border: none;
+    background: #011F41;
+    width: 260px;
+    box-shadow: 5px 5px #0972EA;
+    text-align: center;
+  }
+
+  .nee{
+    background-color: #011F41;
+    height: 420px;
+    margin-top: -60px;
+}
+.nlm{
+    font-size: 26px;
+    font-family: "Arial Nova Bold";
+    position: relative;
+    left: 70px;
+    top: 70px;
+    width: 405px;
+    // text-align: justify;
+    color: #0972EA;
+    line-height: 36px;
+}
+.qut{
+    width: 60px;
+    position: relative;
+    top: 50px;
+    left: 70px;  
+}
+.pd {
+    font-family: "Arial Nova";
+    color: #ffffff;
+    font-size: 14px;
+    position: relative;
+    left: 70px;
+    top: 60px;
+}
+.nn {
+    color: #ffffff;
+    font-size: 18px;
+    font-family: "Arial Nova Bold";
+    position: relative;
+    left: 70px;
+    top: 70px;
+}
+.att {
+    font-size: 18px;
+    color: #ffffff;
+    font-family: "Arial Nova Bold";
+    position: relative;
+    top: 50px;
+}
+.at1 {
+    font-size: 18px;
+    color: #ffffff;
+    font-family: "Arial Nova Bold";
+    position: relative;
+    top: 35px;
+}
+.at2 {
+    font-size: 18px;
+    color: #ffffff;
+    font-family: "Arial Nova Bold";
+    position: relative;
+    top: 25px;
+}
+.rd{
+    font-size: 14px;
+    font-family: "Arial Nova";
+    color: #0972EA;
+    position: relative;
+    top: 45px;
+}
+.rd1{
+    font-size: 14px;
+    font-family: "Arial Nova";
+    color: #0972EA;
+    position: relative;
+    top: 25px;
+}
+.rd2{
+    font-size: 14px;
+    font-family: "Arial Nova";
+    color: #0972EA;
+    position: relative;
+    top: 15px;
+}
+a{
+    text-decoration: none;
+}
+hr{
+        color: #dadada;
+        width: 70%;
+        position: relative;
+        top: 40px;
+        border: 1.5px solid #dadada;
+}
+.hr1{
+    color: #dadada;
+    width: 70%;
+    position: relative;
+    top: 25px;
+    border: 1.5px solid #dadada;
+}
+.siz{
+    font-family: Arial Nova Bold;
+    font-size: 36px;
+    text-align: center;
+    padding-top: 50px;
+    color: #ffffff;
+}
+
+.Gran{
+    font-family: "Arial Nova Bold";
+    font-size: 18px;
+    color: #ffffff;
+
+}
+.diff{
+    height: 370px;
+}
+.pot{
+    width: 60px;
+    position: relative;
+    top: -35px;
+    left: 115px;
+}
+.mt{
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    margin-bottom: 40px;
+  }
+  .st{
+    font-size: 18px;
+      font-family: "Arial Nova";
+      color: #0972EA;
+  }
+  .acc{
+    margin-left: 70px;
+    margin-right: 70px;
+}
+.btt{
+    font-family: 'Arial Nova Bold';
+    color: #343434;
+    font-size: 18px;
+  }
+  .eff{
+    font-family: "Arial Nova Bold";
+    font-size: 18px;
+    color: #ffffff;
+    line-height: 25px;
+
+}
+
+@media screen and (max-width: 480px){
+
+    .mt{
+        font-size: 25px!important;
+    }
+
+    .acc{
+        margin-left: 25px!important;
+        margin-right: 25px!important;
+    }
+
+    .mr1{
+        font-size: 24px!important;
+    }
+    .mr11{
+        font-size: 25px!important;
+    }
+    .mr{
+        margin-top: -40px!important;
+    }
+
+    .lt{
+        left:0px!important;
+        width: 340px!important;
+        height: 400px;
+    }
+
+    .nee{
+        margin-top: -100px!important;
+        height: 820px!important;
+    }
+
+    .rep{
+        left: 35px !important;
+        width: 365px !important;
+    }
+
+    .whp{
+        left: 60px!important;
+    }
+    .anon{
+        width: 250px;
+        position: relative;
+        left: 20px;
+        margin-bottom: -60px;
+    }
+    .high{
+        font-size: 15px;
+        font-family: "Arial Nova";
+        text-align: center;
+        position: relative;
+        bottom: 145px;
+        right: 5px;
+        color: #ffffff;
+    }
+
+    .c3{
+        top:10px!important;
+    }
+
+    div#mind {
+        width: 50%!important;
+    }
+
+    .bene{
+        left: 30px!important;
+    }
+    .diff{
+        height: 734px!important;
+    }
+
+    div#restec{
+        width: 50%!important;
+    }
+    .pot{
+        top:-30px!important;
+        left: 60px!important;
+    }
+
+    .siz{
+        font-size: 26px!important;
+        line-height: 40px!important;
+    }
+    .roimg{
+        height: 600px!important;
+    }
+
+    .rot{
+        font-size: 28px!important;
+        left: 20px!important;
+        top:-530px!important;
+    }
+    .rodec{
+        left: 50px!important;
+        top:-520px!important;
+        margin-left: -30px!important;
+        width: 395px!important;
+        font-size: 13px!important;
+        line-height: 24px!important;
+    }
+    .whabtn{
+        color: white;
+        font-size: 24px;
+        font-family: "arial nova bold";
+        background: none;
+        border: none;
+        position: relative;
+        left: 15px;
+        top: -490px;
+    }
+    .robtn{
+        left: 10px!important;
+        top:-470px!important;
+    }
+    .roinfo{
+    width: 332px!important;
+    left: 40px!important;
+    top: 142px!important;
+    }
+    .connbtn{
+
+    left: 70px !important;
+    top: 30px !important;
+    // margin-bottom: 90px !important;
+        
+     }
+
+     div#mobleft {
+        padding-left: 50px!important;
+    }
+    .nlm{
+
+        font-size: 23px!important;
+        left: 30px!important;
+        width: 310px!important;
+        line-height: 30px!important;
+        text-align: left!important;
+    }
+    .nn{
+        left: 30px!important;
+    }
+    .pd{
+        left: 30px!important;
+    }
+    .exte{
+        font-size: 14px;
+        font-family: "arial nova";
+        color: #011F41;
+        position: relative;
+        left: 30px;
+        width: 320px;
+        text-align: center;
+        
+    }
+    iframe#\38 5952831 {
+        width: 378px!important;
+        background-size: contain!important;
+        margin: 2px 0px 0px 2px!important;
+    }
+    .ytp-impression-link {
+        background: rgba(23,23,23,.8)!important;
+        border-bottom-right-radius: 2px!important;
+        border-top-right-radius: 2px!important;
+        bottom: 0px!important;
+        height: 39px!important;
+        position: absolute!important;
+    }
+    .ytp-cued-thumbnail-overlay-image {
+        background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 384px;
+        height: 95%;
+        position: absolute;
+    }
+    iframe{
+        width: 400px!important;
+        height: 280px!important;
+    }
+
+}
+@media  screen and (max-width: 1440px) {
+    .roinfo{
+        width:420px;
+        position: relative;
+        left:520px;
+        top:10px;
+    }
+}
+
+@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) {
+    .roinfo {
+        width: 420px;
+        position: relative;
+        left: 440px;
+        top: 10px;
+    }
+
+}

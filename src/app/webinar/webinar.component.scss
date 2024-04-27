@@ -1,0 +1,231 @@
+.carousel-indicators{
+  margin-bottom: -2.5em!important;
+}
+
+.carousel .carousel-indicators button {
+ width: 10px;
+ height: 10px;
+ border-radius: 100%;
+}
+
+.cmt{
+    margin: 30px !important;
+    margin-left: 80px!important;
+}
+iframe {
+    position: relative;
+    top: 50px;
+    left: 60px;
+  }
+  .blogimg{
+  background-color: #011F41;
+  height: 460px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  }
+  .blogimg::before{
+  background-image: url("https://quadrant-solutions.com/wp-content/uploads/2024/01/Webinar-Banner.png");
+  background-size: cover;
+  // background-position: center center;
+  background-repeat: no-repeat;
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 40%;
+  }
+  .blg {
+  color: #ffffff;
+  font-size: 45px;
+  font-family: 'Arial Nova Bold';
+  position: relative;
+  top: 10px;
+  }
+  .blgd {
+  color: #fff;
+  width: 750px;
+  font-size: 14px;
+  font-family: 'Arial Nova';
+  position: relative;
+  bottom: 15px;
+  }
+  
+  div#shadow {
+  position: relative;
+  top:-80px;
+  left:45px;
+  padding:15px;
+  width:345px;
+  }
+  .title {
+    position: absolute;
+    left: 90px;
+    top: 30px;
+}
+.title h2 {
+  width: 420px;
+  color: #00327A;
+  font-family: "Arial Nova Bold";
+}
+.title p {
+  width: 420px;
+  color: #444343;
+  font-family: "Arial Nova";
+}
+// .hol{
+//   font-size: 18px;
+//   font-family: 'arial nova bold';
+//   color: #011F41;
+//   position: relative;
+//   left: 30px;
+//   top: -30px;
+// }
+// .inte{
+//   font-size: 14px;
+//   font-family: 'arial nova';
+//   color: #011F41;
+//   position: relative;
+//   left: 30px;
+//   top: -40px;
+//   width: 425px;
+// }
+  
+//   .mt{
+//       font-size: 36px;
+//       font-family: "Arial Nova Bold";
+//       color: #011F41;
+//       margin-bottom:0px;
+//     }
+//     .st{
+//       font-size: 18px;
+//         font-family: "Arial Nova";
+//         color: #0972EA;
+//     }
+.t1{
+    font-size: 17px!important;
+    font-family: 'Arial Nova Bold'!important;
+    color: #0972EA;
+    position: relative;
+    left: 10px;
+  }
+.spc{
+    position: relative;
+    left: 25px;
+}
+.spc2 {
+  position: relative;
+  left: 10px;
+}
+.spc1{
+    position: relative;
+    right: 5px;
+}
+  .sp{
+      margin-top: -10px!important;
+    }
+  .tt{
+    font-size: 19px !important;
+    color: #0972EA;
+    position: relative;
+    left: 20px;
+    top: 20px;
+    font-family: 'Arial Nova';
+  }
+  .tit{
+    font-size: 18px;
+    font-family: "Arial Nova Bold";
+    position: relative;
+    left: 10px;
+    top: 15px;
+    line-height: 30px;
+    color: #0972EA;
+  }
+  .dec{
+      font-size: 15px;
+      font-family: Arial Nova, Regular;
+      text-align: justify;
+      position: relative;
+      left: 20px;
+      width: 470px;
+      top: 30px;
+      color: #011F41;
+      line-height: 25px;
+  }
+  .bt{
+    font-size: 18px;
+    font-family: 'Arial Nova Bold';
+    width: 135px;
+    height: 37px;
+    position: relative;
+    left: 20px;
+    top: 40px;
+    color: #ffffff;
+    border: none;
+    background: #011F41;
+    padding: 10px;
+    box-shadow: 5px 5px #0972EA;
+    text-align: center;
+  }
+  .wd{
+    position: relative;
+    top: 20px;
+    left: 12px;
+    width: 340px;
+  }
+  @media screen and (max-width: 480px){
+  
+    // .mt{
+    //   font-size: 26px!important;
+    //   margin-bottom: -50px!important;
+    // }
+    .sp{
+      margin-top: -30px!important;
+    }
+    .t1{
+      position: relative;
+      left: 2px;
+  }
+    .tit{
+      font-size: 18px !important;
+    position: relative;
+    left: 12px;
+    width: 340px;
+    margin-bottom: 30px;
+    }
+    .spc{
+      position: relative;
+      left: 0px;
+  }
+  .spc1{
+    position: relative;
+    right: 5px;
+    margin-bottom: -30px;
+  }
+  
+.spc2{
+  position: relative;
+  left: 0px;
+}
+
+    .dec{
+      width:325px!important;
+    }
+  .bt{
+    margin-bottom: 62px!important;
+    top:50px!important;
+  }
+  ul.left{
+    padding-left: 0rem;
+  }
+  .blgd{
+      width: 280px!important;
+  }
+  iframe{
+    position: relative;
+    top: 60px;
+    left: 16px;
+    width: 330px;
+    margin-bottom: -30px;
+  }
+  
+  }

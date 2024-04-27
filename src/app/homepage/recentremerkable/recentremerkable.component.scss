@@ -1,0 +1,70 @@
+.recent{
+    font-family: "Arial Nova Bold";
+    font-size: 36px!important;
+
+}
+
+h2{
+    font-family: "Arial Nova Bold";
+    font-size: 22px!important;
+    font-weight: 700!important;
+}
+
+.Featured{
+    font-family: "Arial Nova";
+    font-size: 18px;
+    color: #0972EA;;
+
+}
+
+.col-sm-6.right {
+    padding-left: 48px !important;
+  }
+  .font{
+    font-family: "Arial Nova Bold";
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+.fnt{
+    font-family: "Arial Nova";
+    font-size: 16px;
+}
+
+.jumbotron text-center .padding{
+
+    padding:2rem 2rem!important;
+    margin:0px 0px;
+}
+.jumbotron {
+    margin-bottom: 0 !important;
+}
+
+.spx{
+    border: none!important;
+    margin-left: -6px;
+}
+
+@media screen and (max-width: 480px){
+
+    .recent{
+        font-size: 25px!important;
+    }
+    h2{
+        font-family: "Arial Nova Bold";
+        font-size: 21px!important;
+        position: relative;
+        left: -10px;
+    }
+    p {
+        position: relative;
+        left: -10px;
+        text-align: justify;
+        width: 325px;
+    }
+    a{
+        position: relative;
+        left: -15px;
+    }
+
+}

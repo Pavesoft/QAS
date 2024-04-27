@@ -1,0 +1,365 @@
+
+.btt{
+    font-family: 'Arial Nova Bold';
+    color: #343434;
+    font-size: 18px;
+  }
+
+  .acc{
+    margin-left: 70px;
+    margin-right: 70px;
+}
+.accordion-body{
+    font-family: 'Arial Nova';
+}
+
+.st{
+    font-size: 18px;
+      font-family: "Arial Nova";
+      color: #0972EA;
+  }
+
+
+h2.card-title.text-center {
+    font-size: 28px;
+    font-family: 'Arial Nova Bold';
+}
+
+p.card-text.text-center {
+    font-family: "Arial Nova";
+    font-size: 16px;
+}
+a.card-text.text-center {
+    font-family: 'Arial Nova Bold';
+    text-decoration: none;
+    font-size: 16px;
+    color:black!important;
+}
+
+h3.text-left.t1 {
+    font-size: 44px;
+    font-weight: 700;
+    color: white;
+    font-family: "Arial Nova Bold";
+}
+
+p.text-left.t2 {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'arial nova';
+    line-height: 24px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 670px;
+}
+
+h1.text-left.t3 {
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'arial nova bold';
+    letter-spacing: 1px;
+}
+
+.carousel-caption.font-weight-bold.text-warning {
+    
+    margin-left: -100px;
+}
+.myimage{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    opacity:1;
+    margin-top: -190px;
+  }
+.myimg{
+background-color: #011F41;
+margin-top: 0px;
+}
+
+.ct2 {
+    position: relative;
+    top: 36%;
+    left: 2%;
+    font-size: 24px;
+    font-family: 'arial nova Bold';
+    color: #ffffff;
+    line-height: 20px;
+    margin-top: 20px;
+}
+
+.ct {
+    position: relative;
+    top: 28%;
+    left: 2%;
+    font-size: 36px;
+    font-family: 'arial nova bold';
+    color: #ffffff;
+}
+
+.ct1{
+    position: relative;
+    top: 30%;
+    left: 2%;
+    font-size: 18px;
+    font-family: 'Arial Nova';
+    color: #ffffff;
+    line-height: 25px;
+
+}
+.mt{
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    margin-bottom: 40px;
+  }
+
+  .full-width-image {
+    position: relative;
+    overflow: hidden;
+  }
+  .full-width-image img {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+  }
+  .image-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+  }
+  
+
+
+  
+  .contbtn{
+    font-size: 18px;
+    font-family: 'Arial Nova Bold';
+    width: 135px;
+    height: 37px;
+    position: relative;
+    left: 38%;
+    top: 10px;
+    color: #ffffff;
+    border: none;
+    background: #011F41;
+    padding: 10px;
+    box-shadow: 5px 5px #0972EA;
+    text-align: center;
+  }
+
+  .recent{
+    font-family: "Arial Nova Bold";
+    font-size: 36px;
+
+}
+
+.Featured{
+    font-family: "Arial Nova";
+    font-size: 18px;
+    color: #0972EA;;
+
+}
+
+.col-sm-6.right {
+    padding-left: 48px !important;
+  }
+  .font{
+    font-family: "Arial Nova Bold";
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+.fnt{
+    font-family: "Arial Nova";
+    font-size: 16px;
+}
+
+.jumbotron text-center .padding{
+
+    padding:2rem 2rem!important;
+    margin:0px 0px;
+}
+.jumbotron {
+    margin-bottom: 0 !important;
+}
+
+
+div#shadow{
+
+  box-shadow: 10px 10px 30px #00000029;
+      border-radius: 30px;
+      border: 1px solid #011F41;
+      opacity: 1;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      width:23%!important;
+      
+  }
+
+  p.left {
+    margin-top: -12px;
+    margin-left: 30px;
+    font-family: 'Arial Nova';
+    font-size: 15px;
+}
+
+.bt{
+    font-size: 18px;
+    font-family: 'Arial Nova Bold';
+    width: 200px;
+    height: 37px;
+    position: relative;
+    left: 180px;
+    
+    color: #ffffff;
+    border: none;
+    background: #011F41;
+    padding: 10px;
+    box-shadow: 5px 5px #0972EA;
+    text-align: center;
+  }
+
+  .whaimg{
+    background-color: #011F41;
+    height: 420px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.whaimg::before{
+    background-image: url(../../../assets/SPARK_Hero.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 40%;
+}
+.what {
+    color: #ffffff;
+    position: relative;
+    font-size: 40px;
+    font-family: 'Arial Nova Bold';
+    left: 100px;
+    top: -310px;
+}
+.whadec {
+    color: #ffffff;
+    position: relative;
+    font-size: 16px;
+    font-family: 'Arial Nova';
+    left: 100px;
+    top: -300px;
+    line-height: 25px;
+    width: 450px;
+}
+.whabtn {
+    color: white;
+    font-size: 24px;
+    font-family: 'arial nova bold';
+    background: none;
+    border: none;
+    position: relative;
+    left: 95px;
+    top: -280px;
+}
+.arr{
+    position: relative;
+    left: 235px;
+    top: -25px;
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+    border: 3px solid #fff;
+    padding: 5px;
+}
+
+.subheading{
+    font-family: 'Arial Nova';
+    font-size: 26px;
+    color: white;
+    position: relative;
+    bottom: 300px;
+    left: 100px;
+}
+
+
+@media screen and (max-width: 480px){
+
+    .mt{
+        font-size: 25px!important;
+    }
+    .acc{
+        margin-left: 25px!important;
+        margin-right: 25px!important;
+    }
+    img#sparkmob {
+        padding-top: 30px;
+    }
+    div#shadow{
+        width: 45% !important;
+        margin-top: 10px !important;
+        left: 10px;
+    }
+    img#img {
+        padding-left: 50px!important;
+       
+    }
+    .what{
+        left: 40px !important;
+        top: -380px !important;
+        font-size: 30px !important;
+    }
+
+    .subheading{
+        bottom: 380px!important;
+        left: 40px!important;
+        line-height: 30px!important;
+    }
+    .whatdec{
+        left: 40px!important;
+        width: 300px!important;
+        top: -381px!important;
+        line-height: 20px!important;
+    }
+
+    p.whadec{
+        left: 40px!important;
+       
+        width: 300px!important;
+        top: -381px!important;
+        line-height: 20px!important;
+    }
+    .recent{
+        font-size: 26px!important;
+    }
+    button.whabtn{
+        left: 32px!important;
+        top: -360px!important;
+    }
+
+    div#spmot{
+        margin-bottom: -300px!important;
+    }
+    .bt{
+        left: 80px!important;
+    }
+
+    iframe {
+        width: 360px !important;
+        height: 250px !important;
+        position: relative;
+        left: -16px;
+    }
+    .sp{
+        font-size: 14px!important;
+    }
+
+}

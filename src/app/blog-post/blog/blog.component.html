@@ -1,0 +1,148 @@
+<div *ngIf="loading">
+    <br><br><br><br><br><br><br><br>
+    <div class="loading-spinner" style="width: 80px; height: 80px;">
+        <!-- <div class="logo-pre">
+            <img src="../../../../assets/lg.gif" alt="Logo" class="img-fluid" height="40px;width:40px;">
+        </div> -->
+    </div>
+    <br><br><br><br><br><br><br><br>
+</div>
+
+<div class="container-fluid" *ngIf="!loading">
+    <div class="row">
+        <div class="col-sm-12" style="padding: 0;">
+            <div class="blogimg">
+                <h1 class="blg text-center">Featured Blogs</h1>
+                <p class="text-center blgd">Explore the Latest Insights and Expert Analysis in Technology and
+                    Business<br> with Quadrant Knowledge Solutions' Informative Blog. Stay Informed, Stay Ahead!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+<!-- Your existing code for search, alert, and cart icon -->
+<!-- <div id="customAlert" class="alert" [ngClass]="{'success': alertType === 'Success', 'failed': alertType === 'Failed'}">
+    <div class="alert-content">
+        <span class="closebtn" (click)="closeCustomAlert()">&times;</span>
+        {{ message }}.
+    </div>
+</div>  -->
+
+<div id="overlay" *ngIf="showOverlay"></div>
+
+<br>
+<div class="container-fluid" *ngIf="!loading">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <div class="row">
+        <div class="col-md-12 row" >
+            <div class="col-md-4" *ngFor="let research of collection | paginate: { itemsPerPage: 12, currentPage: p }">
+                <div class="research-item">
+                    <a class="col-md-12 research image" routerLink="{{getUrlFriendlyString(research.blogTitle)}}-{{research.id}}" href={{research.postImgPath}}>
+                        <img src={{research.postImgPath}} style="height: 200px;"
+                            (click)="showResearchDetails(research)" />
+                    </a>
+
+                    <div class="row" id="shadow">
+                        <b>
+                            <a routerLink="{{getUrlFriendlyString(research.blogTitle)}}-{{research.id}}"
+                                class="col-md-12 research-title text-left" style="padding-top: 20px;padding-bottom: 20px;" (click)="showResearchDetails(research)">
+                                {{ getFormattedTitle(research.blogTitle) | slice:0:55 }}{{
+                                research.blogTitle.length > 20 ? '...' : '' }}
+                            </a>
+                        </b>
+
+                        <div class="col-md-12 research-desc text-left">
+                            <b style="font-weight: 500;">Date :</b> <span> {{ research.postDate | date }} </span>
+                        </div>
+                        <div class="col-md-12 research-desc text-left">
+                            <b *ngIf="research.postAuthor != 1" style="font-weight: 500;">Author :</b> <span
+                                *ngIf="research.postAuthor != 1">{{ research.postAuthor }}</span>
+
+                        </div>
+
+                        <div class="col-md-12 research-desc text-left" style="padding-top: 10px;" *ngIf="research.postContent!=null">&nbsp;
+                            {{ getFormattedDescription(research.postContent) | slice:0:100 }}{{
+                            research.postContent.length > 10 ? '...' : '' }}
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+
+
+    </div>
+
+
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12" style="width:100%;left: 30px;" id="presp">
+            <!-- Research results section -->
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- <div class="col-md-12" *ngFor="let research of sortedResearchData">
+                      
+                        <div class="research-item">
+                            <div class="row">
+                                <div class="col-md-12 research image"><img src="..\assets\Harnessing-Synergy.png" style="height: 200px;"></div>
+                                <div class="col-md-12 research-title text-left" (click)="showResearchDetails(research)" >
+                                    {{ research.report }}
+                                </div>
+            
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                   <b style="font-weight: 500;">Date :</b> <span>  {{ research.publishDate | date }} </span>
+                                </div>
+                                <div class="col-md-12">
+                                    <b style="font-weight: 500;">Category :</b> <span>{{ research.categoryName }}</span>
+                                 </div>
+                            </div>&nbsp;
+                            <div class="row">
+                                <div class="col-md-12 research-description">
+                                    {{ getFormattedDescription(research.description) | slice:0:100 }}{{
+                                    research.description.length > 20 ? '...' : '' }}
+                                </div>
+                            
+                            </div>
+    
+                        </div>
+                    </div> -->
+                </div>
+
+                <!-- Pagination section --><br><br><br><br>
+                <!-- <div class="pagination-container">
+                    <ul class="pagination">
+                        <li class="page-item" [class.disabled]="currentPage === 1">
+                            <a class="page-link" (click)="goToPage(1)"
+                                style="background-color: #343434;color: #fff;">First</a>
+                        </li>
+                        <li class="page-item" [class.disabled]="currentPage === 1">
+                            <a class="page-link" (click)="goToPage(currentPage - 1)">Previous</a>
+                        </li>
+                        <li class="page-item" *ngFor="let page of getPaginationRange()">
+                            <a class="page-link" [class.active]="page === currentPage" (click)="goToPage(page)">{{ page
+                                }}</a>
+                        </li>
+                        <li class="page-item" [class.disabled]="currentPage === paginationMetadata.totalPages">
+                            <a class="page-link" (click)="goToPage(currentPage + 1)">Next</a>
+                        </li>
+                        <li class="page-item" [class.disabled]="currentPage === paginationMetadata.totalPages">
+                            <a class="page-link" (click)="goToPage(paginationMetadata.totalPages)"
+                                style="background-color: #343434;color: #fff;">Last</a>
+                        </li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+
+    </div>
+</div>
+<app-searchbar></app-searchbar>

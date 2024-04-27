@@ -1,0 +1,264 @@
+.whaimg{
+    background-color: #011F41;
+    height: 490px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+
+input#companyName{
+    position: relative;
+    top:20px;
+  }
+
+  input#jobTitle {
+    top: 20px;
+    position: relative;
+}
+
+textarea#description {
+    position: relative;
+    top: 20px;
+}
+
+input#description {
+    position: relative;
+    top: 20px;
+}
+
+.becobtn{
+    font-size: 18px;
+    font-family: 'Arial Nova Bold';
+    width: 135px;
+    height: 37px;
+    position: relative;
+    left: 38%;
+    top: 10px;
+    color: #ffffff;
+    border: none;
+    background: #011F41;
+    padding: 5px;
+    box-shadow: 5px 5px #0972EA;
+    text-align: center;
+  }
+
+
+
+
+  .form-control{
+    margin-bottom: 20px;
+  }
+
+.whaimg::before{
+    background-image: url(../../../assets/qssbanner.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 25%;
+}
+
+.what {
+    color: #ffffff;
+    position: relative;
+    font-size: 40px;
+    font-family: 'Arial Nova Bold';
+    left: 100px;
+    top: -340px;
+}
+.whadec {
+    color: #ffffff;
+    position: relative;
+    font-size: 16px;
+    font-family: 'Arial Nova';
+    left: 100px;
+    top: -300px;
+    line-height: 25px;
+}
+
+.whabtn {
+    color: white;
+    font-size: 24px;
+    font-family: 'arial nova bold';
+    background: none;
+    border: none;
+    position: relative;
+    left: 95px;
+    top: -280px;
+}
+
+.arr{
+    position: relative;
+    left: 235px;
+    top: -25px;
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+    border: 3px solid #fff;
+    padding: 5px;
+}
+
+
+.btt{
+    font-family: 'Arial Nova Bold';
+    color: #343434;
+    font-size: 18px;
+  }
+
+  .acc{
+    margin-left: 70px;
+    margin-right: 70px;
+}
+.accordion-body{
+    font-family: 'Arial Nova';
+}
+
+.st{
+    font-size: 18px;
+      font-family: "Arial Nova";
+      color: #0972EA;
+  }
+
+  .mt{
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    margin-bottom: 40px;
+  }
+
+  .recent{
+    font-family: "Arial Nova Bold";
+    font-size: 36px;
+
+}
+
+.Featured{
+    font-family: "Arial Nova";
+    font-size: 18px;
+    color: #0972EA;;
+
+}
+
+.Featured1{
+    font-family: "Arial Nova";
+    font-size: 18px;
+    color:#343434;
+
+}
+
+p.left {
+    margin-top: -12px;
+    margin-left: 30px;
+    font-family: 'Arial Nova';
+    font-size: 16px;
+}
+
+p.left a{
+    text-decoration: none;
+    color:black;
+}
+
+.contbtn{
+    font-size: 18px;
+    font-family: 'Arial Nova Bold';
+    width: 250px;
+    height: 37px;
+    position: relative;
+    left: 38%;
+    top: 10px;
+    color: #ffffff;
+    border: none;
+    background: #011F41;
+    padding: 10px;
+    box-shadow: 5px 5px #0972EA;
+    text-align: center;
+  }
+
+
+
+  .form-control{
+    width:94%;
+
+  }
+
+
+  @media screen and (max-width: 480px){
+
+    .acc{
+        margin-left: 25px!important;
+        margin-right: 25px!important;
+    }
+    .mt{
+        margin-top: -20px!important;
+        font-size: 25px!important;
+    }
+    .recent{
+        font-size: 25px!important;
+    }
+
+    iframe {
+        width: 300px!important;
+        margin-left: 20px!important;
+    }
+
+    p.left{
+        // margin-top: -50px!important;
+        margin-left: -20px!important;
+        line-height: 25px!important;
+    }
+    img#partner {
+        width: 22pc!important;
+    }
+
+    p.ready {
+        margin-left: -20px!important;
+        margin-top: -55px!important;
+        margin-bottom: 30px!important;
+    }
+    .what{
+        left: 25px!important;
+        top:-410px!important;
+        font-size: 25px!important;
+    }
+    .whadec{
+        font-size: 14px!important;
+        left: 25px!important;
+        top:-400px!important;
+    }
+    .whabtn{
+        left: 20px!important;
+        top: -380px!important;
+    }
+    .contbtn{
+        left: 10%!important;
+    }
+    .f1{
+        padding-left: 45px!important;
+        padding-top: 35px!important;
+    }
+    .f2{
+        position: relative;
+        left: -45px!important;
+    }
+    .f3{
+        position: relative;
+        left: 12px;
+    } 
+    .f4{
+        margin-top: -50px;
+    } 
+    .becobtn{
+        // position: relative;
+        top: 15px;
+        left: 28%;
+        
+      }
+      #businessPhone{
+        width: 21.5pc!important;
+      }
+      
+
+  }

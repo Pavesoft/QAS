@@ -1,0 +1,141 @@
+iframe {
+  position: relative;
+  top: 50px;
+  left: 60px;
+}
+.blogimg{
+background-color: #011F41;
+height: 260px;
+display: grid;
+place-items: center;
+position: relative;
+}
+.blogimg::before{
+background-image: url("/assets/recording-podcast.png");
+background-size: cover;
+// background-position: center center;
+background-repeat: no-repeat;
+content: '';
+position: absolute;
+inset: 0;
+opacity: 40%;
+}
+.blg {
+color: #ffffff;
+font-size: 45px;
+font-family: 'Arial Nova Bold';
+position: relative;
+top: 10px;
+}
+.blgd {
+color: #fff;
+width: 750px;
+font-size: 14px;
+font-family: 'Arial Nova';
+position: relative;
+bottom: 15px;
+}
+
+div#shadow {
+position: relative;
+top:-80px;
+left:45px;
+padding:15px;
+width:345px;
+}
+
+.mt{
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    margin-bottom:0px;
+  }
+  .st{
+    font-size: 18px;
+      font-family: "Arial Nova";
+      color: #0972EA;
+  }
+.sp{
+    margin-top: -10px!important;
+  }
+.tt{
+  font-size: 19px !important;
+  color: #0972EA;
+  position: relative;
+  left: 20px;
+  top: 20px;
+  font-family: 'Arial Nova';
+}
+.tit{
+  font-size: 18px;
+  font-family: 'Arial Nova Bold';
+  width: 395px;
+  position: relative;
+  left: 20px;
+  top: 35px;
+  line-height: 30px;
+  color: #011F41;
+}
+.dec{
+    font-size: 15px;
+    font-family: Arial Nova, Regular;
+    text-align: justify;
+    position: relative;
+    left: 20px;
+    width: 470px;
+    top: 30px;
+    color: #011F41;
+    line-height: 25px;
+}
+.bt{
+  font-size: 18px;
+  font-family: 'Arial Nova Bold';
+  width: 135px;
+  height: 37px;
+  position: relative;
+  left: 20px;
+  top: 40px;
+  color: #ffffff;
+  border: none;
+  background: #011F41;
+  padding: 10px;
+  box-shadow: 5px 5px #0972EA;
+  text-align: center;
+}
+@media screen and (max-width: 480px){
+
+  .mt{
+    font-size: 26px!important;
+    margin-bottom: -50px!important;
+  }
+  .sp{
+    margin-top: -30px!important;
+  }
+  .tit{
+    font-size: 24px!important;
+    position: relative;
+    left: 12px;
+    width: 340px;
+  }
+  .dec{
+    width:325px!important;
+  }
+.bt{
+  margin-bottom: 62px!important;
+  top:50px!important;
+}
+ul.left{
+  padding-left: 0rem;
+}
+.blgd{
+    width: 280px!important;
+}
+iframe{
+  position: relative;
+  top: 60px;
+  left: 16px;
+  width: 330px;
+  margin-bottom: -30px;
+}
+
+}

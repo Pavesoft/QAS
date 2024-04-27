@@ -1,0 +1,381 @@
+.whaimg{
+    background-color: #011F41;
+    height: 420px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+.whaimg::before{
+    background-image: url(../../../assets/WHAO_Hero.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 40%;
+}
+.what {
+    color: #ffffff;
+    position: relative;
+    font-size: 40px;
+    font-family: 'Arial Nova Bold';
+    left: 100px;
+    top: -310px;
+}
+.whadec {
+    color: #ffffff;
+    position: relative;
+    font-size: 14px;
+    font-family: 'Arial Nova';
+    left: 100px;
+    top: -300px;
+}
+.whabtn {
+    color: white;
+    font-size: 24px;
+    font-family: 'arial nova bold';
+    background: none;
+    border: none;
+    position: relative;
+    left: 95px;
+    top: -280px;
+}
+.arr{
+    position: relative;
+    left: 235px;
+    top: -25px;
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+    border: 3px solid #fff;
+    padding: 5px;
+}
+.mr1{
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    margin-bottom: 40px;
+  }
+  .mr{
+    font-size: 18px;
+      font-family: "Arial Nova";
+      color: #0972EA;
+  }
+  .lt{
+    position: relative;
+    left: 80px;
+}
+.thum {
+    width: 430px;
+    position: absolute;
+    left: 40px;
+    border: 10px solid #f2f2f2;
+    border-radius: 10px;
+}
+.det{
+    font-size: 14px;
+    font-family: 'arial nova bold';
+    color: #404040;
+    position: relative;
+    left: 30px;
+    top: -20px;
+}
+.exte{
+    font-size: 14px;
+    font-family: 'arial nova';
+    color: #011F41;
+    width: 405px;
+    
+}
+.a1{
+    margin-top: -35px;
+}
+.cont{
+    position: relative;
+    top: 60px;
+    left: 30px;
+}
+.make {
+    position: relative;
+    top: 270px;
+    left: -60px;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'arial nova bold';
+    color: #0972EA;
+}
+.pro{
+    width: 250px;
+}
+.qks{
+    font-size: 15px;
+    font-family: 'arial nova bold';
+    color: #011F41;
+    position: relative;
+    left: 20px;
+    bottom: 285px;
+}
+.cap{
+    font-size: 15px;
+    font-family: 'arial nova';
+    color: #011F41;
+    position: relative;
+    left: 20px;
+    bottom: 275px;
+}
+.whp {
+    width: 90%;
+    position: relative;
+    left: 80px;
+}
+.nee{
+    background-color: #011F41;
+    height: 420px;
+    margin-top: -180px;
+}
+.nlm{
+    font-size: 26px;
+    font-family: "Arial Nova Bold";
+    position: relative;
+    left: 70px;
+    top: 70px;
+    width: 405px;
+    // text-align: justify;
+    color: #0972EA;
+    line-height: 36px;
+}
+.qut{
+    width: 60px;
+    position: relative;
+    top: 50px;
+    left: 70px;  
+}
+.pd {
+    font-family: "Arial Nova";
+    color: #ffffff;
+    font-size: 14px;
+    position: relative;
+    left: 70px;
+    top: 60px;
+}
+.nn {
+    color: #ffffff;
+    font-size: 18px;
+    font-family: "Arial Nova Bold";
+    position: relative;
+    left: 70px;
+    top: 70px;
+}
+.att {
+    font-size: 18px;
+    color: #ffffff;
+    font-family: "Arial Nova Bold";
+    position: relative;
+    top: 50px;
+}
+.at1 {
+    font-size: 18px;
+    color: #ffffff;
+    font-family: "Arial Nova Bold";
+    position: relative;
+    top: 35px;
+}
+.at2 {
+    font-size: 18px;
+    color: #ffffff;
+    font-family: "Arial Nova Bold";
+    position: relative;
+    top: 25px;
+}
+.rd{
+    font-size: 14px;
+    font-family: "Arial Nova";
+    color: #0972EA;
+    position: relative;
+    top: 45px;
+}
+.rd1{
+    font-size: 14px;
+    font-family: "Arial Nova";
+    color: #0972EA;
+    position: relative;
+    top: 25px;
+}
+.rd2{
+    font-size: 14px;
+    font-family: "Arial Nova";
+    color: #0972EA;
+    position: relative;
+    top: 15px;
+}
+a{
+    text-decoration: none;
+}
+hr{
+        color: #dadada;
+        width: 70%;
+        position: relative;
+        top: 40px;
+        border: 1.5px solid #dadada;
+}
+.hr1{
+    color: #dadada;
+    width: 70%;
+    position: relative;
+    top: 25px;
+    border: 1.5px solid #dadada;
+}
+.siz{
+    font-family: Arial Nova Bold;
+    font-size: 36px;
+    text-align: center;
+    padding-top: 50px;
+    color: #ffffff;
+}
+
+.Gran{
+    font-family: "Arial Nova Bold";
+    font-size: 18px;
+    color: #ffffff;
+
+}
+.diff{
+    height: 370px;
+}
+.pot{
+    width: 60px;
+    position: relative;
+    top: -35px;
+    left: 115px;
+}
+.mt{
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    margin-bottom: 40px;
+  }
+  .st{
+    font-size: 18px;
+      font-family: "Arial Nova";
+      color: #0972EA;
+  }
+  .acc{
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-bottom: 5%;
+}
+.btt{
+    font-family: 'Arial Nova Bold';
+    color: #343434;
+    font-size: 18px;
+  }
+  .eff{
+    font-family: "Arial Nova Bold";
+    font-size: 18px;
+    color: #ffffff;
+    line-height: 25px;
+
+}
+
+@media screen and (max-width: 480px){
+
+    .mt{
+        font-size: 25px!important;
+    }
+    .acc{
+        margin-left: 25px!important;
+        margin-right: 25px!important;
+    
+    }
+    .nee{
+        height: 890px!important;
+        margin-top:-100px!important ;
+    }
+    .diff{
+        height: 720px!important;
+    }
+
+    div#reswhao {
+        width: 50%!important;
+    }
+    .pot{
+        left:50px!important;
+    }
+
+    div#resass {
+        padding-left: 50px!important;
+    }
+
+    .qut{
+        left: 30px!important;
+    }
+    .nlm{
+        left: 30px!important;
+        width: 300px!important;
+        top:70px!important;
+
+    }
+    .nn{
+        left: 30px!important;
+    }
+    .pd{
+        left:30px!important;
+    }
+    .what{
+    left: 24px!important;
+    top: -320px!important;
+    font-size: 29px!important;
+    }
+    .whabtn{
+        left: 16px!important;
+    }
+    .whadec{
+        left: 20px!important;
+        top:-300px!important;
+        font-size: 13px!important;
+
+    }
+    .mr1{
+        font-size: 25px!important;
+    }
+    .lt{
+        left: 0px!important;
+    }
+    .thum{
+        width: 340px!important;
+        left: 17px!important;
+        top:40px!important;
+    }
+    .cont{
+        left: 0px!important;
+    }
+
+    .mr{
+        margin-top: 5px!important;
+    }
+    .make{
+        left: 0px!important;
+    }
+    div#topast {
+        margin-top: -190px!important;
+    }
+    .whp{
+        left: 60px!important;
+    }
+    div#topast1 {
+    margin-top: -110px;
+}
+
+.exte{
+    width: 335px !important;
+    position: relative;
+    left: 10px;
+}
+iframe{
+    width: 400px!important;
+    height: 224px!important;
+}
+
+
+}

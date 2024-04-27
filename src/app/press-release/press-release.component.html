@@ -1,0 +1,108 @@
+<div class="container-fluid" *ngIf="!isLoading">
+    <div class="row">
+        <div class="col-sm-12" style="padding: 0;">
+            <div class="carimg">
+                <h1 class="bect text-center">Press Release</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isLoading">
+    <br><br><br><br><br><br><br><br>
+    <div class="loading-spinner" style="width: 80px; height: 80px;">
+        <!-- <div class="logo-pre">
+            <img src="../../../../assets/lg.gif" alt="Logo" class="img-fluid" height="40px;width:40px;">
+        </div> -->
+    </div>
+    <br><br><br><br><br><br><br><br>
+  </div>
+
+<!-- Your existing code for search, alert, and cart icon -->
+<div id="customAlert" class="alert" [ngClass]="{'success': alertType === 'Success', 'failed': alertType === 'Failed'}">
+    <div class="alert-content">
+        <span class="closebtn" (click)="closeCustomAlert()">&times;</span>
+        {{ message }}.
+    </div>
+</div>
+
+<div id="overlay" *ngIf="showOverlay"></div>
+
+<br>
+<div class="container-fluid" *ngIf="!isLoading">
+    <div class="row">
+        <div class="col-md-9" style="width:65%;left: 30px;" id="presp">
+            <!-- Research results section -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12" *ngFor="let research of sortedResearchData | paginate: { itemsPerPage: 5, currentPage: p }">
+                        <!-- Research Result Item -->
+                        <div class="research-item">
+                            <div class="row">
+                                <a style="text-decoration: none;" routerLink="{{getUrlFriendlyString(research.blogTitle)}}-{{research.id}}" class="col-md-9 research-title text-left" (click)="showResearchDetails(research)" >
+                                    {{ research.blogTitle }}
+                                </a>
+            
+                            </div>
+                            <!-- Description, date, and buttons -->&nbsp;
+                            <div class="row">
+                                <div class="col-md-6">
+                                   <b style="font-weight: 500;">Date :</b> <span>  {{ research.postDate | date }} </span>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- <b style="font-weight: 500;">Category :</b> <span>{{ research.postCategory }}</span> -->
+                                 </div>
+                            </div>&nbsp;
+                            <div class="row">
+                                <div class="col-md-9 research-description">
+                                    {{ getFormattedDescription(research.postContent) | slice:0:100 }}{{
+                                    research.postContent.length > 20 ? '...' : '' }}
+                                </div>
+                            
+                            </div>
+    
+                        </div>
+                    </div>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+
+                <!-- Pagination section -->
+                <!-- <div class="pagination-container">
+                    <ul class="pagination">
+                        <li class="page-item" [class.disabled]="currentPage === 1">
+                            <a class="page-link" (click)="goToPage(1)"  style="background-color: #343434;color: #fff;">First</a>
+                        </li>
+                        <li class="page-item" [class.disabled]="currentPage === 1">
+                            <a class="page-link" (click)="goToPage(currentPage - 1)">Previous</a>
+                        </li>
+                        <li class="page-item" *ngFor="let page of getPaginationRange()">
+                            <a class="page-link" [class.active]="page === currentPage" (click)="goToPage(page)">{{ page
+                                }}</a>
+                        </li>
+                        <li class="page-item" [class.disabled]="currentPage === paginationMetadata.totalPages">
+                            <a class="page-link" (click)="goToPage(currentPage + 1)">Next</a>
+                        </li>
+                        <li class="page-item" [class.disabled]="currentPage === paginationMetadata.totalPages">
+                            <a class="page-link" (click)="goToPage(paginationMetadata.totalPages)" style="background-color: #343434;color: #fff;">Last</a>
+                        </li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+        <div class="col-md-3" id="sidebarresp" style="background-color: #eaeaea;padding-top:20px;width:25%;left: 60px;height: 400px;" *ngIf="!isLoading">
+            <p class="links"><a href="#" class="fa fa-envelope-o"></a><a href="https://www.linkedin.com/company/quadrant-knowledge-solutions/" target="_blank" class="fa fa-linkedin"></a>
+                <a href="https://twitter.com/QKS_Quadrant" target="_blank" class="fa fa-twitter"></a>
+                <a href="#" class="fa fa-facebook"></a>
+            </p>
+            <h3><b>Questions</b></h3>
+            <hr>
+            <p>For more information, please contact your account manager:</p>
+            <h4>Quadrant Sales</h4>
+            <p>Phone: <a href="tel:(+1) 978-344-2770">(+1) 978-344-2770</a>  <br>Email: <a href="mailto:ajinkya@quadrant-solutions.com">ajinkya@quadrant-solutions.com</a></p>
+            <h2><b>Need a brief overview?</b></h2>
+            <b style="color:#0972EA;"><a href="/contact-us" style="text-decoration: none;">Enquire Now</a></b>
+
+        </div>
+    </div>
+</div>
+<app-searchbar></app-searchbar>

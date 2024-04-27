@@ -1,0 +1,414 @@
+.marimg{
+    background-color: #011F41;
+    height: 420px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.col-lg-5.text-lg-right {
+    font-family: 'Arial Nova';
+   
+}
+
+.make1 {
+    position: relative;
+    top: 270px;
+    left: -60px;
+    text-align: center;
+    font-size: 18px;
+    font-family: "arial nova bold";
+    color: #0972EA;
+}
+.marimg::before{
+    background-image: url(../../../assets/Marine_Hero.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 40%;
+}
+.mart {
+    color: #ffffff;
+    position: relative;
+    font-size: 40px;
+    font-family: 'Arial Nova Bold';
+    left: 100px;
+    top: -350px;
+}
+.mart1 {
+    color: #ffffff;
+    position: relative;
+    font-size: 24px;
+    font-family: 'Arial Nova';
+    left: 100px;
+    top: -340px;
+}
+.mardec {
+    color: #ffffff;
+    position: relative;
+    font-size: 14px;
+    font-family: 'Arial Nova';
+    left: 100px;
+    top: -340px;
+}
+.marbtn {
+    color: white;
+    font-size: 24px;
+    font-family: 'arial nova bold';
+    background: none;
+    border: none;
+    position: relative;
+    left: 95px;
+    top: -320px;
+}
+.arr{
+    position: relative;
+    left: 235px;
+    top: -25px;
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+    border: 3px solid #fff;
+    padding: 5px;
+}
+.mr2{
+    width: 460px;
+    border: 10px solid #ffffff;
+    border-radius: 10px;
+    position: relative;
+    top: -360px;
+    left: 30px;
+    height: 270px;
+}
+.mr1{
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    margin-bottom: 40px;
+  }
+  .mr{
+    font-size: 18px;
+      font-family: "Arial Nova";
+      color: #0972EA;
+  }
+  .re{
+    position: relative;
+    top: -210px;
+}
+.hol{
+    font-size: 18px;
+    font-family: 'arial nova bold';
+    color: #011F41;
+    position: relative;
+    left: 30px;
+    top: -30px;
+}
+.inte{
+    font-size: 14px;
+    font-family: 'arial nova';
+    color: #011F41;
+    position: relative;
+    left: 30px;
+    top: -40px;
+    width: 425px;
+}
+.lt{
+    position: relative;
+    left: 80px;
+}
+.thum {
+    width: 430px;
+    position: absolute;
+    left: 40px;
+    border: 10px solid #f2f2f2;
+    border-radius: 10px;
+}
+.p1{
+    margin-top: -35px;
+}
+.connbtn{
+    font-size: 18px;
+    font-family: "Arial Nova Bold";
+    height: 37px;
+    position: relative;
+    top: 10px;
+    left: 140px;
+    color: #ffffff;
+    border: none;
+    background: #011F41;
+    width: 215px;
+    box-shadow: 5px 5px #0972EA;
+    text-align: center;
+  }
+  .make {
+    position: relative;
+    top: 10px;
+    left: -60px;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'arial nova bold';
+    color: #0972EA;
+}
+.eva {
+    font-size: 18px;
+    color: #011F41;
+    text-align: center;
+    font-family: "arial nova bold";
+    position: relative;
+    top: 70px;
+}
+.use1{
+    width: 101px;
+    position: relative;
+    left: 45px;
+    top: 40px;
+}
+.box{
+    width: 200px;
+    height: 330px;
+    box-shadow: 10px 10px 30px #00000029;
+    border: 2px solid #011F41;
+    border-radius: 30px;
+}
+.adj {
+    width: 85%;
+    position: relative;
+    left: 90px;
+}
+.det{
+    font-size: 14px;
+    font-family: 'arial nova bold';
+    color: #404040;
+    position: relative;
+    left: 30px;
+    top: -20px;
+}
+.exte{
+    font-size: 14px;
+    font-family: 'arial nova';
+    color: #011F41;
+    position: relative;
+    left: 0px;
+    width: 440px;
+    
+}
+.a1{
+    margin-top: -35px;
+}
+.cont{
+    position: relative;
+    top: 60px;
+}
+.siz{
+    font-family: Arial Nova Bold;
+    font-size: 36px;
+    text-align: center;
+    padding-top: 50px;
+    color: #ffffff;
+}
+
+.Gran{
+    font-family: "Arial Nova Bold";
+    font-size: 18px;
+    color: #ffffff;
+
+}
+.diff{
+    margin-top: 140px;
+    height: 370px;
+}
+.pot{
+    width: 60px;
+    position: relative;
+    top: -35px;
+    left: 115px;
+}
+.mt{
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    margin-bottom: 40px;
+  }
+  .st{
+    font-size: 18px;
+      font-family: "Arial Nova";
+      color: #0972EA;
+  }
+  .acc{
+    margin-left: 70px;
+    margin-right: 70px;
+}
+.btt{
+    font-family: 'Arial Nova Bold';
+    color: #343434;
+    font-size: 18px;
+  }
+
+  .bg-img-hero {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+p.lead.text-white.mb-0 {
+    font-family: 'Arial Nova';
+    font-weight: 600;
+}
+
+.gradient-overlay-half-primary-v1{
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-top: -100px;
+}
+
+  @media screen and (max-width: 480px){
+
+    .mt{
+        font-size: 25px!important;
+    }
+
+    iframe#ifrms{
+        width: 100%!important;
+        height: 198px!important;
+    }
+
+    p.lead.text-white.mb-0 {
+        font-family: "Arial Nova";
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 30px;
+        padding-bottom: 20px;
+    }
+
+    .gradient-overlay-half-primary-v1{
+        margin-top: -340px!important;
+    }
+
+    .acc{
+     margin-left: 25px!important;
+     margin-right: 25px!important;
+    }
+
+    .html5-video-player:not(.ytp-transparent), .html5-video-player.unstarted-mode{
+        background-color: #000;
+        width: 73%!important;
+    }
+
+    .siz{
+        font-size: 25px!important;
+    }
+    .mr1{
+        font-size: 22px!important;
+        margin-bottom: 0px!important;
+    }
+    .lt{
+        left: 0px!important;
+    }
+
+    .diff{
+        margin-top: 133px!important;
+        height: 520px!important;
+    }
+
+    div#restwo{
+        width: 50%!important;
+    }
+
+    .pot{
+        top:-20px!important;
+        left: 50px!important;
+    }
+
+
+    // div#usecases {
+    //     margin-top: 320px!important;
+    // }
+
+    div#marineworks {
+        margin-top: 450px!important;
+    }
+    .make{
+        left: 0px!important;
+    }
+    .thum{
+        left: 0px!important;
+    }
+
+    .connbtn{
+        left: 70px!important;
+    }
+    .box{
+        margin-bottom: 30px!important;
+    }
+
+    .exte{
+        font-size: 14px !important;
+        width: 340px !important;
+        line-height: 24px !important;
+        margin-left: 12px;
+    }
+
+    h2.mr1.text-center{
+        padding-bottom: 30px!important;
+
+    }
+
+    .marimg{
+        height: 620px!important;
+    }
+    .mart{
+        left: 15px!important;
+        top:-560px!important;
+    }
+
+    .mart1{
+        left:15px!important;
+        top:-550px!important;
+    }
+
+    .mardec{
+        // width: 247px!important;
+        left: 15px!important;
+        font-size: 14px!important;
+        line-height: 24px!important;
+        top:-540px!important;
+    }
+    .marbtn{
+        left: 10px!important;
+        top:-530px!important;
+    }
+    .mr2{
+        width: 350px!important;
+        top:-520px!important;
+        left: 15px!important;
+        height: 208px!important;
+    }
+
+    .re{
+        top:-400px!important;
+    }
+    .ree {
+        margin-bottom: -350px!important;
+    }
+    .inte{
+        font-size: 14px;
+        font-family: "arial nova";
+        color: #011F41;
+        position: relative;
+        left: 30px;
+        top: -40px;
+        width: 325px;
+    } 
+    // div#shadow {
+    //     width: 44%!important;
+    //     margin-top: 10px!important;
+    //     position: relative;
+    //     left: 15px;
+    //     }
+    //     .techmob{
+    //       padding-left: 60px!important;
+    //     }
+    
+  }

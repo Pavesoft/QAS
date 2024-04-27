@@ -1,0 +1,290 @@
+
+
+<div class="row" style="padding-bottom: 3%; margin-top: -33px;">
+  <div class="col-sm-12">
+    <h1 class="ct">Contact Us</h1>
+    <div class="myimg">
+      <img class="myimage" src="assets/contact1.png">
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6" id="spacing" style="padding-top: 80px;">
+      <ul class="list-unstyled">
+        <h2>For any inquiries call now</h2>
+        <img src="assets/Phone.png" style="width: 25px;">
+        <a href="tel:(+1) 978-344-2770" style="text-decoration: none; font-family: Arial Nova; font-size: 16px;">(+1) 978-344-2770</a>
+        <br><br>
+        <h2>For any inquiries email now</h2>
+        <img src="assets/Mail.png" style="width: 25px;">
+        <a href="mailto:ajinkya@quadrant-solutions.com"
+          style="text-decoration: none; font-family: Arial Nova; font-size: 16px;">ajinkya@quadrant-solutions.com</a>
+      </ul>
+    </div>
+    <div class="col-sm-6" style="background-color: #EAEAEA;padding-bottom: 22px;">
+      <div class="container py-4">
+        
+        <div *ngIf="loading" class="loader">Loading...</div>
+
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div>
+            <!-- <label for="fName"> Name:</label> -->
+            <input type="text" id="fName" formControlName="fName" maxlength="50"  class="form-control" required placeholder="Name*" onkeyup=" this.value = this.value.replace(/[^a-z0-9 .]/gi,'')" oninput=" this.value = this.value.replace(/[0-9]/g,'')">
+            <div *ngIf="form.controls['fName'].invalid && (form.controls['fName'].dirty || form.controls['fName'].touched)">
+              <div *ngIf="form.controls['fName'].errors?.['required']" style="color: red;"> Name is required.</div>
+            </div>
+          </div>
+          <!-- <div>
+            <label for="lName">Last Name:</label>
+            <input type="text" id="lName" formControlName="lName">
+            
+          </div> -->
+          <div>
+            <!-- <label for="officeEmail">Office Email:</label> -->
+            <input type="email" id="officeEmail" class="form-control" maxlength="30" formControlName="officeEmail" required placeholder="Official Email*">
+            <div *ngIf="form.controls['officeEmail'].invalid && (form.controls['officeEmail'].dirty || form.controls['officeEmail'].touched)">
+              <div *ngIf="form.controls['officeEmail'].errors?.['required']" style="color: red;">Office Email is required.</div>
+              <div *ngIf="form.controls['officeEmail'].errors?.['email']" style="color: red;">Invalid email format.</div>
+            </div>
+          </div>
+          <div>
+            <!-- <label for="businessPhone">Business Phone:</label> -->
+            <input type="tel" id="businessPhone" formControlName="businessPhone" class="form-control" required placeholder="Phone*" style="margin-bottom:20px;" onkeyup="this.value = this.value.replace(/[^0-9-]/g, '');">
+            <!-- Add other validation messages for businessPhone if needed -->
+          </div>
+
+          <div>
+            <!-- <label for="fName"> Name:</label> -->
+            <input type="text" id="companyName" formControlName="companyName" maxlength="50"  class="form-control" required placeholder="Company Name*" oninput=" this.value = this.value.replace(/[0-9]/g,'')">
+            <div *ngIf="form.controls['companyName'].invalid && (form.controls['companyName'].dirty || form.controls['companyNames'].touched)">
+              <div *ngIf="form.controls['companyName'].errors?.['required']" style="color: red;">Company Name is required.</div>
+            </div>
+          </div>
+
+          <!-- <div>
+            <input type="text" id="jobTitle" formControlName="jobTitle"  class="form-control" required placeholder="Designation">
+            <div *ngIf="form.controls['jobTitle'].invalid && (form.controls['jobTitle'].dirty || form.controls['jobTitle'].touched)">
+              <div *ngIf="form.controls['jobTitle'].errors?.['required']"> Designation is required.</div>
+            </div>
+          </div> -->
+
+          <div>
+            <!-- <label for="fName"> Name:</label> -->
+            <textarea type="textarea" id="description" formControlName="description" maxlength="600"  class="form-control " required placeholder="Message To Quadrant*"></textarea>
+            <div *ngIf="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)">
+              <div *ngIf="form.controls['description'].errors?.['required']" style="color: red;"> Message is required.</div>
+            </div>
+          </div>
+          <!-- Add other form fields similarly -->
+          <br>
+          <p>This website is secure and we do not share your personal information with any third party. <a href="/PersonalInformation" style="text-decoration: none;">Privacy Policy</a></p>
+
+          <button   type="submit"   class="becobtn btn btBtn btn-primary btnNormalWidth step-submit-action-button form-submit-button" [disabled]="buttonDisabled" >Send Us</button>
+        </form>
+      
+        
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br>
+
+<div class="row">
+  <div class="col-sm-2">
+  </div>
+  <div class="col-sm-4" id="usoff" style="margin-right: 40px;">
+    <div class="card" style="background-color: #0972EA;">
+      <div class="card-body">
+        <h2 class="card-title text-center" style="color: white;">US Office</h2>
+        <p class="card-text text-center" style="color: white;">Regus Business Center 35<br>Village Road, Suite 100,
+          Middleton<br> Massachusetts 01949<br>United States</p>
+        <p class="text-center"><a href="tel:(+1) 978-344-2770" class="card-text text-center" style="color: white;">(+1) 978-344-2770</a></p><br><br><br>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4" id="usoff" style="margin-left: 40px;">
+    <div class="card" style="background-color: #0972EA;padding-bottom: 30px;">
+      <div class="card-body">
+        <h2 class="card-title text-center" style="color: white;">Pune Office</h2>
+        <p class="card-text text-center" style="color: white;">3rd Floor, Wing 4, Cluster D,<br> EON IT Park,
+          Kharadi,<br> Pune, Maharashtra,<br> 411014 India</p>
+        <p class="text-center"><a href="#" class="card-text text-center" style="color: white;">(+91) 992-960-2999</a></p>
+        <p class="text-center"><a href="#" class="card-text text-center" style="color: white;">vipin@quadrant-solutions.com</a></p>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-2">
+
+  </div>
+</div>
+
+<br><br><br><br>
+
+<div id="video-carousel-example" class="carousel slide carousel-fade" data-ride="carousel" style="margin-bottom: 5%;">
+  <style>
+    #myimage {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      opacity: 40%;
+    }
+
+    div#video-carousel-example {
+      background-color: #011F41;
+      mix-blend-mode: multiply;
+    }
+  </style>
+  <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active">
+      <img id="myimage" src="assets/quadrant_banner.png">
+      <div class="carousel-caption font-weight-bold text-warning">
+        <h3 class="text-left t1">Life @ Quadrant</h3>
+        <p class="text-left t2">It all begins with an intense curiosity about clients, colleagues, and the <br>future. We,
+          at Quadrant, bring a diverse set of perspectives as well as the<br> courage of their convictions to work on
+          ideas and initiatives that shift the<br> trajectory of business. As a trusted advisor to the world's most
+          prominent<br> firms, we live at the crossroads of of what's next.</p>
+        <h1 class="text-left t3"><a href="/career" style="color:White;text-decoration: none;">Join Us >></a></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="row" style="margin-top: 5%;">
+  <div class="col-sm-12">
+    <p class="text-center st">FAQS</p>
+    <h2 class="mt text-center">Questions? Look Here.</h2>
+  </div>
+</div> -->
+<!-- <div class="row" style="margin-bottom: 5%;">
+  <div class="col-sm-12">
+    <div class="accordion acc" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item" style="background-color: #DADADA;">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+          <button class="accordion-button btt" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne"
+            style="background-color: #DADADA;">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr?
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+          aria-labelledby="panelsStayOpen-headingOne">
+          <div class="accordion-body">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+            dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+            clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+            consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+            sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+            sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+            elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+            vero eos et accusam et justo duo.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item" style="background-color: #DADADA;">
+        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+          <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseTwo" style="background-color: #DADADA;">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr?
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+          aria-labelledby="panelsStayOpen-headingTwo">
+          <div class="accordion-body">
+            This is the second item's accordion body. It is hidden by default, until the collapse plugin adds the
+            appropriate classes that we use to style each element. These classes control the overall appearance, as well
+            as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our
+            default variables. It's also worth noting that just about any HTML can go within the, though the transition
+            does limit overflow.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item" style="background-color: #DADADA;">
+        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+          <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseThree" style="background-color: #DADADA;">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr?
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+          aria-labelledby="panelsStayOpen-headingThree">
+          <div class="accordion-body">
+            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin
+            adds the appropriate classes that we use to style each element. These classes control the overall
+            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom
+            CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the,
+            though the transition does limit overflow.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item" style="background-color: #DADADA;">
+        <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+          <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseFour" style="background-color: #DADADA;">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr?
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
+          aria-labelledby="panelsStayOpen-headingFour">
+          <div class="accordion-body">
+            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin
+            adds the appropriate classes that we use to style each element. These classes control the overall
+            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom
+            CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the,
+            though the transition does limit overflow.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item" style="background-color: #DADADA;">
+        <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+          <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseFive" style="background-color: #DADADA;">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr?
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse"
+          aria-labelledby="panelsStayOpen-headingFive">
+          <div class="accordion-body">
+            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin
+            adds the appropriate classes that we use to style each element. These classes control the overall
+            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom
+            CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the,
+            though the transition does limit overflow.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item" style="background-color: #DADADA;">
+        <h2 class="accordion-header" id="panelsStayOpen-headingSix">
+          <button class="accordion-button collapsed btt" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseSix" style="background-color: #DADADA;">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr?
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse"
+          aria-labelledby="panelsStayOpen-headingSix">
+          <div class="accordion-body">
+            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin
+            adds the appropriate classes that we use to style each element. These classes control the overall
+            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom
+            CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the,
+            though the transition does limit overflow.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<app-searchbar></app-searchbar>
+

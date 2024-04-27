@@ -1,0 +1,26 @@
+ 
+<div class="jumbotron text-center padding" style="background-color: #EAEAEA; padding-top: 50px;">
+  <h6 class="Featured"><b>Featured This Month</b></h6>
+  <h2 class="recent"><b style="color:#011F41;">Recent & Remarkable</b></h2>
+  
+</div>
+
+<div class="container-fluid" style="background-color: #EAEAEA; padding-bottom: 30px;margin-top: -35px;"  >
+  <div class="row" >
+    <div class="col-sm-5 col-md-5 col-lg-5" *ngFor="let latestreportData of latestreportData" style="margin-left: 5%; margin-top: 20px;">
+
+      <h2>{{latestreportData.report}}</h2>
+      
+      <!-- <span><b>Author:</b>{{latestreportData.author}}</span> -->
+      <p>
+        {{ getFormattedDescription(latestreportData.description) | slice : 0 : 200
+        }}{{ latestreportData.description.length > 80 ? "..." : "" }}
+      </p>
+      
+      <a href="/market-research/{{getUrlFriendlyString(latestreportData.report)}}-{{latestreportData.id}}"
+        ><button class="spx" style="color:#0972EA;background-color:#EAEAEA!important;">Read Now >></button></a
+      >    
+
+      
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<!-- <div *ngFor="let d of data | paginate: 
+ { itemsPerPage: 4, currentPage: p }" >
+  <p>"userId" = {{ d.userId }}</p>
+  <p>"id" = {{ d.id }}</p>
+  <p>"title" = {{ d.title }}</p>
+  <p>"completed" = {{ d.completed }}
+  </p>
+  <hr>
+</div>
+<pagination-controls 
+(pageChange)="p = $event"class="float-right">
+</pagination-controls> -->
+
+<!-- tabel method of pagination -->
+<div class="container" role="main">
+    <div class="mat-elevation-z8">
+        <!-- <mat-form-field>
+            <mat-lable></mat-lable>
+            <input matInput placeholder="Filter" (keyup)="Filterchange($event)">
+        </mat-form-field> -->
+    <!-- <table mat-table matSort [dataSource]="dataSource"> -->
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="_id">
+          <th mat-header-cell mat-s ort-header *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="category_name">
+          <th mat-header-cell *matHeaderCellDef> Category Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.category_name}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="report_type">
+          <th mat-header-cell *matHeaderCellDef> Report Type </th>
+          <td mat-cell *matCellDef="let element"> {{element.report_type}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="report">
+          <th mat-header-cell *matHeaderCellDef> Report </th>
+          <td mat-cell *matCellDef="let element"> {{element.report}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element"> <button (click)="FunctionEdit(element.code)" mat-raised-button color="primary">Edit</button> |
+                <button mat-raised-button color="primary">Delete</button>
+             </td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr (click)="getrow(row)" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <!-- </table> -->
+
+      <!-- <mat-paginator [pageSizeOptions]="[5,10,20]"showFirstLastButtons>
+
+      </mat-paginator> -->
+    </div>
+</div>
+
+  
+  

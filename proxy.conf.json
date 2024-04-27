@@ -1,0 +1,8 @@
+{
+  "/api/*": {
+    "target": "https://hdfcbank.gateway.mastercard.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

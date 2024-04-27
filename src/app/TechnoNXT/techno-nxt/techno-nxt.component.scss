@@ -1,0 +1,310 @@
+
+.btt{
+    font-family: 'Arial Nova Bold';
+    color: #343434;
+    font-size: 18px;
+  }
+
+  .arr{
+    position: relative;
+    left: 235px;
+    top: -25px;
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+    border: 3px solid #fff;
+    padding: 5px;
+    padding-left: 7px;
+    padding-top: 4px;
+}
+
+  .marbtn {
+    color: white;
+    font-size: 24px;
+    font-family: 'arial nova bold';
+    background: none;
+    border: none;
+    position: relative;
+    left: 95px;
+    top: -320px;
+}
+
+  .whabtn {
+    color: white;
+    font-size: 24px;
+    font-family: 'arial nova bold';
+    background: none;
+    border: none;
+    position: relative;
+    left: 95px;
+    top: -280px;
+}
+
+  .acc{
+    margin-left: 70px;
+    margin-right: 70px;
+}
+.accordion-body{
+    font-family: 'Arial Nova';
+}
+
+.st{
+    font-size: 18px;
+      font-family: "Arial Nova";
+      color: #0972EA;
+  }
+
+
+h2.card-title.text-center {
+    font-size: 28px;
+    font-family: 'Arial Nova Bold';
+}
+
+p.card-text.text-center {
+    font-family: "Arial Nova";
+    font-size: 16px;
+}
+a.card-text.text-center {
+    font-family: 'Arial Nova Bold';
+    text-decoration: none;
+    font-size: 16px;
+    color:black!important;
+}
+
+h3.text-left.t1 {
+    font-size: 44px;
+    font-weight: 700;
+    color: white;
+    font-family: "Arial Nova Bold";
+}
+
+p.text-left.t2 {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'arial nova';
+    line-height: 24px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 670px;
+}
+
+h1.text-left.t3 {
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'arial nova bold';
+    letter-spacing: 1px;
+}
+
+.carousel-caption.font-weight-bold.text-warning {
+    
+    margin-left: -100px;
+}
+.myimage{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    opacity:1;
+    margin-top: -230px;
+  }
+.myimg{
+background-color: #011F41;
+margin-top: 0px;
+}
+
+.ct2 {
+    position: relative;
+    top: 36%;
+    left: 5%;
+    font-size: 24px;
+    font-family: 'arial nova Bold';
+    color: #ffffff;
+    line-height: 20px;
+    margin-top: 20px;
+}
+
+.ct {
+    position: relative;
+    top: 28%;
+    left: 5%;
+    font-size: 36px;
+    font-family: 'arial nova bold';
+    color: #ffffff;
+}
+
+.ct1{
+    position: relative;
+    top: 30%;
+    left: 5%;
+    font-size: 18px;
+    font-family: 'Arial Nova';
+    color: #ffffff;
+    line-height: 25px;
+
+}
+.mt{
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    margin-bottom: 40px;
+  }
+
+  .full-width-image {
+    position: relative;
+    overflow: hidden;
+  }
+  .full-width-image img {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+  }
+  .image-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+  }
+  
+
+
+  
+  .contbtn{
+    font-size: 18px;
+    font-family: 'Arial Nova Bold';
+    width: 135px;
+    height: 37px;
+    position: relative;
+    left: 38%;
+    top: 10px;
+    color: #ffffff;
+    border: none;
+    background: #011F41;
+    padding: 10px;
+    box-shadow: 5px 5px #0972EA;
+    text-align: center;
+  }
+
+  .recent{
+    font-family: "Arial Nova Bold";
+    font-size: 36px;
+
+}
+
+.Featured{
+    font-family: "Arial Nova";
+    font-size: 18px;
+    color: #0972EA;;
+
+}
+
+.col-sm-6.right {
+    padding-left: 48px !important;
+  }
+  .font{
+    font-family: "Arial Nova Bold";
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+.fnt{
+    font-family: "Arial Nova";
+    font-size: 16px;
+}
+
+.jumbotron text-center .padding{
+
+    padding:2rem 2rem!important;
+    margin:0px 0px;
+}
+.jumbotron {
+    margin-bottom: 0 !important;
+}
+
+
+div#shadow{
+
+  box-shadow: 10px 10px 30px #00000029;
+      border-radius: 30px;
+      border: 1px solid #011F41;
+      opacity: 1;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      width: 23%!important;
+      
+  }
+
+  @media screen and (max-width: 480px){
+
+    .mt{
+      font-size: 25px!important;
+    }
+    .acc{
+      margin-left: 25px!important;
+      margin-right: 25px!important;
+    }
+    .recent{
+      font-size: 25px!important;
+    }
+
+    .techover{
+      height: 7pc!important;
+    }
+    .nxtconn{
+      height: 12pc!important;
+      margin-top: 0px!important;
+    }
+
+    div#use{
+      padding-left: 20px!important;
+      margin-top: 20px!important;
+    }
+    .usecase1{
+      height: 13pc!important;
+      margin-top: 0px!important;
+    }
+    div#shadow {
+    width: 44%!important;
+    margin-top: 10px!important;
+    position: relative;
+    left: 15px;
+    }
+    .techmob{
+      padding-left: 60px!important;
+    }
+    .myimage{
+      margin-top: -230px!important;
+    }
+    .ct2 {
+      position: relative;
+      top: 25%;
+      left: 5%;
+      font-size: 20px;
+      font-family: 'arial nova Bold';
+      color: #ffffff;
+      line-height: 20px;
+      margin-top: 20px;
+  }
+  
+  .ct {
+      position: relative;
+      top: 25%;
+      left: 5%;
+      font-size: 30px;
+      font-family: 'arial nova bold';
+      color: #ffffff;
+  }
+  
+  .ct1{
+      position: relative;
+      top: 25%;
+      left: 5%;
+      font-size: 15px;
+      font-family: 'Arial Nova';
+      color: #ffffff;
+      line-height: 25px;
+  
+  }
+  }

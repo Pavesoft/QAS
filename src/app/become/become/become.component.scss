@@ -1,0 +1,245 @@
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.carimg {
+    background-color: #011F41;
+    height: 300px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.carimg::before {
+    background-image: url(../../../assets/campaign.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 40%;
+}
+
+.bect {
+    color: #ffffff;
+    position: relative;
+    font-size: 39px;
+    font-family: 'Arial Nova Bold';
+    right: 360px;
+}
+
+.help {
+    font-size: 36px;
+    color: #011F41;
+    margin-top: 80px;
+    margin-left: 110px;
+    font-family: 'Arial Nova Bold';
+}
+
+.becdec {
+    font-size: 14px;
+    color: #343434;
+    margin-top: 20px;
+    margin-left: 110px;
+    font-family: "Arial Nova";
+    width: 75%;
+}
+
+.ac {
+    font-size: 18px;
+    color: #011F41;
+    margin-left: 110px;
+    font-family: "Arial Nova Bold";
+}
+
+.lo {
+    font-size: 18px;
+    color: #343434;
+    margin-left: 110px;
+    font-family: "Arial Nova";
+}
+
+.cre {
+    font-size: 18px;
+    color: #343434;
+    margin-left: 110px;
+    font-family: "Arial Nova";
+}
+
+.talk {
+    font-size: 18px;
+    color: #011F41;
+    margin-left: 110px;
+    font-family: "Arial Nova Bold";
+}
+
+.sub {
+    font-size: 18px;
+    color: #343434;
+    margin-left: 110px;
+    font-family: "Arial Nova";
+}
+
+.fm {
+    background-color: #fff;
+    background-color: #fff;
+    position: relative;
+    bottom: 250px;
+    width: 65%;
+    padding: 70px;
+}
+
+.becobtn {
+    font-size: 18px;
+    font-family: 'Arial Nova Bold';
+    width: 250px;
+    height: 37px;
+    position: relative;
+    top: 10px;
+    color: #ffffff;
+    border: none;
+    background: #011F41;
+    padding: 5px;
+    box-shadow: 5px 5px #0972EA;
+    text-align: center;
+}
+
+.mt {
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    margin-bottom: 40px;
+}
+
+.st {
+    font-size: 18px;
+    font-family: "Arial Nova";
+    color: #0972EA;
+    padding-top: 30px;
+}
+
+.acc {
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+.btt {
+    font-family: 'Arial Nova Bold';
+    color: #343434;
+    font-size: 18px;
+}
+
+input#companyName {
+    position: relative;
+    top: 20px;
+}
+
+input#jobTitle {
+    top: 20px;
+    position: relative;
+}
+
+textarea#description {
+    position: relative;
+    top: 20px;
+    height: 105px;
+}
+
+input#description {
+    position: relative;
+    top: 20px;
+}
+
+
+
+.form-control {
+    margin-bottom: 20px;
+    border: 1px solid #343434!important;
+}
+
+.acctop {
+    margin-top: 30px !important;
+}
+
+@media screen and (max-width: 480px) {
+
+    div#acctop {
+        margin-top: 500px !important;
+    }
+
+    .mt {
+        font-size: 25px !important;
+    }
+
+    .acc {
+        margin-left: 25px !important;
+        margin-right: 25px !important;
+    }
+
+    .help {
+        font-size: 34px !important;
+        margin-left: 15px !important;
+    }
+
+    .becdec {
+        margin-left: 10px !important;
+    }
+
+    .fm {
+        bottom: 21px !important;
+        width: 90% !important;
+        padding: 39px !important;
+    }
+
+    .ac {
+        margin-left: 10px !important;
+
+    }
+
+    .lo {
+        margin-left: 10px !important;
+    }
+
+    .cre {
+        margin-left: 10px !important;
+    }
+
+    .talk {
+        margin-left: 10px !important;
+    }
+
+    .sub {
+        margin-left: 10px !important;
+    }
+
+    .bect {
+        right: 0px !important;
+    }
+
+    .carimg {
+        height: 150px !important;
+    }
+    .st {
+        padding-top: 60px;
+    }
+
+
+
+}

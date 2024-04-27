@@ -1,0 +1,269 @@
+<div class="container-fluid" style="margin-bottom: 70px">
+  <div class="row">
+    <div class="col-md-2 sd">
+      <h4 class="t1">Filter By</h4>
+      <hr />
+      <h4 class="t2">Report Type</h4>
+      <div class="dropdown">
+        <button
+          class="btn form-select dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Select Report
+        </button>
+        <div
+          class="form-selectt dropdown-menu"
+          aria-labelledby="dropdownMenuButton"
+        >
+          <label class="dropdown-item" *ngFor="let option of options">
+            <input type="checkbox" [value]="option" />
+            {{ option }}
+          </label>
+        </div>
+      </div>
+      <hr />
+      <h4 class="t2">Domain</h4>
+      <div class="dropdown">
+        <button
+          class="btn form-select dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Select Domain
+        </button>
+        <div
+          class="form-selectt dropdown-menu"
+          aria-labelledby="dropdownMenuButton"
+        >
+          <label class="dropdown-item" *ngFor="let option of options">
+            <input type="checkbox" [value]="option" />
+            {{ option }}
+          </label>
+        </div>
+      </div>
+      <hr />
+      <h4 class="t2">Region</h4>
+      <div class="dropdown">
+        <button
+          class="btn form-select dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Select Region
+        </button>
+        <div
+          class="form-selectt dropdown-menu"
+          aria-labelledby="dropdownMenuButton"
+        >
+          <label class="dropdown-item" *ngFor="let option of options">
+            <input type="checkbox" [value]="option" />
+            {{ option }}
+          </label>
+        </div>
+      </div>
+      <hr />
+      <h4 class="t2">Analyst</h4>
+      <div class="dropdown">
+        <button
+          class="btn form-select dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Select Analyst
+        </button>
+        <div
+          class="form-selectt dropdown-menu"
+          aria-labelledby="dropdownMenuButton"
+        >
+          <label class="dropdown-item" *ngFor="let option of options">
+            <input type="checkbox" [value]="option" />
+            {{ option }}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-10" style="width: 72%">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 -ss">
+            <span class="dr">Date Range</span>
+            <span class="sdr"
+              >Select a Date Range
+              <a href="#"><i class="fa fa-calendar-minus-o"></i></a
+            ></span>
+          </div>
+          <div class="col-md-6 rt">
+            <span class="sb">Sort By</span>
+            <span class="rd"
+              >Release Date <a href="#"><i class="fas fa-angle-down"></i></a
+            ></span>
+          </div>
+        </div>
+        <hr class="linebt" />
+        <div class="row">
+          <div class="col-sm-6">
+            <form>
+              <input
+                class="srch"
+                type="text"
+                name="search"
+                placeholder="Search Topic"
+              /><i class="fa fa-search"></i>
+            </form>
+          </div>
+          <div class="col-sm-6 plt">
+            <!-- <div class="redi">
+                <span><a routerLink="/research" style="text-decoration: none;"><input type="radio" name="radio">All Research</a></span>
+               <span><a routerLink="/subscription" style="text-decoration: none;"><input type="radio" name="radio">Subscribed Research</a></span>
+              </div> -->
+            <div class="redi">
+              <span>
+                <input
+                  type="radio"
+                  name="radio"
+                  id="allResearch"
+                  (click)="navigate('/research')"
+                />
+                <label for="allResearch" style="cursor: pointer"
+                  >All Research</label
+                >
+              </span>
+              <span>
+                <input
+                  type="radio"
+                  name="radio"
+                  id="subscribedResearch"
+                  (click)="navigate('/subscription')"
+                />
+                <label for="subscribedResearch" style="cursor: pointer"
+                  >Subscribed Research</label
+                >
+              </span>
+            </div>
+
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&lt;</span>
+                </a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item"><a class="page-link" href="#">5</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&gt;</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="research-item" *ngFor="let research of Reports">
+          <div class="row">
+            <div class="col-md-6" style="padding-bottom: 5px">
+              <div class="row">
+                <div class="col-sm-5">
+                  <span>Date :</span>
+                  <span>{{ research.date }} | </span>
+                </div>
+                <div class="col-sm-7">
+                  <span>Category :</span>
+                  <a href="" style="text-decoration: none"
+                    ><span> {{ research.category }}</span></a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-9">
+              <a routerLink="/research-single" class="research-title"
+                >{{ research.title }} </a
+              ><br />
+              <span class="research-category" *ngFor="let a of research.author">
+                <a href="#" style="text-decoration: none"
+                  ><span>{{ a }} </span></a
+                >
+              </span>
+            </div>
+            <div class="col-md-3">
+              <div class="row">
+                <!-- <div class="col-md-6 im">
+  
+                    <a href=""><img src="/assets/cart.png" style="width:18px"></a>
+                  </div> -->
+                <div class="col-md-12 im1">
+                  <a href="" style="text-decoration: none"
+                    ><img
+                      src="/assets/download.png"
+                      style="width: 18px"
+                    />Download</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-9 research-description">
+              <!-- {{ getFormattedDescription(research.description) | slice:0:100 }}{{
+                          research.description.length > 20 ? '...' : '' }} -->
+              <p class="dec">{{ research.description }}</p>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-success bn">Read More</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-9">
+              <span>Price : </span
+              ><span class="prc">
+                <i class="fas fa-dollar-sign" style="color: #444343"></i>
+                {{ research.price }}
+              </span>
+            </div>
+            <div class="col-sm-3 rm">
+              <!-- <a href="#" style="text-decoration: none;">Read More<img src="/assets/Icon.png"
+                    style="width: 28px;height: 10px;"></a> -->
+            </div>
+          </div>
+          <hr style="border: 1px solid #00327a33; width: 100%" />
+        </div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&lt;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&gt;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<app-searchbar></app-searchbar>

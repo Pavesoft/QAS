@@ -1,0 +1,71 @@
+<div class="checkout-container">
+  <h2>Checkout</h2>
+
+  <div class="loader-container" *ngIf="isLoading">
+    <div class="loader"></div>
+  </div>
+
+  <div class="order-summary" *ngIf="!isLoading">
+    <h3>Order Summary</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Report</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cart" >
+          <td>{{ item.research.report }}</td>
+          <td><i class="fas fa-dollar-sign    "></i> {{ item.research.price }}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>
+            <p class="total-price">Total Price: <i class="fas fa-dollar-sign    "></i> {{ getTotalPrice() }}</p>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>
+            <button class="btn btn-primary mr2" [disabled]="isLoading" (click)="openUserDetailsForm()">
+              {{ isLoading ? 'Placing Order...' : 'Proceed To Payment' }}
+            </button>
+            <!-- <button class="btn btn-primary" (click)="openUserDetailsForm()">Proceed To Payment</button> -->
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+<!-- User Details Form -->
+<!-- <form *ngIf="showUserDetailsForm">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="userDetails.name" required>
+  </div>
+
+  <div class="form-group">
+    <label for="workEmail">Work Email</label>
+    <input type="email" class="form-control" id="workEmail" name="workEmail" [(ngModel)]="userDetails.workEmail" required>
+  </div>
+
+  <div class="form-group">
+    <label for="mobileNumber">Mobile Number (with country code)</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">+</span>
+      </div>
+      <input type="tel" class="form-control" id="mobileNumber" name="mobileNumber" [(ngModel)]="userDetails.mobileNumber" required>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" (click)="saveUserDetails()">Submit</button>
+</form> -->
+<app-searchbar></app-searchbar>

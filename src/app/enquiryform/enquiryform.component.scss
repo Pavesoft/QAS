@@ -1,0 +1,47 @@
+.cart-container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.control-button, .delete-button {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.control-button {
+  background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    width: 30px;
+    text-align: center;
+    margin: 25px;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border-radius: 5px;
+}
+
+.price {
+  margin: 0 10px;
+}
+
+.total-price {
+  font-weight: bold;
+  text-align: right;
+}

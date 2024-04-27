@@ -1,0 +1,46 @@
+.siz{
+    font-family: Arial Nova Bold;
+    font-size: 36px;
+}
+
+.text-center .Gran{
+    font-family: "Arial Nova Bold";
+    font-size: 18px;
+
+}
+
+p{
+    font-family: 'Arial Nova';
+}
+
+@media screen and (max-width: 480px){
+
+    .siz{
+        font-size: 30px!important;
+    }
+
+    div#mwid {
+        width: 50%;
+    }
+
+    img.md{
+        margin-left: 45px!important;
+    }
+
+    .md{
+        width: 3pc!important;
+    }
+
+    
+ .jumbotron.text-center{
+     margin-top: 146px!important;
+
+    }
+
+    p.text-center {
+     font-size: 12px;
+    margin-left: -30px;
+
+    }
+
+}

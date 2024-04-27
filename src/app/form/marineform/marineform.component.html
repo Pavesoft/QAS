@@ -1,0 +1,44 @@
+
+
+<h3 mat-dialog-title class="form-title">Please Enter the Corporate Email Id</h3>
+<div mat-dialog-content class="form-content">
+  <form class="user-details-form">
+      <!-- <mat-form-field class="form-field">
+      <input matInput placeholder="Full Name" [(ngModel)]="fullName" name="fullName" required>
+     
+     
+    </mat-form-field>   -->
+
+    <!-- <mat-form-field class="form-field">
+      <input type="email"   matInput placeholder="Work Email"   class="form-control"  maxlength="50" [(ngModel)]="workEmail" name="workEmail" required email>
+      
+    </mat-form-field>  -->
+
+    <input
+    type="email"
+    matInput
+    placeholder="Work Email"
+    class="form-control"
+    maxlength="50"
+    [(ngModel)]="workEmail"
+    name="workEmail"
+    required
+    [pattern]="emailPattern.source"
+  >
+  <mat-error *ngIf="!workEmail">Email is required</mat-error>
+  <mat-error *ngIf="workEmail && !emailPattern.test(workEmail)">Invalid email format</mat-error>
+
+   
+
+
+    
+  </form>
+</div>
+<div mat-dialog-actions class="form-actions">
+  <!-- <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Cancel</button> -->
+  <button mat-raised-button color="primary" [mat-dialog-close]="data" (click)="Submitform()"   [disabled]="form.invalid">Submit</button>
+
+</div> 
+
+
+

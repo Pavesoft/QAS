@@ -1,0 +1,35 @@
+.t1{
+    position: relative;
+    bottom: 180px;
+    right: 100px;
+    color: #ffffff;
+    font-size: 34px;
+    font-family: 'Arial Nova';
+    background-color: #00327A;
+    width: 148px;
+    height: 35px;
+}
+.t2{
+    position: relative;
+    bottom: 185px;
+    right: 100px;
+    color: #ffffff;
+    font-size: 46px;
+    font-family: "Arial Nova Bold";
+    background-color: #011F41;
+    width: 290px;
+    height: 45px;
+    letter-spacing: 3.84px;
+}
+
+@media screen and (max-width: 480px){
+
+    .t1{
+        right:0px!important;
+    }
+
+    .t2{
+        right:0px!important;
+    }
+
+}

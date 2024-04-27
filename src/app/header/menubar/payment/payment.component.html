@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <div class="payment-container" style="padding-left: 20%;">
+        <p>Total Amount : ${{total}}</p>
+        <p>Order Id : {{orderId}}</p>
+        <div #paymentRef></div>
+    </div>
+    
+
+    <div class="container">
+        <!-- <div class="payment-container">
+            <div id="paymentRef" #paymentRef></div>
+        </div> -->
+        <div class="payment-container">
+            <h2 class="payment-heading">Quadrant Knowledge Solution : Choose Your Payment Option !</h2>
+            <div id="embedTarget"></div>
+            <button class="payment-button" (click)="showPaymentPage()">Pay with Bank Details</button>
+            <!-- <br>
+            <label for="">These Modes Are Currntly In Progress :</label>
+            <button disabled class="disabled-button" (click)="wip()">Pay with UPI</button>
+            <br>
+            <button disabled class="disabled-button" (click)="wip()">Pay with Netbanking</button>
+            <br>
+            <button disabled class="disabled-button" (click)="wip()">Pay with QR Code !</button> -->
+        </div>
+    </div>
+    
+
+    <script src="https://hdfcbank.gateway.mastercard.com/static/checkout/checkout.min.js"
+        data-error="errorCallback" data-cancel="cancelCallback" data-complete="completeCallback"></script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+.mt{
+  font-size: 36px;
+  font-family: "Arial Nova Bold";
+  color: #011F41;
+  margin-bottom: 40px;
+}
+.st{
+  font-size: 18px;
+    font-family: "Arial Nova";
+    color: #0972EA;
+}
+.cd{
+  width: 375px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 8px solid #ffffff;
+  position: relative;
+}
+img.d-block.w-100 {
+  height: 375px !important;
+}
+.ma{
+  position: absolute;
+  top: 300px;
+  left: 40px;
+  color: #fff;
+  font-size: 18px;
+  font-family: "Arial Nova Bold";
+}
+.maa{
+  position: absolute;
+  top: 270px;
+  left: 40px;
+  color: #fff;
+  font-size: 18px;
+  font-family: "Arial Nova Bold";
+}
+.ct{
+  position: absolute;
+  top: 30px;
+  left: 15px;
+  font-family: "Arial Nova Bold";
+  color: #ffffff;
+  font-size: 19px;
+  text-align: left;
+  line-height: 25px;
+}
+.cb{
+  width: 97%;
+  height: 100%;
+  right: -100%;
+  top: 0;
+  position: absolute;
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ffffff;
+  background: #00327A;
+  padding: 20px;
+  border-radius: 20px;
+  opacity: 75%;
+  transition: 2s;
+}
+.cd:hover .cb{
+  right: 0;
+
+}
+.ci{
+  position: absolute;
+  top: 60px;
+  font-size: 14px;
+  margin: 40px 0;
+  width: 310px;
+  font-family: 'Arial Nova';
+  font-weight: normal;
+}
+.cii{
+  position: absolute;
+  top: 80px;
+  font-size: 14px;
+  margin: 40px 0;
+  width: 310px;
+  font-family: 'Arial Nova';
+  font-weight: normal;
+}
+.ci2{
+  position: absolute;
+  top: 80px;
+  font-size: 14px;
+  margin: 40px 0;
+  width: 310px;
+  font-family: 'Arial Nova';
+  font-weight: normal;
+}
+.ci3{
+  position: absolute;
+  top: 40px;
+  font-size: 14px;
+  margin: 40px 0;
+  width: 310px;
+  font-family: 'Arial Nova';
+  font-weight: normal;
+}
+
+.center{
+  width: 100%;
+  // height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // margin-top: 4%;
+  margin-bottom: 4%;
+
+}
+.bt1{
+  position: absolute;
+  bottom: 10px;
+  left: 35px;
+  font-family: "Arial Nova Bold";
+  color: #ffffff;
+  font-size: 18px;
+  text-decoration: none;
+  margin: 0 0 12px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 480px){
+  .mt{
+    font-size: 25px!important;
+  }
+  .cd{
+    width: 375px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 8px solid #ffffff;
+    position: relative;
+    left: 10px;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1920px) {
+
+  .cd{
+    width: 440;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 8px solid #ffffff;
+    position: relative;
+  }
+}
+
+/*--mac book pro , and mac-book retina display screen---*/
+
+@media only screen and (min-width: 1920px) and (max-width: 2560px) {
+  .mt{
+    font-size: 25px!important;
+  }
+  .cd{
+    width: 440px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 8px solid #ffffff;
+    position: relative;
+  }
+}
+@media (min-width: 1400px) {
+.container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1140px!important;
+}
+}

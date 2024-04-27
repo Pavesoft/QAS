@@ -1,0 +1,444 @@
+/* Style report type buttons */
+mat-button-toggle-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+mat-button-toggle {
+    background-color: #007bff; /* Change to your desired button background color */
+    color: white; /* Change to your desired button text color */
+    margin: 5px;
+    border-radius: 5px;
+}
+
+/* Style category checkboxes */
+mat-checkbox {
+    margin: 5px;
+
+    /* Add more custom styles as needed */
+}
+
+mat-mdc-checkbox {
+    color: #e6e4e4;
+}
+
+.btn {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+button#heiwd {
+    height: 2pc;
+}
+
+.pagination-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.mat-form-field.mat-mdc-form-field.ng-tns-c16-0.mat-mdc-form-field-type-mat-select.mat-form-field-appearance-fill.mat-form-field-hide-placeholder.mat-primary.ng-star-inserted {
+    margin-top: 20px !important;
+}
+
+div#researlistrep {
+    height: 100pc !important;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+}
+
+.pagination li {
+    padding: 5px;
+}
+
+.pagination li.disabled {
+    opacity: 0.5;
+}
+
+.pagination li.active {
+    font-weight: bold;
+}
+
+
+// //////////////////////////////////////////////////////////
+.research-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    // border: 1px solid #ccc;
+    box-shadow: 5px 5px 5px 5px #e6e4e4;
+}
+
+.research-price {
+    font-weight: bold;
+    // margin-top: 10px;
+    // font-size: 14px;
+}
+
+.research-title {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+.research-description {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.research-category {
+    font-weight: bold;
+}
+
+.btn {
+    margin-top: 10px;
+    width: 50%;
+}
+
+
+.alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f44336; /* Red background color */
+    color: white; /* White text color */
+    padding: 20px;
+    display: none; /* Hide the alert by default */
+    z-index: 1000;
+}
+
+.alert-content {
+    position: relative;
+}
+
+.closebtn {
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.success {
+    background-color: #4caf50; /* Green background color */
+}
+
+.failed {
+    background-color: #f44336; /* Red background color */
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    display: none; /* Hide the overlay by default */
+    z-index: 999;
+}
+
+
+.form-check {
+    background: #fff;
+    margin-bottom: 11px;
+    font-size: 10px;
+    margin-right: 0;
+    padding: 5px;
+    color: black;
+    cursor: pointer;
+    font-weight: 700;
+}
+.form-check-label {
+    margin-bottom: 0;
+    margin-left: 19px;
+}
+
+
+input#report-1 {
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+
+input#report-0 {
+    margin-left: 0;
+    background-color: #eaeaea;
+
+}
+
+input#report-2 {
+    margin-left: 0;
+    background-color: #eaeaea;
+
+
+}
+
+input#report-3 {
+    margin-left: 0;
+    background-color: #eaeaea;
+
+
+}
+input#report-4 {
+    margin-left: 0;
+    background-color: #eaeaea;
+
+
+}
+input#report-5 {
+    margin-left: 0;
+    background-color: #eaeaea;
+
+
+}
+input#report-6 {
+    margin-left: 0;
+    background-color: #eaeaea;
+
+
+}
+
+input#report-7 {
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+
+.form-check-input ng-pristine ng-valid ng-touched {
+    color: red !important;
+}
+
+.form-check-input:checked[type=checkbox] {
+    --bs-form-check-bg-image: url('https://www.citypng.com/public/uploads/preview/-316225907691vr4nvazfz.png');
+}
+
+input#category-2 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+
+input#category-1 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+
+input#category-3 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+input#category-4 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+input#category-5 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+input#category-6 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+input#category-7 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+input#category-8 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+input#category-9 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+input#category-10 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+input#category-11 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+
+input#category-12 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+
+input#category-13 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+input#category-14 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+
+input#category-15 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+input#category-16 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+
+
+input#category-17 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+
+input#category-18 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+input#category-19 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+input#category-20 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+input#category-21 {
+
+    margin-left: 0;
+    background-color: #eaeaea;
+}
+
+#ser1 {
+    background-color: #0d6efd;
+    color: white;
+    font-family: "Arial Nova";
+    border-color: #0d6efd;
+    border-radius: 5px;
+    padding: 3px;
+    width: 17%;
+}
+
+#ser2 {
+
+    color: black;
+    font-family: "Arial Nova";
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 4px;
+    margin-right: 10px;
+}
+
+button#heiwd1 {
+    height: 2pc;
+    // margin-top: -40px;
+}
+
+.mat-button-toggle#mat-button-toggle-1 {
+    width: 8pc !important;
+}
+
+.mat-button-toggle#mat-button-toggle-2 {
+    width: 8pc !important;
+}
+
+.mat-button-toggle#mat-button-toggle-3 {
+    width: 8pc !important;
+}
+
+.mat-button-toggle#mat-button-toggle-4 {
+    width: 8pc !important;
+}
+
+.mat-button-toggle#mat-button-toggle-5 {
+    width: 8pc !important;
+}
+
+.mat-button-toggle#mat-button-toggle-6 {
+    width: 8pc !important;
+}
+
+.mdc-checkbox__background{
+    width: 14px!important;
+    height: 14px!important;
+}
+
+
+@media screen and (max-width: 480px) {
+    #heiwd{
+        width:40%!important;
+    }
+    #heiwd1{
+        width:40%!important;
+    }
+    div#researlistrep {
+        width: 100% !important;
+        padding: 30px !important;
+        height: 84pc !important;
+    }
+
+    div#reslistdata {
+        margin-top: 50px !important;
+        width: 100% !important;
+    }
+
+    b#auth {
+        margin-left: 0 !important;
+    }
+
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@media only screen and (min-width: 375px)
+{ 
+    .ipe{
+        width: 325px;
+    }
+}
+@media only screen and (max-width: 360px)
+{ 
+    .ipe{
+        width: 325px!important;
+    }
+}

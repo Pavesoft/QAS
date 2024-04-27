@@ -1,0 +1,193 @@
+.carimg{
+    background-color: #011F41;
+    height: 300px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+input#companyName{
+    position: relative;
+    top:20px;
+  }
+
+  input#jobTitle {
+    top: 20px;
+    position: relative;
+}
+
+textarea#description {
+    position: relative;
+    top: 20px;
+    height: 105px;
+}
+
+input#description {
+    position: relative;
+    top: 20px;
+}
+
+
+
+  .form-control{
+    margin-bottom: 20px;
+    border: 1px solid #343434!important;
+  }
+  
+.carimg::before{
+    background-image: url(../../../assets/campaign.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 40%;
+}
+.bect {
+    color: #ffffff;
+    position: relative;
+    font-size: 39px;
+    font-family: 'Arial Nova Bold';
+    right: 360px;
+}
+.help {
+    font-size: 36px;
+    color: #011F41;
+    margin-top: 80px;
+    margin-left: 110px;
+    font-family: 'Arial Nova Bold';
+    line-height: 40px;
+}
+.becdec {
+    font-size: 14px;
+    color: #343434;
+    margin-top: 20px;
+    margin-left: 110px;
+    font-family: "Arial Nova";
+    width: 75%;
+}
+.ac{
+    font-size: 18px;
+    color: #011F41;
+    margin-left: 110px;
+    font-family: "Arial Nova Bold";
+}
+.lo{
+    font-size: 18px;
+    color: #343434;
+    margin-left: 110px;
+    font-family: "Arial Nova";
+}
+.cre{
+    font-size: 18px;
+    color: #343434;
+    margin-left: 110px;
+    font-family: "Arial Nova";
+}
+// .talk{
+//     font-size: 18px;
+//     color: #011F41;
+//     margin-left: 110px;
+//     font-family: "Arial Nova Bold";
+// }
+// .sub{
+//     font-size: 18px;
+//     color: #343434;
+//     margin-left: 110px;
+//     font-family: "Arial Nova";
+// }
+.fm{
+    background-color: #fff;
+    background-color: #fff;
+    position: relative;
+    bottom: 250px;
+    width: 65%;
+    padding: 70px;
+}
+.becobtn{
+    font-size: 18px;
+    font-family: 'Arial Nova Bold';
+    width: 250px;
+    height: 37px;
+    position: relative;
+    top: 10px;
+    color: #ffffff;
+    border: none;
+    background: #011F41;
+    padding: 5px;
+    box-shadow: 5px 5px #0972EA;
+    text-align: center;
+  }
+  .mt{
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    margin-bottom: 40px;
+  }
+  .st{
+    font-size: 18px;
+      font-family: "Arial Nova";
+      color: #0972EA;
+  }
+  .acc{
+    margin-left: 70px;
+    margin-right: 70px;
+}
+.btt{
+    font-family: 'Arial Nova Bold';
+    color: #343434;
+    font-size: 18px;
+  }
+
+
+  @media screen and (max-width: 480px){
+
+    div#acctop{
+        margin-top: 500px!important;
+    }
+    .mt{
+        font-size: 25px!important;
+    }
+
+    .acc{
+        margin-left: 25px!important;
+        margin-right: 25px!important;
+    }
+
+    .help{
+        margin-left: 10px!important;
+    }
+
+    .becdec{
+        margin-left: 10px!important;
+    }
+
+    .fm{
+        padding: 40px!important;
+        width:90%!important;
+        bottom: 20px!important;
+    }
+
+    .ac{
+        margin-left: 10px!important;
+
+    }
+
+    .lo{
+        margin-left: 10px!important;
+    }
+    .cre{
+        margin-left: 10px!important;
+    }
+
+    .bect{
+        left:0px!important;
+    }
+
+    .carimg{
+        height: 150px!important;
+    }
+
+
+  }

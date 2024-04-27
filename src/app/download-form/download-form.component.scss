@@ -1,0 +1,182 @@
+.becobtn{
+    font-size: 18px;
+    font-family: 'Arial Nova Bold';
+    width: 250px;
+    height: 37px;
+    position: relative;
+    top: 10px;
+    left: 90px;
+    color: #ffffff;
+    border: none;
+    background: #011F41;
+    padding: 5px;
+    text-align: center;
+  }
+  .iti{
+display: block !important;
+  }
+
+  .breadcrumbs {
+    background-color: #011f41;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 0px;
+    width: 103%;
+    margin-left: -12px!important;
+    padding-left: 30px;
+}
+
+  .left-sec {
+    position: relative;
+    left: 70px;
+    top: 50px;
+    width: 320px;
+}
+.right-sec {
+    position: relative;
+    right: 70px;
+    top: 50px;
+    width: 500px;
+    background-color: #ffffff;
+    padding: 40px;
+}
+.lt{
+    margin-left: 50px;
+}
+.left-sec h3{
+    font-size: 18px;
+    font-family: 'Arial Nova bold';
+    color: #011F41;
+}
+.left-sec p{
+    font-size: 14px;
+    font-family: 'Arial Nova';
+    color: #343434;
+}
+
+input#companyName{
+    position: relative;
+    top:20px;
+  }
+
+  input#jobTitle {
+    top: 20px;
+    position: relative;
+}
+
+textarea#description {
+    position: relative;
+    top: 20px;
+}
+
+input#description {
+    position: relative;
+    top: 20px;
+}
+
+
+
+  .form-control{
+    margin-bottom: 20px;
+    border: 1px solid #343434!important;
+  }
+
+
+  .text-center.our {
+    font-family: Arial Nova Bold;
+    font-size: 36px;
+  }
+.tt{
+  font-size: 36px;
+  font-family: Arial Nova Bold;;
+  color: #011F41;
+}
+  .pad{
+    padding: 20px;
+  }
+  .container {
+    overflow: hidden;
+    .slider {
+      animation: slidein 30s linear infinite;
+      white-space: nowrap;
+      .logos {
+        // width: 100%;
+        display: inline-block;
+        margin: 0px 0;
+        .fab {
+          width: calc(100% / 7);
+          animation: fade-in 0.5s 
+            cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
+        }
+      }
+    }
+  }
+  
+  @keyframes slidein {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @media screen and (max-width: 480px){
+
+    .left-sec{
+      left: -40px!important;
+      margin-bottom: 40px;
+    }
+    .right-sec{
+      position: relative;
+      right: 80px;
+      top: 50px;
+      width: 380px;
+      background-color: #ffffff;
+      padding: 40px;
+  }
+  .becobtn{
+    position: relative;
+    left: 25px;
+  }
+.container {
+    overflow: hidden;
+    .slider {
+      animation: slidein 30s linear infinite;
+      white-space: nowrap;
+      .logos {
+        // width: 100%;
+        display: inline-block;
+        margin: 0px 0;
+        position: relative!important;
+        top: 40px!important;
+        height: 130px!important;
+        .fab {
+          width: calc(100% / 7);
+          animation: fade-in 0.5s 
+            cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
+        }
+     
+    }
+    div#mobresp {
+      margin-left: -100px!important;
+      margin-bottom: 25px!important;
+  }
+
+  .logos {
+      display: inline-block;
+      margin-top: 290px!important;
+  }
+  }
+}
+  }
+  

@@ -1,0 +1,363 @@
+.carimg{
+    background-color: #011F41;
+    height: 260px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+.carimg::before{
+    background-image: url(https://quadrant-solutions.com/wp-content/uploads/2023/09/cloud_management.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 40%;
+}
+.bect {
+    color: #ffffff;
+    position: relative;
+    font-size: 39px;
+    font-family: "Arial Nova Bold";
+    right: 378px;
+    top: 40px;
+}
+.appd{
+    color: #ffffff;
+    font-family: "Arial Nova";
+    font-size: 14px;
+    position: relative;
+    right: 335px;
+    top: -10px;
+    width: 450px;
+}
+.mt{
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    margin-bottom: 40px;
+  }
+  .st{
+    font-size: 18px;
+      font-family: "Arial Nova";
+      color: #0972EA;
+  }
+  .dec{
+    font-size: 14px;
+    font-family: 'Arial Nova';
+    position: relative;
+    left: 70px;
+    width: 475px;
+    margin-bottom: 80px;
+    text-align: justify;
+    color: #343434;
+}
+.gms{
+    border: 10px solid #f1f1f1;
+    border-radius: 10px;
+    width: 530px;
+}
+.tit{
+    font-size: 36px;
+    font-family: "Arial Nova Bold";
+    color: #011F41;
+    position: relative;
+    top: 40px;
+  }
+  .ti{
+    font-size: 18px;
+      font-family: "Arial Nova";
+      color: #0972EA;
+      position: relative;
+    top: 40px;
+  }
+.cd{
+    overflow: hidden;
+    width: 280px;
+    position: relative;
+    left: 130px;
+    top: 70px;
+  }
+  .ct{
+    position: relative;
+    height: 120px;
+    font-size: 15px;
+    line-height: 25px;
+    top: 12px;
+    left: -50px;
+    font-family: "Arial Nova Bold";
+    text-align: center;
+    
+  }
+  .im{
+    width: 100px;
+    position: relative;
+    left: 30px;
+  }
+.container-fluid{
+  padding: 0px!important;
+}
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  height: 55px;
+  width: 55px;
+  position: relative;
+  top: 40px;
+  background-size: 100%, 100%;
+}
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%230972EA' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+ }
+ 
+ .carousel-control-next-icon {
+   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%230972EA' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+ }
+ .hver{
+  position: relative;
+  left: 130px;
+  top: -60px;
+  width: 570px;
+  height: 250px;
+  padding-left: 30px;
+  padding-top: 20px;
+ }
+ .box{
+  position: relative;
+  left: 130px;
+  top: -85px;
+  width: 570px;
+  height: 250px;
+  padding-left: 30px;
+  padding-top: 20px;
+ }
+ .urcp {
+  font-family: "Arial Nova Bold";
+  font-size: 18px;
+  color: #0972EA;
+  position: relative;
+  margin: 5px;
+}
+.qd {
+  font-family: "Arial Nova";
+  font-size: 14px;
+  color: #343434;
+  position: relative;
+}
+.hver:hover{
+  background-color: #EAEAEA;
+  opacity: 1;
+}
+ .amabtb{
+  font-size: 18px;
+  font-family: 'Arial Nova Bold';
+  width: 135px;
+  height: 37px;
+  position: relative;
+  left: 0px;
+  top: 5px;
+  color: #ffffff;
+  border: none;
+  background: #011F41;
+  padding: 10px;
+  box-shadow: 5px 5px #0972EA;
+  text-align: center;
+}
+.cus {
+  width: 300px;
+  border: 10px solid #f6f6f6;
+  height: 415px;
+  position: relative;
+  top: -20px;
+  left: 40px;
+  box-shadow: 10px 10px 30px #34343433;
+  border-radius: 10px;
+  opacity: 1;
+}
+.spx{
+  font-size: 18px;
+  font-family: 'Arial Nova Bold';
+  width: 135px;
+  height: 37px;
+  position: relative;
+  left: -2px;
+  top: 5px;
+  color: #0972EA;
+  border: none;
+  background: none;
+  padding: 10px;
+  // box-shadow: 5px 5px #0972EA;
+  text-align: center;
+}
+.crd {
+  border: 1px solid #A1A1A1;
+  border-top: 8px solid #0972EA;
+  border-radius: 5px;
+  opacity: 1;
+  left: 70px;
+  width: 295px;
+  height: 320px;
+  margin-left: 70px;
+}
+.crd h2{
+  font-family: 'Arial Nova Bold';
+  font-size: 18px;
+  color: #343434;
+  position: relative;
+  left: 10px;
+  top: 15px;
+}
+.crd p{
+  font-family: 'Arial Nova';
+  font-size: 14px;
+  color: #343434;
+  position: relative;
+  left: 10px;
+  top: 15px;
+}
+.crd span{
+  font-family: 'Arial Nova';
+  font-size: 14px;
+  color: #343434;
+  position: relative;
+  left: 10px;
+  top: 5px;
+}
+.hvr{
+  position: relative;
+  left: 130px;
+  top: -30px;
+  width: 570px;
+  height: 130px;
+  padding-left: 30px;
+  padding-top: 20px;
+ }
+ .hvr:hover{
+  background-color: #EAEAEA;
+  opacity: 1;
+}
+.hvr span{
+  font-family: 'Arial Nova';
+  font-size: 14px;
+  color: #343434;
+  position: relative;
+  left: 5px;
+  top: 5px;
+}
+.box1{  
+  position: relative;
+  left: 130px;
+  top: -50px;
+  padding-left: 30px;
+  padding-top: 20px;
+ }
+ .box1 span{
+  font-family: 'Arial Nova';
+  font-size: 14px;
+  color: #343434;
+  position: relative;
+  left: 5px;
+  top: 5px;
+}
+.connbtn{
+  font-size: 18px;
+  font-family: "Arial Nova Bold";
+  height: 37px;
+  position: relative;
+  top: 20px;
+  left: 58px;
+  color: #ffffff;
+  border: none;
+  background: #011F41;
+  width: 260px;
+  box-shadow: 5px 5px #0972EA;
+  text-align: center;
+}
+.mib {
+  width: 300px;
+  height: 255px;
+  position: relative;
+  left: 40px;
+}
+.acc{
+  margin-left: 70px;
+  margin-right: 70px;
+}
+.btt{
+  font-family: 'Arial Nova Bold';
+  color: #343434;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 480px){
+
+  .bect{
+    right: -45px!important;
+    top:0px!important;
+    font-size: 32px!important;
+    left: 0px!important;
+  }
+
+  .appd{
+    right: -2px !important;
+    top: -35px !important;
+    width: 20pc !important;
+    text-align: justify;
+}
+
+  .mt{
+    font-size: 24px!important;
+  }
+
+  .dec{
+    left: 36px !important;
+    top: -20px;
+    width: 20pc !important;
+    margin-bottom: 30px;
+}
+
+  div#mobheig {
+    height: 1100px!important;
+}
+.crd{
+  left: -20px!important;
+  bottom: 20px!important;
+  margin-bottom:30px!important
+}
+
+.hvr{
+  left: 10px!important;
+  width:23pc!important;
+}
+
+.box1{
+  left: 10px!important;
+  width:23pc!important;
+  top:0px!important
+}
+.mib{
+  top:30px!important;
+}
+.mgn{
+  margin-bottom: 0px!important;
+}
+.connbtn{
+  top:40px!important;
+}
+
+.st{
+  margin-top: 20px!important;
+}
+iframe {
+  border: 0;
+  width: 390px;
+  height: 220px;
+}
+
+}
+@media screen and (max-width: 360px){
+
+  .dec{
+    width: 18pc !important;
+}
+}
