@@ -25,6 +25,30 @@ export class ResearchSingleComponent implements OnInit {
   authorsSet = new Set();
   isSubscribed: boolean = false;
 
+  epochToDate(epochTime: number): string {
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const date = new Date(epochTime);
+    const monthIndex = date.getMonth();
+    const day = date.getDate();
+    const year = date.getFullYear();
+
+    return `${months[monthIndex]} ${day}, ${year}`;
+  }
+
   ngOnInit(): void {
     const researchId: any = this.route.snapshot.paramMap.get("id");
     this.apiService.getReseachList().subscribe((data: any) => {
@@ -35,6 +59,7 @@ export class ResearchSingleComponent implements OnInit {
       );
 
       this.Reports = filterData[0];
+      this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
     });
 
     this.apiService.getReportType().subscribe((data: any) => {
