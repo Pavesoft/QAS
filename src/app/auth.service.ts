@@ -18,7 +18,7 @@ export class AuthService {
 
   // Get stored access token
   getAccessToken(): string | null {
-    return localStorage.getItem('accessToken');
+    return localStorage.getItem('jwtToken');
   }
 
   // Get stored refresh token

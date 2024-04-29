@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router, NavigationExtras } from "@angular/router";
 import { Observable } from "rxjs";
 import { ApiService } from "../Services/research-services";
+import { AuthService } from "../auth.service";
 @Component({
   selector: "app-research",
   templateUrl: "./research.component.html",
@@ -34,16 +35,20 @@ export class ResearchComponent implements OnInit {
   filteredReports: any[] = [];
   mappedReports: any[] = [];
   datechanges: any[] = [];
-  currentPage: number = 1;
+  currentPage = 1;
+  totalPages: any; // Set the total number of pages here
+  visiblePages = 5;
   itemsPerPage: number = 5;
   startIndex: number = 0; // Initial value for starting index
-  endIndex: number = 5;
+  endIndex = this.itemsPerPage;
   showDateRangePicker: boolean = false;
+  isLogin: any;
 
   constructor(
     private httpClient: HttpClient,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    public authService: AuthService
   ) {
     // this.applyPagination();
   }
@@ -59,26 +64,43 @@ export class ResearchComponent implements OnInit {
     return totalHeight;
   }
 
-  applyPagination() {
+  applyPagination(): void {
     this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
     this.endIndex = this.startIndex + this.itemsPerPage;
-    // console.log(this.Reports);
-    // this.filteredReports = this.Reports.slice(startIndex, endIndex);
-    // console.log(this.filteredReports);
+    // Update filteredReports based on the startIndex and endIndex
+    this.filteredReports = this.Reports.slice(this.startIndex, this.endIndex);
   }
 
-  onPageChange(pageNumber: number) {
-    this.currentPage = pageNumber;
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.applyPagination();
+  }
+
+  onItemsPerPageChange(itemsPerPage: number): void {
+    this.itemsPerPage = itemsPerPage;
+    this.currentPage = 1; // Reset to the first page when items per page changes
     this.applyPagination();
   }
 
   getPages(): number[] {
-    const totalPages = Math.ceil(this.mappedReports.length / this.itemsPerPage);
-    return Array.from({ length: totalPages }, (_, index) => index + 1);
+    const pages: number[] = [];
+    for (let i = 1; i <= this.totalPages; i++) {
+      pages.push(i);
+    }
+    return pages;
+  }
+
+  getVisiblePages(): number[] {
+    const start = Math.max(
+      1,
+      this.currentPage - Math.floor(this.visiblePages / 2)
+    );
+    const end = Math.min(this.totalPages, start + this.visiblePages - 1);
+    return Array.from({ length: end - start + 1 }, (_, index) => start + index);
   }
 
   getLastPage(): number {
-    return Math.ceil(this.mappedReports.length / this.itemsPerPage);
+    return this.totalPages;
   }
 
   onReportCheck(event: any, option: string) {
@@ -214,8 +236,14 @@ export class ResearchComponent implements OnInit {
   isSubscribed: boolean = false;
 
   ngOnInit(): void {
-    this.loadResearchData();
+    const accessToken = this.authService.getAccessToken();
+    console.log("accesstoken", accessToken);
 
+    this.isLogin = accessToken !== null ? true : false;
+    // Now isLogin is a boolean
+
+    console.log("is login", this.isLogin);
+    this.loadResearchData();
     this.apiService.getReportType().subscribe((data: any) => {
       this.reportTypeData = data.map((item: any) => item.reportType);
       // console.table("Report Typ", this.reportTypeData);
@@ -250,13 +278,16 @@ export class ResearchComponent implements OnInit {
       });
       this.authorsArray = Array.from(this.authorsSet);
       // console.log("author array", this.authorsArray);
+      this.mappedReports.sort((a, b) => a.publishDate - b.publishDate);
       this.mappedReports = this.mappedReports.map((report: any) => {
         return {
           ...report,
-          publishDate: this.formatDate(report.publishDate),
+          publishDate: this.epochToDate(report.publishDate),
         };
       });
       console.table("mapped report", this.mappedReports);
+      console.log("total pages", data.researchMasterList.length / 5);
+      this.totalPages = data.researchMasterList.length / 5;
     });
   }
 
@@ -272,17 +303,33 @@ export class ResearchComponent implements OnInit {
         research: research,
       },
     };
-
+      console.log('Research ID:', research.id);
     // Navigate to research-single page with the defined navigation extras
-    this.router.navigate(["/research-single"], navigationExtras);
+     this.router.navigate(['/research-single', research.id]); 
   }
 
-  formatDate(epochDate: number): string {
-    const date = new Date(epochDate * 1000); // Convert epoch to milliseconds
+  epochToDate(epochTime: number): string {
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const date = new Date(epochTime);
+    const monthIndex = date.getMonth();
     const day = date.getDate();
-    const month = date.getMonth() + 1; // Months are zero-based, so add 1
-    const year = date.getFullYear().toString().slice(-2); // Get last two digits of year
-    return `${day}-${month < 10 ? "0" + month : month}-${year}`;
+    const year = date.getFullYear();
+
+    return `${months[monthIndex]} ${day}, ${year}`;
   }
   navigate(path: string): void {
     this.router.navigate([path]);

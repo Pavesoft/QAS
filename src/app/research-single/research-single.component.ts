@@ -12,6 +12,7 @@ export class ResearchSingleComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
+    private route: ActivatedRoute,
     private apiService: ApiService
   ) {}
 
@@ -25,9 +26,18 @@ export class ResearchSingleComponent implements OnInit {
   isSubscribed: boolean = false;
 
   ngOnInit(): void {
+    const researchId: any = this.route.snapshot.paramMap.get("id");
+    console.log("researchId ------>", researchId);
     this.apiService.getReseachList().subscribe((data: any) => {
-      this.Reports = data.researchMasterList[0];
-      this.mappedReports = data.researchMasterList;
+      console.log(data.researchMasterList);
+
+      const filterData = data.researchMasterList.filter(
+        (item: any) => item.id === parseInt(researchId)
+      );
+
+      console.log("filteredData", filterData);
+      this.Reports = filterData[0];
+      // this.mappedReports = data.researchMasterList;
       console.table("mapped report", this.Reports);
       // this.mappedReports = this.Reports.filter(
       //   (report: any) => !report.isSubscribed
