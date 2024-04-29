@@ -273,7 +273,7 @@
                   (click)="navigateToResearchSingle(research)"
                   >{{ research.reportType }}
                 </a>
-                ><br />
+                <br />
                 <p style="margin: 0.5rem 0">
                   Author :
                   <span style="color: blue">
@@ -299,19 +299,27 @@
                     /></a>
                   </div>
                 </div>
-                <div class="row" *ngIf="research.isSubscribed">
+                <div
+                  *ngIf="research.isSubscribed"
+                  (click)="downloadResearch(research.id)"
+                >
                   <button class="btn btn-success bn">Download</button>
                 </div>
               </div>
 
-              <div class="col-md-9"></div>
               <div class="col-md-9 research-description">
-                <!-- {{
-                  getFormattedDescription(research.description) | slice : 0 : 100
-                }}{{ research.description.length > 20 ? "..." : "" }} -->
                 <div
+                  *ngIf="!research.isSubscribed"
                   [innerHtml]="getFirstParagraph(research.description)"
-                ></div>
+                >
+                  ...
+                </div>
+                <div
+                  *ngIf="research.isSubscribed"
+                  [innerHtml]="getFirst100Words(research.description)"
+                >
+                  ...
+                </div>
               </div>
               <div class="col-md-3 mt-3" *ngIf="!research.isSubscribed">
                 <button class="btn btn-success bn">Buy Now</button>

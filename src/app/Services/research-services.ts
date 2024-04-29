@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
-
+import { map } from "rxjs/operators";
 @Injectable({
   providedIn: "root",
 })
@@ -39,12 +39,48 @@ export class ApiService {
     });
     return this.http.get<any[]>(`${this.apiUrl}/research-masters/report-types`);
   }
+
   getCategories(): Observable<any[]> {
     const token = localStorage.getItem("jwtToken");
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
     return this.http.get<any[]>(`${this.apiUrl}/research-masters/categories`);
+  }
+
+  downloadReport(id: any): Observable<Blob | any> {
+    const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http
+      .get(`${this.apiUrl}/research-masters/downloadReport/2856`, {
+        headers: headers,
+        responseType: "blob",
+        observe: "response", // Include the full response
+      })
+      .pipe(
+        map((response: HttpResponse<Blob>) => {
+          const contentDisposition: any = response.headers.get(
+            "Content-Disposition"
+          );
+          const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+          const matches = filenameRegex.exec(contentDisposition);
+          const filename =
+            matches && matches.length > 1
+              ? matches[1].replace(/['"]/g, "")
+              : "downloaded.pdf";
+          console.log("contentDisposition", contentDisposition);
+          console.log("filename regex", filenameRegex);
+          console.log("matches", matches);
+          console.log("filename", filename);
+          return {
+            blob: response.body,
+            filename: filename,
+          };
+        })
+      );
   }
 
   getPostById(id: number): Observable<any> {

@@ -253,8 +253,15 @@ export class ResearchComponent implements OnInit {
   getFirstParagraph(htmlContent: string): string {
     const parser = new DOMParser();
     const parsedHtml = parser.parseFromString(htmlContent, "text/html");
-    const firstParagraph = parsedHtml.querySelector("p");
-    return firstParagraph ? firstParagraph.outerHTML : "";
+    const firstParagraph: any = parsedHtml.querySelector("p");
+    const first100 = this.getFirst100Words(firstParagraph.outerHTML);
+    return first100 ? `${first100}...` : "";
+  }
+
+  getFirst100Words(paragraph: string): string {
+    const words = paragraph.split(/\s+/); // Split the paragraph into words using whitespace as delimiter
+    const first100 = words.slice(0, 50).join(" "); // Take the first 100 words and join them back with spaces
+    return `${first100}...`;
   }
 
   removeOption(index: number) {
@@ -385,6 +392,33 @@ export class ResearchComponent implements OnInit {
     };
     // Navigate to research-single page with the defined navigation extras
     this.router.navigate(["/research-single", research.id]);
+  }
+
+  downloadResearch(id: any) {
+    this.apiService.downloadReport(id).subscribe(
+      (data) => {
+        this.saveFile(data.blob, data.filename);
+      },
+      (error) => {
+        console.error("Error downloading report:", error);
+      }
+    );
+  }
+
+  private saveFile(blobData: any, filename: any) {
+    const blob = new Blob([blobData], { type: "application/octet-stream" });
+    const url = window.URL.createObjectURL(blob);
+
+    // Create a link element and simulate a click to trigger the download
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+
+    // Clean up after download
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
   }
 
   epochToDate(epochTime: number): string {
