@@ -383,9 +383,8 @@ export class ResearchComponent implements OnInit {
         research: research,
       },
     };
-
     // Navigate to research-single page with the defined navigation extras
-    this.router.navigate(["/research-single"], navigationExtras);
+    this.router.navigate(["/research-single", research.id]);
   }
 
   epochToDate(epochTime: number): string {

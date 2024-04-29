@@ -12,6 +12,7 @@ export class ResearchSingleComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
+    private route: ActivatedRoute,
     private apiService: ApiService
   ) {}
 
@@ -25,29 +26,15 @@ export class ResearchSingleComponent implements OnInit {
   isSubscribed: boolean = false;
 
   ngOnInit(): void {
+    const researchId: any = this.route.snapshot.paramMap.get("id");
     this.apiService.getReseachList().subscribe((data: any) => {
-      this.Reports = data.researchMasterList[0];
-      this.mappedReports = data.researchMasterList;
-      console.table("mapped report", this.Reports);
-      // this.mappedReports = this.Reports.filter(
-      //   (report: any) => !report.isSubscribed
-      // );
-      // data.researchMasterList.forEach((item: any) => {
-      //   if (!this.authorsSet.has(item.author)) {
-      //     this.authorsSet.add(item.author);
-      //   }
-      //   if (!this.authorsSet.has(item.mauthor)) {
-      //     this.authorsSet.add(item.mauthor);
-      //   }
-      // });
-      // this.authorsArray = Array.from(this.authorsSet);
-      // console.log("author array", this.authorsArray);
-      // this.mappedReports = this.mappedReports.map((report: any) => {
-      //   return {
-      //     ...report,
-      //     publishDate: this.formatDate(report.publishDate),
-      //   };
-      // });
+      console.log(data.researchMasterList);
+
+      const filterData = data.researchMasterList.filter(
+        (item: any) => item.id === parseInt(researchId)
+      );
+
+      this.Reports = filterData[0];
     });
 
     this.apiService.getReportType().subscribe((data: any) => {

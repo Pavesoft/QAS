@@ -226,32 +226,6 @@
                 >
               </span>
             </div>
-            <div class="redi" *ngIf="!isLogin">
-              <span>
-                <!-- <input
-                  type="radio"
-                  name="radio"
-                  (change)="toggleResearchType(false)"
-                  id="allResearch"
-                  [checked]="!isSubscribed"
-                /> -->
-                <label for="allResearch" style="cursor: pointer"
-                  >All Researches</label
-                >
-              </span>
-              <!-- <span>
-                <input
-                  type="radio"
-                  name="radio"
-                  (change)="toggleResearchType(true)"
-                  id="subscribedResearch"
-                  [checked]="isSubscribed"
-                />
-                <label for="subscribedResearch" style="cursor: pointer"
-                  >Subscribed Research</label
-                >
-              </span> -->
-            </div>
           </div>
         </div>
         <div *ngIf="selectedOptions.length > 0">
@@ -297,7 +271,8 @@
                   routerLink="/research-single"
                   class="research-title"
                   (click)="navigateToResearchSingle(research)"
-                  >{{ research.reportType }} </a
+                  >{{ research.reportType }}
+                </a>
                 ><br />
                 <p style="margin: 0.5rem 0">
                   Author :
@@ -359,6 +334,7 @@
                 <a
                   href="/research-single"
                   routerLink="/research-single"
+                  (click)="navigateToResearchSingle(research)"
                   style="text-decoration: none"
                   >Read More<img
                     src="/assets/Icon.png"
