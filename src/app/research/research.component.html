@@ -5,14 +5,8 @@
       <hr />
       <h4 class="t2">Report Type</h4>
       <div class="dropdown">
-        <div
-          class="btn form-select dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
+        <div class="btn form-select dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           <ng-container *ngIf="reportOptions.length > 0; else selectReport">
             <ng-container *ngFor="let option of reportOptions; let last = last">
               <p>{{ option }}</p>
@@ -21,17 +15,10 @@
           </ng-container>
           <ng-template #selectReport>Select Report</ng-template>
         </div>
-        <div
-          class="form-selectt dropdown-menu"
-          aria-labelledby="dropdownMenuButton"
-        >
+        <div class="form-selectt dropdown-menu" aria-labelledby="dropdownMenuButton">
           <label class="dropdown-item" *ngFor="let option of reportTypeData">
-            <input
-              type="checkbox"
-              [value]="option"
-              (change)="onReportCheck($event, option)"
-              [checked]="reportOptions.includes(option)"
-            />
+            <input type="checkbox" [value]="option" (change)="onReportCheck($event, option)"
+              [checked]="reportOptions.includes(option)" />
             {{ option }}
           </label>
         </div>
@@ -40,36 +27,21 @@
       <hr />
       <h4 class="t2">Category</h4>
       <div class="dropdown">
-        <div
-          class="btn form-select dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
+        <div class="btn form-select dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           <ng-container *ngIf="categoryOptions.length > 0; else selectCategory">
-            <ng-container
-              *ngFor="let option of categoryOptions; let last = last"
-            >
+            <ng-container *ngFor="let option of categoryOptions; let last = last">
               <p>{{ option }}</p>
               <!-- <span *ngIf="!last">,</span> -->
             </ng-container>
           </ng-container>
           <ng-template #selectCategory>Select Category</ng-template>
         </div>
-        <div
-          class="form-selectt dropdown-menu"
-          aria-labelledby="dropdownMenuButton"
-          style="max-height: 350px; overflow-y: auto"
-        >
+        <div class="form-selectt dropdown-menu" aria-labelledby="dropdownMenuButton"
+          style="max-height: 350px; overflow-y: auto">
           <label class="dropdown-item" *ngFor="let option of categoryData">
-            <input
-              type="checkbox"
-              [value]="option"
-              (change)="onDomainCheck($event, option)"
-              [checked]="categoryOptions.includes(option)"
-            />
+            <input type="checkbox" [value]="option" (change)="onDomainCheck($event, option)"
+              [checked]="categoryOptions.includes(option)" />
             {{ option }}
           </label>
         </div>
@@ -77,14 +49,8 @@
       <hr />
       <h4 class="t2">Region</h4>
       <div class="dropdown">
-        <div
-          class="btn form-select dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
+        <div class="btn form-select dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           <ng-container *ngIf="regionOptions.length > 0; else selectRegion">
             <ng-container *ngFor="let option of options; let last = last">
               <p>{{ option }}</p>
@@ -92,17 +58,10 @@
           </ng-container>
           <ng-template #selectRegion>Select Report</ng-template>
         </div>
-        <div
-          class="form-selectt dropdown-menu"
-          aria-labelledby="dropdownMenuButton"
-        >
+        <div class="form-selectt dropdown-menu" aria-labelledby="dropdownMenuButton">
           <label class="dropdown-item" *ngFor="let option of options">
-            <input
-              type="checkbox"
-              [value]="option"
-              (change)="onRegionCheck($event, option)"
-              [checked]="regionOptions.includes(option)"
-            />
+            <input type="checkbox" [value]="option" (change)="onRegionCheck($event, option)"
+              [checked]="regionOptions.includes(option)" />
             {{ option }}
           </label>
         </div>
@@ -110,14 +69,8 @@
       <hr />
       <h4 class="t2">Analyst</h4>
       <div class="dropdown">
-        <div
-          class="btn form-select dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
+        <div class="btn form-select dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           <ng-container *ngIf="authorOptions.length > 0; else selectAuthor">
             <ng-container *ngFor="let option of authorOptions; let last = last">
               <p>{{ option }}</p>
@@ -126,18 +79,11 @@
           </ng-container>
           <ng-template #selectAuthor>Select Author</ng-template>
         </div>
-        <div
-          class="form-selectt dropdown-menu"
-          aria-labelledby="dropdownMenuButton"
-          style="max-height: 350px; overflow-y: auto"
-        >
+        <div class="form-selectt dropdown-menu" aria-labelledby="dropdownMenuButton"
+          style="max-height: 350px; overflow-y: auto">
           <label class="dropdown-item" *ngFor="let option of authorsArray">
-            <input
-              type="checkbox"
-              [value]="option"
-              (change)="onAnalystCheck($event, option)"
-              [checked]="authorOptions.includes(option)"
-            />
+            <input type="checkbox" [value]="option" (change)="onAnalystCheck($event, option)"
+              [checked]="authorOptions.includes(option)" />
             {{ option }}
           </label>
         </div>
@@ -152,14 +98,12 @@
         </button>
       </div> -->
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9" style="padding-right: 70px;">
       <div class="container-fluid">
         <div class="row">
-          <div
-            class="col-md-6 my-4 d-flex align-items-center justify-content-start"
-          >
-            <span class="dr">Date Range</span>
-            <span class="sdr">
+          <div class="col-md-6 my-4 d-flex align-items-center justify-content-start">
+            <span class="dr" style="font-size: 16px !important;">Date Range</span>
+            <span class="sdr" style="font-size: 16px !important;">
               Select a Date Range
               <i class="fa fa-calendar-minus-o"></i>
             </span>
@@ -167,11 +111,9 @@
               <!-- Date range picker content goes here -->
             </div>
           </div>
-          <div
-            class="col-md-6 my-4 d-flex align-items-center justify-content-end"
-          >
-            <span class="sb">Sort By</span>
-            <span class="rd">
+          <div class="col-md-6 my-4 d-flex align-items-center justify-content-end">
+            <span class="sb" style="font-size: 16px !important;">Sort By</span>
+            <span class="rd" style="font-size: 16px !important;">
               Release Date <a href="#"><i class="fas fa-angle-down"></i></a>
             </span>
           </div>
@@ -183,13 +125,7 @@
             <form>
               <div class="d-flex align-items-center">
                 <div>
-                  <input
-                    class="srch"
-                    type="text"
-                    name="search"
-                    placeholder="Search Topic"
-                    [(ngModel)]="searchValue"
-                  />
+                  <input class="srch" type="text" name="search" placeholder="Search Topic" [(ngModel)]="searchValue" />
                 </div>
                 <div>
                   <i class="fa fa-search"></i>
@@ -197,57 +133,37 @@
               </div>
             </form>
           </div>
-          <div
-            class="col-sm-6 plt d-flex align-items-center justify-content-end"
-          >
-            <div class="redi" *ngIf="isLogin">
+          <div class="col-sm-6 plt d-flex align-items-center justify-content-end">
+            <div *ngIf="isLogin">
               <span>
-                <input
-                  type="radio"
-                  name="radio"
-                  (change)="toggleResearchType(false)"
-                  id="allResearch"
-                  [checked]="!isSubscribed"
-                />
-                <label for="allResearch" style="cursor: pointer"
-                  >All Research</label
-                >
+                <input type="radio" name="radio" (change)="toggleResearchType(false)" id="allResearch"
+                  [checked]="!isSubscribed" />
+                <label for="allResearch" style="cursor: pointer;color:#00327a;font-size: 16px;">All Research</label>
               </span>
               <span>
-                <input
-                  type="radio"
-                  name="radio"
-                  (change)="toggleResearchType(true)"
-                  id="subscribedResearch"
-                  [checked]="isSubscribed"
-                />
-                <label for="subscribedResearch" style="cursor: pointer"
-                  >Subscribed Research</label
-                >
+                <input type="radio" name="radio" (change)="toggleResearchType(true)" id="subscribedResearch"
+                  [checked]="isSubscribed" />
+                <label for="subscribedResearch" style="cursor: pointer;color:#00327a;font-size: 16px;">Subscribed
+                  Research</label>
               </span>
             </div>
           </div>
         </div>
         <div *ngIf="selectedOptions.length > 0">
           <div>
-            <button
-              class="selectedOptions_button"
-              *ngFor="let option of selectedOptions; let i = index"
-            >
+            <button class="selectedOptions_button" *ngFor="let option of selectedOptions; let i = index">
               {{ option }}
               <span class="remove-icon" (click)="removeOption(i)">✖</span>
             </button>
           </div>
+
         </div>
         <div *ngIf="mappedReports.length > 0">
-          <div
-            class="research-item"
-            *ngFor="
+          <div class="research-item" *ngFor="
               let research of mappedReports
                 | filter : searchValue
                 | slice : startIndex : endIndex
-            "
-          >
+            ">
             <div class="row" [id]="research.id">
               <div class="col-md-6" style="padding-bottom: 5px">
                 <div class="row">
@@ -257,9 +173,7 @@
                   </div>
                   <div class="col-sm-8">
                     <span>Category :</span>
-                    <a href="" style="text-decoration: none"
-                      ><span> {{ research.categoryName }}</span></a
-                    >
+                    <a href="" style="text-decoration: none"><span> {{ research.categoryName }}</span></a>
                   </div>
                 </div>
               </div>
@@ -267,16 +181,13 @@
             </div>
             <div class="row">
               <div class="col-md-9">
-                <a
-                  routerLink="/research-single"
-                  class="research-title"
-                  (click)="navigateToResearchSingle(research)"
-                  >{{ research.reportType }}
+                <a routerLink="/research-single" class="research-title" (click)="navigateToResearchSingle(research)">{{
+                  research.reportType }}
                 </a>
                 <br />
                 <p style="margin: 0.5rem 0">
                   Author :
-                  <span style="color: blue">
+                  <span style="color: #0d6efd">
                     {{ research.author }}
                   </span>
                 </p>
@@ -285,26 +196,6 @@
                     ><span>{{ a }} </span></a
                   >
                 </span> -->
-              </div>
-              <div class="col-md-3">
-                <div class="row" *ngIf="!research.isSubscribed">
-                  <div class="col-md-6 im">
-                    <a href=""
-                      ><img src="/assets/cart.png" style="width: 18px"
-                    /></a>
-                  </div>
-                  <div class="col-md-6 im1">
-                    <a href=""
-                      ><img src="/assets/download.png" style="width: 18px"
-                    /></a>
-                  </div>
-                </div>
-                <div
-                  *ngIf="research.isSubscribed"
-                  (click)="downloadResearch(research.id)"
-                >
-                  <button class="btn btn-success bn">Download</button>
-                </div>
               </div>
 
               <div class="col-md-9 research-description">
@@ -322,76 +213,66 @@
                 </div>
               </div>
               <div class="col-md-3 mt-3" *ngIf="!research.isSubscribed">
+
+                <div class="row" *ngIf="!research.isSubscribed" style="margin-bottom: 15px !important;">
+                  <div class="col-md-6 im">
+                    <a href=""><img src="/assets/cart.png" style="width: 18px" /></a>
+                  </div>
+                  <div class="col-md-6 im1">
+                    <a href=""><img src="/assets/download.png" style="width: 18px" /></a>
+                  </div>
+                </div>
+
                 <button class="btn btn-success bn">Buy Now</button>
               </div>
               <div class="col-md-3 mt-3" *ngIf="research.isSubscribed">
-                <button class="btn btn-success bn">Read View</button>
+                <button class="btn btn-success bn" style="margin-bottom: 10px !important;">Download</button>
+                <button class="btn btn-success bn" style="margin-bottom: 5px !important;">Read View</button>
               </div>
             </div>
             <div class="row">
-              <div class="d-flex col-md-7">
-                <span style="margin-top: 1px">Price : </span>
+              <div class="d-flex col-md-9">
+                <span style="margin-top: 1px">Price: </span>
                 <p class="prc">
-                  <i class="fas fa-dollar-sign" style="color: #444343"></i>
+
                   <b>
-                    {{ research.price }}
+                    $ {{research.price }}
                   </b>
                 </p>
               </div>
               <div class="col-sm-3 rm mt-1">
-                <a
-                  href="/research-single"
-                  routerLink="/research-single"
-                  (click)="navigateToResearchSingle(research)"
-                  style="text-decoration: none"
-                  >Read More<img
-                    src="/assets/Icon.png"
-                    style="width: 28px; height: 10px"
-                /></a>
+                <a href="/research-single" routerLink="/research-single" (click)="navigateToResearchSingle(research)"
+                  style="text-decoration: none">Read More<img src="/assets/Icon.png"
+                    style="width: 28px; height: 10px" /></a>
               </div>
             </div>
             <hr style="border: 1px solid #00327a33; width: 100%" />
           </div>
+
         </div>
+
         <div *ngIf="mappedReports.length === 0">
           <p>No data</p>
         </div>
         <div class="row">
           <ul class="pagination" style="justify-content: end">
             <li class="page-item" [class.disabled]="currentPage === 1">
-              <a
-                class="page-link"
-                (click)="currentPage !== 1 && onPageChange(currentPage - 1)"
-                aria-label="Previous"
-                [style.cursor]="currentPage !== 1 ? 'pointer' : 'default'"
-              >
+              <a class="page-link" (click)="currentPage !== 1 && onPageChange(currentPage - 1)" aria-label="Previous"
+                [style.cursor]="currentPage !== 1 ? 'pointer' : 'default'">
                 <span aria-hidden="true">&lt;</span>
               </a>
             </li>
             <ng-container *ngFor="let page of getVisiblePages()">
               <li class="page-item" [class.active]="page === currentPage">
-                <a
-                  class="page-link"
-                  (click)="onPageChange(page)"
-                  [style.cursor]="'pointer'"
-                  >{{ page }}</a
-                >
+                <a class="page-link" (click)="onPageChange(page)" [style.cursor]="'pointer'">{{ page }}</a>
               </li>
             </ng-container>
-            <li
-              class="page-item"
-              [class.disabled]="currentPage === getLastPage()"
-            >
-              <a
-                class="page-link"
-                (click)="
+            <li class="page-item" [class.disabled]="currentPage === getLastPage()">
+              <a class="page-link" (click)="
                   currentPage !== getLastPage() && onPageChange(currentPage + 1)
-                "
-                aria-label="Next"
-                [style.cursor]="
+                " aria-label="Next" [style.cursor]="
                   currentPage !== getLastPage() ? 'pointer' : 'default'
-                "
-              >
+                ">
                 <span aria-hidden="true">&gt;</span>
               </a>
             </li>
