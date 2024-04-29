@@ -35,6 +35,8 @@ export class ResearchComponent implements OnInit {
   filteredReports: any[] = [];
   mappedReports: any[] = [];
   datechanges: any[] = [];
+  searchObject: any = {};
+  searchCriteriaList: any[] = [];
   currentPage = 1;
   totalPages: any; // Set the total number of pages here
   visiblePages = 5;
@@ -43,6 +45,10 @@ export class ResearchComponent implements OnInit {
   endIndex = this.itemsPerPage;
   showDateRangePicker: boolean = false;
   isLogin: any;
+  Reports: any[] = [];
+  authorsArray: any[] = [];
+  authorsSet = new Set();
+  isSubscribed: boolean = false;
 
   constructor(
     private httpClient: HttpClient,
@@ -118,7 +124,7 @@ export class ResearchComponent implements OnInit {
       ...this.regionOptions,
       ...this.authorOptions,
     ];
-    this.updateMappedReports("report");
+    this.updateMappedReports("reportType");
   }
 
   onDomainCheck(event: any, option: string) {
@@ -154,6 +160,7 @@ export class ResearchComponent implements OnInit {
       ...this.regionOptions,
       ...this.authorOptions,
     ];
+    this.updateMappedReports("region");
   }
 
   onAnalystCheck(event: any, option: string) {
@@ -174,25 +181,72 @@ export class ResearchComponent implements OnInit {
     this.updateMappedReports("analyst");
   }
 
-  updateMappedReports(type: any) {
-    if (type == "category") {
+  updateMappedReports(type: string) {
+    // const searchCriteriaList: any = [];
+    let criteriaIndex = this.searchCriteriaList.findIndex(
+      (criteria: any) => criteria.filterKey === type
+    );
+
+    if (type === "category") {
       const filteredReports = this.mappedReports.filter((report) =>
         this.categoryOptions.includes(report.categoryName)
       );
       this.mappedReports =
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
-    } else if (type == "report") {
+    } else if (type === "report") {
       const filteredReports = this.mappedReports.filter((report) =>
         this.reportOptions.includes(report.report)
       );
       this.mappedReports =
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
-    } else if (type == "analyst") {
+    } else if (type === "analyst") {
       const filteredReports = this.mappedReports.filter((report) =>
         this.authorOptions.includes(report.author)
       );
       this.mappedReports =
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
+    } else if (type === "region") {
+      const filteredReports = this.mappedReports.filter((report) =>
+        this.regionOptions.includes(report.region)
+      );
+      this.mappedReports =
+        filteredReports.length > 0 ? filteredReports : this.mappedReports;
+    }
+
+    if (criteriaIndex !== -1) {
+      // Update existing criteria
+      this.searchCriteriaList[criteriaIndex].value =
+        this[type + "Options"].join(", ");
+    } else {
+      // Create new criteria
+      this.searchCriteriaList.push({
+        filterKey: type,
+        value: this[type + "Options"].join(", "),
+        operation: "in",
+      });
+    }
+    this.searchObject = {
+      searchCriteriaList: this.searchCriteriaList.filter(
+        (criteria) => criteria.value.trim() !== ""
+      ),
+      dataOption: "all",
+    };
+    console.log("-----", this.searchObject);
+    if (this.selectedOptions.length > 0) {
+      this.apiService.serachFilters(this.searchObject).subscribe(
+        (data) => {
+          // Handle the API response here
+          console.log("API response:", data);
+          this.mappedReports = data.researchMasterList;
+          this.totalPages = data.researchMasterList.length / 5;
+        },
+        (error) => {
+          // Handle any API errors here
+          console.error("API error:", error);
+        }
+      );
+    } else {
+      this.loadResearchData();
     }
   }
 
@@ -224,16 +278,47 @@ export class ResearchComponent implements OnInit {
       const analystIndex = this.authorOptions.indexOf(removedOption);
       this.authorOptions.splice(analystIndex, 1);
     }
-  }
 
-  apply() {
-    console.log("Selected options:", this.selectedOptions);
-  }
+    //Logic to remove the value from the object
+    for (let i = 0; i < this.searchObject.searchCriteriaList.length; i++) {
+      if (
+        this.searchObject.searchCriteriaList[i].value.includes(removedOption)
+      ) {
+        const currentOptions =
+          this.searchObject.searchCriteriaList[i].value.split(", ");
 
-  Reports: any[] = [];
-  authorsArray: any[] = [];
-  authorsSet = new Set();
-  isSubscribed: boolean = false;
+        const updatedOptions = currentOptions.filter(
+          (opt: any) => opt !== removedOption
+        );
+
+        this.searchObject.searchCriteriaList[i].value =
+          updatedOptions.join(", ");
+      }
+
+      if (this.searchObject.searchCriteriaList[i].value.trim() === "") {
+        this.searchObject.searchCriteriaList.splice(i, 1);
+        i--;
+      }
+    }
+
+    //Search Filter API Call
+    if (this.selectedOptions.length > 0) {
+      this.apiService.serachFilters(this.searchObject).subscribe(
+        (data) => {
+          // Handle the API response here
+          console.log("API response:", data);
+          this.mappedReports = data.researchMasterList;
+          this.totalPages = data.researchMasterList.length / 5;
+        },
+        (error) => {
+          // Handle any API errors here
+          console.error("API error:", error);
+        }
+      );
+    } else {
+      this.loadResearchData();
+    }
+  }
 
   ngOnInit(): void {
     const accessToken = this.authService.getAccessToken();
@@ -244,9 +329,9 @@ export class ResearchComponent implements OnInit {
 
     console.log("is login", this.isLogin);
     this.loadResearchData();
+
     this.apiService.getReportType().subscribe((data: any) => {
       this.reportTypeData = data.map((item: any) => item.reportType);
-      // console.table("Report Typ", this.reportTypeData);
     });
 
     this.apiService.getCategories().subscribe((data: any) => {
@@ -262,11 +347,6 @@ export class ResearchComponent implements OnInit {
 
     apiCall.subscribe((data: any) => {
       this.Reports = data.researchMasterList;
-      // !this.isSubscribed
-      //   ? (this.mappedReports = this.Reports.filter(
-      //       (report: any) => !report.isSubscribed
-      //     ))
-      //   : (this.mappedReports = this.Reports);
       this.mappedReports = this.Reports;
       data.researchMasterList.forEach((item: any) => {
         if (!this.authorsSet.has(item.author)) {

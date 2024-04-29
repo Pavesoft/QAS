@@ -35,16 +35,25 @@
         <i class="bi bi-calendar-week fn"></i>
       </a>
       <i class="bi bi-bell fn" style="margin-right: 30px;"></i>
-
-      <img *ngIf="isLoggedIn" src="/assets/ellipse.png" class="logout-link" style="width: 25px" />
-      <span *ngIf="isLoggedIn" style="cursor: pointer;margin-right: 50px" class="logout-link" (click)="onLogout()">
-        Logout
-      </span>
-
       <span *ngIf="!isLoggedIn" style="cursor: pointer;margin-right: 50px;" data-toggle="modal"
         data-target="#exampleModal1">
         Login
       </span>
+      <div class="dropdown" *ngIf="isLoggedIn" style="cursor: pointer;margin-right: 50px;">
+        <!-- The icon that triggers the dropdown -->
+        <a class="dropdown-toggle" id="logoutDropdown" data-toggle="dropdown" aria-expanded="false"
+          style="cursor: pointer;">
+          <img src="/assets/ellipse.png" style="width: 25px;" alt="User icon" />
+          <span style="margin: 4px !important;">Hi, {{ firstName }}</span>
+        </a>
+
+        <!-- The dropdown menu -->
+        <ul class="dropdown-menu dropdown-menu-right" style="padding: 0px 42px; margin-top: 10px;">
+          <li>
+            <a (click)="onLogout()" style="cursor: pointer; color:black !important ">Logout</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

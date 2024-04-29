@@ -10,14 +10,14 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getReseachList(): Observable<any[]> {
-    const token = localStorage.getItem("jwtToken");
+    // const token = localStorage.getItem("jwtToken");
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
+      // Authorization: `Bearer ${token}`,
     });
 
     return this.http.get<any[]>(
-      `${this.apiUrl}/research-masters/research-list`,
-      { headers: headers }
+      `${this.apiUrl}/research-masters/research-list`
+      // { headers: headers }
     );
   }
 
@@ -53,6 +53,11 @@ export class ApiService {
 
   addPost(post: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/posts`, post);
+  }
+
+  serachFilters(post: any): Observable<any> {
+    console.log("post data", post);
+    return this.http.post<any>(`${this.apiUrl}/research-masters/search`, post);
   }
 
   updatePost(id: number, post: any): Observable<any> {

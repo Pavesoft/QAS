@@ -1,6 +1,6 @@
 <div class="container-fluid" style="margin-bottom: 70px">
   <div class="row">
-    <div class="col-md-2 sd">
+    <div class="col-md-3 sd">
       <h4 class="t1">Filter By</h4>
       <hr />
       <h4 class="t2">Report Type</h4>
@@ -85,10 +85,8 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <ng-container *ngIf="categoryOptions.length > 0; else selectRegion">
-            <ng-container
-              *ngFor="let option of categoryOptions; let last = last"
-            >
+          <ng-container *ngIf="regionOptions.length > 0; else selectRegion">
+            <ng-container *ngFor="let option of options; let last = last">
               <p>{{ option }}</p>
             </ng-container>
           </ng-container>
@@ -154,7 +152,7 @@
         </button>
       </div> -->
     </div>
-    <div class="col-md-10">
+    <div class="col-md-9">
       <div class="container-fluid">
         <div class="row">
           <div
@@ -199,7 +197,9 @@
               </div>
             </form>
           </div>
-          <div class="col-sm-6 plt d-flex align-items-center justify-content-end">
+          <div
+            class="col-sm-6 plt d-flex align-items-center justify-content-end"
+          >
             <div class="redi" *ngIf="isLogin">
               <span>
                 <input
@@ -265,107 +265,113 @@
             </button>
           </div>
         </div>
-
-        <div
-          class="research-item"
-          *ngFor="
-            let research of mappedReports
-              | filter : searchValue
-              | slice : startIndex : endIndex
-          "
-        >
-          <div class="row" [id]="research.id">
-            <div class="col-md-6" style="padding-bottom: 5px">
-              <div class="row">
-                <div class="col-sm-4">
-                  <!-- <span>Date :</span> -->
-                  <span>{{ research.publishDate }} | </span>
+        <div *ngIf="mappedReports.length > 0">
+          <div
+            class="research-item"
+            *ngFor="
+              let research of mappedReports
+                | filter : searchValue
+                | slice : startIndex : endIndex
+            "
+          >
+            <div class="row" [id]="research.id">
+              <div class="col-md-6" style="padding-bottom: 5px">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <!-- <span>Date :</span> -->
+                    <span>{{ research.publishDate }} | </span>
+                  </div>
+                  <div class="col-sm-8">
+                    <span>Category :</span>
+                    <a href="" style="text-decoration: none"
+                      ><span> {{ research.categoryName }}</span></a
+                    >
+                  </div>
                 </div>
-                <div class="col-sm-8">
-                  <span>Category :</span>
-                  <a href="" style="text-decoration: none"
-                    ><span> {{ research.categoryName }}</span></a
+              </div>
+              <div class="col-md-6"></div>
+            </div>
+            <div class="row">
+              <div class="col-md-9">
+                <a
+                  routerLink="/research-single"
+                  class="research-title"
+                  (click)="navigateToResearchSingle(research)"
+                  >{{ research.reportType }} </a
+                ><br />
+                <p style="margin: 0.5rem 0">
+                  Author :
+                  <span style="color: blue">
+                    {{ research.author }}
+                  </span>
+                </p>
+                <!-- <span class="research-category" *ngFor="let a of research.author">
+                  <a href="#" style="text-decoration: none"
+                    ><span>{{ a }} </span></a
                   >
-                </div>
+                </span> -->
               </div>
-            </div>
-            <div class="col-md-6"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-9">
-              <a
-                routerLink="/research-single"
-                class="research-title"
-                (click)="navigateToResearchSingle(research)"
-                >{{ research.reportType }} </a
-              ><br />
-              <p style="margin: 0.5rem 0">Author : {{ research.author }}</p>
-              <!-- <span class="research-category" *ngFor="let a of research.author">
-                <a href="#" style="text-decoration: none"
-                  ><span>{{ a }} </span></a
-                >
-              </span> -->
-            </div>
-            <div class="col-md-3">
-              <div class="row" *ngIf="!research.isSubscribed">
-                <div class="col-md-6 im">
-                  <a href=""
-                    ><img src="/assets/cart.png" style="width: 18px"
-                  /></a>
+              <div class="col-md-3">
+                <div class="row" *ngIf="!research.isSubscribed">
+                  <div class="col-md-6 im">
+                    <a href=""
+                      ><img src="/assets/cart.png" style="width: 18px"
+                    /></a>
+                  </div>
+                  <div class="col-md-6 im1">
+                    <a href=""
+                      ><img src="/assets/download.png" style="width: 18px"
+                    /></a>
+                  </div>
                 </div>
-                <div class="col-md-6 im1">
-                  <a href=""
-                    ><img src="/assets/download.png" style="width: 18px"
-                  /></a>
-                </div>
-              </div>
-              <div class="row" *ngIf="research.isSubscribed">
-                <div class="">
+                <div class="row" *ngIf="research.isSubscribed">
                   <button class="btn btn-success bn">Download</button>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-md-9"></div>
-            <div class="col-md-9 research-description">
-              <!-- {{
-                getFormattedDescription(research.description) | slice : 0 : 100
-              }}{{ research.description.length > 20 ? "..." : "" }} -->
-              <div [innerHtml]="getFirstParagraph(research.description)"></div>
+              <div class="col-md-9"></div>
+              <div class="col-md-9 research-description">
+                <!-- {{
+                  getFormattedDescription(research.description) | slice : 0 : 100
+                }}{{ research.description.length > 20 ? "..." : "" }} -->
+                <div
+                  [innerHtml]="getFirstParagraph(research.description)"
+                ></div>
+              </div>
+              <div class="col-md-3 mt-3" *ngIf="!research.isSubscribed">
+                <button class="btn btn-success bn">Buy Now</button>
+              </div>
+              <div class="col-md-3 mt-3" *ngIf="research.isSubscribed">
+                <button class="btn btn-success bn">Read View</button>
+              </div>
             </div>
-            <div class="col-md-3 mt-3" *ngIf="!research.isSubscribed">
-              <button class="btn btn-success bn">Buy Now</button>
+            <div class="row">
+              <div class="d-flex col-md-7">
+                <span style="margin-top: 1px">Price : </span>
+                <p class="prc">
+                  <i class="fas fa-dollar-sign" style="color: #444343"></i>
+                  <b>
+                    {{ research.price }}
+                  </b>
+                </p>
+              </div>
+              <div class="col-sm-3 rm mt-1">
+                <a
+                  href="/research-single"
+                  routerLink="/research-single"
+                  style="text-decoration: none"
+                  >Read More<img
+                    src="/assets/Icon.png"
+                    style="width: 28px; height: 10px"
+                /></a>
+              </div>
             </div>
-            <div class="col-md-3 mt-3" *ngIf="research.isSubscribed">
-              <button class="btn btn-success bn">Read View</button>
-            </div>
+            <hr style="border: 1px solid #00327a33; width: 100%" />
           </div>
-          <div class="row">
-            <div class="col-sm-9">
-              <span>Price : </span>
-              <p class="prc">
-                <i class="fas fa-dollar-sign" style="color: #444343"></i>
-                <b>
-                  {{ research.price }}
-                </b>
-              </p>
-            </div>
-            <div class="col-sm-3 rm mt-1">
-              <a
-                href="/research-single"
-                routerLink="/research-single"
-                style="text-decoration: none"
-                >Read More<img
-                  src="/assets/Icon.png"
-                  style="width: 28px; height: 10px"
-              /></a>
-            </div>
-          </div>
-          <hr style="border: 1px solid #00327a33; width: 100%" />
         </div>
-
+        <div *ngIf="mappedReports.length === 0">
+          <p>No data</p>
+        </div>
         <div class="row">
           <ul class="pagination" style="justify-content: end">
             <li class="page-item" [class.disabled]="currentPage === 1">
