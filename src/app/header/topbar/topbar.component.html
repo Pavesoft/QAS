@@ -1,6 +1,4 @@
-<div
-  class="container-fluid cf"
-  style="
+<div class="container-fluid cf" style="
     background: linear-gradient(
       90deg,
       #fff 0%,
@@ -9,97 +7,51 @@
       #c6e1ff 77.93%,
       #fff 100%
     );
-  "
->
+  ">
   <div class="row">
     <!-- Justify content for the first column -->
-    <div
-      class="col-md-6 d-flex"
-      style="justify-content: space-between; align-items: center"
-    >
+    <div class="col-md-6 d-flex" style="justify-content: space-between; align-items: center">
       <ul class="d-flex" style="gap: 10px">
         <!-- Spacing between items in the list -->
         <li>
-          <a
-            routerLink="/press-release"
-            style="color: #011f41"
-            data-bs-dismiss="offcanvas"
-            >Press Release</a
-          >
+          <a routerLink="/press-release" style="color: #011f41" data-bs-dismiss="offcanvas">Press Release</a>
         </li>
         <li>
-          <a
-            routerLink="/career"
-            style="color: #011f41"
-            data-bs-dismiss="offcanvas"
-            >Career</a
-          >
+          <a routerLink="/career" style="color: #011f41" data-bs-dismiss="offcanvas">Career</a>
         </li>
         <li>
-          <a
-            routerLink="/contact-us"
-            style="color: #011f41"
-            data-bs-dismiss="offcanvas"
-            >Contact</a
-          >
+          <a routerLink="/contact-us" style="color: #011f41" data-bs-dismiss="offcanvas">Contact</a>
         </li>
         <li><a routerLink="#" style="color: #011f41">Blue Folder</a></li>
       </ul>
     </div>
 
     <!-- Content for the second column -->
-    <div
-      class="col-md-6 d-flex"
-      style="justify-content: flex-end; align-items: center; gap: 10px"
-    >
+    <div class="col-md-6 d-flex" style="justify-content: flex-end; align-items: center; gap: 10px">
       <!-- Flex with gap -->
-      <span
-        style="cursor: pointer"
-        data-toggle="modal"
-        data-target="#exampleModal"
-      >
+      <span style="cursor: pointer" data-toggle="modal" data-target="#exampleModal">
         <i class="fa fa-support fn"></i>
       </span>
       <a routerLink="">
         <i class="bi bi-calendar-week fn"></i>
       </a>
       <i class="bi bi-bell fn" style="margin-right: 30px"></i>
-      <span
-        *ngIf="!isLoggedIn"
-        style="cursor: pointer; margin-right: 50px"
-        data-toggle="modal"
-        data-target="#exampleModal1"
-      >
+      <span *ngIf="!isLoggedIn" style="cursor: pointer; margin-right: 50px" data-toggle="modal"
+        data-target="#exampleModal1">
         Login
       </span>
-      <div
-        class="dropdown"
-        *ngIf="isLoggedIn"
-        style="cursor: pointer; margin-right: 50px"
-      >
+      <div class="dropdown" *ngIf="isLoggedIn" style="cursor: pointer; margin-right: 50px">
         <!-- The icon that triggers the dropdown -->
-        <a
-          class="dropdown-toggle"
-          id="logoutDropdown"
-          data-toggle="dropdown"
-          aria-expanded="false"
-          style="cursor: pointer"
-        >
+        <a class="dropdown-toggle" id="logoutDropdown" data-toggle="dropdown" aria-expanded="false"
+          style="cursor: pointer">
           <img src="/assets/ellipse.png" style="width: 25px" alt="User icon" />
           <span style="margin: 4px !important">Hi, {{ firstName }}</span>
         </a>
 
         <!-- The dropdown menu -->
-        <ul
-          class="dropdown-menu dropdown-menu-right"
-          style="padding: 0px 42px; margin-top: 10px"
-        >
+        <ul class="dropdown-menu dropdown-menu-right" style="padding: 0px 42px; margin-top: 10px">
           <li>
-            <a
-              (click)="onLogout()"
-              style="cursor: pointer; color: black !important"
-              >Logout</a
-            >
+            <a (click)="onLogout()" style="cursor: pointer; color: black !important">Logout</a>
           </li>
         </ul>
       </div>
@@ -115,65 +67,30 @@
 </div>
 
 <!-- Modal For Enquiry -->
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="height: 430px; background: #ddefed">
       <div class="modal-header">
         <h5 class="modal-title ef" id="exampleModalLabel">Enquiry Form</h5>
         <img src="/assets/Line.png" class="bln" />
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form>
           <div class="mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="inputName"
-              placeholder="Name"
-              required
-            />
+            <input type="text" class="form-control" id="inputName" placeholder="Name" required />
           </div>
           <div class="mb-3">
-            <input
-              type="email"
-              class="form-control"
-              id="inputEmail"
-              placeholder="Email"
-              required
-            />
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email" required />
           </div>
           <div class="mb-3">
-            <input
-              type="tel"
-              class="form-control"
-              id="inputTel"
-              placeholder="Phone"
-              required
-            />
+            <input type="tel" class="form-control" id="inputTel" placeholder="Phone" required />
           </div>
           <div class="mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="inputCompanyname"
-              placeholder="Company Name"
-              required
-            />
+            <input type="text" class="form-control" id="inputCompanyname" placeholder="Company Name" required />
           </div>
           <div class="mb-3">
             <select class="form-select fmc" id="inputRole">
@@ -185,13 +102,7 @@
             </select>
           </div>
           <div class="mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="inputMessage"
-              placeholder="Message"
-              required
-            />
+            <input type="text" class="form-control" id="inputMessage" placeholder="Message" required />
           </div>
           <!-- <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="checkTerms">
@@ -210,35 +121,17 @@
 
 <!-- Modal For Login -->
 
-<div
-  class="modal fade"
-  id="exampleModal1"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div
-      class="modal-content"
-      style="height: auto !important; background: #ddefed"
-    >
+    <div class="modal-content" style="height: auto !important; background: #ddefed">
       <div class="modal-header">
-        <h1
-          class="modal-title ef"
-          id="exampleModalLabel"
-          style="font-size: 20px !important"
-        >
+        <h1 class="modal-title ef" id="exampleModalLabel" style="font-size: 20px !important">
           Login
         </h1>
         <img src="/assets/Line.png" class="bln" />
 
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -246,66 +139,37 @@
       <div class="modal-body">
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
           <div class="mb-3">
-            <input
-              type="email"
-              class="form-control"
-              id="inputEmail"
-              placeholder="Email"
-              formControlName="email"
-              required
-            />
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email"
+              required />
             <div *ngIf="loginForm.controls['email'].errors">
               <!-- <small class="text-danger" *ngIf="loginForm.controls['email'].errors['required']">Email is
                 required.</small> -->
-              <small
-                class="text-danger"
-                *ngIf="loginForm.controls['email'].errors['email']"
-                >Invalid email address.</small
-              >
+              <small class="text-danger" *ngIf="loginForm.controls['email'].errors['email']">Invalid email
+                address.</small>
             </div>
           </div>
           <div class="mb-3">
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
-              formControlName="password"
-              required
-            />
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+              formControlName="password" required />
             <div *ngIf="loginForm.controls['password'].errors">
               <!-- <small class="text-danger" *ngIf="loginForm.controls['password'].errors['required']">Password is
                 required.</small> -->
-              <small
-                class="text-danger"
-                *ngIf="loginForm.controls['password'].errors['minlength']"
-                >Password must be at least 10 characters.</small
-              >
+              <small class="text-danger" *ngIf="loginForm.controls['password'].errors['minlength']">Password must be at
+                least 10 characters.</small>
             </div>
           </div>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="checkTerms" />
-            <label class="form-check-label" for="checkTerms"
-              >Auto Sign In</label
-            >
-            <a href=""
-              ><label style="float: right">Forgot Your Password?</label></a
-            >
+            <label class="form-check-label" for="checkTerms">Auto Sign In</label>
+            <a href=""><label style="float: right">Forgot Your Password?</label></a>
           </div>
-          <button
-            type="submit"
-            class="btn btn-primary btp"
-            style="margin-top: 25px !important; margin-bottom: 25px !important"
-          >
+          <button type="submit" class="btn btn-primary btp"
+            style="margin-top: 25px !important; margin-bottom: 25px !important">
             Submit
           </button>
         </form>
         <!-- Display error message -->
-        <div
-          *ngIf="errorMessage"
-          style="margin-left: 100px"
-          class="text-danger"
-        >
+        <div *ngIf="errorMessage" style="margin-left: 100px" class="text-danger">
           {{ errorMessage }}
         </div>
       </div>
