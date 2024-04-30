@@ -6,15 +6,13 @@ import { ApiService } from "../Services/research-services";
 import { AuthService } from "../auth.service";
 import { ResearchMasterDto } from "../Interfaces/research-master-dto";
 import { CartService } from "../Services/cart.service";
+import { debounce } from "lodash";
 @Component({
   selector: "app-research",
   templateUrl: "./research.component.html",
   styleUrls: ["./research.component.scss"],
 })
 export class ResearchComponent implements OnInit {
-  // redirectToGoogle(): void {
-  //   window.location.href = 'http://localhost:4200/research';
-  // }
   [x: string]: any;
 
   options: string[] = [
@@ -60,6 +58,8 @@ export class ResearchComponent implements OnInit {
     quantity: number;
     totalPrice: number;
   }[] = [];
+  searchText: string = "";
+  debouncedSearch = debounce(this.makeApiCall, 300);
 
   constructor(
     private httpClient: HttpClient,
@@ -69,6 +69,38 @@ export class ResearchComponent implements OnInit {
     private cartService: CartService
   ) {
     // this.applyPagination();
+  }
+
+  onSearchChange(event: any) {
+    this.searchText = event.target.value;
+    this.debouncedSearch(event.target.value); // Call debounced API call
+  }
+
+  makeApiCall(searchText: string) {
+    console.log("in make ap call");
+    if (searchText !== "") {
+      const requestBody = {
+        searchCriteriaList: [
+          {
+            filterKey: "description",
+            value: searchText,
+            operation: "like",
+          },
+        ],
+        dataOption: "all",
+      };
+
+      this.apiService.serachFilters(requestBody).subscribe((response) => {
+        this.mappedReports = response.researchMasterList;
+        this.mappedReports.sort((a, b) => a.publishDate - b.publishDate);
+        this.mappedReports = this.mappedReports.map((report: any) => {
+          return {
+            ...report,
+            publishDate: this.epochToDate(report.publishDate),
+          };
+        });
+      });
+    }
   }
 
   calculateButtonHeight(): number {
@@ -487,13 +519,9 @@ export class ResearchComponent implements OnInit {
 
   ngOnInit(): void {
     const accessToken = this.authService.getAccessToken();
-    console.log("accesstoken", accessToken);
-
-    this.isLogin = accessToken !== null ? true : false;
-    // Now isLogin is a boolean
-
-    console.log("is login", this.isLogin);
-    this.loadResearchData();
+    if (!this.searchText.trim()) {
+      this.loadResearchData();
+    }
 
     this.apiService.getReportType().subscribe((data: any) => {
       this.reportTypeData = data.map((item: any) => item.reportType);
@@ -532,7 +560,6 @@ export class ResearchComponent implements OnInit {
           this.authorsSet.add(item.mauthor);
         }
       });
-      this.authorsArray = Array.from(this.authorsSet);
       // console.log("author array", this.authorsArray);
       this.mappedReports.sort((a, b) => a.publishDate - b.publishDate);
       this.mappedReports = this.mappedReports.map((report: any) => {

@@ -1,16 +1,22 @@
 import { Pipe, PipeTransform } from "@angular/core";
+import { debounce } from "lodash"; // Import debounce from lodash
 
 @Pipe({
   name: "filter",
 })
 export class FilterPipe implements PipeTransform {
-  transform(items: any[], searchText: string): any[] {
-    if (!items) return [];
-    if (!searchText) return items;
-    console.log("search text", searchText);
+  debouncedTransform: any = debounce(this.transformInternal, 300); // Debounced transform method
+
+  transform(mappedReports: any[], searchText: string): any[] {
+    return this.debouncedTransform(mappedReports, searchText); // Call debounced transform
+  }
+
+  private transformInternal(mappedReports: any[], searchText: string): any[] {
+    if (!mappedReports) return [];
+    if (!searchText) return mappedReports;
     searchText = searchText.toLowerCase();
 
-    return items.filter((item) => {
+    return mappedReports.filter((item) => {
       // Customize this condition based on how you want to filter the data
       return (
         item.report.toLowerCase().includes(searchText) ||
@@ -18,9 +24,6 @@ export class FilterPipe implements PipeTransform {
         item.description.toLowerCase().includes(searchText) ||
         item.reportType.toLowerCase().includes(searchText) ||
         item.author.toLowerCase().includes(searchText)
-        // item.author.some((author: any) =>
-        //   author.toLowerCase().includes(searchText)
-        // )
       );
     });
   }
