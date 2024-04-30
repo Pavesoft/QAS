@@ -15,7 +15,9 @@
           </ng-container>
           <ng-template #selectReport>Select Report</ng-template>
         </div>
-        <div class="form-selectt dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="form-selectt dropdown-menu"
+          style="background: linear-gradient(118deg, rgba(255, 255, 255, 0.4) -2.91%, rgba(255, 255, 255, 0) 109.82%);"
+          aria-labelledby="dropdownMenuButton">
           <label class="dropdown-item" *ngFor="let option of reportTypeData">
             <input type="checkbox" [value]="option" (change)="onReportCheck($event, option)"
               [checked]="reportOptions.includes(option)" />
@@ -38,7 +40,7 @@
           <ng-template #selectCategory>Select Category</ng-template>
         </div>
         <div class="form-selectt dropdown-menu" aria-labelledby="dropdownMenuButton"
-          style="max-height: 350px; overflow-y: auto">
+          style="max-height: 350px; overflow-y: auto;background: linear-gradient(118deg, rgba(255, 255, 255, 0.4) -2.91%, rgba(255, 255, 255, 0) 109.82%);">
           <label class="dropdown-item" *ngFor="let option of categoryData">
             <input type="checkbox" [value]="option" (change)="onCategoryCheck($event, option)"
               [checked]="categoryOptions.includes(option)" />
@@ -58,7 +60,8 @@
           </ng-container>
           <ng-template #selectRegion>Select Region</ng-template>
         </div>
-        <div class="form-selectt dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="form-selectt dropdown-menu" aria-labelledby="dropdownMenuButton"
+          style="background: linear-gradient(118deg, rgba(255, 255, 255, 0.4) -2.91%, rgba(255, 255, 255, 0) 109.82%);">
           <label class="dropdown-item" *ngFor="let option of regionData">
             <input type="checkbox" [value]="option" (change)="onRegionCheck($event, option)"
               [checked]="regionOptions.includes(option)" />
@@ -80,7 +83,7 @@
           <ng-template #selectAuthor>Select Author</ng-template>
         </div>
         <div class="form-selectt dropdown-menu" aria-labelledby="dropdownMenuButton"
-          style="max-height: 350px; overflow-y: auto">
+          style="max-height: 350px; overflow-y: auto;background: linear-gradient(118deg, rgba(255, 255, 255, 0.4) -2.91%, rgba(255, 255, 255, 0) 109.82%);">
           <label class="dropdown-item" *ngFor="let option of authorData">
             <input type="checkbox" [value]="option" (change)="onAnalystCheck($event, option)"
               [checked]="authorOptions.includes(option)" />
@@ -221,11 +224,12 @@
                             style="width: 22px" /></a>
                       </div>
                     </div>
-
                     <button class="btn btn-success bn" style="font-size: 14px;" (click)="buyNow(research)">
                       Buy Now
                     </button>
-
+                    <div class="readmore"><a href="/research-single" routerLink="/research-single"
+                        (click)="navigateToResearchSingle(research)" style="text-decoration: none">Read More<img
+                          src="/assets/Icon.png" style="width: 28px; height: 10px" /></a></div>
                   </div>
 
                 </div>
@@ -238,7 +242,9 @@
                     (click)="readReport(research.id)">
                     Read View
                   </button>
-
+                  <div class="readmore-subscribed"><a href="/research-single" routerLink="/research-single"
+                      (click)="navigateToResearchSingle(research)" style="text-decoration: none">Read More<img
+                        src="/assets/Icon.png" style="width: 28px; height: 10px" /></a></div>
                 </div>
               </div>
             </div>
@@ -249,10 +255,8 @@
                   <b> $ {{ research.price }} </b>
                 </p>
               </div>
-              <div class="col-sm-3 rm" style="margin-left:68px !important">
-                <a href="/research-single" routerLink="/research-single" (click)="navigateToResearchSingle(research)"
-                  style="text-decoration: none">Read More<img src="/assets/Icon.png"
-                    style="width: 28px; height: 10px" /></a>`
+              <div class="col-md-3 rm">
+
               </div>
             </div>
             <hr style="border: 1px solid #00327a33; width: 100%" />

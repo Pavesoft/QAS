@@ -260,7 +260,40 @@ button#dropdownMenuButton:active {
   line-height: normal;
   padding-left: 3px;
 }
-
+.readmore {
+  display: flex;
+  width: 100px;
+  height: 35px;
+  color: #fff;
+  font-family: "Arial Nova";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  position: relative;
+  top: 35px;
+  left: 39px;
+}
+.readmore-subscribed {
+  display: flex;
+  width: 100px;
+  height: 35px;
+  color: #fff;
+  font-family: "Arial Nova";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  position: relative;
+  top: 32px;
+  left: 37px;
+}
 .bn {
   display: flex;
   width: 100px;
@@ -282,26 +315,26 @@ button#dropdownMenuButton:active {
 }
 
 .im {
-    position: relative;
-    left: 50px;
-    border: 1px solid #00327a;
-    top: 5px;
-    border-radius: 5px;
-    padding: 3px 0px 0px 10px;
-    margin: 0 6px 0 0;
-    width: 45px;
-    height: 29px;
+  position: relative;
+  left: 50px;
+  border: 1px solid #00327a;
+  top: 5px;
+  border-radius: 5px;
+  padding: 3px 0px 0px 10px;
+  margin: 0 6px 0 0;
+  width: 45px;
+  height: 29px;
 }
 
 .im1 {
-    position: relative;
-    left: 50px;
-    border: 1px solid #00327a;
-    top: 5px;
-    border-radius: 5px;
-    padding: 3px 0px 0px 10px;
-    width: 45px;
-    height: 29px;
+  position: relative;
+  left: 50px;
+  border: 1px solid #00327a;
+  top: 5px;
+  border-radius: 5px;
+  padding: 3px 0px 0px 10px;
+  width: 45px;
+  height: 29px;
 }
 
 .rm {
