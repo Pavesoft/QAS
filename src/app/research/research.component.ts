@@ -564,6 +564,23 @@ export class ResearchComponent implements OnInit {
     );
   }
 
+  readReport(id: any) {
+    this.apiService.downloadReport(id).subscribe(
+      (data) => {
+        this.readView(data.blob, data.filename);
+      },
+      (error) => {
+        console.error("Error downloading report:", error);
+      }
+    );
+  }
+
+  private readView(blobData: any, filename: any) {
+    const blob = new Blob([blobData], { type: "application/pdf" });
+    const url = window.URL.createObjectURL(blob);
+    window.open(url, "_blank");
+  }
+
   private saveFile(blobData: any, filename: any) {
     const blob = new Blob([blobData], { type: "application/octet-stream" });
     const url = window.URL.createObjectURL(blob);
