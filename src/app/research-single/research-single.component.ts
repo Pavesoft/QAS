@@ -135,8 +135,9 @@ export class ResearchSingleComponent implements OnInit {
   ngOnInit(): void {
     const researchId: any = this.route.snapshot.paramMap.get("id");
     const isSubscribed: any = this.route.snapshot.paramMap.get("subscribed");
-    console.log(isSubscribed)
-    if (isSubscribed) {
+    console.log(isSubscribed);
+    if (isSubscribed == "true") {
+      console.log("in subs");
       this.apiService.getReseachListSubscribed().subscribe((data: any) => {
         console.log(data.researchMasterList);
         const filterData = data.researchMasterList.filter(
@@ -144,17 +145,17 @@ export class ResearchSingleComponent implements OnInit {
         );
 
         this.Reports = filterData[0];
-        // this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
+        this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
       });
     } else {
+      console.log("in un subs");
       this.apiService.getReseachList().subscribe((data: any) => {
-        console.log(data.researchMasterList);
         const filterData = data.researchMasterList.filter(
           (item: any) => item.id === parseInt(researchId)
         );
-        console.log(filterData);
         this.Reports = filterData[0];
-        // this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
+        console.log(this.Reports);
+        this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
       });
     }
 
