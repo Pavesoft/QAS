@@ -134,18 +134,27 @@ export class ResearchSingleComponent implements OnInit {
 
   ngOnInit(): void {
     const researchId: any = this.route.snapshot.paramMap.get("id");
-    this.apiService.getReseachList().subscribe((data: any) => {
-      console.log(data.researchMasterList);
+    const isSubscribed: any = this.route.snapshot.paramMap.get("subscribed");
+    if (isSubscribed) {
+      this.apiService.getReseachListSubscribed().subscribe((data: any) => {
+        console.log(data.researchMasterList);
+        const filterData = data.researchMasterList.filter(
+          (item: any) => item.id === parseInt(researchId)
+        );
 
-      console.log("single report", data.researchMasterList);
-      const filterData = data.researchMasterList.filter(
-        (item: any) => item.id === parseInt(researchId)
-      );
-
-      this.Reports = filterData[0];
-      console.log("single report", this.Reports);
-      this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
-    });
+        this.Reports = filterData[0];
+        this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
+      });
+    } else {
+      this.apiService.getReseachList().subscribe((data: any) => {
+        console.log(data.researchMasterList);
+        const filterData = data.researchMasterList.filter(
+          (item: any) => item.id === parseInt(researchId)
+        );
+        this.Reports = filterData[0];
+        this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
+      });
+    }
 
     this.apiService.getReportType().subscribe((data: any) => {
       this.reportTypeData = data.map((item: any) => item.reportType);

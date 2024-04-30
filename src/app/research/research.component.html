@@ -1,4 +1,19 @@
 <div class="container-fluid" style="margin-bottom: 70px">
+  <div
+    id="customAlert"
+    class="alert"
+    [ngClass]="{
+      success: alertType === 'Success',
+      failed: alertType === 'Failed'
+    }"
+  >
+    <div class="alert-content">
+      <span class="closebtn" (click)="closeCustomAlert()">&times;</span>
+      {{ message }}
+    </div>
+  </div>
+
+  <div id="overlay" *ngIf="showOverlay"></div>
   <div class="row">
     <div class="col-md-3 sd">
       <h4 class="t1">Filter By</h4>
@@ -13,8 +28,10 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <ng-container *ngIf="reportOptions.length > 0; else selectReport">
-            <ng-container *ngFor="let option of reportOptions; let last = last">
+          <ng-container *ngIf="reportTypeOptions.length > 0; else selectReport">
+            <ng-container
+              *ngFor="let option of reportTypeOptions; let last = last"
+            >
               <p>{{ option }}</p>
               <!-- <span *ngIf="!last">,</span> -->
             </ng-container>
@@ -30,7 +47,7 @@
               type="checkbox"
               [value]="option"
               (change)="onReportCheck($event, option)"
-              [checked]="reportOptions.includes(option)"
+              [checked]="reportTypeOptions.includes(option)"
             />
             {{ option }}
           </label>
@@ -241,7 +258,7 @@
               *ngFor="let option of selectedOptions; let i = index"
             >
               {{ option }}
-              <span class="remove-icon" (click)="removeOption(i)">✖</span>
+              <span style="margin-left: 7px" (click)="removeOption(i)">✖</span>
             </button>
           </div>
         </div>

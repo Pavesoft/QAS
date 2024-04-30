@@ -30,7 +30,7 @@ export class ResearchComponent implements OnInit {
   categoryData: string[] = [];
   authorData: string[] = [];
   regionData: string[] = [];
-  reportOptions: string[] = [];
+  reportTypeOptions: string[] = [];
   categoryOptions: string[] = [];
   regionOptions: string[] = [];
   authorOptions: string[] = [];
@@ -74,7 +74,7 @@ export class ResearchComponent implements OnInit {
   calculateButtonHeight(): number {
     const contentHeight = 24; // Assuming 24px as the default content height
     const paddingVertical = 12; // Assuming 12px vertical padding
-    const totalOptionsHeight = this.reportOptions.length * contentHeight; // Total height of options content
+    const totalOptionsHeight = this.reportTypeOptions.length * contentHeight; // Total height of options content
 
     // Calculate total height including padding
     const totalHeight = totalOptionsHeight + paddingVertical;
@@ -198,7 +198,7 @@ export class ResearchComponent implements OnInit {
       }
     }
     this.selectedOptions = [
-      ...this.reportOptions,
+      ...this.reportTypeOptions,
       ...this.categoryOptions,
       ...this.regionOptions,
       ...this.authorOptions,
@@ -216,7 +216,7 @@ export class ResearchComponent implements OnInit {
       }
     }
     this.selectedOptions = [
-      ...this.reportOptions,
+      ...this.reportTypeOptions,
       ...this.categoryOptions,
       ...this.regionOptions,
       ...this.authorOptions,
@@ -225,16 +225,18 @@ export class ResearchComponent implements OnInit {
   }
 
   onReportCheck(event: any, option: string) {
+    console.log(option);
     if (event.target && event.target.checked) {
-      this.reportOptions.push(option);
+      this.reportTypeOptions.push(option);
     } else {
-      const index = this.reportOptions.indexOf(option);
+      const index = this.reportTypeOptions.indexOf(option);
       if (index !== -1) {
-        this.reportOptions.splice(index, 1);
+        this.reportTypeOptions.splice(index, 1);
       }
     }
+    console.log("report options", this.regionOptions);
     this.selectedOptions = [
-      ...this.reportOptions,
+      ...this.reportTypeOptions,
       ...this.categoryOptions,
       ...this.regionOptions,
       ...this.authorOptions,
@@ -252,7 +254,7 @@ export class ResearchComponent implements OnInit {
       }
     }
     this.selectedOptions = [
-      ...this.reportOptions,
+      ...this.reportTypeOptions,
       ...this.categoryOptions,
       ...this.regionOptions,
       ...this.authorOptions,
@@ -270,7 +272,7 @@ export class ResearchComponent implements OnInit {
       }
     }
     this.selectedOptions = [
-      ...this.reportOptions,
+      ...this.reportTypeOptions,
       ...this.categoryOptions,
       ...this.regionOptions,
       ...this.authorOptions,
@@ -288,7 +290,7 @@ export class ResearchComponent implements OnInit {
       }
     }
     this.selectedOptions = [
-      ...this.reportOptions,
+      ...this.reportTypeOptions,
       ...this.categoryOptions,
       ...this.regionOptions,
       ...this.authorOptions,
@@ -310,7 +312,7 @@ export class ResearchComponent implements OnInit {
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
     } else if (type === "reportType") {
       const filteredReports = this.mappedReports.filter((report) =>
-        this.reportOptions.includes(report.report)
+        this.reportTypeOptions.includes(report.reportType)
       );
       this.mappedReports =
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
@@ -334,7 +336,7 @@ export class ResearchComponent implements OnInit {
         this[type + "Options"].join(", ");
     } else {
       // Create new criteria
-      console.log(this[type + "Options"]);
+      console.log(type + "Options");
       this.searchCriteriaList.push({
         filterKey: type,
         value: this[type + "Options"].join(", "),
@@ -405,14 +407,23 @@ export class ResearchComponent implements OnInit {
       }
     }, 100);
   }
+
+  closeCustomAlert(): void {
+    const customAlert = document.getElementById("customAlert");
+    if (customAlert) {
+      customAlert.style.display = "none";
+    }
+    this.showOverlay = false;
+  }
+
   removeOption(index: number) {
     const removedOption: any = this.selectedOptions[index];
     this.selectedOptions.splice(index, 1);
 
     // Remove the option from specific arrays if it exists
-    if (this.reportOptions.includes(removedOption)) {
-      const reportIndex = this.reportOptions.indexOf(removedOption);
-      this.reportOptions.splice(reportIndex, 1);
+    if (this.reportTypeOptions.includes(removedOption)) {
+      const reportIndex = this.reportTypeOptions.indexOf(removedOption);
+      this.reportTypeOptions.splice(reportIndex, 1);
     }
     if (this.categoryOptions.includes(removedOption)) {
       const domainIndex = this.categoryOptions.indexOf(removedOption);
@@ -543,14 +554,13 @@ export class ResearchComponent implements OnInit {
   }
 
   navigateToResearchSingle(research: any) {
-    // Define the navigation extras including the research object as state
+    console.log("report id", research);
     const navigationExtras: NavigationExtras = {
       state: {
         research: research,
       },
     };
-    // Navigate to research-single page with the defined navigation extras
-    this.router.navigate(["/research-single", research.id]);
+    this.router.navigate(["/research-single", research.id, this.isSubscribed]);
   }
 
   downloadResearch(id: any) {
