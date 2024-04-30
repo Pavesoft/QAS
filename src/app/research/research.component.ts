@@ -519,6 +519,9 @@ export class ResearchComponent implements OnInit {
 
   ngOnInit(): void {
     const accessToken = this.authService.getAccessToken();
+    console.log("accesstoken", accessToken);
+    this.isLogin = accessToken !== null ? true : false;
+    // Now isLogin is a boolean
     if (!this.searchText.trim()) {
       this.loadResearchData();
     }
