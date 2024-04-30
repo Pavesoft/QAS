@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ApiService } from "../Services/research-services";
+import { ResearchMasterDto } from "../Interfaces/research-master-dto";
+import { CartService } from "../Services/cart.service";
 
 @Component({
   selector: "app-research-single",
@@ -13,7 +15,8 @@ export class ResearchSingleComponent implements OnInit {
     private httpClient: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private cartService: CartService
   ) {}
 
   research: any;
@@ -24,6 +27,14 @@ export class ResearchSingleComponent implements OnInit {
   authorsArray: any[] = [];
   authorsSet = new Set();
   isSubscribed: boolean = false;
+  alertType = "";
+  message = "";
+  showOverlay: boolean = false;
+  cart: {
+    research: ResearchMasterDto;
+    quantity: number;
+    totalPrice: number;
+  }[] = [];
 
   epochToDate(epochTime: number): string {
     const months = [
@@ -49,16 +60,90 @@ export class ResearchSingleComponent implements OnInit {
     return `${months[monthIndex]} ${day}, ${year}`;
   }
 
+  addToCart(research: ResearchMasterDto): void {
+    console.log(research);
+    const cart = this.cartService.getCart();
+    const existingCartItem = cart.find(
+      (item) => item.research.id === research.id
+    );
+    if (existingCartItem) {
+      this.alertType = "Failed";
+      this.message = "This item is already in the cart.";
+      this.showCustomAlert();
+    } else {
+      this.alertType = "Success";
+      this.message = "This item was added to cart.";
+      this.cartService.addToCart(research);
+      this.showCustomAlert();
+    }
+  }
+  showCustomAlert(): void {
+    this.showOverlay = true;
+    setTimeout(() => {
+      const customAlert = document.getElementById("customAlert");
+      if (customAlert) {
+        customAlert.style.display = "block";
+      }
+    }, 100);
+  }
+  buyNow(research: ResearchMasterDto) {
+    const cart = this.cartService.getCart();
+    const existingCartItem = cart.find(
+      (item) => item.research.id === research.id
+    );
+    if (existingCartItem) {
+      this.alertType = "Failed";
+      this.message = "This item is already in the cart.";
+      this.showCustomAlert();
+    } else {
+      this.router.navigate(["/cart"], {
+        queryParams: {
+          productId: research.id,
+          productName: research.report,
+          price: research.price,
+          quantity: 1,
+        },
+      });
+    }
+  }
+  downloadForm(research: any) {
+    console.log(research);
+
+    const urlFriendlyName = this.getUrlFriendlyString(research.report);
+    const url = `/download-form/market-research/${urlFriendlyName}-${research.id}`;
+
+    if (research && research.id && research.report) {
+      //console.log(research.report)
+      this.router.navigate([url], {
+        state: {
+          researchData: research,
+        },
+      });
+    } else {
+      console.error("Selected research not found in the filtered data.");
+    }
+  }
+
+  private getUrlFriendlyString(input: string): string {
+    // Replace special characters with dashes and convert to lowercase
+    return input
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/[\s_-]+/g, "-");
+  }
+
   ngOnInit(): void {
     const researchId: any = this.route.snapshot.paramMap.get("id");
     this.apiService.getReseachList().subscribe((data: any) => {
       console.log(data.researchMasterList);
 
+      console.log("single report", data.researchMasterList);
       const filterData = data.researchMasterList.filter(
         (item: any) => item.id === parseInt(researchId)
       );
 
       this.Reports = filterData[0];
+      console.log("single report", this.Reports);
       this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
     });
 

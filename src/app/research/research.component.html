@@ -67,7 +67,7 @@
             <input
               type="checkbox"
               [value]="option"
-              (change)="onDomainCheck($event, option)"
+              (change)="onCategoryCheck($event, option)"
               [checked]="categoryOptions.includes(option)"
             />
             {{ option }}
@@ -86,17 +86,17 @@
           aria-expanded="false"
         >
           <ng-container *ngIf="regionOptions.length > 0; else selectRegion">
-            <ng-container *ngFor="let option of options; let last = last">
+            <ng-container *ngFor="let option of regionOptions; let last = last">
               <p>{{ option }}</p>
             </ng-container>
           </ng-container>
-          <ng-template #selectRegion>Select Report</ng-template>
+          <ng-template #selectRegion>Select Region</ng-template>
         </div>
         <div
           class="form-selectt dropdown-menu"
           aria-labelledby="dropdownMenuButton"
         >
-          <label class="dropdown-item" *ngFor="let option of options">
+          <label class="dropdown-item" *ngFor="let option of regionData">
             <input
               type="checkbox"
               [value]="option"
@@ -108,7 +108,7 @@
         </div>
       </div>
       <hr />
-      <h4 class="t2">Analyst</h4>
+      <h4 class="t2">Author</h4>
       <div class="dropdown">
         <div
           class="btn form-select dropdown-toggle"
@@ -131,7 +131,7 @@
           aria-labelledby="dropdownMenuButton"
           style="max-height: 350px; overflow-y: auto"
         >
-          <label class="dropdown-item" *ngFor="let option of authorsArray">
+          <label class="dropdown-item" *ngFor="let option of authorData">
             <input
               type="checkbox"
               [value]="option"
@@ -263,9 +263,16 @@
                   </div>
                   <div class="col-sm-8">
                     <span>Category :</span>
-                    <a href="" style="text-decoration: none"
-                      ><span> {{ research.categoryName }}</span></a
+                    <a
+                      style="
+                        text-decoration: none;
+                        color: #1673fd;
+                        cursor: pointer;
+                      "
+                      (click)="onCategoryClick(research.categoryName)"
                     >
+                      <span> {{ research.categoryName }}</span>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -282,7 +289,10 @@
                 <br />
                 <p style="margin: 0.5rem 0">
                   Author :
-                  <span style="color: #0d6efd">
+                  <span
+                    style="color: #0d6efd; cursor: pointer"
+                    (click)="onAuthorClick(research.author)"
+                  >
                     {{ research.author }}
                   </span>
                 </p>
@@ -307,30 +317,33 @@
                   ...
                 </div>
               </div>
-              <div class="col-md-3 mt-3" *ngIf="!research.isSubscribed">
+              <div class="col-md-3" *ngIf="!research.isSubscribed">
                 <div
                   class="row"
                   *ngIf="!research.isSubscribed"
                   style="margin-bottom: 15px !important"
                 >
                   <div class="col-md-6 im">
-                    <a href=""
-                      ><img src="/assets/cart.png" style="width: 18px"
+                    <a (click)="addToCart(research)" style="cursor: pointer"
+                      ><img src="/assets/cart.png" style="width: 22px"
                     /></a>
                   </div>
                   <div class="col-md-6 im1">
-                    <a href=""
-                      ><img src="/assets/download.png" style="width: 18px"
+                    <a (click)="downloadForm(research)" style="cursor: pointer"
+                      ><img src="/assets/download.png" style="width: 22px"
                     /></a>
                   </div>
                 </div>
 
-                <button class="btn btn-success bn">Buy Now</button>
+                <button class="btn btn-success bn" (click)="buyNow(research)">
+                  Buy Now
+                </button>
               </div>
-              <div class="col-md-3 mt-3" *ngIf="research.isSubscribed">
+              <div class="col-md-3" *ngIf="research.isSubscribed">
                 <button
                   class="btn btn-success bn"
                   style="margin-bottom: 10px !important"
+                  (click)="downloadResearch(research.id)"
                 >
                   Download
                 </button>
@@ -349,7 +362,7 @@
                   <b> $ {{ research.price }} </b>
                 </p>
               </div>
-              <div class="col-sm-3 rm mt-1">
+              <div class="col-sm-3 rm mt-2">
                 <a
                   href="/research-single"
                   routerLink="/research-single"
@@ -357,11 +370,11 @@
                   style="text-decoration: none"
                   >Read More<img
                     src="/assets/Icon.png"
-                    style="width: 28px; height: 10px"
-                /></a>
+                    style="width: 28px; height: 10px" /></a
+                >`
               </div>
             </div>
-            <!-- <hr style="border: 1px solid #00327a33; width: 100%" /> -->
+            <hr style="border: 1px solid #00327a33; width: 100%" />
           </div>
         </div>
 

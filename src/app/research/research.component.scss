@@ -83,7 +83,7 @@ hr {
 }
 
 .form-selectt {
-  width: 275px;
+  width: 310;
   border-radius: 7px;
   border: 1px solid #d9d9d9;
   background: rgb(0, 54, 117);
@@ -216,12 +216,12 @@ button#dropdownMenuButton:active {
 //     opacity: 70%;
 // }
 
-.research-item {
-  margin-bottom: 20px;
-  padding: 10px;
-  // border: 1px solid #ccc;
-  box-shadow: 3px 3px 3px 3px #e6e4e4;
-}
+// .research-item {
+//   margin-bottom: 20px;
+//   padding: 10px;
+//   // border: 1px solid #ccc;
+//   box-shadow: 3px 3px 3px 3px #e6e4e4;
+// }
 
 .research-price {
   font-weight: bold;
@@ -263,8 +263,8 @@ button#dropdownMenuButton:active {
 
 .bn {
   display: flex;
-  width: 85px;
-  height: 30px;
+  width: 100px;
+  height: 35px;
   color: #fff;
   font-family: "Arial Nova";
   font-size: 12px;
@@ -278,34 +278,35 @@ button#dropdownMenuButton:active {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   position: relative;
   top: 0px;
-  left: 75px;
+  left: 37px;
 }
 
 .im {
-  position: relative;
-  left: 90px;
-  border: 1px solid #00327a;
-  top: 5px;
-  border-radius: 5px;
-  padding: 0px 0px 0px 8px;
-  width: 34px;
-  height: 25px;
+    position: relative;
+    left: 50px;
+    border: 1px solid #00327a;
+    top: 5px;
+    border-radius: 5px;
+    padding: 3px 0px 0px 10px;
+    margin: 0 6px 0 0;
+    width: 45px;
+    height: 29px;
 }
 
 .im1 {
-  position: relative;
-  left: 95px;
-  border: 1px solid #00327a;
-  top: 5px;
-  border-radius: 5px;
-  padding: 0px 0px 0px 8px;
-  width: 34px;
-  height: 25px;
+    position: relative;
+    left: 50px;
+    border: 1px solid #00327a;
+    top: 5px;
+    border-radius: 5px;
+    padding: 3px 0px 0px 10px;
+    width: 45px;
+    height: 29px;
 }
 
 .rm {
   display: flex;
-  width: 220px;
+  width: 200px;
   height: 20px;
   justify-content: center;
   align-items: center;
@@ -316,7 +317,7 @@ button#dropdownMenuButton:active {
   font-weight: 400;
   line-height: normal;
   position: relative;
-  left: 20px;
+  left: 0px;
   top: 0px;
 }
 

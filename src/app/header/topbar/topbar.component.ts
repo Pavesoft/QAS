@@ -98,6 +98,7 @@ export class TopbarComponent implements OnInit {
   }
 
   getCartItems(): number {
+    console.log(this.totalCartItems)
     return this.totalCartItems;
   }
 

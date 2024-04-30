@@ -33,19 +33,33 @@ export class ApiService {
     );
   }
   getReportType(): Observable<any[]> {
-    const token = localStorage.getItem("jwtToken");
+    // const token = localStorage.getItem("jwtToken");
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
+      // Authorization: `Bearer ${token}`,
     });
     return this.http.get<any[]>(`${this.apiUrl}/research-masters/report-types`);
   }
 
   getCategories(): Observable<any[]> {
-    const token = localStorage.getItem("jwtToken");
+    // const token = localStorage.getItem("jwtToken");
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
+      // Authorization: `Bearer ${token}`,
     });
     return this.http.get<any[]>(`${this.apiUrl}/research-masters/categories`);
+  }
+  getAuthors(): Observable<any[]> {
+    // const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      // Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any[]>(`${this.apiUrl}/research-masters/authors`);
+  }
+  getRegion(): Observable<any[]> {
+    // const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      // Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any[]>(`${this.apiUrl}/research-masters/regions`);
   }
 
   downloadReport(id: any): Observable<Blob | any> {

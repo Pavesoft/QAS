@@ -1,160 +1,242 @@
 <div *ngIf="isLoading">
-    <br><br><br><br><br><br><br><br>
-    <div class="loading-spinner" style="width: 80px; height: 80px;">
-        <!-- <div class="logo-pre">
+  <br /><br /><br /><br /><br /><br /><br /><br />
+  <div class="loading-spinner" style="width: 80px; height: 80px">
+    <!-- <div class="logo-pre">
             <img src="../../../../assets/lg.gif" alt="Logo" class="img-fluid" height="40px;width:40px;">
         </div> -->
-    </div>
-    <br><br><br><br><br><br><br><br>
+  </div>
+  <br /><br /><br /><br /><br /><br /><br /><br />
 </div>
 
 <div *ngIf="!isLoading">
-    <!-- Your existing code for search, alert, and cart icon -->
-    <div id="customAlert" class="alert"
-        [ngClass]="{'success': alertType === 'Success', 'failed': alertType === 'Failed'}">
-        <div class="alert-content">
-            <span class="closebtn" (click)="closeCustomAlert()">&times;</span>
-            {{ message }}.
-        </div>
+  <!-- Your existing code for search, alert, and cart icon -->
+  <div
+    id="customAlert"
+    class="alert"
+    [ngClass]="{
+      success: alertType === 'Success',
+      failed: alertType === 'Failed'
+    }"
+  >
+    <div class="alert-content">
+      <span class="closebtn" (click)="closeCustomAlert()">&times;</span>
+      {{ message }}.
     </div>
+  </div>
 
-    <div id="overlay" *ngIf="showOverlay"></div>
+  <div id="overlay" *ngIf="showOverlay"></div>
 
-    <div class="container-fluid">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Search and cart icon section -->
         <div class="row">
-            <div class="col-md-12">
-                <!-- Search and cart icon section -->
+          <div class="pagination-container col-md-6">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
+          <div class="col-md-4 text-right" style="margin-top: 10px">
+            <input
+              type="text"
+              [(ngModel)]="searchText"
+              placeholder="Report Name"
+              id="ser2"
+            />
+            <button id="ser1" (click)="searchReportByName(searchText)">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="container-fluid">
+    <div class="row">
+      <div
+        class="col-md-3 row"
+        id="researlistrep"
+        style="
+          background-color: #eaeaea;
+          padding-top: 20px;
+          width: 30%;
+          height: 890px;
+        "
+      >
+        <!-- Filter options -->
+        <div>
+          <button
+            class="btn btn-primary"
+            id="heiwd"
+            (click)="resetFilters()"
+            style="margin-left: 20px; width: 30%"
+          >
+            Reset Filters
+          </button>
+
+          <button
+            class="btn btn-primary"
+            id="heiwd1"
+            (click)="applyFilters()"
+            style="
+              margin-left: 20px;
+              margin-bottom: 20px;
+              width: 30%;
+              margin-top: 33px;
+            "
+          >
+            Apply Filters
+          </button>
+
+          <div class="filter-options" style="font-size: 13px">
+            <h4 style="font-weight: bold">Report Type:</h4>
+            <div class="form-group">
+              <div class="row ipe">
+                <mat-button-toggle-group
+                  [(ngModel)]="selectedReportType"
+                  style="justify-content: space-around"
+                >
+                  <mat-button-toggle
+                    *ngFor="let type of reportType"
+                    [value]="type.report_name"
+                  >
+                    {{ type.report_name }}
+                  </mat-button-toggle>
+                </mat-button-toggle-group>
+              </div>
+            </div>
+            <h4 style="font-weight: bold">Research Coverages:</h4>
+            <div class="form-group">
+              <div class="row ipe" style="display: flex">
+                <mat-checkbox
+                  style="width: 14px; height: 14px"
+                  *ngFor="let category of categories"
+                  style="
+                    width: 150px;
+                    border-radius: 8px;
+                    background-color: #d8d8d8;
+                    text-align: start;
+                    color: #eaeaea !important;
+                    box-shadow: 2px 1px 1px #cccccc;
+                  "
+                  [(ngModel)]="selectedCategories[category.category_name]"
+                >
+                  {{ category.category_name }}
+                </mat-checkbox>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9" id="reslistdata" style="width: 70%">
+        <!-- Research results section -->
+        <div class="container-fluid">
+          <div class="row">
+            <div
+              class="col-md-12"
+              *ngFor="
+                let research of collection
+                  | paginate : { itemsPerPage: 10, currentPage: p }
+              "
+            >
+              <!-- Research Result Item -->
+              <div class="research-item">
                 <div class="row">
-                    <div class="pagination-container col-md-6">
-
-                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                    </div>
-                    <div class="col-md-4 text-right" style="margin-top: 10px;">
-                        <input type="text" [(ngModel)]="searchText" placeholder="Report Name" id="ser2">
-                        <button id="ser1" (click)="searchReportByName(searchText)">Search</button>
-                    </div>
-
+                  <a
+                    routerLink="{{ getUrlFriendlyString(research.report) }}-{{
+                      research.id
+                    }}"
+                    class="col-md-9 research-title text-left"
+                    (click)="showResearchDetails(research)"
+                  >
+                    {{ research.report }}
+                  </a>
+                  <div class="col-md-3 text-right" style="margin-top: -10px">
+                    <button
+                      class="btn btn-primary"
+                      (click)="addToCart(research)"
+                      style="background-color: #011f41"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3 row" id="researlistrep"
-                style="background-color: #eaeaea;padding-top:20px;width:30%; height: 890px;">
-                <!-- Filter options -->
-                <div>
-                <button class="btn btn-primary" id="heiwd" (click)="resetFilters()" style="margin-left:20px; width:30%;">Reset
-                    Filters</button>
-
-                <button class="btn btn-primary" id="heiwd1" (click)="applyFilters()"
-                    style="margin-left:20px;margin-bottom: 20px; width:30%;margin-top: 33px;">Apply
-                    Filters</button>
-
-                <div class="filter-options" style="font-size: 13px;">
-                    <h4 style="font-weight: bold;">Report Type:</h4>
-                    <div class="form-group">
-                        <div class="row ipe">
-                            <mat-button-toggle-group [(ngModel)]="selectedReportType"
-                                style="justify-content: space-around;">
-                                <mat-button-toggle *ngFor="let type of reportType" [value]="type.report_name">
-                                    {{ type.report_name }}
-                                </mat-button-toggle>
-                            </mat-button-toggle-group>
-                        </div>
-                    </div>
-                    <h4 style="font-weight: bold;">Research Coverages:</h4>
-                    <div class="form-group">
-                        <div class="row ipe" style="display: flex;">
-                            <mat-checkbox style="width:14px;height:14px;" *ngFor="let category of categories"
-                                style="width: 150px;border-radius: 8px ;background-color: #d8d8d8;text-align:start;color: #eaeaea !important;box-shadow:  2px 1px 1px #cccccc;;"
-                                [(ngModel)]="selectedCategories[category.category_name]">
-                                {{ category.category_name }}
-                            </mat-checkbox>
-                        </div>
-                    </div>
+                <!-- Description, date, and buttons -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <b style="font-weight: 500">Date :</b>
+                    <span> {{ research.publishDate | date }} </span>
+                  </div>
+                  <div class="col-md-6">
+                    <b id="auth" style="font-weight: 500; margin-left: -70px"
+                      >Author :</b
+                    >
+                    <span style="font-weight: 400">
+                      {{ capitalizeFirstChar(research.author) }}</span
+                    >
+                  </div>
                 </div>
-            </div>
-            </div>
-
-
-
-            <div class="col-md-9" id="reslistdata" style="width:70%;">
-                <!-- Research results section -->
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12"
-                            *ngFor="let research of collection | paginate: { itemsPerPage: 10, currentPage: p }">
-                            <!-- Research Result Item -->
-                            <div class="research-item">
-                                <div class="row">
-                                    <a routerLink="{{ getUrlFriendlyString(research.report) }}-{{ research.id }}"
-                                        class="col-md-9 research-title text-left"
-                                        (click)="showResearchDetails(research)">
-                                        {{ research.report }}
-                                    </a>
-                                    <div class="col-md-3 text-right" style="margin-top: -10px;">
-                                        <button class="btn btn-primary" (click)="addToCart(research)"
-                                            style="background-color: #011F41;">Add to Cart</button>
-                                    </div>
-                                </div>
-                                <!-- Description, date, and buttons -->
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <b style="font-weight: 500;">Date :</b> <span> {{ research.publishDate | date }}
-                                        </span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b id="auth" style="font-weight: 500;margin-left: -70px;">Author :</b> <span
-                                            style="font-weight: 400;"> {{ capitalizeFirstChar(research.author)
-                                            }}</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-9 research-description">
-                                        {{ getFormattedDescription(research.description) | slice:0:100 }}{{
-                                        research.description.length > 20 ? '...' : '' }}
-                                    </div>
-                                    <div class="col-md-3 text-right">
-                                        <button class="btn btn-success" (click)="buyNow(research)"
-                                            style="background-color: #0d6efd;">Buy Now</button>
-                                    </div>
-                                </div>
-                                <!-- Research Category, Report Type, and Price -->
-                                <div class="row" style="margin-top: 10px;">
-                                    <div class="col-md-5">
-                                        <span class="research-category">Research Coverage : <span
-                                                style="color: #0d6efd;font-weight:500;">{{
-                                                research.categoryName }}</span></span>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <span class="research-category">Report Type : <span
-                                                style="color: #0d6efd;font-weight:500;">{{
-                                                research.reportType }}</span></span>
-                                    </div>
-                                    <div class="col-md-3 text-right" style="margin-left: -20px;">
-                                        <b style="font-weight: 500;">Price : </b><span style="font-weight: 500;"> <i
-                                                class="fas fa-dollar-sign"></i> {{
-                                            research.price }} </span>
-                                    </div>
-                                </div>
-                                <!-- Author -->
-                                <!-- <div class="row">
+                <div class="row">
+                  <div class="col-md-9 research-description">
+                    {{
+                      getFormattedDescription(research.description)
+                        | slice : 0 : 100
+                    }}{{ research.description.length > 20 ? "..." : "" }}
+                  </div>
+                  <div class="col-md-3 text-right">
+                    <button
+                      class="btn btn-success"
+                      (click)="buyNow(research)"
+                      style="background-color: #0d6efd"
+                    >
+                      Buy Now
+                    </button>
+                  </div>
+                </div>
+                <!-- Research Category, Report Type, and Price -->
+                <div class="row" style="margin-top: 10px">
+                  <div class="col-md-5">
+                    <span class="research-category"
+                      >Research Coverage :
+                      <span style="color: #0d6efd; font-weight: 500">{{
+                        research.categoryName
+                      }}</span></span
+                    >
+                  </div>
+                  <div class="col-md-4">
+                    <span class="research-category"
+                      >Report Type :
+                      <span style="color: #0d6efd; font-weight: 500">{{
+                        research.reportType
+                      }}</span></span
+                    >
+                  </div>
+                  <div class="col-md-3 text-right" style="margin-left: -20px">
+                    <b style="font-weight: 500">Price : </b
+                    ><span style="font-weight: 500">
+                      <i class="fas fa-dollar-sign"></i> {{ research.price }}
+                    </span>
+                  </div>
+                </div>
+                <!-- Author -->
+                <!-- <div class="row">
                                 <div class="col-md-3">
                                    <b  style="font-weight: 500;">Author :</b>  <span style="font-weight: 400;">  {{ capitalizeFirstChar(research.author)
                                         }}</span> -->
-                                <!-- <img src="assets/John_Doe.png" style="width:40px;padding-left: 10px;"> -->
-                                <!-- </div>
+                <!-- <img src="assets/John_Doe.png" style="width:40px;padding-left: 10px;"> -->
+                <!-- </div>
                             </div> -->
-                            </div>
-                        </div>
-                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                    </div>
-
-                </div>
+              </div>
             </div>
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
         </div>
+      </div>
     </div>
-    <app-searchbar></app-searchbar>
+  </div>
+  <app-searchbar></app-searchbar>
 </div>
