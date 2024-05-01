@@ -164,10 +164,11 @@ input#inputName {
 }
 
 input#inputEmail {
-  padding-left: 45px;
-  background-image: url(/assets/Form-Component2.png) !important;
+  position: relative;
+  left: -3px;
   background-size: 40px;
   background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
   background-repeat: no-repeat;
   height: 30px;
   font-size: 14px;
@@ -208,10 +209,11 @@ input#inputCompanyname {
 }
 
 input#exampleInputPassword1 {
-  padding-left: 45px;
-  background-image: url(/assets/Password-icon.png);
+  position: relative;
+  left: -3px;
   background-size: 40px;
   background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
   background-repeat: no-repeat;
   height: 30px;
   font-size: 14px;

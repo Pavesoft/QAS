@@ -20,6 +20,17 @@ export class ApiService {
       // { headers: headers }
     );
   }
+  getReseachListToken(): Observable<any[]> {
+    const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.get<any[]>(
+      `${this.apiUrl}/research-masters/research-list`,
+      { headers: headers }
+    );
+  }
 
   getReseachListSubscribed(): Observable<any[]> {
     const token = localStorage.getItem("jwtToken");

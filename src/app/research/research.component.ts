@@ -77,7 +77,6 @@ export class ResearchComponent implements OnInit {
   }
 
   makeApiCall(searchText: string) {
-    console.log("in make ap call");
     if (searchText !== "") {
       const requestBody = {
         searchCriteriaList: [
@@ -99,7 +98,14 @@ export class ResearchComponent implements OnInit {
             publishDate: this.epochToDate(report.publishDate),
           };
         });
+        this.totalPages = response.researchMasterList.length / 5;
+        if (response.researchMasterList.length < 5) {
+          this.itemsPerPage = response.researchMasterList.length;
+        }
       });
+    } else {
+      console.log("is search is empty", searchText);
+      this.loadResearchData();
     }
   }
 
@@ -169,6 +175,25 @@ export class ResearchComponent implements OnInit {
     const existingCartItem = cart.find(
       (item) => item.research.id === research.id
     );
+    const Research: ResearchMasterDto = {
+      id: +research.id,
+      report: research.report,
+      price: +research.price,
+      categoryName: "",
+      reportType: "",
+      description: "",
+      author: "",
+      mAuthor: "",
+      publishDate: new Date(),
+      price2: 0,
+      tableOfContent: "",
+    };
+
+    // const item = {
+    //   research: research,
+    //   quantity: +1,
+    //   totalPrice: +research.price * +1,
+    // };
     if (existingCartItem) {
       this.alertType = "Failed";
       this.message = "This item is already in the cart.";
@@ -176,7 +201,7 @@ export class ResearchComponent implements OnInit {
     } else {
       this.alertType = "Success";
       this.message = "This item was added to cart.";
-      this.cartService.addToCart(research);
+      this.cartService.addToCart(Research);
       this.showCustomAlert();
     }
   }
@@ -309,7 +334,7 @@ export class ResearchComponent implements OnInit {
       ...this.regionOptions,
       ...this.authorOptions,
     ];
-    this.updateMappedReports("region");
+    this.updateMappedReports("regionName");
   }
 
   onAnalystCheck(event: any, option: string) {
@@ -549,6 +574,8 @@ export class ResearchComponent implements OnInit {
   loadResearchData(): void {
     const apiCall = this.isSubscribed
       ? this.apiService.getReseachListSubscribed()
+      : this.isLogin
+      ? this.apiService.getReseachListToken()
       : this.apiService.getReseachList();
 
     apiCall.subscribe((data: any) => {
@@ -571,9 +598,6 @@ export class ResearchComponent implements OnInit {
           publishDate: this.epochToDate(report.publishDate),
         };
       });
-      console.table("mapped report change", this.mappedReports);
-
-      console.log("total pages", data.researchMasterList.length / 5);
       this.totalPages = data.researchMasterList.length / 5;
     });
   }

@@ -32,7 +32,7 @@
             <ng-container
               *ngFor="let option of reportTypeOptions; let last = last"
             >
-              <p>{{ option }}</p>
+              <p style="margin: 0 3px">{{ option }}</p>
               <!-- <span *ngIf="!last">,</span> -->
             </ng-container>
           </ng-container>
@@ -41,10 +41,11 @@
         <div
           class="form-selectt dropdown-menu"
           style="
+            width: 100%;
             background: linear-gradient(
               118deg,
-              rgba(255, 255, 255, 0.4) -2.91%,
-              rgba(255, 255, 255, 0) 109.82%
+              rgba(100, 100, 100, 0.6) 30%,
+              rgba(200, 200, 200, 0.1) 109.82%
             );
           "
           aria-labelledby="dropdownMenuButton"
@@ -76,7 +77,7 @@
             <ng-container
               *ngFor="let option of categoryOptions; let last = last"
             >
-              <p>{{ option }}</p>
+              <p style="margin: 0 3px">{{ option }}</p>
               <!-- <span *ngIf="!last">,</span> -->
             </ng-container>
           </ng-container>
@@ -88,10 +89,11 @@
           style="
             max-height: 350px;
             overflow-y: auto;
+            width: 100%;
             background: linear-gradient(
               118deg,
-              rgba(255, 255, 255, 0.4) -2.91%,
-              rgba(255, 255, 255, 0) 109.82%
+              rgba(100, 100, 100, 0.6) 30%,
+              rgba(200, 200, 200, 0.1) 109.82%
             );
           "
         >
@@ -119,7 +121,7 @@
         >
           <ng-container *ngIf="regionOptions.length > 0; else selectRegion">
             <ng-container *ngFor="let option of regionOptions; let last = last">
-              <p>{{ option }}</p>
+              <p style="margin: 0 3px">{{ option }}</p>
             </ng-container>
           </ng-container>
           <ng-template #selectRegion>Select Region</ng-template>
@@ -128,10 +130,11 @@
           class="form-selectt dropdown-menu"
           aria-labelledby="dropdownMenuButton"
           style="
+            width: 100%;
             background: linear-gradient(
               118deg,
-              rgba(255, 255, 255, 0.4) -2.91%,
-              rgba(255, 255, 255, 0) 109.82%
+              rgba(100, 100, 100, 0.6) 30%,
+              rgba(200, 200, 200, 0.1) 109.82%
             );
           "
         >
@@ -159,7 +162,7 @@
         >
           <ng-container *ngIf="authorOptions.length > 0; else selectAuthor">
             <ng-container *ngFor="let option of authorOptions; let last = last">
-              <p>{{ option }}</p>
+              <p style="margin: 0 3px">{{ option }}</p>
               <!-- <span *ngIf="!last">,</span> -->
             </ng-container>
           </ng-container>
@@ -171,10 +174,11 @@
           style="
             max-height: 350px;
             overflow-y: auto;
+            width: 100%;
             background: linear-gradient(
               118deg,
-              rgba(255, 255, 255, 0.4) -2.91%,
-              rgba(255, 255, 255, 0) 109.82%
+              rgba(100, 100, 100, 0.6) 30%,
+              rgba(200, 200, 200, 0.1) 109.82%
             );
           "
         >
@@ -318,7 +322,9 @@
                     "
                     (click)="onCategoryClick(research.categoryName)"
                   >
-                    <span> {{ research.categoryName }}</span>
+                    <span>
+                      {{ research.categoryName && research.categoryName }}</span
+                    >
                   </a>
                 </div>
                 <div class="col-md-9" style="margin-top: 10px">
@@ -326,7 +332,7 @@
                     routerLink="/research-single"
                     class="research-title"
                     (click)="navigateToResearchSingle(research)"
-                    >{{ research.reportType }}
+                    >{{ research.reportType && research.reportType }}
                   </a>
                   <br />
                   <p style="margin: 0.5rem 0">
@@ -335,7 +341,7 @@
                       style="color: #0d6efd; cursor: pointer"
                       (click)="onAuthorClick(research.author)"
                     >
-                      {{ research.author }}
+                      {{ research.author && research.author }}
                     </span>
                   </p>
                   <!-- <span class="research-category" *ngFor="let a of research.author">
@@ -347,13 +353,13 @@
 
                 <div class="col-md-12 research-description">
                   <div
-                    *ngIf="!research.isSubscribed"
+                    *ngIf="!research.isSubscribed && research.description"
                     [innerHtml]="getFirstParagraph(research.description)"
                   >
                     ...
                   </div>
                   <div
-                    *ngIf="research.isSubscribed"
+                    *ngIf="research.isSubscribed && research.description"
                     [innerHtml]="getFirst100Words(research.description)"
                   >
                     ...
@@ -393,7 +399,10 @@
                     </button>
                   </div>
                 </div>
-                <div class="col-md-12 d-flex flex-column  align-items-center justify-content-center" *ngIf="research.isSubscribed">
+                <div
+                  class="col-md-12 d-flex flex-column align-items-center justify-content-center"
+                  *ngIf="research.isSubscribed"
+                >
                   <button
                     class="btn btn-success bn"
                     style="margin-bottom: 10px !important; font-size: 14px"
@@ -408,7 +417,6 @@
                   >
                     Read View
                   </button>
-             
                 </div>
               </div>
             </div>
@@ -443,7 +451,10 @@
         >
           <h1>No data</h1>
         </div>
-        <div class="row" *ngIf="mappedReports.length !== 0">
+        <div
+          class="row"
+          *ngIf="mappedReports.length !== 0 || this.itemsPerPage < 5"
+        >
           <ul class="pagination" style="justify-content: center">
             <li class="page-item" [class.disabled]="currentPage === 1">
               <a
