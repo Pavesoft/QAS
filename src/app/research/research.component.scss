@@ -67,49 +67,49 @@ hr {
   text-align: left;
 }
 .alert {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f44336; /* Red background color */
-    color: white; /* White text color */
-    padding: 20px;
-    display: none; /* Hide the alert by default */
-    z-index: 1000;
-  }
-  
-  .alert-content {
-    position: relative;
-  }
-  
-  .closebtn {
-    position: absolute;
-    top: -20px;
-    right: -10px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    cursor: pointer;
-  }
-  
-  .success {
-    background-color: #4caf50; /* Green background color */
-  }
-  
-  .failed {
-    background-color: #f44336; /* Red background color */
-  }
-  
-  #overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-    display: none; /* Hide the overlay by default */
-    z-index: 999;
-  }
+  position: fixed;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, -50%);
+  background-color: #f44336; /* Red background color */
+  color: white; /* White text color */
+  padding: 20px;
+  display: none; /* Hide the alert by default */
+  z-index: 1000;
+}
+
+.alert-content {
+  position: relative;
+}
+
+.closebtn {
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.success {
+  background-color: #4caf50; /* Green background color */
+}
+
+.failed {
+  background-color: #f44336; /* Red background color */
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: none; /* Hide the overlay by default */
+  z-index: 999;
+}
 
 .dropdown-item {
   color: #fff;
@@ -382,7 +382,7 @@ button#dropdownMenuButton:active {
 
 .rm {
   display: flex;
-//   width: 200px;
+  //   width: 200px;
   height: 20px;
   justify-content: center;
   align-items: center;
