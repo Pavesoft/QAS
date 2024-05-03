@@ -7,6 +7,7 @@ import { AuthService } from "../auth.service";
 import { ResearchMasterDto } from "../Interfaces/research-master-dto";
 import { CartService } from "../Services/cart.service";
 import { debounce } from "lodash";
+
 @Component({
   selector: "app-research",
   templateUrl: "./research.component.html",
@@ -22,7 +23,9 @@ export class ResearchComponent implements OnInit {
     "Market Outlook",
     "SPARK Matrix",
   ];
-
+  startDate: Date | undefined;
+  endDate: Date | undefined;
+  isLoading: Boolean = true;
   selectedOptions: String[] = [];
   reportTypeData: string[] = [];
   categoryData: string[] = [];
@@ -30,7 +33,7 @@ export class ResearchComponent implements OnInit {
   regionData: string[] = [];
   reportTypeOptions: string[] = [];
   categoryOptions: string[] = [];
-  regionOptions: string[] = [];
+  regionNameOptions: string[] = [];
   authorOptions: string[] = [];
   searchValue: string = "";
   filteredReports: any[] = [];
@@ -60,7 +63,7 @@ export class ResearchComponent implements OnInit {
   }[] = [];
   searchText: string = "";
   debouncedSearch = debounce(this.makeApiCall, 300);
-
+  selectedRange: { start: any; end: any };
   constructor(
     private httpClient: HttpClient,
     private router: Router,
@@ -68,16 +71,18 @@ export class ResearchComponent implements OnInit {
     public authService: AuthService,
     private cartService: CartService
   ) {
-    // this.applyPagination();
+    this.selectedRange = { start: null, end: null };
   }
 
   onSearchChange(event: any) {
+    this.isLoading = true;
     this.searchText = event.target.value;
     this.debouncedSearch(event.target.value); // Call debounced API call
   }
 
   makeApiCall(searchText: string) {
     if (searchText !== "") {
+      this.isLoading = true;
       const requestBody = {
         searchCriteriaList: [
           {
@@ -98,11 +103,11 @@ export class ResearchComponent implements OnInit {
             publishDate: this.epochToDate(report.publishDate),
           };
         });
+        console.table(response.researchMasterList);
+        console.log("response for search", response.researchMasterList.length);
         this.totalPages = response.researchMasterList.length / 5;
-        if (response.researchMasterList.length < 5) {
-          this.itemsPerPage = response.researchMasterList.length;
-        }
       });
+      this.isLoading = false;
     } else {
       console.log("is search is empty", searchText);
       this.loadResearchData();
@@ -127,6 +132,13 @@ export class ResearchComponent implements OnInit {
     this.filteredReports = this.Reports.slice(this.startIndex, this.endIndex);
   }
 
+  getFirstPage(): number {
+    return (this.currentPage = 1); // The first page is always 1
+  }
+
+  getLastPages(): number {
+    return (this.currentPage = this.totalPages);
+  }
   onPageChange(page: number): void {
     this.currentPage = page;
     this.applyPagination();
@@ -246,7 +258,7 @@ export class ResearchComponent implements OnInit {
   }
 
   onCategoryClick(option: string) {
-    if (option) {
+    if (!this.categoryOptions.includes(option)) {
       this.categoryOptions.push(option);
     } else {
       const index = this.categoryOptions.indexOf(option);
@@ -257,14 +269,14 @@ export class ResearchComponent implements OnInit {
     this.selectedOptions = [
       ...this.reportTypeOptions,
       ...this.categoryOptions,
-      ...this.regionOptions,
+      ...this.regionNameOptions,
       ...this.authorOptions,
     ];
     this.updateMappedReports("category");
   }
 
   onAuthorClick(option: string) {
-    if (option) {
+    if (!this.authorOptions.includes(option)) {
       this.authorOptions.push(option);
     } else {
       const index = this.authorOptions.indexOf(option);
@@ -275,14 +287,13 @@ export class ResearchComponent implements OnInit {
     this.selectedOptions = [
       ...this.reportTypeOptions,
       ...this.categoryOptions,
-      ...this.regionOptions,
+      ...this.regionNameOptions,
       ...this.authorOptions,
     ];
     this.updateMappedReports("author");
   }
 
   onReportCheck(event: any, option: string) {
-    console.log(option);
     if (event.target && event.target.checked) {
       this.reportTypeOptions.push(option);
     } else {
@@ -291,11 +302,10 @@ export class ResearchComponent implements OnInit {
         this.reportTypeOptions.splice(index, 1);
       }
     }
-    console.log("report options", this.regionOptions);
     this.selectedOptions = [
       ...this.reportTypeOptions,
       ...this.categoryOptions,
-      ...this.regionOptions,
+      ...this.regionNameOptions,
       ...this.authorOptions,
     ];
     this.updateMappedReports("reportType");
@@ -313,7 +323,7 @@ export class ResearchComponent implements OnInit {
     this.selectedOptions = [
       ...this.reportTypeOptions,
       ...this.categoryOptions,
-      ...this.regionOptions,
+      ...this.regionNameOptions,
       ...this.authorOptions,
     ];
     this.updateMappedReports("category");
@@ -321,17 +331,17 @@ export class ResearchComponent implements OnInit {
 
   onRegionCheck(event: any, option: string) {
     if (event.target && event.target.checked) {
-      this.regionOptions.push(option);
+      this.regionNameOptions.push(option);
     } else {
-      const index = this.regionOptions.indexOf(option);
+      const index = this.regionNameOptions.indexOf(option);
       if (index !== -1) {
-        this.regionOptions.splice(index, 1);
+        this.regionNameOptions.splice(index, 1);
       }
     }
     this.selectedOptions = [
       ...this.reportTypeOptions,
       ...this.categoryOptions,
-      ...this.regionOptions,
+      ...this.regionNameOptions,
       ...this.authorOptions,
     ];
     this.updateMappedReports("regionName");
@@ -349,7 +359,7 @@ export class ResearchComponent implements OnInit {
     this.selectedOptions = [
       ...this.reportTypeOptions,
       ...this.categoryOptions,
-      ...this.regionOptions,
+      ...this.regionNameOptions,
       ...this.authorOptions,
     ];
     this.updateMappedReports("author");
@@ -357,6 +367,7 @@ export class ResearchComponent implements OnInit {
 
   updateMappedReports(type: string) {
     // const searchCriteriaList: any = [];
+    console.log("mapped reports in update", this.mappedReports);
     let criteriaIndex = this.searchCriteriaList.findIndex(
       (criteria: any) => criteria.filterKey === type
     );
@@ -379,9 +390,9 @@ export class ResearchComponent implements OnInit {
       );
       this.mappedReports =
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
-    } else if (type === "region") {
+    } else if (type === "regionName") {
       const filteredReports = this.mappedReports.filter((report) =>
-        this.regionOptions.includes(report.region)
+        this.regionNameOptions.includes(report.region)
       );
       this.mappedReports =
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
@@ -407,9 +418,8 @@ export class ResearchComponent implements OnInit {
       dataOption: "all",
     };
 
-    console.log("-----", this.searchObject);
-
     if (this.selectedOptions.length > 0) {
+      this.isLoading = true;
       this.apiService.serachFilters(this.searchObject).subscribe(
         (data) => {
           // Handle the API response here
@@ -420,7 +430,7 @@ export class ResearchComponent implements OnInit {
               publishDate: this.epochToDate(report.publishDate),
             };
           });
-          console.log("API response:", this.mappedReports);
+          console.table("API response:", this.mappedReports);
           this.totalPages = data.researchMasterList.length / 5;
         },
         (error) => {
@@ -428,23 +438,51 @@ export class ResearchComponent implements OnInit {
           console.error("API error:", error);
         }
       );
+      this.isLoading = false;
     } else {
       this.loadResearchData();
     }
   }
 
   getFirstParagraph(htmlContent: string): string {
-    const parser = new DOMParser();
-    const parsedHtml = parser.parseFromString(htmlContent, "text/html");
-    const firstParagraph: any = parsedHtml.querySelector("p");
-    const first100 = this.getFirst100Words(firstParagraph.outerHTML);
-    return first100 ? `${first100}...` : "";
+    if (/<[a-z][\s\S]*>/i.test(htmlContent)) {
+      const parser = new DOMParser();
+      const parsedHtml: any = parser.parseFromString(htmlContent, "text/html");
+      const paragraphs: any = Array.from(parsedHtml.querySelectorAll("p"));
+
+      // Find the first non-empty paragraph
+      const nonEmptyParagraph: any = paragraphs.find(
+        (p: any) => p.textContent.trim() !== ""
+      );
+
+      let firstParagraph = nonEmptyParagraph
+        ? nonEmptyParagraph.textContent.trim()
+        : parsedHtml.querySelector("body").textContent.trim();
+      firstParagraph = this.removeQuotesAtStartAndEnd(firstParagraph);
+
+      let first100 = this.getFirst100Words(firstParagraph);
+
+      first100 = this.removeQuotesAtStartAndEnd(first100);
+
+      return first100 ? `${first100}...` : "";
+    } else {
+      // If htmlContent is empty or doesn't contain HTML tags, return the first 100 words directly
+      console.log("if no html or empty", this.getFirst100Words(htmlContent));
+      return this.getFirst100Words(htmlContent);
+    }
+  }
+
+  removeQuotesAtStartAndEnd(content: string): string {
+    if (content.startsWith('"') && content.endsWith('"')) {
+      return content.slice(1, -1);
+    }
+    return content;
   }
 
   getFirst100Words(paragraph: string): string {
     const words = paragraph.split(/\s+/); // Split the paragraph into words using whitespace as delimiter
     const first100 = words.slice(0, 40).join(" "); // Take the first 100 words and join them back with spaces
-    return `${first100}...`;
+    return `${first100}`;
   }
 
   private getUrlFriendlyString(input: string): string {
@@ -486,9 +524,9 @@ export class ResearchComponent implements OnInit {
       const domainIndex = this.categoryOptions.indexOf(removedOption);
       this.categoryOptions.splice(domainIndex, 1);
     }
-    if (this.regionOptions.includes(removedOption)) {
-      const regionIndex = this.regionOptions.indexOf(removedOption);
-      this.regionOptions.splice(regionIndex, 1);
+    if (this.regionNameOptions.includes(removedOption)) {
+      const regionIndex = this.regionNameOptions.indexOf(removedOption);
+      this.regionNameOptions.splice(regionIndex, 1);
     }
     if (this.authorOptions.includes(removedOption)) {
       const analystIndex = this.authorOptions.indexOf(removedOption);
@@ -544,7 +582,7 @@ export class ResearchComponent implements OnInit {
 
   ngOnInit(): void {
     const accessToken = this.authService.getAccessToken();
-    console.log("accesstoken", accessToken);
+
     this.isLogin = accessToken !== null ? true : false;
     // Now isLogin is a boolean
     if (!this.searchText.trim()) {
@@ -572,6 +610,7 @@ export class ResearchComponent implements OnInit {
   }
 
   loadResearchData(): void {
+    this.isLoading = true;
     const apiCall = this.isSubscribed
       ? this.apiService.getReseachListSubscribed()
       : this.isLogin
@@ -581,7 +620,7 @@ export class ResearchComponent implements OnInit {
     apiCall.subscribe((data: any) => {
       this.Reports = data.researchMasterList;
       this.mappedReports = this.Reports;
-      console.table("mapped report", this.mappedReports);
+      console.table(this.mappedReports);
       data.researchMasterList.forEach((item: any) => {
         if (!this.authorsSet.has(item.author)) {
           this.authorsSet.add(item.author);
@@ -599,6 +638,7 @@ export class ResearchComponent implements OnInit {
         };
       });
       this.totalPages = data.researchMasterList.length / 5;
+      this.isLoading = false;
     });
   }
 
@@ -608,13 +648,16 @@ export class ResearchComponent implements OnInit {
   }
 
   navigateToResearchSingle(research: any) {
-    console.log("report id", research);
     const navigationExtras: NavigationExtras = {
       state: {
         research: research,
       },
     };
-    this.router.navigate(["/research-single", research.id, this.isSubscribed]);
+    this.router.navigate([
+      "/research-single",
+      research.id,
+      research.isSubscribed,
+    ]);
   }
 
   downloadResearch(id: any) {

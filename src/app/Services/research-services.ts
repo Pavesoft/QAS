@@ -117,7 +117,6 @@ export class ApiService {
   }
 
   serachFilters(post: any): Observable<any> {
-    console.log("post data", post);
     return this.http.post<any>(`${this.apiUrl}/research-masters/search`, post);
   }
 

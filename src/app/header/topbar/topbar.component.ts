@@ -100,12 +100,10 @@ export class TopbarComponent implements OnInit {
 
   getCartItems(): number {
     this.updateCartItems();
-    console.log("get cart called", this.totalCartItems);
     return this.totalCartItems;
   }
 
   updateCartItems() {
-    console.log("update cart called");
     this.totalCartItems = this.cartService.getTotalCartItems(); // Update the cart items
   }
 
