@@ -53,7 +53,7 @@ export class CartService {
     return this.cart;
   }
 
-  addToCart(research: ResearchMasterDto): void {
+  addToCart(research: any): void {
     const cartItem = this.cart.find(item => item.research.id === research.id);
     if (cartItem) {
       alert('This item is already in the cart.');

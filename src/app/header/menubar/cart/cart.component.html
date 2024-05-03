@@ -1,40 +1,63 @@
 <div class="cart-container">
-    <h2>Cart</h2>
-    <h4 style="color: #ff0000;"> <span style="font-weight: bolder;"> * NOTE :</span> Do not refresh / close your page after you have added items in your cart. You may lose it !</h4>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Report</th>
-          <!-- <th scope="col">Quantity</th> -->
-          <th scope="col">Price</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        
-        <tr *ngFor="let item of cart">
-          <td>{{ item.research.report }}</td>
-          <!-- <td>{{ item.quantity }}</td> -->
-          <td> <i class="fas fa-dollar-sign    "></i> {{ item.research.price }}</td>
-          <td><button class="btn btn-danger mr1" (click)="removeFromCart(item)" style="background-color: #011F41; border: none;width: 70%;">Remove</button></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><div class="cart-summary" *ngIf="cart.length > 0">
-            <p>Total Price: <i class="fas fa-dollar-sign    "></i> {{ getTotalPrice() }}</p>
-            <button class="btn btn-success mr" (click)="checkout(getTotalPrice())" style="background-color: #0d6efd;position: relative;
-            top:-40px;right:-226px;">Checkout</button>
-          </div></td>
-          <td></td>
-          <td>
-            
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  
-    <div class="empty-cart" *ngIf="cart.length === 0">
-      <p>Your cart is empty.</p>
-    </div>
+  <h2>Cart</h2>
+  <h4 style="color: #ff0000">
+    <span style="font-weight: bolder"> * NOTE :</span> Do not refresh / close
+    your page after you have added items in your cart. You may lose it !
+  </h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Report</th>
+        <!-- <th scope="col">Quantity</th> -->
+        <th scope="col">Price</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cart">
+        <td>{{ item.research.report }}</td>
+        <!-- <td>{{ item.quantity }}</td> -->
+        <td><i class="fas fa-dollar-sign"></i> {{ item.research.price }}</td>
+        <td>
+          <button
+            class="btn btn-danger mr1"
+            (click)="removeFromCart(item)"
+            style="background-color: #011f41; border: none; width: 70%"
+          >
+            Remove
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="cart-summary" *ngIf="cart.length > 0">
+            <p>
+              Total Price: <i class="fas fa-dollar-sign"></i>
+              {{ getTotalPrice() }}
+            </p>
+            <button
+              class="btn btn-success mr"
+              (click)="checkout(getTotalPrice())"
+              style="
+                background-color: #0d6efd;
+                position: relative;
+                top: -40px;
+                right: -226px;
+              "
+            >
+              Checkout
+            </button>
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="empty-cart" *ngIf="cart.length === 0">
+    <p>Your cart is empty.</p>
   </div>
+</div>
 <app-searchbar></app-searchbar>

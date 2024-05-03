@@ -89,7 +89,7 @@ export class SingleResearchComponent implements AfterViewInit {
     }
   }
 
-  private getUrlFriendlyString(input: string): string {
+  private getUrlFriendlyString(input: string): string { 
     // Replace special characters with dashes and convert to lowercase
     return input
       .toLowerCase()

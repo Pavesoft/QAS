@@ -12,22 +12,27 @@
   "
 >
   <div class="row">
-    <div class="col-md-6">
-      <ul>
+    <!-- Justify content for the first column -->
+    <div
+      class="col-md-6 d-flex"
+      style="justify-content: space-between; align-items: center"
+    >
+      <ul class="d-flex" style="gap: 10px">
+        <!-- Spacing between items in the list -->
         <li>
           <a
             routerLink="/press-release"
             style="color: #011f41"
             data-bs-dismiss="offcanvas"
-            >Press Release |
-          </a>
+            >Press Release</a
+          >
         </li>
         <li>
           <a
             routerLink="/career"
             style="color: #011f41"
             data-bs-dismiss="offcanvas"
-            >Career |</a
+            >Career</a
           >
         </li>
         <li>
@@ -35,82 +40,77 @@
             routerLink="/contact-us"
             style="color: #011f41"
             data-bs-dismiss="offcanvas"
-            >Contact |</a
+            >Contact</a
           >
         </li>
         <li><a routerLink="#" style="color: #011f41">Blue Folder</a></li>
       </ul>
     </div>
-    <div class="col-md-6">
-      <!-- <div class="col-md-2 text-right" style="float: right;top: 5px;">
-        <a routerLink="/cart">
-            <span class="badge badge-dark">
-                <i class="fa fa-cart-plus fa-2x fa-fw"></i>
-                {{ getCartItems() }}
-            </span>
+
+    <!-- Content for the second column -->
+    <div
+      class="col-md-6 d-flex"
+      style="justify-content: flex-end; align-items: center; gap: 10px"
+    >
+      <!-- Flex with gap -->
+      <span
+        style="cursor: pointer"
+        data-toggle="modal"
+        data-target="#exampleModal"
+      >
+        <i class="fa fa-support fn"></i>
+      </span>
+      <a routerLink="">
+        <i class="bi bi-calendar-week fn"></i>
+      </a>
+      <i class="bi bi-bell fn" style="margin-right: 30px"></i>
+      <span
+        *ngIf="!isLoggedIn"
+        style="cursor: pointer; margin-right: 50px"
+        data-toggle="modal"
+        data-target="#exampleModal1"
+      >
+        Login
+      </span>
+      <div
+        class="dropdown"
+        *ngIf="isLoggedIn"
+        style="cursor: pointer; margin-right: 50px"
+      >
+        <!-- The icon that triggers the dropdown -->
+        <a
+          class="dropdown-toggle"
+          id="logoutDropdown"
+          data-toggle="dropdown"
+          aria-expanded="false"
+          style="cursor: pointer"
+        >
+          <img src="/assets/ellipse.png" style="width: 25px" alt="User icon" />
+          <span style="margin: 4px !important">Hi, {{ firstName }}</span>
         </a>
-    </div> -->
 
-      <!-- Content for the right column -->
-      <!-- <a class="btn btn-primary" id="bec" role="button"routerLink="/home" style="background-color: #0972ea;float:right;font-family: Arial Nova;">Login / SignUp</a> -->
-
-      <!-- <a class="btn btn-primary" id="bec" role="button" routerLink="#" style="margin-right: 0px;background-color: #0972ea;float:right;font-family: Arial Nova;" >Language |</a> -->
-      <div class="row">
-        <div class="col-md-6 fx">
-          <!-- <a routerLink="" (click)="openPopUp()"><span><i class="fa fa-support fn"></i></span></a>
-          <a routerLink=""  data-toggle="modal" data-target="#exampleModal"><span><i class="fa fa-support fn"></i></span></a> -->
-
-          <span
-            style="cursor: pointer"
-            data-toggle="modal"
-            data-target="#exampleModal"
-            ><span><i class="fa fa-support fn"></i></span>
-          </span>
-          <a routerLink=""
-            ><span><i class="bi bi-calendar-week fn"></i></span
-          ></a>
-          <span><i class="bi bi-bell fn"></i></span>
-        </div>
-        <div class="col-md-6 fxr">
-          <div class="logout-link">
-            <img
-              *ngIf="isLoggedIn"
-              src="/assets/ellipse.png"
-              style="width: 25px"
-            />
-            <span
-              *ngIf="isLoggedIn"
-              style="cursor: pointer"
+        <!-- The dropdown menu -->
+        <ul
+          class="dropdown-menu dropdown-menu-right"
+          style="padding: 0px 42px; margin-top: 10px"
+        >
+          <li>
+            <a
               (click)="onLogout()"
+              style="cursor: pointer; color: black !important"
+              >Logout</a
             >
-              Logout
-            </span>
-          </div>
-          <span
-            *ngIf="!isLoggedIn"
-            style="cursor: pointer"
-            data-target="#exampleModal1"
-            data-toggle="modal"
-            data-target="#exampleModal1"
-          >
-            Login
-          </span>
-        </div>
-        <!-- <div class="col-md-6 fxr">
-          <img src="/assets/ellipse.png" style="width: 25px;">
-          <span class="slt" data-toggle="modal" data-target="#exampleModal1" style="cursor: pointer;">Login</span>
-          <span class="slt" data-toggle="modal" data-target="#exampleModal1" style="cursor: pointer;">Login</span>
-          <select class="slt">
-            <option>Hi Kam !</option>
-            <option>Your Profile</option>
-            <option>Talk To Analyst</option>
-            <option>Subscribed Research</option>
-            <option>Custom Research</option>
-            <option>Connect to Account<br> Expert</option>
-            <option>Helpdesk</option><br><br>
-          </select>
-        </div> -->
+          </li>
+        </ul>
       </div>
+      <a routerLink="/cart" style="text-decoration: none">
+        <div class="d-flex">
+          <i class="fa fa-cart-plus fa-2x fa-fw" style="color: blue"> </i>
+          <p style="color: #0000ff">
+            {{ getCartItems() }}
+          </p>
+        </div>
+      </a>
     </div>
   </div>
 </div>
@@ -220,10 +220,20 @@
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content" style="height: 280px; background: #ddefed">
+    <div
+      class="modal-content"
+      style="height: auto !important; background: #ddefed"
+    >
       <div class="modal-header">
-        <h5 class="modal-title ef" id="exampleModalLabel">Login</h5>
+        <h1
+          class="modal-title ef"
+          id="exampleModalLabel"
+          style="font-size: 20px !important"
+        >
+          Login
+        </h1>
         <img src="/assets/Line.png" class="bln" />
+
         <button
           type="button"
           class="close"
@@ -233,9 +243,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <h3 style="margin-left: 15px !important">Welcome Back !</h3>
       <div class="modal-body">
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-          <div class="mb-3">
+          <div class="d-flex mb-3">
+            <img
+              style="height: 30px"
+              src="../../../assets//Form-Component2.png"
+            />
             <input
               type="email"
               class="form-control"
@@ -254,7 +269,11 @@
               >
             </div>
           </div>
-          <div class="mb-3">
+          <div class="d-flex mb-3">
+            <img
+              style="height: 30px"
+              src="../../../assets//Password-icon.png"
+            />
             <input
               type="password"
               class="form-control"
@@ -282,7 +301,13 @@
               ><label style="float: right">Forgot Your Password?</label></a
             >
           </div>
-          <button type="submit" class="btn btn-primary btp">Submit</button>
+          <button
+            type="submit"
+            class="btn btn-primary btp"
+            style="margin-top: 25px !important; margin-bottom: 25px !important"
+          >
+            Submit
+          </button>
         </form>
         <!-- Display error message -->
         <div
