@@ -9,26 +9,43 @@ export class ApiService {
   apiUrl = "http://10.0.51.3:8091";
   constructor(private http: HttpClient) {}
 
-  getReseachList(): Observable<any[]> {
+  getReseachList(page: any, size: any): Observable<any[]> {
     // const token = localStorage.getItem("jwtToken");
     const headers = new HttpHeaders({
       // Authorization: `Bearer ${token}`,
     });
 
     return this.http.get<any[]>(
-      `${this.apiUrl}/research-masters/research-list`
+      `${this.apiUrl}/research-masters/research-list?page=${
+        page - 1
+      }&size=${size}`
       // { headers: headers }
     );
   }
-
-  getReseachListSubscribed(): Observable<any[]> {
+  getReseachListToken(page: any, size: any): Observable<any[]> {
     const token = localStorage.getItem("jwtToken");
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
 
     return this.http.get<any[]>(
-      `${this.apiUrl}/research-masters/research-list-subscribed`,
+      `${this.apiUrl}/research-masters/research-list?page=${
+        page - 1
+      }&size=${size}`,
+      { headers: headers }
+    );
+  }
+
+  getReseachListSubscribed(page: any, size: any): Observable<any[]> {
+    const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.get<any[]>(
+      `${this.apiUrl}/research-masters/research-list-subscribed?page=${
+        page - 1
+      }&size=${size}`,
       { headers: headers }
     );
   }
@@ -97,17 +114,19 @@ export class ApiService {
       );
   }
 
-  getPostById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/posts/${id}`);
+  getResearchById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/research-masters/${id}`);
   }
 
   addPost(post: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/posts`, post);
   }
 
-  serachFilters(post: any): Observable<any> {
-    console.log("post data", post);
-    return this.http.post<any>(`${this.apiUrl}/research-masters/search`, post);
+  serachFilters(post: any, page: any, size: any): Observable<any> {
+    return this.http.post<any>(
+      `${this.apiUrl}/research-masters/search?page=${page - 1}&size=${size}`,
+      post
+    );
   }
 
   updatePost(id: number, post: any): Observable<any> {

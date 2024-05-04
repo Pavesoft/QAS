@@ -103,7 +103,7 @@ const routes: Routes = [
         component: ResearchComponent
     },
     {
-        path: 'research-single/:id',
+        path: 'research-single/:id/:subscribed',
         component:  ResearchSingleComponent
     },
     {

@@ -26,7 +26,8 @@ export class ResearchSingleComponent implements OnInit {
   mappedReports: any[] = [];
   authorsArray: any[] = [];
   authorsSet = new Set();
-  isSubscribed: boolean = false;
+  isSubscribed: any = "";
+  isLoading: boolean = true;
   alertType = "";
   message = "";
   showOverlay: boolean = false;
@@ -86,6 +87,59 @@ export class ResearchSingleComponent implements OnInit {
       }
     }, 100);
   }
+
+  closeCustomAlert(): void {
+    const customAlert = document.getElementById("customAlert");
+    if (customAlert) {
+      customAlert.style.display = "none";
+    }
+    this.showOverlay = false;
+  }
+
+  downloadResearch(id: any) {
+    this.apiService.downloadReport(id).subscribe(
+      (data) => {
+        this.saveFile(data.blob, data.filename);
+      },
+      (error) => {
+        console.error("Error downloading report:", error);
+      }
+    );
+  }
+
+  readReport(id: any) {
+    this.apiService.downloadReport(id).subscribe(
+      (data) => {
+        this.readView(data.blob, data.filename);
+      },
+      (error) => {
+        console.error("Error downloading report:", error);
+      }
+    );
+  }
+
+  private readView(blobData: any, filename: any) {
+    const blob = new Blob([blobData], { type: "application/pdf" });
+    const url = window.URL.createObjectURL(blob);
+    window.open(url, "_blank");
+  }
+
+  private saveFile(blobData: any, filename: any) {
+    const blob = new Blob([blobData], { type: "application/octet-stream" });
+    const url = window.URL.createObjectURL(blob);
+
+    // Create a link element and simulate a click to trigger the download
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+
+    // Clean up after download
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  }
+
   buyNow(research: ResearchMasterDto) {
     const cart = this.cartService.getCart();
     const existingCartItem = cart.find(
@@ -134,18 +188,36 @@ export class ResearchSingleComponent implements OnInit {
 
   ngOnInit(): void {
     const researchId: any = this.route.snapshot.paramMap.get("id");
-    this.apiService.getReseachList().subscribe((data: any) => {
-      console.log(data.researchMasterList);
+    this.isSubscribed = this.route.snapshot.paramMap.get("subscribed");
 
-      console.log("single report", data.researchMasterList);
-      const filterData = data.researchMasterList.filter(
-        (item: any) => item.id === parseInt(researchId)
-      );
-
-      this.Reports = filterData[0];
-      console.log("single report", this.Reports);
+    this.apiService.getResearchById(researchId).subscribe((data: any) => {
+      this.Reports = data.researchMaster;
       this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
+      this.isLoading = false;
     });
+    // if (isSubscribed == "true") {
+    //   this.isLoading = true;
+    //   this.apiService.getReseachListSubscribed().subscribe((data: any) => {
+    //     const filterData = data.researchMasterList.filter(
+    //       (item: any) => item.id === parseInt(researchId)
+    //     );
+
+    //     this.Reports = filterData[0];
+    //     this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
+    //     this.isLoading = false;
+    //   });
+    // } else {
+    //   this.isLoading = true;
+    //   this.apiService.getReseachList().subscribe((data: any) => {
+    //     const filterData = data.researchMasterList.filter(
+    //       (item: any) => item.id === parseInt(researchId)
+    //     );
+    //     this.Reports = filterData[0];
+    //     console.log(this.Reports);
+    //     this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
+    //     this.isLoading = false;
+    //   });
+    // }
 
     this.apiService.getReportType().subscribe((data: any) => {
       this.reportTypeData = data.map((item: any) => item.reportType);

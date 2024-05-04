@@ -22,7 +22,7 @@
   height: 180px;
   background: #ffffff;
   box-shadow: 1px 1px 1px 1px #efefef;
-  left: 10px;
+  // left: 10px;
   top: 25px;
 }
 
@@ -156,8 +156,9 @@
   padding-top: 20px;
   width: 20%;
   left: 30px;
+  right: 30px;
   height: 280px;
-  top: 25px;
+  top: 35px;
 }
 
 .bt2 {
@@ -390,4 +391,76 @@ a.fa.fa-linkedin {
 .rt4 {
   position: relative;
   top: 55px;
+}
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+.alert {
+  position: fixed;
+  right: 0%;
+  bottom: 2%;
+  transform: translate(-50%, -50%);
+  background-color: #f44336; /* Red background color */
+  color: white; /* White text color */
+  padding: 20px;
+  display: none; /* Hide the alert by default */
+  z-index: 1000;
+}
+
+.alert-content {
+  position: relative;
+}
+
+.closebtn {
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.success {
+  background-color: #4caf50; /* Green background color */
+}
+
+.failed {
+  background-color: #f44336; /* Red background color */
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: none; /* Hide the overlay by default */
+  z-index: 999;
+}
+.prc {
+  color: #444343;
+  font-family: "Arial Nova";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  padding-left: 7px;
 }

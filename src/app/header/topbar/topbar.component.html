@@ -103,12 +103,13 @@
           </li>
         </ul>
       </div>
-      <a routerLink="/cart">
-        <span class="badge badge-dark">
-          <i class="fa fa-cart-plus fa-2x fa-fw" style="color: blue">
-            <!-- {{ this.totalCartItems }} -->
-          </i>
-        </span>
+      <a routerLink="/cart" style="text-decoration: none">
+        <div class="d-flex">
+          <i class="fa fa-cart-plus fa-2x fa-fw" style="color: blue"> </i>
+          <p style="color: #0000ff">
+            {{ getCartItems() }}
+          </p>
+        </div>
       </a>
     </div>
   </div>
@@ -245,7 +246,11 @@
       <h3 style="margin-left: 15px !important">Welcome Back !</h3>
       <div class="modal-body">
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-          <div class="mb-3">
+          <div class="d-flex mb-3">
+            <img
+              style="height: 30px"
+              src="../../../assets//Form-Component2.png"
+            />
             <input
               type="email"
               class="form-control"
@@ -264,7 +269,11 @@
               >
             </div>
           </div>
-          <div class="mb-3">
+          <div class="d-flex mb-3">
+            <img
+              style="height: 30px"
+              src="../../../assets//Password-icon.png"
+            />
             <input
               type="password"
               class="form-control"

@@ -1,9 +1,10 @@
 .sd {
   background: linear-gradient(
-    164deg,
-    rgba(76, 204, 214, 0.6) -23.66%,
+    164.04deg,
+    rgba(76, 214, 176, 0.6) -23.66%,
     #00327a 86.4%
   );
+
   // width: 325px;
   padding: 35px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -49,8 +50,18 @@ hr {
   opacity: 1;
 }
 
+.custom-styles {
+  display: flex;
+  // justify-content: end;
+  align-items: center;
+}
+.custom-styles2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .form-select {
-  // width: 255px;
+  flex-wrap: wrap;
   color: #fff;
   border-radius: 7px;
   border: 1px solid #d9d9d9;
@@ -63,10 +74,50 @@ hr {
   backdrop-filter: blur(10px);
   text-align: left;
 }
+.alert {
+  position: fixed;
+  right: 0%;
+  bottom: 2%;
+  transform: translate(-50%, -50%);
+  background-color: #f44336; /* Red background color */
+  color: white; /* White text color */
+  padding: 20px;
+  display: none; /* Hide the alert by default */
+  z-index: 1000;
+}
 
-// .dropdown-toggle::after {
-//     margin-left: 120px !important;
-// }
+.alert-content {
+  position: relative;
+}
+
+.closebtn {
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.success {
+  background-color: #4caf50; /* Green background color */
+}
+
+.failed {
+  background-color: #f44336; /* Red background color */
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: none; /* Hide the overlay by default */
+  z-index: 999;
+}
 
 .dropdown-item {
   color: #fff;
@@ -254,11 +305,11 @@ button#dropdownMenuButton:active {
 .prc {
   color: #444343;
   font-family: "Arial Nova";
-  font-size: 17px;
+  font-size: 16px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
   line-height: normal;
-  padding-left: 3px;
+  padding-left: 7px;
 }
 .readmore {
   display: flex;
@@ -339,7 +390,7 @@ button#dropdownMenuButton:active {
 
 .rm {
   display: flex;
-  width: 200px;
+  //   width: 200px;
   height: 20px;
   justify-content: center;
   align-items: center;
@@ -419,4 +470,26 @@ input[type="radio"] {
   margin-left: 5px;
   cursor: pointer;
   color: red;
+}
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: #d2f5eb !important;
 }

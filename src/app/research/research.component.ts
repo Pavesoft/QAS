@@ -6,15 +6,15 @@ import { ApiService } from "../Services/research-services";
 import { AuthService } from "../auth.service";
 import { ResearchMasterDto } from "../Interfaces/research-master-dto";
 import { CartService } from "../Services/cart.service";
+import { debounce } from "lodash";
+import { FormControl, FormGroup } from "@angular/forms";
+
 @Component({
   selector: "app-research",
   templateUrl: "./research.component.html",
   styleUrls: ["./research.component.scss"],
 })
 export class ResearchComponent implements OnInit {
-  // redirectToGoogle(): void {
-  //   window.location.href = 'http://localhost:4200/research';
-  // }
   [x: string]: any;
 
   options: string[] = [
@@ -24,29 +24,30 @@ export class ResearchComponent implements OnInit {
     "Market Outlook",
     "SPARK Matrix",
   ];
-
+  startDate: Date | undefined;
+  endDate: Date | undefined;
+  isLoading: Boolean = true;
   selectedOptions: String[] = [];
   reportTypeData: string[] = [];
   categoryData: string[] = [];
   authorData: string[] = [];
   regionData: string[] = [];
-  reportOptions: string[] = [];
+  reportTypeOptions: string[] = [];
   categoryOptions: string[] = [];
-  regionOptions: string[] = [];
+  regionNameOptions: string[] = [];
   authorOptions: string[] = [];
   searchValue: string = "";
   filteredReports: any[] = [];
   mappedReports: any[] = [];
   datechanges: any[] = [];
-  searchObject: any = {};
+  searchObject: any = { searchCriteriaList: [] };
   searchCriteriaList: any[] = [];
   currentPage = 1;
   totalPages: any; // Set the total number of pages here
   visiblePages = 5;
-  itemsPerPage: number = 5;
+  itemsPerPage: number = 10;
   startIndex: number = 0; // Initial value for starting index
   endIndex = this.itemsPerPage;
-  showDateRangePicker: boolean = false;
   isLogin: any;
   Reports: any[] = [];
   authorsArray: any[] = [];
@@ -60,6 +61,15 @@ export class ResearchComponent implements OnInit {
     quantity: number;
     totalPrice: number;
   }[] = [];
+  searchText: string = "";
+  debouncedSearch = debounce(this.makeApiCall, 300);
+  selectedRange: { start: any; end: any };
+  showDateRangePicker: boolean = false;
+
+  range: any = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
 
   constructor(
     private httpClient: HttpClient,
@@ -68,35 +78,220 @@ export class ResearchComponent implements OnInit {
     public authService: AuthService,
     private cartService: CartService
   ) {
-    // this.applyPagination();
+    this.selectedRange = { start: null, end: null };
+    console.log("date rang", this.range.value);
+  }
+
+  closeDateRangePicker() {
+    this.showDateRangePicker = false;
+  }
+
+  onDateRangeChange() {
+    const startDate = new Date(this.range.value.start).toLocaleDateString(
+      "en-GB",
+      {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      }
+    );
+
+    const endDate = new Date(this.range.value.end).toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+    const formattedDate = `${startDate}, ${endDate}`;
+    if (formattedDate !== "") {
+      this.isLoading = true;
+      const requestBody = {
+        filterKey: "publishDate",
+        value: formattedDate,
+        operation: "bt",
+      };
+      const publishDateFilterIndex =
+        this.searchObject.searchCriteriaList.findIndex(
+          (criteria: any) => criteria.filterKey === "publishDate"
+        );
+      if (publishDateFilterIndex !== -1) {
+        // Update value for existing publishDate filter
+        this.searchObject.searchCriteriaList[publishDateFilterIndex].value =
+          formattedDate;
+      } else {
+        this.searchObject.searchCriteriaList.push(requestBody);
+        this.searchObject.dataOption = "all";
+      }
+      console.log(this.searchObject);
+      this.apiService
+        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
+        .subscribe((response) => {
+          this.mappedReports = response.researchMasterList;
+          this.mappedReports.sort((a, b) => a.publishDate - b.publishDate);
+          this.mappedReports = this.mappedReports.map((report: any) => {
+            return {
+              ...report,
+              publishDate: this.epochToDate(report.publishDate),
+            };
+          });
+          console.log(response.researchMasterList);
+          console.log(
+            "response for search",
+            response.researchMasterList.length
+          );
+          // this.totalPages =
+          //   response.researchMasterList.length / this.itemsPerPage;
+          this.currentPage = response.pagination.currentPage + 1;
+          this.itemsPerPage = response.pagination.pageSize;
+          this.totalPages = response.pagination.totalPages;
+        });
+
+      this.isLoading = false;
+    } else {
+      this.loadResearchData();
+    }
+  }
+
+  onSearchChange(event: any) {
+    this.isLoading = true;
+    this.searchText = event.target.value;
+    this.debouncedSearch(event.target.value); // Call debounced API call
+  }
+
+  makeApiCall(searchText: string) {
+    if (searchText !== "") {
+      this.isLoading = true;
+      const requestBody = {
+        filterKey: "description",
+        value: searchText,
+        operation: "like",
+      };
+      const searchTextIndex = this.searchObject.searchCriteriaList.findIndex(
+        (criteria: any) => criteria.filterKey === "description"
+      );
+      if (searchTextIndex !== -1) {
+        // Update value for existing publishDate filter
+        this.searchObject.searchCriteriaList[searchTextIndex].value =
+          searchText;
+      } else {
+        this.searchObject.searchCriteriaList.push(requestBody);
+        this.searchObject.dataOption = "all";
+      }
+      console.log(this.searchObject);
+      this.apiService
+        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
+        .subscribe((response) => {
+          let temp = response.researchMasterList;
+          temp.sort((a: any, b: any) => a.publishDate - b.publishDate);
+          this.mappedReports = temp.map((report: any) => {
+            return {
+              ...report,
+              publishDate: this.epochToDate(report.publishDate),
+            };
+          });
+          console.log(response.researchMasterList);
+          console.log(
+            "response for search",
+            response.researchMasterList.length
+          );
+          // this.totalPages =
+          //   response.researchMasterList.length / this.itemsPerPage;
+          this.currentPage = response.pagination.currentPage + 1;
+          this.itemsPerPage = response.pagination.pageSize;
+          this.totalPages = response.pagination.totalPages;
+        });
+      this.onPageChange(this.currentPage);
+      this.isLoading = false;
+    } else if (this.searchObject.searchCriteriaList.length > 0) {
+      // Assuming searchObject is already defined with the provided structure
+      this.searchObject.searchCriteriaList =
+        this.searchObject.searchCriteriaList.filter(
+          (criteria: any) => criteria.filterKey !== "description"
+        );
+
+      this.apiService
+        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
+        .subscribe((response) => {
+          this.mappedReports = response.researchMasterList;
+          this.mappedReports.sort((a, b) => a.publishDate - b.publishDate);
+          this.mappedReports = this.mappedReports.map((report: any) => {
+            return {
+              ...report,
+              publishDate: this.epochToDate(report.publishDate),
+            };
+          });
+          // this.totalPages =
+          //   response.researchMasterList.length / this.itemsPerPage;
+          this.currentPage = response.pagination.currentPage + 1;
+          this.itemsPerPage = response.pagination.pageSize;
+          this.totalPages = response.pagination.totalPages;
+        });
+      this.isLoading = false;
+      this.onPageChange(this.currentPage);
+    } else {
+      this.loadResearchData();
+    }
   }
 
   calculateButtonHeight(): number {
     const contentHeight = 24; // Assuming 24px as the default content height
     const paddingVertical = 12; // Assuming 12px vertical padding
-    const totalOptionsHeight = this.reportOptions.length * contentHeight; // Total height of options content
+    const totalOptionsHeight = this.reportTypeOptions.length * contentHeight; // Total height of options content
 
     // Calculate total height including padding
     const totalHeight = totalOptionsHeight + paddingVertical;
     console.log(totalHeight);
     return totalHeight;
   }
-
+  // onItemsPerPageChange() {
+  //   // Reset to first page when changing items per page
+  //   this.currentPage = 1;
+  // }
   applyPagination(): void {
     this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
     this.endIndex = this.startIndex + this.itemsPerPage;
     // Update filteredReports based on the startIndex and endIndex
-    this.filteredReports = this.Reports.slice(this.startIndex, this.endIndex);
+    this.filteredReports = this.mappedReports.slice(
+      this.startIndex,
+      this.endIndex
+    );
   }
 
+  getFirstPage(): number {
+    return (this.currentPage = 1); // The first page is always 1
+  }
+
+  getLastPages(): number {
+    return (this.currentPage = this.totalPages);
+  }
   onPageChange(page: number): void {
     this.currentPage = page;
-    this.applyPagination();
+    if (this.searchObject.searchCriteriaList.length > 0) {
+      this.apiService
+        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
+        .subscribe((response) => {
+          this.mappedReports = response.researchMasterList;
+          this.mappedReports.sort((a, b) => a.publishDate - b.publishDate);
+          this.mappedReports = this.mappedReports.map((report: any) => {
+            return {
+              ...report,
+              publishDate: this.epochToDate(report.publishDate),
+            };
+          });
+          // this.totalPages =
+          //   response.researchMasterList.length / this.itemsPerPage;
+          this.currentPage = response.pagination.currentPage + 1;
+          this.itemsPerPage = response.pagination.pageSize;
+          this.totalPages = response.pagination.totalPages;
+        });
+    } else {
+      this.loadResearchData();
+    }
   }
 
   onItemsPerPageChange(itemsPerPage: number): void {
     this.itemsPerPage = itemsPerPage;
     this.currentPage = 1; // Reset to the first page when items per page changes
+    this.loadResearchData();
     this.applyPagination();
   }
 
@@ -137,6 +332,25 @@ export class ResearchComponent implements OnInit {
     const existingCartItem = cart.find(
       (item) => item.research.id === research.id
     );
+    const Research: ResearchMasterDto = {
+      id: +research.id,
+      report: research.report,
+      price: +research.price,
+      categoryName: "",
+      reportType: "",
+      description: "",
+      author: "",
+      mAuthor: "",
+      publishDate: new Date(),
+      price2: 0,
+      tableOfContent: "",
+    };
+
+    // const item = {
+    //   research: research,
+    //   quantity: +1,
+    //   totalPrice: +research.price * +1,
+    // };
     if (existingCartItem) {
       this.alertType = "Failed";
       this.message = "This item is already in the cart.";
@@ -144,7 +358,7 @@ export class ResearchComponent implements OnInit {
     } else {
       this.alertType = "Success";
       this.message = "This item was added to cart.";
-      this.cartService.addToCart(research);
+      this.cartService.addToCart(Research);
       this.showCustomAlert();
     }
   }
@@ -189,7 +403,7 @@ export class ResearchComponent implements OnInit {
   }
 
   onCategoryClick(option: string) {
-    if (option) {
+    if (!this.categoryOptions.includes(option)) {
       this.categoryOptions.push(option);
     } else {
       const index = this.categoryOptions.indexOf(option);
@@ -198,16 +412,16 @@ export class ResearchComponent implements OnInit {
       }
     }
     this.selectedOptions = [
-      ...this.reportOptions,
+      ...this.reportTypeOptions,
       ...this.categoryOptions,
-      ...this.regionOptions,
+      ...this.regionNameOptions,
       ...this.authorOptions,
     ];
     this.updateMappedReports("category");
   }
 
   onAuthorClick(option: string) {
-    if (option) {
+    if (!this.authorOptions.includes(option)) {
       this.authorOptions.push(option);
     } else {
       const index = this.authorOptions.indexOf(option);
@@ -216,9 +430,9 @@ export class ResearchComponent implements OnInit {
       }
     }
     this.selectedOptions = [
-      ...this.reportOptions,
+      ...this.reportTypeOptions,
       ...this.categoryOptions,
-      ...this.regionOptions,
+      ...this.regionNameOptions,
       ...this.authorOptions,
     ];
     this.updateMappedReports("author");
@@ -226,17 +440,17 @@ export class ResearchComponent implements OnInit {
 
   onReportCheck(event: any, option: string) {
     if (event.target && event.target.checked) {
-      this.reportOptions.push(option);
+      this.reportTypeOptions.push(option);
     } else {
-      const index = this.reportOptions.indexOf(option);
+      const index = this.reportTypeOptions.indexOf(option);
       if (index !== -1) {
-        this.reportOptions.splice(index, 1);
+        this.reportTypeOptions.splice(index, 1);
       }
     }
     this.selectedOptions = [
-      ...this.reportOptions,
+      ...this.reportTypeOptions,
       ...this.categoryOptions,
-      ...this.regionOptions,
+      ...this.regionNameOptions,
       ...this.authorOptions,
     ];
     this.updateMappedReports("reportType");
@@ -252,9 +466,9 @@ export class ResearchComponent implements OnInit {
       }
     }
     this.selectedOptions = [
-      ...this.reportOptions,
+      ...this.reportTypeOptions,
       ...this.categoryOptions,
-      ...this.regionOptions,
+      ...this.regionNameOptions,
       ...this.authorOptions,
     ];
     this.updateMappedReports("category");
@@ -262,20 +476,20 @@ export class ResearchComponent implements OnInit {
 
   onRegionCheck(event: any, option: string) {
     if (event.target && event.target.checked) {
-      this.regionOptions.push(option);
+      this.regionNameOptions.push(option);
     } else {
-      const index = this.regionOptions.indexOf(option);
+      const index = this.regionNameOptions.indexOf(option);
       if (index !== -1) {
-        this.regionOptions.splice(index, 1);
+        this.regionNameOptions.splice(index, 1);
       }
     }
     this.selectedOptions = [
-      ...this.reportOptions,
+      ...this.reportTypeOptions,
       ...this.categoryOptions,
-      ...this.regionOptions,
+      ...this.regionNameOptions,
       ...this.authorOptions,
     ];
-    this.updateMappedReports("region");
+    this.updateMappedReports("regionName");
   }
 
   onAnalystCheck(event: any, option: string) {
@@ -288,9 +502,9 @@ export class ResearchComponent implements OnInit {
       }
     }
     this.selectedOptions = [
-      ...this.reportOptions,
+      ...this.reportTypeOptions,
       ...this.categoryOptions,
-      ...this.regionOptions,
+      ...this.regionNameOptions,
       ...this.authorOptions,
     ];
     this.updateMappedReports("author");
@@ -298,6 +512,7 @@ export class ResearchComponent implements OnInit {
 
   updateMappedReports(type: string) {
     // const searchCriteriaList: any = [];
+    console.log("mapped reports in update", this.mappedReports);
     let criteriaIndex = this.searchCriteriaList.findIndex(
       (criteria: any) => criteria.filterKey === type
     );
@@ -310,7 +525,7 @@ export class ResearchComponent implements OnInit {
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
     } else if (type === "reportType") {
       const filteredReports = this.mappedReports.filter((report) =>
-        this.reportOptions.includes(report.report)
+        this.reportTypeOptions.includes(report.reportType)
       );
       this.mappedReports =
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
@@ -320,72 +535,115 @@ export class ResearchComponent implements OnInit {
       );
       this.mappedReports =
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
-    } else if (type === "region") {
+    } else if (type === "regionName") {
       const filteredReports = this.mappedReports.filter((report) =>
-        this.regionOptions.includes(report.region)
+        this.regionNameOptions.includes(report.region)
       );
       this.mappedReports =
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
     }
-
+    console.log("before", this.searchObject);
+    let filterArray: any = [];
     if (criteriaIndex !== -1) {
       // Update existing criteria
-      this.searchCriteriaList[criteriaIndex].value =
-        this[type + "Options"].join(", ");
+      filterArray[criteriaIndex].value = this[type + "Options"].join(", ");
     } else {
-      // Create new criteria
-      console.log(this[type + "Options"]);
-      this.searchCriteriaList.push({
+      filterArray.push({
         filterKey: type,
         value: this[type + "Options"].join(", "),
         operation: "in",
       });
     }
-    this.searchObject = {
-      searchCriteriaList: this.searchCriteriaList.filter(
-        (criteria) => criteria.value.trim() !== ""
-      ),
-      dataOption: "all",
-    };
 
-    console.log("-----", this.searchObject);
+    // Filter out criteria with empty values
+    const filteredArray = filterArray.filter(
+      (criteria: any) => criteria.value.trim() !== ""
+    );
 
-    if (this.selectedOptions.length > 0) {
-      this.apiService.serachFilters(this.searchObject).subscribe(
-        (data) => {
-          // Handle the API response here
-          this.mappedReports = data.researchMasterList;
-          this.mappedReports = this.mappedReports.map((report: any) => {
-            return {
-              ...report,
-              publishDate: this.epochToDate(report.publishDate),
-            };
-          });
-          console.log("API response:", this.mappedReports);
-          this.totalPages = data.researchMasterList.length / 5;
-        },
-        (error) => {
-          // Handle any API errors here
-          console.error("API error:", error);
-        }
-      );
-    } else {
+    // Push filteredArray into searchObject.searchCriteriaList
+    filteredArray.forEach((criteria: any) => {
+      this.searchObject.searchCriteriaList.push(criteria);
+    });
+
+    // Ensure dataOption is set to "all"
+    this.searchObject.dataOption = "all";
+    console.log("after", this.searchObject);
+    if (
+      this.selectedOptions.length > 0 ||
+      this.searchObject.searchCriteriaList.length > 0
+    ) {
+      this.isLoading = true;
+      this.apiService
+        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
+        .subscribe(
+          (data) => {
+            // Handle the API response here
+            let temp = data.researchMasterList;
+            this.mappedReports = temp.map((report: any) => {
+              return {
+                ...report,
+                publishDate: this.epochToDate(report.publishDate),
+              };
+            });
+            console.log("API response:", this.mappedReports);
+            // this.totalPages = data.researchMasterList.length / this.itemsPerPage;
+            this.currentPage = data.pagination.currentPage + 1;
+            this.itemsPerPage = data.pagination.pageSize;
+            this.totalPages = data.pagination.totalPages;
+          },
+          (error) => {
+            // Handle any API errors here
+            console.error("API error:", error);
+          }
+        );
+      this.isLoading = false;
+    } else if (
+      this.selectedOptions.length <= 0 ||
+      this.searchObject.searchCriteriaList.length < 0
+    ) {
       this.loadResearchData();
     }
   }
 
   getFirstParagraph(htmlContent: string): string {
-    const parser = new DOMParser();
-    const parsedHtml = parser.parseFromString(htmlContent, "text/html");
-    const firstParagraph: any = parsedHtml.querySelector("p");
-    const first100 = this.getFirst100Words(firstParagraph.outerHTML);
-    return first100 ? `${first100}...` : "";
+    if (/<[a-z][\s\S]*>/i.test(htmlContent)) {
+      const parser = new DOMParser();
+      const parsedHtml: any = parser.parseFromString(htmlContent, "text/html");
+      const paragraphs: any = Array.from(parsedHtml.querySelectorAll("p"));
+
+      // Find the first non-empty paragraph
+      const nonEmptyParagraph: any = paragraphs.find(
+        (p: any) => p.textContent.trim() !== ""
+      );
+
+      let firstParagraph = nonEmptyParagraph
+        ? nonEmptyParagraph.textContent.trim()
+        : parsedHtml.querySelector("body").textContent.trim();
+      firstParagraph = this.removeQuotesAtStartAndEnd(firstParagraph);
+
+      let first100 = this.getFirst100Words(firstParagraph);
+
+      first100 = this.removeQuotesAtStartAndEnd(first100);
+
+      return first100 ? `${first100}...` : "";
+    } else {
+      // If htmlContent is empty or doesn't contain HTML tags, return the first 100 words directly
+      console.log("if no html or empty", this.getFirst100Words(htmlContent));
+      return this.getFirst100Words(htmlContent);
+    }
+  }
+
+  removeQuotesAtStartAndEnd(content: string): string {
+    if (content.startsWith('"') && content.endsWith('"')) {
+      return content.slice(1, -1);
+    }
+    return content;
   }
 
   getFirst100Words(paragraph: string): string {
     const words = paragraph.split(/\s+/); // Split the paragraph into words using whitespace as delimiter
     const first100 = words.slice(0, 40).join(" "); // Take the first 100 words and join them back with spaces
-    return `${first100}...`;
+    return `${first100}`;
   }
 
   private getUrlFriendlyString(input: string): string {
@@ -405,22 +663,31 @@ export class ResearchComponent implements OnInit {
       }
     }, 100);
   }
+
+  closeCustomAlert(): void {
+    const customAlert = document.getElementById("customAlert");
+    if (customAlert) {
+      customAlert.style.display = "none";
+    }
+    this.showOverlay = false;
+  }
+
   removeOption(index: number) {
     const removedOption: any = this.selectedOptions[index];
     this.selectedOptions.splice(index, 1);
 
     // Remove the option from specific arrays if it exists
-    if (this.reportOptions.includes(removedOption)) {
-      const reportIndex = this.reportOptions.indexOf(removedOption);
-      this.reportOptions.splice(reportIndex, 1);
+    if (this.reportTypeOptions.includes(removedOption)) {
+      const reportIndex = this.reportTypeOptions.indexOf(removedOption);
+      this.reportTypeOptions.splice(reportIndex, 1);
     }
     if (this.categoryOptions.includes(removedOption)) {
       const domainIndex = this.categoryOptions.indexOf(removedOption);
       this.categoryOptions.splice(domainIndex, 1);
     }
-    if (this.regionOptions.includes(removedOption)) {
-      const regionIndex = this.regionOptions.indexOf(removedOption);
-      this.regionOptions.splice(regionIndex, 1);
+    if (this.regionNameOptions.includes(removedOption)) {
+      const regionIndex = this.regionNameOptions.indexOf(removedOption);
+      this.regionNameOptions.splice(regionIndex, 1);
     }
     if (this.authorOptions.includes(removedOption)) {
       const analystIndex = this.authorOptions.indexOf(removedOption);
@@ -450,39 +717,49 @@ export class ResearchComponent implements OnInit {
     }
 
     //Search Filter API Call
-    if (this.selectedOptions.length > 0) {
-      this.apiService.serachFilters(this.searchObject).subscribe(
-        (data) => {
-          // Handle the API response here
-          console.log("API response:", data);
-          this.mappedReports = data.researchMasterList;
-          this.mappedReports = this.mappedReports.map((report: any) => {
-            return {
-              ...report,
-              publishDate: this.epochToDate(report.publishDate),
-            };
-          });
-          this.totalPages = data.researchMasterList.length / 5;
-        },
-        (error) => {
-          // Handle any API errors here
-          console.error("API error:", error);
-        }
-      );
-    } else {
+    if (
+      this.selectedOptions.length > 0 ||
+      this.searchObject.searchCriteriaList.length > 0
+    ) {
+      this.apiService
+        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
+        .subscribe(
+          (data) => {
+            // Handle the API response here
+            console.log("remove optipn API response:", data);
+            this.mappedReports = data.researchMasterList;
+            this.mappedReports = this.mappedReports.map((report: any) => {
+              return {
+                ...report,
+                publishDate: this.epochToDate(report.publishDate),
+              };
+            });
+            // this.totalPages = data.researchMasterList.length / this.itemsPerPage;
+            this.currentPage = data.pagination.currentPage + 1;
+            this.itemsPerPage = data.pagination.pageSize;
+            this.totalPages = data.pagination.totalPages;
+          },
+          (error) => {
+            // Handle any API errors here
+            console.error("API error:", error);
+          }
+        );
+    } else if (
+      this.selectedOptions.length <= 0 ||
+      this.searchObject.searchCriteriaList.length < 0
+    ) {
       this.loadResearchData();
     }
   }
 
   ngOnInit(): void {
     const accessToken = this.authService.getAccessToken();
-    console.log("accesstoken", accessToken);
 
     this.isLogin = accessToken !== null ? true : false;
     // Now isLogin is a boolean
-
-    console.log("is login", this.isLogin);
-    this.loadResearchData();
+    if (!this.searchText.trim()) {
+      this.loadResearchData();
+    }
 
     this.apiService.getReportType().subscribe((data: any) => {
       this.reportTypeData = data.map((item: any) => item.reportType);
@@ -505,14 +782,21 @@ export class ResearchComponent implements OnInit {
   }
 
   loadResearchData(): void {
+    this.isLoading = true;
     const apiCall = this.isSubscribed
-      ? this.apiService.getReseachListSubscribed()
-      : this.apiService.getReseachList();
+      ? this.apiService.getReseachListSubscribed(
+          this.currentPage,
+          this.itemsPerPage
+        )
+      : this.isLogin
+      ? this.apiService.getReseachListToken(this.currentPage, this.itemsPerPage)
+      : this.apiService.getReseachList(this.currentPage, this.itemsPerPage);
 
     apiCall.subscribe((data: any) => {
       this.Reports = data.researchMasterList;
       this.mappedReports = this.Reports;
-      console.table("mapped report", this.mappedReports);
+      console.table(this.mappedReports);
+      console.log(this.mappedReports[0].authors.length);
       data.researchMasterList.forEach((item: any) => {
         if (!this.authorsSet.has(item.author)) {
           this.authorsSet.add(item.author);
@@ -521,7 +805,6 @@ export class ResearchComponent implements OnInit {
           this.authorsSet.add(item.mauthor);
         }
       });
-      this.authorsArray = Array.from(this.authorsSet);
       // console.log("author array", this.authorsArray);
       this.mappedReports.sort((a, b) => a.publishDate - b.publishDate);
       this.mappedReports = this.mappedReports.map((report: any) => {
@@ -530,10 +813,12 @@ export class ResearchComponent implements OnInit {
           publishDate: this.epochToDate(report.publishDate),
         };
       });
-      console.table("mapped report change", this.mappedReports);
-
-      console.log("total pages", data.researchMasterList.length / 5);
-      this.totalPages = data.researchMasterList.length / 5;
+      console.log("mapped report in load function", this.mappedReports);
+      // this.totalPages = data.researchMasterList.length / this.itemsPerPage;
+      this.currentPage = data.pagination.currentPage + 1;
+      this.itemsPerPage = data.pagination.pageSize;
+      this.totalPages = data.pagination.totalPages;
+      this.isLoading = false;
     });
   }
 
@@ -543,14 +828,16 @@ export class ResearchComponent implements OnInit {
   }
 
   navigateToResearchSingle(research: any) {
-    // Define the navigation extras including the research object as state
     const navigationExtras: NavigationExtras = {
       state: {
         research: research,
       },
     };
-    // Navigate to research-single page with the defined navigation extras
-    this.router.navigate(["/research-single", research.id]);
+    this.router.navigate([
+      "/research-single",
+      research.id,
+      research.isSubscribed,
+    ]);
   }
 
   downloadResearch(id: any) {

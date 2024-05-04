@@ -117,6 +117,8 @@ import { ResearchComponent } from "./research/research.component";
 import { ResearchSingleComponent } from "./research-single/research-single.component";
 import { SubscriptionComponent } from "./subscription/subscription.component";
 import { EnquiryformComponent } from "./enquiryform/enquiryform.component";
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { FilterPipe } from "./filter.pipe";
 
@@ -240,6 +242,8 @@ import { FilterPipe } from "./filter.pipe";
     MatPseudoCheckboxModule,
     MatCheckboxModule,
     MatButtonToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
     // RouterModule.forRoot(appRoutes)
   ],
