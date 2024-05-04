@@ -76,6 +76,7 @@ export class TopbarComponent implements OnInit {
       .subscribe((response: any) => {
         if (response && response.jwtToken) {
           localStorage.setItem("jwtToken", response.jwtToken);
+          localStorage.setItem("refreshToken", response.refreshToken);
           localStorage.setItem("fname", response.fname);
 
           this.isLoggedIn = true;

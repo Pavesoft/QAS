@@ -22,7 +22,7 @@
   height: 180px;
   background: #ffffff;
   box-shadow: 1px 1px 1px 1px #efefef;
-  left: 10px;
+  // left: 10px;
   top: 25px;
 }
 
@@ -156,8 +156,9 @@
   padding-top: 20px;
   width: 20%;
   left: 30px;
+  right: 30px;
   height: 280px;
-  top: 25px;
+  top: 35px;
 }
 
 .bt2 {
@@ -453,4 +454,13 @@ a.fa.fa-linkedin {
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
   display: none; /* Hide the overlay by default */
   z-index: 999;
+}
+.prc {
+  color: #444343;
+  font-family: "Arial Nova";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  padding-left: 7px;
 }

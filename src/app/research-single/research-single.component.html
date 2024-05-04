@@ -1,18 +1,21 @@
-<div class="container-fluid" style="margin-bottom: 70px; background-color: #F3F4F5;">
-  <div
-  id="customAlert"
-  class="alert"
-  [ngClass]="{
-    success: alertType === 'Success',
-    failed: alertType === 'Failed'
-  }"
+<div
+  class="container-fluid"
+  style="margin-bottom: 70px; background-color: #f3f4f5"
 >
-  <div class="alert-content">
-    <span class="closebtn" (click)="closeCustomAlert()">&times;</span>
-    {{ message }}
+  <div
+    id="customAlert"
+    class="alert"
+    [ngClass]="{
+      success: alertType === 'Success',
+      failed: alertType === 'Failed'
+    }"
+  >
+    <div class="alert-content">
+      <span class="closebtn" (click)="closeCustomAlert()">&times;</span>
+      {{ message }}
+    </div>
   </div>
-</div>
-  <div class="row" >
+  <div class="row justify-content-center">
     <div
       class="col-md-2 lt"
       style="
@@ -44,7 +47,7 @@
     <div
       class="col-md-7"
       style="
-        margin-left: 20px;
+        margin-left: 35px;
         margin-right: 2px !important;
         padding-top: 30px;
         padding-left: 20px;
@@ -109,9 +112,9 @@
             </div>
             <div class="col-md-3">
               <div
-                class="row"
+                class=""
                 style="margin-left: 25px"
-                *ngIf="Reports.isSubscribed"
+                *ngIf="isSubscribed === 'true'"
               >
                 <button
                   class="btn btn-success bn"
@@ -128,7 +131,7 @@
                   Read View
                 </button>
               </div>
-              <div *ngIf="!Reports.isSubscribed">
+              <div *ngIf="isSubscribed === 'false'">
                 <div class="row" style="margin-left: 25px">
                   <div class="col-md-6 im">
                     <a (click)="addToCart(Reports)" style="cursor: pointer"
@@ -154,18 +157,23 @@
           </div>
 
           <div class="row">
-            <div class="col-md-9 research-description">
-              <!-- <p class="dec">{{research.description}}</p> -->
-            </div>
-            <div class="col-md-3"></div>
-          </div>
-          <div class="row">
             <div class="col-sm-9">
-              <span>Price : </span
+              <div class="d-flex" style="margin-top: 4px">
+                <span
+                  style="
+                    color: rgba(68, 67, 67, 0.75);
+                    margin-top: 1px;
+                    font-size: 16px;
+                  "
+                  >Price:
+                </span>
+                <p class="prc">$ {{ Reports.price }}</p>
+              </div>
+              <!-- <span>Price : </span
               ><span class="prc">
                 <i class="fas fa-dollar-sign" style="color: #444343"></i>
                 {{ Reports.price }}
-              </span>
+              </span> -->
             </div>
           </div>
         </div>
@@ -180,7 +188,15 @@
           "
         >
           <div class="col-sm-12">
-            <h1>Description:</h1>
+            <p
+              style="
+                font-weight: 600;
+                font-size: 19px;
+                color: rgba(68, 67, 67, 1);
+              "
+            >
+              Read Description:
+            </p>
             <div [innerHtml]="Reports.description"></div>
           </div>
         </div>

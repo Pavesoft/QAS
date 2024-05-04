@@ -26,7 +26,7 @@ export class ResearchSingleComponent implements OnInit {
   mappedReports: any[] = [];
   authorsArray: any[] = [];
   authorsSet = new Set();
-  isSubscribed: boolean = false;
+  isSubscribed: any = "";
   isLoading: boolean = true;
   alertType = "";
   message = "";
@@ -188,31 +188,36 @@ export class ResearchSingleComponent implements OnInit {
 
   ngOnInit(): void {
     const researchId: any = this.route.snapshot.paramMap.get("id");
-    const isSubscribed: any = this.route.snapshot.paramMap.get("subscribed");
+    this.isSubscribed = this.route.snapshot.paramMap.get("subscribed");
 
-    if (isSubscribed == "true") {
-      this.isLoading = true;
-      this.apiService.getReseachListSubscribed().subscribe((data: any) => {
-        const filterData = data.researchMasterList.filter(
-          (item: any) => item.id === parseInt(researchId)
-        );
+    this.apiService.getResearchById(researchId).subscribe((data: any) => {
+      this.Reports = data.researchMaster;
+      this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
+      this.isLoading = false;
+    });
+    // if (isSubscribed == "true") {
+    //   this.isLoading = true;
+    //   this.apiService.getReseachListSubscribed().subscribe((data: any) => {
+    //     const filterData = data.researchMasterList.filter(
+    //       (item: any) => item.id === parseInt(researchId)
+    //     );
 
-        this.Reports = filterData[0];
-        this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
-        this.isLoading = false;
-      });
-    } else {
-      this.isLoading = true;
-      this.apiService.getReseachList().subscribe((data: any) => {
-        const filterData = data.researchMasterList.filter(
-          (item: any) => item.id === parseInt(researchId)
-        );
-        this.Reports = filterData[0];
-        console.log(this.Reports);
-        this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
-        this.isLoading = false;
-      });
-    }
+    //     this.Reports = filterData[0];
+    //     this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
+    //     this.isLoading = false;
+    //   });
+    // } else {
+    //   this.isLoading = true;
+    //   this.apiService.getReseachList().subscribe((data: any) => {
+    //     const filterData = data.researchMasterList.filter(
+    //       (item: any) => item.id === parseInt(researchId)
+    //     );
+    //     this.Reports = filterData[0];
+    //     console.log(this.Reports);
+    //     this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
+    //     this.isLoading = false;
+    //   });
+    // }
 
     this.apiService.getReportType().subscribe((data: any) => {
       this.reportTypeData = data.map((item: any) => item.reportType);
