@@ -127,12 +127,15 @@
   position: relative;
   left: 50px;
   border: 1px solid #00327a;
-  top: 5px;
+  top: 6px;
   border-radius: 5px;
-  padding: 3px 0px 0px 10px;
+  padding: 3px 0px 0px 16px;
   margin: 0 6px 0 0;
-  width: 45px;
+  width: 56px;
   height: 29px;
+}
+.im:hover {
+  background-color: yellow;
 }
 
 .im1 {
@@ -141,11 +144,14 @@
   border: 1px solid #00327a;
   top: 5px;
   border-radius: 5px;
-  padding: 3px 0px 0px 10px;
-  width: 45px;
+  padding: 3px 0px 0px 16px;
+  width: 56px;
   height: 29px;
 }
 
+.im1:hover {
+  background-color: yellow;
+}
 // .dec {
 //     color: #444343;
 //     text-align: justify;
