@@ -35,7 +35,7 @@ export class ResearchComponent implements OnInit {
   reportTypeOptions: string[] = [];
   categoryOptions: string[] = [];
   regionNameOptions: string[] = [];
-  authorOptions: string[] = [];
+  authorsOptions: string[] = [];
   searchValue: string = "";
   filteredReports: any[] = [];
   mappedReports: any[] = [];
@@ -82,8 +82,33 @@ export class ResearchComponent implements OnInit {
     console.log("date rang", this.range.value);
   }
 
-  closeDateRangePicker() {
-    this.showDateRangePicker = false;
+  ngOnInit(): void {
+    const accessToken = this.authService.getAccessToken();
+
+    this.isLogin = accessToken !== null ? true : false;
+    // Now isLogin is a boolean
+    if (!this.searchText.trim()) {
+      this.loadResearchData();
+    }
+
+    this.apiService.getReportType().subscribe((data: any) => {
+      this.reportTypeData = data.map((item: any) => item.reportType);
+    });
+
+    this.apiService.getCategories().subscribe((data: any) => {
+      this.categoryData = data.map((item: any) => item.categoryName);
+      // console.table("Report Typ", this.categoryData);
+    });
+
+    this.apiService.getAuthors().subscribe((data: any) => {
+      this.authorData = data.map((item: any) => item.name);
+      // console.table("Report Typ", this.categoryData);
+    });
+
+    this.apiService.getRegion().subscribe((data: any) => {
+      this.regionData = data.map((item: any) => item.regionName);
+      // console.table("Report Typ", this.categoryData);
+    });
   }
 
   onDateRangeChange() {
@@ -144,7 +169,7 @@ export class ResearchComponent implements OnInit {
           this.itemsPerPage = response.pagination.pageSize;
           this.totalPages = response.pagination.totalPages;
         });
-
+      this.onPageChange(1);
       this.isLoading = false;
     } else {
       this.loadResearchData();
@@ -159,6 +184,7 @@ export class ResearchComponent implements OnInit {
 
   makeApiCall(searchText: string) {
     if (searchText !== "") {
+      console.log("in if");
       this.isLoading = true;
       const requestBody = {
         filterKey: "description",
@@ -176,57 +202,18 @@ export class ResearchComponent implements OnInit {
         this.searchObject.searchCriteriaList.push(requestBody);
         this.searchObject.dataOption = "all";
       }
-      console.log(this.searchObject);
-      this.apiService
-        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
-        .subscribe((response) => {
-          let temp = response.researchMasterList;
-          temp.sort((a: any, b: any) => a.publishDate - b.publishDate);
-          this.mappedReports = temp.map((report: any) => {
-            return {
-              ...report,
-              publishDate: this.epochToDate(report.publishDate),
-            };
-          });
-          console.log(response.researchMasterList);
-          console.log(
-            "response for search",
-            response.researchMasterList.length
-          );
-          // this.totalPages =
-          //   response.researchMasterList.length / this.itemsPerPage;
-          this.currentPage = response.pagination.currentPage + 1;
-          this.itemsPerPage = response.pagination.pageSize;
-          this.totalPages = response.pagination.totalPages;
-        });
+      this.loadSearchData();
       this.onPageChange(this.currentPage);
       this.isLoading = false;
     } else if (this.searchObject.searchCriteriaList.length > 0) {
+      console.log("in else if");
       // Assuming searchObject is already defined with the provided structure
       this.searchObject.searchCriteriaList =
         this.searchObject.searchCriteriaList.filter(
           (criteria: any) => criteria.filterKey !== "description"
         );
-
-      this.apiService
-        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
-        .subscribe((response) => {
-          this.mappedReports = response.researchMasterList;
-          this.mappedReports.sort((a, b) => a.publishDate - b.publishDate);
-          this.mappedReports = this.mappedReports.map((report: any) => {
-            return {
-              ...report,
-              publishDate: this.epochToDate(report.publishDate),
-            };
-          });
-          // this.totalPages =
-          //   response.researchMasterList.length / this.itemsPerPage;
-          this.currentPage = response.pagination.currentPage + 1;
-          this.itemsPerPage = response.pagination.pageSize;
-          this.totalPages = response.pagination.totalPages;
-        });
+      this.loadSearchData();
       this.isLoading = false;
-      this.onPageChange(this.currentPage);
     } else {
       this.loadResearchData();
     }
@@ -264,7 +251,18 @@ export class ResearchComponent implements OnInit {
     return (this.currentPage = this.totalPages);
   }
   onPageChange(page: number): void {
+    console.log("on page called");
     this.currentPage = page;
+    if (this.searchObject.searchCriteriaList.length > 0) {
+      this.loadSearchData();
+    } else {
+      this.loadResearchData();
+    }
+  }
+
+  onItemsPerPageChange(itemsPerPage: number): void {
+    this.itemsPerPage = itemsPerPage;
+    this.currentPage = 1; // Reset to the first page when items per page changes
     if (this.searchObject.searchCriteriaList.length > 0) {
       this.apiService
         .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
@@ -286,12 +284,6 @@ export class ResearchComponent implements OnInit {
     } else {
       this.loadResearchData();
     }
-  }
-
-  onItemsPerPageChange(itemsPerPage: number): void {
-    this.itemsPerPage = itemsPerPage;
-    this.currentPage = 1; // Reset to the first page when items per page changes
-    this.loadResearchData();
     this.applyPagination();
   }
 
@@ -415,27 +407,27 @@ export class ResearchComponent implements OnInit {
       ...this.reportTypeOptions,
       ...this.categoryOptions,
       ...this.regionNameOptions,
-      ...this.authorOptions,
+      ...this.authorsOptions,
     ];
     this.updateMappedReports("category");
   }
 
   onAuthorClick(option: string) {
-    if (!this.authorOptions.includes(option)) {
-      this.authorOptions.push(option);
+    if (!this.authorsOptions.includes(option)) {
+      this.authorsOptions.push(option);
     } else {
-      const index = this.authorOptions.indexOf(option);
+      const index = this.authorsOptions.indexOf(option);
       if (index !== -1) {
-        this.authorOptions.splice(index, 1);
+        this.authorsOptions.splice(index, 1);
       }
     }
     this.selectedOptions = [
       ...this.reportTypeOptions,
       ...this.categoryOptions,
       ...this.regionNameOptions,
-      ...this.authorOptions,
+      ...this.authorsOptions,
     ];
-    this.updateMappedReports("author");
+    this.updateMappedReports("authors");
   }
 
   onReportCheck(event: any, option: string) {
@@ -451,7 +443,7 @@ export class ResearchComponent implements OnInit {
       ...this.reportTypeOptions,
       ...this.categoryOptions,
       ...this.regionNameOptions,
-      ...this.authorOptions,
+      ...this.authorsOptions,
     ];
     this.updateMappedReports("reportType");
   }
@@ -469,7 +461,7 @@ export class ResearchComponent implements OnInit {
       ...this.reportTypeOptions,
       ...this.categoryOptions,
       ...this.regionNameOptions,
-      ...this.authorOptions,
+      ...this.authorsOptions,
     ];
     this.updateMappedReports("category");
   }
@@ -487,27 +479,27 @@ export class ResearchComponent implements OnInit {
       ...this.reportTypeOptions,
       ...this.categoryOptions,
       ...this.regionNameOptions,
-      ...this.authorOptions,
+      ...this.authorsOptions,
     ];
     this.updateMappedReports("regionName");
   }
 
   onAnalystCheck(event: any, option: string) {
     if (event.target && event.target.checked) {
-      this.authorOptions.push(option);
+      this.authorsOptions.push(option);
     } else {
-      const index = this.authorOptions.indexOf(option);
+      const index = this.authorsOptions.indexOf(option);
       if (index !== -1) {
-        this.authorOptions.splice(index, 1);
+        this.authorsOptions.splice(index, 1);
       }
     }
     this.selectedOptions = [
       ...this.reportTypeOptions,
       ...this.categoryOptions,
       ...this.regionNameOptions,
-      ...this.authorOptions,
+      ...this.authorsOptions,
     ];
-    this.updateMappedReports("author");
+    this.updateMappedReports("authors");
   }
 
   updateMappedReports(type: string) {
@@ -531,7 +523,7 @@ export class ResearchComponent implements OnInit {
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
     } else if (type === "author") {
       const filteredReports = this.mappedReports.filter((report) =>
-        this.authorOptions.includes(report.author)
+        this.authorsOptions.includes(report.author)
       );
       this.mappedReports =
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
@@ -597,79 +589,13 @@ export class ResearchComponent implements OnInit {
           }
         );
       this.isLoading = false;
+      this.onPageChange(1);
     } else if (
       this.selectedOptions.length <= 0 ||
       this.searchObject.searchCriteriaList.length < 0
     ) {
       this.loadResearchData();
     }
-  }
-
-  getFirstParagraph(htmlContent: string): string {
-    if (/<[a-z][\s\S]*>/i.test(htmlContent)) {
-      const parser = new DOMParser();
-      const parsedHtml: any = parser.parseFromString(htmlContent, "text/html");
-      const paragraphs: any = Array.from(parsedHtml.querySelectorAll("p"));
-
-      // Find the first non-empty paragraph
-      const nonEmptyParagraph: any = paragraphs.find(
-        (p: any) => p.textContent.trim() !== ""
-      );
-
-      let firstParagraph = nonEmptyParagraph
-        ? nonEmptyParagraph.textContent.trim()
-        : parsedHtml.querySelector("body").textContent.trim();
-      firstParagraph = this.removeQuotesAtStartAndEnd(firstParagraph);
-
-      let first100 = this.getFirst100Words(firstParagraph);
-
-      first100 = this.removeQuotesAtStartAndEnd(first100);
-
-      return first100 ? `${first100}...` : "";
-    } else {
-      // If htmlContent is empty or doesn't contain HTML tags, return the first 100 words directly
-      console.log("if no html or empty", this.getFirst100Words(htmlContent));
-      return this.getFirst100Words(htmlContent);
-    }
-  }
-
-  removeQuotesAtStartAndEnd(content: string): string {
-    if (content.startsWith('"') && content.endsWith('"')) {
-      return content.slice(1, -1);
-    }
-    return content;
-  }
-
-  getFirst100Words(paragraph: string): string {
-    const words = paragraph.split(/\s+/); // Split the paragraph into words using whitespace as delimiter
-    const first100 = words.slice(0, 40).join(" "); // Take the first 100 words and join them back with spaces
-    return `${first100}`;
-  }
-
-  private getUrlFriendlyString(input: string): string {
-    // Replace special characters with dashes and convert to lowercase
-    return input
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, "")
-      .replace(/[\s_-]+/g, "-");
-  }
-
-  showCustomAlert(): void {
-    this.showOverlay = true;
-    setTimeout(() => {
-      const customAlert = document.getElementById("customAlert");
-      if (customAlert) {
-        customAlert.style.display = "block";
-      }
-    }, 100);
-  }
-
-  closeCustomAlert(): void {
-    const customAlert = document.getElementById("customAlert");
-    if (customAlert) {
-      customAlert.style.display = "none";
-    }
-    this.showOverlay = false;
   }
 
   removeOption(index: number) {
@@ -689,9 +615,9 @@ export class ResearchComponent implements OnInit {
       const regionIndex = this.regionNameOptions.indexOf(removedOption);
       this.regionNameOptions.splice(regionIndex, 1);
     }
-    if (this.authorOptions.includes(removedOption)) {
-      const analystIndex = this.authorOptions.indexOf(removedOption);
-      this.authorOptions.splice(analystIndex, 1);
+    if (this.authorsOptions.includes(removedOption)) {
+      const analystIndex = this.authorsOptions.indexOf(removedOption);
+      this.authorsOptions.splice(analystIndex, 1);
     }
 
     //Logic to remove the value from the object
@@ -744,41 +670,14 @@ export class ResearchComponent implements OnInit {
             console.error("API error:", error);
           }
         );
+      this.onPageChange(1);
     } else if (
       this.selectedOptions.length <= 0 ||
       this.searchObject.searchCriteriaList.length < 0
     ) {
       this.loadResearchData();
+      this.onPageChange(1);
     }
-  }
-
-  ngOnInit(): void {
-    const accessToken = this.authService.getAccessToken();
-
-    this.isLogin = accessToken !== null ? true : false;
-    // Now isLogin is a boolean
-    if (!this.searchText.trim()) {
-      this.loadResearchData();
-    }
-
-    this.apiService.getReportType().subscribe((data: any) => {
-      this.reportTypeData = data.map((item: any) => item.reportType);
-    });
-
-    this.apiService.getCategories().subscribe((data: any) => {
-      this.categoryData = data.map((item: any) => item.categoryName);
-      // console.table("Report Typ", this.categoryData);
-    });
-
-    this.apiService.getAuthors().subscribe((data: any) => {
-      this.authorData = data.map((item: any) => item.name);
-      // console.table("Report Typ", this.categoryData);
-    });
-
-    this.apiService.getRegion().subscribe((data: any) => {
-      this.regionData = data.map((item: any) => item.regionName);
-      // console.table("Report Typ", this.categoryData);
-    });
   }
 
   loadResearchData(): void {
@@ -820,6 +719,100 @@ export class ResearchComponent implements OnInit {
       this.totalPages = data.pagination.totalPages;
       this.isLoading = false;
     });
+  }
+
+  loadSearchData(): void {
+    this.apiService
+      .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
+      .subscribe((response) => {
+        this.mappedReports = response.researchMasterList;
+        this.mappedReports.sort(
+          (a: any, b: any) => a.publishDate - b.publishDate
+        );
+        this.mappedReports = this.mappedReports.map((report: any) => {
+          return {
+            ...report,
+            publishDate: this.epochToDate(report.publishDate),
+          };
+        });
+        console.log(this.mappedReports);
+
+        // this.totalPages =
+        //   response.researchMasterList.length / this.itemsPerPage;
+        this.currentPage = response.pagination.currentPage + 1;
+        this.itemsPerPage = response.pagination.pageSize;
+        this.totalPages = response.pagination.totalPages;
+      });
+  }
+  getFirstParagraph(htmlContent: string): string {
+    if (/<[a-z][\s\S]*>/i.test(htmlContent)) {
+      const parser = new DOMParser();
+      const parsedHtml: any = parser.parseFromString(htmlContent, "text/html");
+      const paragraphs: any = Array.from(parsedHtml.querySelectorAll("p"));
+
+      // Find the first non-empty paragraph
+      const nonEmptyParagraph: any = paragraphs.find(
+        (p: any) => p.textContent.trim() !== ""
+      );
+
+      let firstParagraph = nonEmptyParagraph
+        ? nonEmptyParagraph.textContent.trim()
+        : parsedHtml.querySelector("body").textContent.trim();
+      firstParagraph = this.removeQuotesAtStartAndEnd(firstParagraph);
+
+      let first100 = this.getFirst100Words(firstParagraph);
+
+      first100 = this.removeQuotesAtStartAndEnd(first100);
+      // Apply CSS for font size
+      parsedHtml.querySelector("body").style.fontSize = "18px";
+      paragraphs.forEach((p: any) => {
+        p.style.fontSize = "18px";
+      });
+      return first100 ? `${first100}...` : "";
+    } else {
+      // If htmlContent is empty or doesn't contain HTML tags, return the first 100 words directly
+      console.log("if no html or empty", this.getFirst100Words(htmlContent));
+      return this.getFirst100Words(htmlContent);
+    }
+  }
+
+  removeQuotesAtStartAndEnd(content: string): string {
+    if (content.startsWith('"') && content.endsWith('"')) {
+      return content.slice(1, -1);
+    }
+    return content;
+  }
+
+  getFirst100Words(paragraph: string): string {
+    const words = paragraph.split(/\s+/); // Split the paragraph into words using whitespace as delimiter
+    const first100 = words.slice(0, 40).join(" "); // Take the first 100 words and join them back with spaces
+    return `${first100}`;
+  }
+
+  private getUrlFriendlyString(input: string): string {
+    // Replace special characters with dashes and convert to lowercase
+    return input
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/[\s_-]+/g, "-");
+  }
+
+  showCustomAlert(): void {
+    this.showOverlay = true;
+    setTimeout(() => {
+      const customAlert = document.getElementById("customAlert");
+      if (customAlert) {
+        customAlert.style.display = "block";
+      }
+    }, 100);
+  }
+
+  closeCustomAlert(): void {
+    const customAlert = document.getElementById("customAlert");
+    if (customAlert) {
+      customAlert.style.display = "none";
+    }
+    this.showOverlay = false;
   }
 
   toggleResearchType(isSubscribed: boolean): void {
