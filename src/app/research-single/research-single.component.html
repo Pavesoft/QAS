@@ -1,58 +1,36 @@
-<div
-  class="container-fluid"
-  style="margin-bottom: 70px; background-color: #f3f4f5"
->
-  <div
-    id="customAlert"
-    class="alert"
-    [ngClass]="{
+<div class="container-fluid" style="margin-bottom: 70px; background-color: #f3f4f5">
+  <div id="customAlert" class="alert" [ngClass]="{
       success: alertType === 'Success',
       failed: alertType === 'Failed'
-    }"
-  >
+    }">
     <div class="alert-content">
       <span class="closebtn" (click)="closeCustomAlert()">&times;</span>
       {{ message }}
     </div>
   </div>
   <div class="row justify-content-center">
-    <div
-      class="col-md-2 lt"
-      style="
+    <div class="col-md-2 lt" style="
         margin: 6px;
         background-color: white;
         /* box-shadow: 3px 3px 3px 3px #efefef; */
-      "
-    >
+      ">
       <form>
-        <input
-          class="srch"
-          type="text"
-          name="search"
-          placeholder="Search Topic"
-        /><i class="fa fa-search"></i>
+        <input class="srch" type="text" name="search" placeholder="Search Topic" /><i class="fa fa-search"></i>
       </form>
       <div>
-        <a routerLink="/talk-to-analyst" class="a1"
-          >Connect With Our Analyst <i class="bi bi-chevron-right"></i
-        ></a>
+        <a routerLink="/talk-to-analyst" class="a1">Connect With Our Analyst <i class="bi bi-chevron-right"></i></a>
         <div>
-          <a routerLink="/become-a-client" class="a2"
-            >Connect With Our Servicer Partner
-            <i class="bi bi-chevron-right"></i
-          ></a>
+          <a routerLink="/become-a-client" class="a2">Connect With Our Servicer Partner
+            <i class="bi bi-chevron-right"></i></a>
         </div>
       </div>
     </div>
-    <div
-      class="col-md-7"
-      style="
+    <div class="col-md-7" style="
         margin-left: 35px;
         margin-right: 2px !important;
         padding-top: 30px;
         padding-left: 20px;
-      "
-    >
+      ">
       <div *ngIf="isLoading">
         <br /><br /><br /><br /><br /><br /><br /><br />
         <div class="loading-spinner" style="width: 80px; height: 80px">
@@ -63,25 +41,19 @@
         <br /><br /><br /><br /><br /><br /><br /><br />
       </div>
       <div *ngIf="!isLoading">
-        <div
-          style="
+        <div style="
             padding: 25px !important;
             background-color: white;
             /* box-shadow: 3px 3px 3px 3px #efefef; */
-          "
-        >
+          ">
           <div class="row">
             <div class="col-md-12" style="padding-bottom: 5px">
               <div class="row" style="margin-bottom: 10px !important">
                 <div>
                   {{ Reports.publishDate }}
                   <span style="margin-left: 10px; font-size: 16px">|</span>
-                  <span style="margin-left: 10px; font-size: 16px"
-                    >Category :</span
-                  >
-                  <a href="" style="text-decoration: none; font-size: 16px"
-                    ><span> {{ Reports.categoryName }}</span></a
-                  >
+                  <span style="margin-left: 10px; font-size: 16px">Category :</span>
+                  <a href="" style="text-decoration: none; font-size: 16px"><span> {{ Reports.categoryName }}</span></a>
                 </div>
               </div>
               <!-- <div class="col-sm-1">|</div> -->
@@ -89,67 +61,58 @@
           </div>
           <div class="row">
             <div class="col-md-9">
-              <a
-                href="#"
-                class="research-title"
-                style="font-size: 20px; padding-bottom: 10px !important"
-                >{{ Reports.report }} </a
-              ><br />
+              <a href="#" class="research-title" style="font-size: 20px; padding-bottom: 10px !important">{{
+                Reports.report }} </a><br />
               <div style="margin-top: 6px !important">
-                <span class="research-category"
-                  >Report Type :
-                  <a href="#" style="text-decoration: none"
-                    ><span>{{ Reports.reportType }}</span></a
-                  >
+                <span class="research-category">Report Type :
+                  <a href="#" style="text-decoration: none"><span>{{ Reports.reportType }}</span></a>
                 </span>
-                <span class="research-category" style="margin-left: 14px"
-                  >Author :
-                  <a href="#" style="text-decoration: none"
-                    ><span>{{ Reports.author }} </span></a
-                  >
+                <span class="research-category" style="margin-left: 14px">Author :
+                  <a href="#" style="text-decoration: none"><span>{{ Reports.author }} </span></a>
                 </span>
               </div>
             </div>
             <div class="col-md-3">
-              <div
-                class=""
-                style="margin-left: 25px"
-                *ngIf="isSubscribed === 'true'"
-              >
-                <button
-                  class="btn btn-success bn"
-                  style="margin-bottom: 10px !important; font-size: 14px"
-                  (click)="downloadResearch(Reports.id)"
-                >
-                  Download
+              <div class="" style="margin-left: 25px" *ngIf="isSubscribed === 'true'">
+                <button class="btn btn-success bnd" style="margin-bottom: 10px !important; font-size: 14px"
+                  (click)="downloadResearch(Reports.id)">
+                  <svg viewBox="0 0 24 24" width="22" height="22" stroke="#00327a" stroke-width="2" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                    <polyline points="8 17 12 21 16 17"></polyline>
+                    <line x1="12" y1="12" x2="12" y2="20"></line>
+                    <path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"></path>
+                  </svg>
+                  <p style="padding-top: 10px; padding-left: 8px;">Download</p>
                 </button>
-                <button
-                  class="btn btn-success bn"
-                  style="margin-bottom: 5px !important; font-size: 14px"
-                  (click)="readReport(Reports.id)"
-                >
+                <button class="btn btn-success bn" style="margin-bottom: 5px !important; font-size: 14px"
+                  (click)="readReport(Reports.id)">
                   Read View
                 </button>
               </div>
               <div *ngIf="isSubscribed === 'false'">
                 <div class="row" style="margin-left: 25px">
                   <div class="col-md-6 im">
-                    <a (click)="addToCart(Reports)" style="cursor: pointer"
-                      ><img src="/assets/cart.png" style="width: 22px"
-                    /></a>
+                    <a (click)="addToCart(Reports)" style="cursor: pointer"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1673fd" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                      </svg></a>
                   </div>
                   <div class="col-md-6 im1">
-                    <a (click)="downloadForm(Reports)" style="cursor: pointer"
-                      ><img src="/assets/download.png" style="width: 22px"
-                    /></a>
+                    <a (click)="downloadForm(Reports)" style="cursor: pointer"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1673fd" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-download-cloud">
+                        <polyline points="8 17 12 21 16 17"></polyline>
+                        <line x1="12" y1="12" x2="12" y2="21"></line>
+                        <path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"></path>
+                      </svg></a>
                   </div>
                 </div>
 
-                <button
-                  class="btn btn-success bn"
-                  style="font-size: 14px; margin-top: 15px"
-                  (click)="buyNow(Reports)"
-                >
+                <button class="btn btn-success bn" style="font-size: 14px; margin-top: 15px;border: 0px;"
+                  (click)="buyNow(Reports)">
                   Buy Now
                 </button>
               </div>
@@ -159,13 +122,11 @@
           <div class="row">
             <div class="col-sm-9">
               <div class="d-flex" style="margin-top: 4px">
-                <span
-                  style="
+                <span style="
                     color: rgba(68, 67, 67, 0.75);
                     margin-top: 1px;
                     font-size: 16px;
-                  "
-                  >Price:
+                  ">Price:
                 </span>
                 <p class="prc">$ {{ Reports.price }}</p>
               </div>
@@ -178,23 +139,18 @@
           </div>
         </div>
 
-        <div
-          class="row"
-          style="
+        <div class="row" style="
             margin: 15px 1px 1px 1px;
             background-color: white;
             /* box-shadow: 3px 3px 3px 3px #efefef; */
             padding: 25px;
-          "
-        >
+          ">
           <div class="col-sm-12">
-            <p
-              style="
+            <p style="
                 font-weight: 600;
                 font-size: 19px;
                 color: rgba(68, 67, 67, 1);
-              "
-            >
+              ">
               Read Description:
             </p>
             <div [innerHtml]="Reports.description"></div>
@@ -204,47 +160,30 @@
     </div>
 
     <div class="col-md-3 rts d-flex flex-column justify-content-center">
-      <div
-        class="d-flex flex-column justify-content-center"
-        style="
+      <div class="d-flex flex-column justify-content-center" style="
           background-color: white;
           padding: 20px;
           margin-top: 50px !important;
           /* box-shadow: 3px 3px 3px 3px #efefef; */
-        "
-      >
-        <button
-          class="btn btn-success bt2"
-          style="padding: 15px"
-          (click)="downloadForm(Reports)"
-        >
+        ">
+        <button class="btn btn-success bt2" style="padding: 15px" (click)="downloadForm(Reports)">
           <img class="dic" src="/assets/download-01.png" />Download Sample
           Report
         </button>
-        <div
-          class="links"
-          style="
+        <div class="links" style="
             margin-left: 0px;
             display: flex;
             justify-content: space-between;
-          "
-        >
+          ">
           <div>
             <a href="#" class="fa fa-envelope-o"></a>
           </div>
           <div>
-            <a
-              href="https://www.linkedin.com/company/quadrant-knowledge-solutions/"
-              target="_blank"
-              class="fa fa-linkedin"
-            ></a>
+            <a href="https://www.linkedin.com/company/quadrant-knowledge-solutions/" target="_blank"
+              class="fa fa-linkedin"></a>
           </div>
           <div>
-            <a
-              href="https://twitter.com/QKS_Quadrant"
-              target="_blank"
-              class="fa fa-twitter"
-            ></a>
+            <a href="https://twitter.com/QKS_Quadrant" target="_blank" class="fa fa-twitter"></a>
           </div>
           <div>
             <a href="#" class="fa fa-facebook"></a>
@@ -257,28 +196,18 @@
         <div style="margin-left: 12px">
           <div>
             <i class="fa fa-envelope-open-o"></i>&nbsp;
-            <a
-              href="mailto:ajinkya@quadrant-solutions.com"
-              style="text-decoration: none; font-size: 16px"
-              >ajinkya@quadrant-solutions.com</a
-            >
+            <a href="mailto:ajinkya@quadrant-solutions.com"
+              style="text-decoration: none; font-size: 16px">ajinkya@quadrant-solutions.com</a>
           </div>
           <div style="margin-top: 10px !important">
             <i class="bi bi-telephone"></i>&nbsp;
-            <a
-              href="tel:(+1) 978-344-2770"
-              style="text-decoration: none; font-size: 16px; color: black"
-              >(+1) 978-344-2770</a
-            >
+            <a href="tel:(+1) 978-344-2770" style="text-decoration: none; font-size: 16px; color: black">(+1)
+              978-344-2770</a>
           </div>
         </div>
         <h4 class="qs">Need a brief overview?</h4>
-        <a
-          routerLink="/contact-us"
-          style="text-decoration: none; font-size: 20px"
-          class="cu"
-          >Contact Us<img src="/assets/arrow-right.png" style="height: 18px"
-        /></a>
+        <a routerLink="/contact-us" style="text-decoration: none; font-size: 20px" class="cu">Contact Us<img
+            src="/assets/arrow-right.png" style="height: 18px" /></a>
       </div>
     </div>
   </div>
