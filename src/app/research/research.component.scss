@@ -1,13 +1,8 @@
 .sd {
-  background: linear-gradient(
-    164.04deg,
-    rgba(76, 214, 176, 0.6) -23.66%,
-    #00327a 86.4%
-  );
-
-  // width: 325px;
+  background: linear-gradient(170deg, #4cccd6 -5%, #00327a 20%);
   padding: 35px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
 }
 
 .t1 {
@@ -15,7 +10,7 @@
   height: 29px;
   flex-shrink: 0;
   color: #fff;
-  font-family: "Arial Nova";
+
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -41,7 +36,6 @@ hr {
   height: 25.826px;
   flex-shrink: 0;
   color: #fff;
-  font-family: "Arial Nova";
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -121,7 +115,6 @@ hr {
 
 .dropdown-item {
   color: #fff;
-  font-family: "Arial Nova";
   font-size: 17px;
   font-style: normal;
   margin: 1rem 0;
@@ -153,7 +146,6 @@ button#dropdownMenuButton:active {
 
 .dr {
   color: rgba(68, 67, 67, 0.7);
-  font-family: "Arial Nova";
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -168,7 +160,6 @@ button#dropdownMenuButton:active {
 
 .sdr {
   color: #00327a;
-  font-family: "Arial Nova";
   font-size: 14px;
   font-style: normal;
   font-weight: 300;
@@ -213,7 +204,6 @@ button#dropdownMenuButton:active {
 
 .sb {
   color: rgba(68, 67, 67, 0.7);
-  font-family: "Arial Nova";
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -222,7 +212,6 @@ button#dropdownMenuButton:active {
 
 .rd {
   color: #00327a;
-  font-family: "Arial Nova";
   font-size: 14px;
   font-style: normal;
   font-weight: 300;
@@ -276,12 +265,11 @@ button#dropdownMenuButton:active {
 
 .research-price {
   font-weight: bold;
-  font-family: "Arial Nova";
 }
 
 .research-title {
   color: #00327a;
-  font-family: "Arial Nova";
+
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -294,19 +282,18 @@ button#dropdownMenuButton:active {
 .research-category {
   position: relative;
   top: 5px;
-  font-family: "Arial Nova";
+
   padding: 2px;
 }
 
 .research-description {
   margin-top: -10px;
   font-size: 16px;
-  font-family: "Arial Nova";
+  margin: 0px !important;
 }
 
 .prc {
   color: #444343;
-  font-family: "Arial Nova";
   font-size: 16px;
   font-style: normal;
   font-weight: 800;
@@ -318,7 +305,6 @@ button#dropdownMenuButton:active {
   width: 100px;
   height: 35px;
   color: #fff;
-  font-family: "Arial Nova";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -335,7 +321,6 @@ button#dropdownMenuButton:active {
   width: 100px;
   height: 35px;
   color: #fff;
-  font-family: "Arial Nova";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -349,11 +334,10 @@ button#dropdownMenuButton:active {
 }
 .bn {
   display: flex;
-  width: 100px;
-  height: 35px;
+  width: 120px;
+  height: 40px;
   color: #fff;
-  font-family: "Arial Nova";
-  font-size: 12px;
+  font-size: 17px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -362,28 +346,22 @@ button#dropdownMenuButton:active {
   border-radius: 5px;
   background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  position: relative;
-  top: 0px;
-  left: 37px;
 }
-.bnd {
+.button-download {
   display: flex;
   width: 120px;
-  height: 35px;
+  height: 40px;
   color: #00327a;
-  font-family: "Arial Nova";
-  font-size: 12px;
+  font-size: 17px;
   font-style: normal;
   font-weight: 400;
+
   line-height: normal;
   justify-content: center;
   align-items: center;
   border: 3px solid #00327a;
   border-radius: 5px;
   background-color: white !important;
-  position: relative;
-  top: 0px;
-  left: 37px;
 }
 
 .hover-effect {
@@ -396,27 +374,20 @@ button#dropdownMenuButton:active {
   /* The rgba() function allows you to set the color with alpha transparency */
 }
 .im {
-  position: relative;
-  left: 50px;
-  border: 1px solid #00327a;
-  top: 5px;
+  border: 3px solid #00327a;
   border-radius: 5px;
-  padding: 3px 0px 0px 10px;
-
-  margin: 0 6px 0 0;
-  width: 46px;
-  height: 29px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 55px;
 }
 
 .im1 {
-  position: relative;
-  left: 50px;
-  border: 1px solid #00327a;
-  top: 5px;
+  border: 3px solid #00327a;
+
   border-radius: 5px;
-  padding: 3px 0px 0px 10px;
-  width: 46px;
-  height: 29px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 55px;
 }
 
 .rm {
@@ -426,7 +397,7 @@ button#dropdownMenuButton:active {
   justify-content: center;
   align-items: center;
   color: #0972ea;
-  font-family: "Arial Nova";
+
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -439,7 +410,7 @@ button#dropdownMenuButton:active {
 .dec {
   color: #444343;
   text-align: justify;
-  font-family: "Arial Nova";
+
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -458,7 +429,6 @@ button#dropdownMenuButton:active {
   padding: 6px;
   font-size: 14px;
   color: #00327a;
-  font-family: "Arial Nova";
 }
 input[type="radio"] {
   height: 10px;
@@ -476,7 +446,7 @@ input[type="radio"] {
 .page-link {
   border: none !important;
   font-size: 12px !important;
-  font-family: "Arial Nova";
+
   color: #444343 !important;
 }
 

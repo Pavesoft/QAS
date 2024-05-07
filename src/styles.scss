@@ -1,30 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 // @import "primeng/resources/themes/lara-light-blue/theme.css";
 // @import "primeng/resources/primeng.css";
-
+@use "@angular/material" as mat;
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
-// @import '~@angular/material/theming';
-// @include mat-core();
+@import "@angular/material/theming";
+@include mat-core();
 
-@font-face{
-    font-family: "Arial Nova";
-    src:url(assets/fonts/ArialNova_0.ttf);
-
+@font-face {
+  font-family: "Arial Nova";
+  src: url(assets/fonts/ArialNova_0.ttf);
 }
 
-@font-face{
-    font-family: "Arial Nova Bold";
-   
-    src:url(assets/fonts/ArialNova-Bold_0.ttf);
-
+@font-face {
+  font-family: "Arial Nova Bold";
+  src: url(assets/fonts/ArialNova-Bold_0.ttf);
 }
+
+$custom-typography: mat.define-typography-config(
+  $font-family: "Arial Nova",
+);
+
+@include mat-base-typography($custom-typography);
 
 body {
-    font-family: var(--font-family);
+  font-family: var(--font-family);
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Arial Nova", "Helvetica Neue", sans-serif;
+}
