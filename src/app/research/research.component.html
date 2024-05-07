@@ -237,7 +237,7 @@
           </button>
         </div> -->
       </div>
-      <div class="col-md-9" style="padding-right: 70px">
+      <div class="col-md-9" style="padding-right: 70px; padding-left: 50px">
         <div class="container-fluid">
           <div
             class="row"
@@ -347,7 +347,12 @@
                   />
                   <label
                     for="allResearch"
-                    style="cursor: pointer; color: #00327a; font-size: 16px"
+                    style="
+                      cursor: pointer;
+                      color: #00327a;
+                      font-size: 16px;
+                      font-family: Arial Nova;
+                    "
                     >All Research</label
                   >
                 </span>
@@ -361,7 +366,12 @@
                   />
                   <label
                     for="subscribedResearch"
-                    style="cursor: pointer; color: #00327a; font-size: 16px"
+                    style="
+                      cursor: pointer;
+                      color: #00327a;
+                      font-size: 16px;
+                      font-family: Arial Nova;
+                    "
                     >Subscribed Research</label
                   >
                 </span>
@@ -421,11 +431,12 @@
           </div>
           <div *ngIf="!isLoading">
             <div *ngIf="mappedReports.length > 0">
-              <div
-                class="research-item hover-effect"
-                *ngFor="let research of mappedReports"
-              >
-                <div class="row p-2" [id]="research.id">
+              <div class="research-item" *ngFor="let research of mappedReports">
+                <div
+                  class="row p-2"
+                  [id]="research.id"
+                  style="margin-top: 10px"
+                >
                   <div class="col-md-9">
                     <div class="d-flex">
                       <!-- <span>Date :</span> -->
@@ -459,7 +470,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="" style="margin-top: 10px">
+                    <div class="" style="margin-top: 14px">
                       <a
                         routerLink="/research-single"
                         class="research-title"
@@ -468,7 +479,7 @@
                         {{ research.report }}
                       </a>
                       <br />
-                      <div style="margin: 0.5rem 0; display: flex">
+                      <div style="margin-top: 14px; display: flex">
                         <p class="textcommon-fontsize">Authors:</p>
                         <div *ngIf="research.authors.length == 0">
                           <p
@@ -484,7 +495,7 @@
                           </p>
                         </div>
                         <div
-                          class="d-flex"
+                          class="d-flex textcommon-fontsize"
                           *ngIf="research.authors.length != 0"
                         >
                           <div *ngFor="let author of research.authors">
@@ -513,36 +524,23 @@
 
                     <div class="research-description">
                       <p
-                        style="font-size: 16px"
+                        style="font-size: 16px; margin: 0px !important"
                         [innerHtml]="getFirstParagraph(research.description)"
                       ></p>
-                      <div class="d-flex" style="margin-top: 6px">
-                        <span
-                          class="textcommon-fontsize"
-                          style="
-                            color: #212529;
-                            margin-top: 1px;
-                            font-size: 16px;
-                          "
-                          >Price:
-                        </span>
-                        <p class="prc">$ {{ formatPrice(research.price) }}</p>
-                      </div>
                     </div>
                   </div>
-                  <div class="col-md-3">
+                  <div
+                    class="col-md-3 d-flex align-items-center justify-content-center"
+                  >
                     <!-- if the report if not subscribed -->
                     <div
-                      class="col-md-12 d-flex align-items-center"
+                      class="col-md-12 d-flex align-items-center justify-content-center"
                       *ngIf="research.isSubscribed === false"
                     >
                       <div *ngIf="research.isSubscribed === false">
                         <div
-                          class="row"
-                          style="
-                            margin-bottom: 15px !important;
-                            margin-top: 40px;
-                          "
+                          class="row d-flex align-items-center justify-content-center"
+                          style="gap: 10px"
                         >
                           <div class="col-md-6 im">
                             <a
@@ -560,34 +558,12 @@
                           </div>
                         </div>
                         <button
-                          class="btn btn-success bn"
-                          style="font-size: 14px; border: 0px"
+                          class="bn"
+                          style="font-size: 17px; border: 0px; margin-top: 14px"
                           (click)="buyNow(research)"
                         >
                           Buy Now
                         </button>
-                        <div style="margin-left: 2.6rem; margin-top: 10px">
-                          <a
-                            href="/research-single"
-                            routerLink="/research-single"
-                            (click)="navigateToResearchSingle(research)"
-                            style="text-decoration: none"
-                            >Read More<svg
-                              viewBox="0 0 24 24"
-                              width="24"
-                              height="24"
-                              stroke="#1673fd"
-                              stroke-width="2"
-                              fill="none"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="css-i6dzq1"
-                            >
-                              <line x1="5" y1="12" x2="19" y2="12"></line>
-                              <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                          </a>
-                        </div>
                       </div>
                     </div>
                     <!-- If the report is subscribed -->
@@ -597,15 +573,18 @@
                     >
                       <div style="margin-top: 40px">
                         <button
-                          class="btn bnd"
+                          class="btn button-download"
                           style="
                             margin-bottom: 15px !important;
                             font-size: 17px;
                           "
                           (click)="downloadResearch(research.id)"
                         >
-                          <img src="../../assets/download.svg" />
-                          <p>Download</p>
+                          <img
+                            style="height: 20px; width: 20px"
+                            src="../../assets/download.svg"
+                          />
+                          <p style="margin: 0px; padding-left: 4px">Download</p>
                         </button>
                         <button
                           class="btn btn-success bn"
@@ -619,32 +598,39 @@
                         >
                           Read View
                         </button>
-                        <div style="margin-left: 3.3rem; margin-top: 10px">
-                          <a
-                            href="/research-single"
-                            routerLink="/research-single"
-                            (click)="navigateToResearchSingle(research)"
-                            style="text-decoration: none"
-                            >Read More<svg
-                              viewBox="0 0 24 24"
-                              width="24"
-                              height="24"
-                              stroke="#1673fd"
-                              stroke-width="2"
-                              fill="none"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="css-i6dzq1"
-                            >
-                              <line x1="5" y1="12" x2="19" y2="12"></line>
-                              <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                          </a>
-                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <div class="d-flex" style="margin-top: 3px">
+                  <div class="d-flex col-md-9 align-items-center p-0">
+                    <span
+                      class="textcommon-fontsize"
+                      style="
+                        color: #212529;
+                        margin-top: 1px;
+                        font-size: 16px;
+                        padding-left: 8px;
+                      "
+                      >Price:
+                    </span>
+                    <span class="prc">$ {{ formatPrice(research.price) }}</span>
+                  </div>
+                  <div
+                    class="col-md-3 d-flex align-items-center justify-content-center"
+                    style=""
+                  >
+                    <a
+                      href="/research-single"
+                      routerLink="/research-single"
+                      (click)="navigateToResearchSingle(research)"
+                      class="read"
+                      >Read More
+                    </a>
+                    <img src="../../assets/arrow-right.svg" />
+                  </div>
+                </div>
+
                 <hr style="border: 1px solid #00327a33; width: 100%" />
               </div>
             </div>
