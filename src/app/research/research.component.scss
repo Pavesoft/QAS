@@ -6,6 +6,15 @@ $blue-1: #00327a;
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
 }
+.category-link {
+  text-decoration: none;
+  color: #1673fd;
+  cursor: pointer;
+}
+.category-link:hover {
+  text-decoration: underline;
+  color: #1673fd;
+}
 
 .t1 {
   width: 87px;
@@ -313,7 +322,7 @@ button#dropdownMenuButton:active {
   font-family: Arial Nova;
 }
 .read:hover {
-  font-size: 20px !important;
+  text-decoration: underline;
 
   color: #0d6efd;
 }
