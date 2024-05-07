@@ -58,14 +58,14 @@
       <div *ngIf="!isLoading">
         <div
           style="
-            padding: 25px 25px 0px 25px;
+            padding: 20px 20px 20px 20px;
             background-color: white;
             /* box-shadow: 3px 3px 3px 3px #efefef; */
           "
         >
           <div class="row">
-            <div class="col-md-9" style="padding-bottom: 5px">
-              <div class="row" style="margin-bottom: 18px !important">
+            <div class="col-md-9">
+              <div class="row">
                 <div
                   class="d-flex align-items-center"
                   style="margin-bottom: 10px"
@@ -77,11 +77,15 @@
                   <span class="textcommon-fontsize" style="margin-left: 10px"
                     >Category:</span
                   >
-                  <span style="margin-left: 4px"
-                    ><a href="" style="text-decoration: none; font-size: 16px"
-                      ><span> {{ Reports.categoryName }}</span></a
-                    ></span
-                  >
+                  <div *ngFor="let category of Reports.categoryList">
+                    <a class="category-link">
+                      <span
+                        style="margin-left: 5px; color: #0d6efd"
+                        class="textcommon-fontsize"
+                        >{{ category }}</span
+                      >
+                    </a>
+                  </div>
                 </div>
                 <div class="col-md-12">
                   <a
@@ -93,15 +97,22 @@
                   <div style="margin-top: 6px !important">
                     <span class="research-category"
                       >Report Type :
-                      <a href="#" style="text-decoration: none"
-                        ><span>{{ Reports.reportType }}</span></a
+                      <a style="text-decoration: none"
+                        ><span style="color: #0972ea">{{
+                          Reports.reportType
+                        }}</span></a
                       >
                     </span>
                     <span class="research-category" style="margin-left: 14px"
-                      >Author :
-                      <a href="#" style="text-decoration: none"
-                        ><span>{{ Reports.author }} </span></a
+                      >Authors :
+                      <a
+                        class="item-link"
+                        *ngFor="let author of Reports.authors"
                       >
+                        <span style="margin: 0 5px; color: #0972ea">
+                          {{ author }}
+                        </span>
+                      </a>
                     </span>
                   </div>
                   <div
@@ -133,7 +144,11 @@
                 </button>
                 <button
                   class="btn btn-success bn"
-                  style="margin-bottom: 5px !important; font-size: 14px: border: 0px !important;"
+                  style="
+                    margin-bottom: 5px !important;
+                    font-size: 14px;
+                    border: 0px !important;
+                  "
                   (click)="readReport(Reports.id)"
                 >
                   Read View
@@ -143,7 +158,9 @@
                 *ngIf="isSubscribed === 'false'"
                 class="row d-flex justify-content-center align-items-center"
               >
-                <div class="row">
+                <div
+                  class="row d-flex justify-content-center align-items-center"
+                >
                   <div class="col-md-6 im">
                     <a (click)="addToCart(Reports)" style="cursor: pointer"
                       ><img src="../../assets//cart.svg" />
@@ -155,7 +172,9 @@
                     </a>
                   </div>
                 </div>
-                <div>
+                <div
+                  class="row d-flex justify-content-center align-items-center"
+                >
                   <button
                     class="btn btn-success bn"
                     style="font-size: 14px; margin-top: 15px; border: 0px"
@@ -196,12 +215,9 @@
                 color: rgba(68, 67, 67, 1);
               "
             >
-              Read Description:
+              Description:
             </p>
-            <div
-              style="font-size: 16px"
-              [innerHtml]="Reports.description"
-            ></div>
+            <p style="font-size: 16px" [innerHtml]="Reports.description"></p>
           </div>
         </div>
       </div>
