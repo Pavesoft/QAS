@@ -248,19 +248,21 @@
       <h3 style="margin-left: 15px !important">Welcome Back !</h3>
       <div class="modal-body">
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-          <div class="d-flex mb-3">
-            <img
-              style="height: 30px"
-              src="../../../assets//Form-Component2.png"
-            />
-            <input
-              type="email"
-              class="form-control"
-              id="inputEmail"
-              placeholder="Email"
-              formControlName="email"
-              required
-            />
+          <div class="mb-4">
+            <div class="d-flex">
+              <img
+                style="height: 42px"
+                src="../../../assets//Form-Component2.png"
+              />
+              <input
+                type="email"
+                class="form-control"
+                id="inputEmail"
+                placeholder="Email"
+                formControlName="email"
+                required
+              />
+            </div>
             <div *ngIf="loginForm.controls['email'].errors">
               <!-- <small class="text-danger" *ngIf="loginForm.controls['email'].errors['required']">Email is
                 required.</small> -->
@@ -271,19 +273,21 @@
               >
             </div>
           </div>
-          <div class="d-flex mb-3">
-            <img
-              style="height: 30px"
-              src="../../../assets//Password-icon.png"
-            />
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
-              formControlName="password"
-              required
-            />
+          <div class="mb-3">
+            <div class="d-flex">
+              <img
+                style="height: 42px"
+                src="../../../assets//Password-icon.png"
+              />
+              <input
+                type="password"
+                class="form-control"
+                id="exampleInputPassword1"
+                placeholder="Password"
+                formControlName="password"
+                required
+              />
+            </div>
             <div *ngIf="loginForm.controls['password'].errors">
               <!-- <small class="text-danger" *ngIf="loginForm.controls['password'].errors['required']">Password is
                 required.</small> -->
@@ -310,6 +314,7 @@
               margin-top: 25px !important;
               margin-bottom: 25px !important;
               border: 0px;
+              font-size: 17px !important;
             "
           >
             Submit
