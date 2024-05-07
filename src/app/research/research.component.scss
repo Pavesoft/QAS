@@ -474,8 +474,10 @@ input[type="radio"] {
 }
 
 .page-link {
+  width: 40px;
+  height: 40px;
   border: none !important;
-  font-size: 12px !important;
+  font-size: 18px !important;
   font-family: "Arial Nova";
   color: #444343 !important;
 }
@@ -523,4 +525,7 @@ input[type="radio"] {
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: #d2f5eb !important;
+}
+.mdc-text-field {
+  background-color: red;
 }

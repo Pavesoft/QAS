@@ -39,7 +39,7 @@
                 *ngFor="let option of reportTypeOptions; let last = last"
               >
                 <p style="margin: 0 3px">
-                  {{ option }}{{ reportTypeOptions.length > 1 ? ", " : " " }}
+                  {{ option }}{{ !last ? ", " : " " }}
                 </p>
                 <!-- <span *ngIf="!last">,</span> -->
               </ng-container>
@@ -92,7 +92,7 @@
                 *ngFor="let option of categoryOptions; let last = last"
               >
                 <p style="margin: 0 3px">
-                  {{ option }}{{ categoryOptions.length > 1 ? ", " : " " }}
+                  {{ option }}{{ !last ? ", " : " " }}
                 </p>
                 <!-- <span *ngIf="!last">,</span> -->
               </ng-container>
@@ -146,7 +146,7 @@
                 *ngFor="let option of regionNameOptions; let last = last"
               >
                 <p style="margin: 0 3px">
-                  {{ option }}{{ regionNameOptions.length > 1 ? ", " : " " }}
+                  {{ option }}{{ !last ? ", " : " " }}
                 </p>
               </ng-container>
             </ng-container>
@@ -195,7 +195,7 @@
                 *ngFor="let option of authorsOptions; let last = last"
               >
                 <p style="margin: 0 3px">
-                  {{ option }}{{ authorsOptions.length > 1 ? ", " : " " }}
+                  {{ option }}{{ !last ? ", " : " " }}
                 </p>
                 <!-- <span *ngIf="!last">,</span> -->
               </ng-container>
@@ -267,7 +267,7 @@
                 style="font-size: 16px !important; margin-top: -12px"
                 >Date Range</span
               >
-              <mat-form-field appearance="fill">
+              <mat-form-field appearance="fill" class="custome-date-picker">
                 <mat-label>Enter a date range</mat-label>
                 <mat-date-range-input
                   [formGroup]="range"
@@ -285,7 +285,11 @@
                     (dateChange)="onDateRangeChange()"
                   />
                 </mat-date-range-input>
-                <button style="border : 0px; padding: 0;" matSuffix (click)="clearDateRange()">
+                <button
+                  style="border: 0px; padding: 0"
+                  matSuffix
+                  (click)="clearDateRange()"
+                >
                   <mat-icon>close</mat-icon>
                 </button>
                 <mat-datepicker-toggle
@@ -381,7 +385,16 @@
               </div>
             </div>
             <div class="col-md-3 d-flex justify-content-end align-items-center">
-              <label style="margin: 0px 7px 0px 0px">Item Per Page : </label>
+              <label style="margin: 0px 7px 0px 0px">Items Per Page : </label>
+              <!-- <mat-form-field appearance="fill">
+                <mat-label>Items Per Page</mat-label>
+                <mat-select (change)="onItemsPerPageChange($event)">
+                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{ food.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field> -->
+
               <select
                 style="width: 4rem"
                 class="form-control"
@@ -513,7 +526,7 @@
                           "
                           >Price:
                         </span>
-                        <p class="prc">$ {{ research.price }}</p>
+                        <p class="prc">$ {{ formatPrice(research.price) }}</p>
                       </div>
                     </div>
                   </div>
@@ -651,30 +664,8 @@
                   class="page-item d-flex"
                   [class.disabled]="currentPage === 1"
                 >
-                  <!-- <a
-                style="padding: 6px 0px"
-                class="page-link"
-                (click)="getFirstPage()"
-                aria-label="Previous"
-                [style.cursor]="currentPage !== 1 ? 'pointer' : 'default'"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="css-i6dzq1"
-                >
-                  <polyline points="11 17 6 12 11 7"></polyline>
-                  <polyline points="18 17 13 12 18 7"></polyline>
-                </svg>
-              </a> -->
                   <a
-                    style="padding: 6px 0px"
+                    style="padding: 6px 10px"
                     class="page-link"
                     (click)="currentPage !== 1 && onPageChange(currentPage - 1)"
                     aria-label="Previous"
@@ -701,8 +692,12 @@
                       class="page-link"
                       (click)="onPageChange(page)"
                       [style.cursor]="'pointer'"
-                      >{{ page }}</a
-                    >
+                      [style.padding]="'8px 14px'"
+                      [style.background-color]="
+                        page === currentPage ? '#4CD6B0' : ''
+                      "
+                      >{{ page }}
+                    </a>
                   </li>
                 </ng-container>
                 <li
@@ -710,7 +705,7 @@
                   [class.disabled]="currentPage === getLastPage()"
                 >
                   <a
-                    style="padding: 6px 0px"
+                    style="padding: 6px 4px"
                     class="page-link"
                     (click)="
                       currentPage !== getLastPage() &&
@@ -735,30 +730,6 @@
                       <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
                   </a>
-                  <!-- <a
-                style="padding: 6px 0px"
-                class="page-link"
-                (click)="getLastPages()"
-                aria-label="Next"
-                [style.cursor]="
-                  currentPage !== getLastPages() ? 'pointer' : 'default'
-                "
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="css-i6dzq1"
-                >
-                  <polyline points="13 17 18 12 13 7"></polyline>
-                  <polyline points="6 17 11 12 6 7"></polyline>
-                </svg>
-              </a> -->
                 </li>
               </ul>
             </div>

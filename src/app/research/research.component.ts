@@ -71,7 +71,13 @@ export class ResearchComponent implements OnInit {
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
-
+  foods: any[] = [
+    { value: "10", viewValue: "10" },
+    { value: "25", viewValue: "25" },
+    { value: "50", viewValue: "50" },
+    { value: "75", viewValue: "75" },
+    { value: "100", viewValue: "100" },
+  ];
   constructor(
     private httpClient: HttpClient,
     private router: Router,
@@ -113,6 +119,10 @@ export class ResearchComponent implements OnInit {
   }
   clearDateRange() {
     this.range.reset(); // Resets the form controls to their initial state (null in this case)
+  }
+  formatPrice(price: number): string {
+    // Convert the number to a string and add commas every three digits from the right
+    return price.toLocaleString("en-US");
   }
   onDateRangeChange() {
     const startDate = new Date(this.range.value.start).toLocaleDateString(
@@ -260,7 +270,7 @@ export class ResearchComponent implements OnInit {
     }
   }
 
-  onItemsPerPageChange(itemsPerPage: number): void {
+  onItemsPerPageChange(itemsPerPage: any): void {
     this.itemsPerPage = itemsPerPage;
     this.currentPage = 1; // Reset to the first page when items per page changes
     if (this.searchObject.searchCriteriaList.length > 0) {
