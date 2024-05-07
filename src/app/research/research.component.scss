@@ -177,7 +177,7 @@ button#dropdownMenuButton:active {
 }
 
 .fa {
-  margin-left: 10px;
+  margin-left: -10px;
   color: $blue-1;
 }
 
@@ -278,6 +278,10 @@ button#dropdownMenuButton:active {
   line-height: normal;
   text-decoration: none;
 }
+.research-title:hover {
+  text-decoration: underline;
+}
+
 .textcommon-fontsize {
   font-size: 16px;
 }
@@ -301,6 +305,9 @@ button#dropdownMenuButton:active {
   font-weight: 800;
   line-height: normal;
   padding-left: 7px;
+}
+.read:hover {
+  text-decoration: underline #1673fd;
 }
 .readmore {
   display: flex;
@@ -364,6 +371,9 @@ button#dropdownMenuButton:active {
   border-radius: 5px;
   background-color: white !important;
 }
+.button-download:hover {
+  background-color: yellow !important;
+}
 
 .hover-effect {
   transition: all 0.3s ease-in-out; /* Smooth transition */
@@ -381,6 +391,9 @@ button#dropdownMenuButton:active {
   padding-bottom: 5px;
   width: 55px;
 }
+.im:hover {
+  background-color: yellow;
+}
 
 .im1 {
   border: 2px solid $blue-1;
@@ -388,6 +401,9 @@ button#dropdownMenuButton:active {
   padding-top: 5px;
   padding-bottom: 5px;
   width: 55px;
+}
+.im1:hover {
+  background-color: yellow;
 }
 
 .rm {

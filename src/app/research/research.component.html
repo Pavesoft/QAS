@@ -1,8 +1,12 @@
 <div>
-  <div id="customAlert" class="alert" [ngClass]="{
+  <div
+    id="customAlert"
+    class="alert"
+    [ngClass]="{
       success: alertType === 'Success',
       failed: alertType === 'Failed'
-    }">
+    }"
+  >
     <div class="alert-content">
       <span class="closebtn" (click)="closeCustomAlert()">&times;</span>
       {{ message }}
@@ -16,13 +20,24 @@
         <hr />
         <h4 class="t2">Report Type</h4>
         <div class="dropdown">
-          <div [ngClass]="{
+          <div
+            [ngClass]="{
               'btn form-select dropdown-toggle': true,
               'custom-styles': reportTypeOptions.length !== 0,
               'custom-styles2': reportTypeOptions.length === 0
-            }" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <ng-container *ngIf="reportTypeOptions.length > 0; else selectReport">
-              <ng-container *ngFor="let option of reportTypeOptions; let last = last">
+            }"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <ng-container
+              *ngIf="reportTypeOptions.length > 0; else selectReport"
+            >
+              <ng-container
+                *ngFor="let option of reportTypeOptions; let last = last"
+              >
                 <p style="margin: 0 3px">
                   {{ option }}{{ reportTypeOptions.length > 1 ? ", " : " " }}
                 </p>
@@ -31,17 +46,25 @@
             </ng-container>
             <ng-template #selectReport>Select Report</ng-template>
           </div>
-          <div class="form-selectt dropdown-menu" style="
+          <div
+            class="form-selectt dropdown-menu"
+            style="
               width: 100%;
               background: linear-gradient(
                 118deg,
                 rgba(100, 100, 100, 0.6) 30%,
                 rgba(200, 200, 200, 0.1) 109.82%
               );
-            " aria-labelledby="dropdownMenuButton">
+            "
+            aria-labelledby="dropdownMenuButton"
+          >
             <label class="dropdown-item" *ngFor="let option of reportTypeData">
-              <input type="checkbox" [value]="option" (change)="onReportCheck($event, option)"
-                [checked]="reportTypeOptions.includes(option)" />
+              <input
+                type="checkbox"
+                [value]="option"
+                (change)="onReportCheck($event, option)"
+                [checked]="reportTypeOptions.includes(option)"
+              />
               {{ option }}
             </label>
           </div>
@@ -50,13 +73,24 @@
         <hr />
         <h4 class="t2">Category</h4>
         <div class="dropdown">
-          <div [ngClass]="{
+          <div
+            [ngClass]="{
               'btn form-select dropdown-toggle': true,
               'custom-styles': categoryOptions.length !== 0,
               'custom-styles2': categoryOptions.length === 0
-            }" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <ng-container *ngIf="categoryOptions.length > 0; else selectCategory">
-              <ng-container *ngFor="let option of categoryOptions; let last = last">
+            }"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <ng-container
+              *ngIf="categoryOptions.length > 0; else selectCategory"
+            >
+              <ng-container
+                *ngFor="let option of categoryOptions; let last = last"
+              >
                 <p style="margin: 0 3px">
                   {{ option }}{{ categoryOptions.length > 1 ? ", " : " " }}
                 </p>
@@ -65,7 +99,10 @@
             </ng-container>
             <ng-template #selectCategory>Select Category</ng-template>
           </div>
-          <div class="form-selectt dropdown-menu" aria-labelledby="dropdownMenuButton" style="
+          <div
+            class="form-selectt dropdown-menu"
+            aria-labelledby="dropdownMenuButton"
+            style="
               max-height: 350px;
               overflow-y: auto;
               width: 100%;
@@ -74,10 +111,15 @@
                 rgba(100, 100, 100, 0.6) 30%,
                 rgba(200, 200, 200, 0.1) 109.82%
               );
-            ">
+            "
+          >
             <label class="dropdown-item" *ngFor="let option of categoryData">
-              <input type="checkbox" [value]="option" (change)="onCategoryCheck($event, option)"
-                [checked]="categoryOptions.includes(option)" />
+              <input
+                type="checkbox"
+                [value]="option"
+                (change)="onCategoryCheck($event, option)"
+                [checked]="categoryOptions.includes(option)"
+              />
               {{ option }}
             </label>
           </div>
@@ -85,13 +127,24 @@
         <hr />
         <h4 class="t2">Region</h4>
         <div class="dropdown">
-          <div [ngClass]="{
+          <div
+            [ngClass]="{
               'btn form-select dropdown-toggle': true,
               'custom-styles': regionNameOptions.length !== 0,
               'custom-styles2': regionNameOptions.length === 0
-            }" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <ng-container *ngIf="regionNameOptions.length > 0; else selectRegion">
-              <ng-container *ngFor="let option of regionNameOptions; let last = last">
+            }"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <ng-container
+              *ngIf="regionNameOptions.length > 0; else selectRegion"
+            >
+              <ng-container
+                *ngFor="let option of regionNameOptions; let last = last"
+              >
                 <p style="margin: 0 3px">
                   {{ option }}{{ regionNameOptions.length > 1 ? ", " : " " }}
                 </p>
@@ -99,17 +152,25 @@
             </ng-container>
             <ng-template #selectRegion>Select Region</ng-template>
           </div>
-          <div class="form-selectt dropdown-menu" aria-labelledby="dropdownMenuButton" style="
+          <div
+            class="form-selectt dropdown-menu"
+            aria-labelledby="dropdownMenuButton"
+            style="
               width: 100%;
               background: linear-gradient(
                 118deg,
                 rgba(100, 100, 100, 0.6) 30%,
                 rgba(200, 200, 200, 0.1) 109.82%
               );
-            ">
+            "
+          >
             <label class="dropdown-item" *ngFor="let option of regionData">
-              <input type="checkbox" [value]="option" (change)="onRegionCheck($event, option)"
-                [checked]="regionNameOptions.includes(option)" />
+              <input
+                type="checkbox"
+                [value]="option"
+                (change)="onRegionCheck($event, option)"
+                [checked]="regionNameOptions.includes(option)"
+              />
               {{ option }}
             </label>
           </div>
@@ -117,13 +178,22 @@
         <hr />
         <h4 class="t2">Author</h4>
         <div class="dropdown">
-          <div [ngClass]="{
+          <div
+            [ngClass]="{
               'btn form-select dropdown-toggle': true,
               'custom-styles': authorsOptions.length !== 0,
               'custom-styles2': authorsOptions.length === 0
-            }" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            }"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
             <ng-container *ngIf="authorsOptions.length > 0; else selectAuthor">
-              <ng-container *ngFor="let option of authorsOptions; let last = last">
+              <ng-container
+                *ngFor="let option of authorsOptions; let last = last"
+              >
                 <p style="margin: 0 3px">
                   {{ option }}{{ authorsOptions.length > 1 ? ", " : " " }}
                 </p>
@@ -132,7 +202,10 @@
             </ng-container>
             <ng-template #selectAuthor>Select Author</ng-template>
           </div>
-          <div class="form-selectt dropdown-menu" aria-labelledby="dropdownMenuButton" style="
+          <div
+            class="form-selectt dropdown-menu"
+            aria-labelledby="dropdownMenuButton"
+            style="
               max-height: 350px;
               overflow-y: auto;
               width: 100%;
@@ -141,10 +214,15 @@
                 rgba(100, 100, 100, 0.6) 30%,
                 rgba(200, 200, 200, 0.1) 109.82%
               );
-            ">
+            "
+          >
             <label class="dropdown-item" *ngFor="let option of authorData">
-              <input type="checkbox" [value]="option" (change)="onAnalystCheck($event, option)"
-                [checked]="authorsOptions.includes(option)" />
+              <input
+                type="checkbox"
+                [value]="option"
+                (change)="onAnalystCheck($event, option)"
+                [checked]="authorsOptions.includes(option)"
+              />
               {{ option }}
             </label>
           </div>
@@ -161,12 +239,15 @@
       </div>
       <div class="col-md-9" style="padding-right: 70px; padding-left: 50px">
         <div class="container-fluid">
-          <div class="row" style="
+          <div
+            class="row"
+            style="
               border-bottom: 3px solid;
               color: rgba(0, 50, 122, 0.75) !important;
               width: 100%;
               opacity: 1;
-            ">
+            "
+          >
             <!-- <div
               class="col-md-6 my-4 d-flex align-items-center justify-content-start"
             >
@@ -181,21 +262,47 @@
               </div>
             </div> -->
             <div class="col-md-6 mt-3 d-flex align-items-center">
-              <span class="sb mr-2" style="font-size: 16px !important; margin-top: -12px">Date Range</span>
+              <span
+                class="sb mr-2"
+                style="font-size: 16px !important; margin-top: -12px"
+                >Date Range</span
+              >
               <mat-form-field appearance="fill">
                 <mat-label>Enter a date range</mat-label>
-                <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-                  <input matStartDate formControlName="start" placeholder="Start date" />
-                  <input matEndDate formControlName="end" placeholder="End date" (dateChange)="onDateRangeChange()" />
+                <mat-date-range-input
+                  [formGroup]="range"
+                  [rangePicker]="picker"
+                >
+                  <input
+                    matStartDate
+                    formControlName="start"
+                    placeholder="Start date"
+                  />
+                  <input
+                    matEndDate
+                    formControlName="end"
+                    placeholder="End date"
+                    (dateChange)="onDateRangeChange()"
+                  />
                 </mat-date-range-input>
-                <button style="border: 0px; padding: 0" matSuffix (click)="clearDateRange()">
+                <button
+                  style="border: 0px; padding: 0"
+                  matSuffix
+                  (click)="clearDateRange()"
+                >
                   <mat-icon>close</mat-icon>
                 </button>
-                <mat-datepicker-toggle (click)="onIconClick()" matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker-toggle
+                  (click)="onIconClick()"
+                  matIconSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
                 <mat-date-range-picker #picker></mat-date-range-picker>
               </mat-form-field>
             </div>
-            <div class="col-md-6 my-4 d-flex align-items-center justify-content-end">
+            <div
+              class="col-md-6 my-4 d-flex align-items-center justify-content-end"
+            >
               <span class="sb" style="font-size: 16px !important">Sort By</span>
               <span class="rd" style="font-size: 16px !important">
                 Release Date <a href="#"><i class="fas fa-angle-down"></i></a>
@@ -205,12 +312,20 @@
 
           <!-- <hr class="linebt" /> -->
           <div class="row d-flex my-2">
-            <div class="col-md-6 d-flex align-items-center justify-content-start">
+            <div
+              class="col-md-6 d-flex align-items-center justify-content-start"
+            >
               <form>
                 <div class="d-flex align-items-center">
                   <div>
-                    <input class="srch" type="text" name="search" placeholder="Search Topic" [(ngModel)]="searchText"
-                      (input)="onSearchChange($event)" />
+                    <input
+                      class="srch"
+                      type="text"
+                      name="search"
+                      placeholder="Search Topic"
+                      [(ngModel)]="searchText"
+                      (input)="onSearchChange($event)"
+                    />
                   </div>
                   <div>
                     <i class="fa fa-search"></i>
@@ -218,21 +333,47 @@
                 </div>
               </form>
             </div>
-            <div class="col-sm-6 plt d-flex align-items-center justify-content-end">
+            <div
+              class="col-sm-6 plt d-flex align-items-center justify-content-end"
+            >
               <div *ngIf="isLogin">
                 <span>
-                  <input type="radio" name="radio" (change)="toggleResearchType(false)" id="allResearch"
-                    [checked]="!isSubscribed" />
-                  <label for="allResearch"
-                    style="cursor: pointer; color: #00327a; font-size: 16px;font-family: Arial Nova;">All
-                    Research</label>
+                  <input
+                    type="radio"
+                    name="radio"
+                    (change)="toggleResearchType(false)"
+                    id="allResearch"
+                    [checked]="!isSubscribed"
+                  />
+                  <label
+                    for="allResearch"
+                    style="
+                      cursor: pointer;
+                      color: #00327a;
+                      font-size: 16px;
+                      font-family: Arial Nova;
+                    "
+                    >All Research</label
+                  >
                 </span>
                 <span>
-                  <input type="radio" name="radio" (change)="toggleResearchType(true)" id="subscribedResearch"
-                    [checked]="isSubscribed" />
-                  <label for="subscribedResearch"
-                    style="cursor: pointer; color: #00327a; font-size: 16px;font-family: Arial Nova;">Subscribed
-                    Research</label>
+                  <input
+                    type="radio"
+                    name="radio"
+                    (change)="toggleResearchType(true)"
+                    id="subscribedResearch"
+                    [checked]="isSubscribed"
+                  />
+                  <label
+                    for="subscribedResearch"
+                    style="
+                      cursor: pointer;
+                      color: #00327a;
+                      font-size: 16px;
+                      font-family: Arial Nova;
+                    "
+                    >Subscribed Research</label
+                  >
                 </span>
               </div>
             </div>
@@ -241,17 +382,26 @@
             <div class="col-md-9">
               <div *ngIf="selectedOptions.length > 0">
                 <div>
-                  <button class="selectedOptions_button" *ngFor="let option of selectedOptions; let i = index">
+                  <button
+                    class="selectedOptions_button"
+                    *ngFor="let option of selectedOptions; let i = index"
+                  >
                     {{ option }}
-                    <span style="margin-left: 7px" (click)="removeOption(i)">✖</span>
+                    <span style="margin-left: 7px" (click)="removeOption(i)"
+                      >✖</span
+                    >
                   </button>
                 </div>
               </div>
             </div>
             <div class="col-md-3 d-flex justify-content-end align-items-center">
               <label style="margin: 0px 7px 0px 0px">Item Per Page : </label>
-              <select style="width: 4rem" class="form-control" [(ngModel)]="itemsPerPage"
-                (change)="onItemsPerPageChange(itemsPerPage)">
+              <select
+                style="width: 4rem"
+                class="form-control"
+                [(ngModel)]="itemsPerPage"
+                (change)="onItemsPerPageChange(itemsPerPage)"
+              >
                 <option value="10">10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
@@ -273,56 +423,88 @@
           <div *ngIf="!isLoading">
             <div *ngIf="mappedReports.length > 0">
               <div class="research-item" *ngFor="let research of mappedReports">
-                <div class="row p-2" [id]="research.id" style="margin-top: 10px">
+                <div
+                  class="row p-2"
+                  [id]="research.id"
+                  style="margin-top: 10px"
+                >
                   <div class="col-md-9">
                     <div class="d-flex">
                       <!-- <span>Date :</span> -->
-                      <span class="textcommon-fontsize" style="margin: 0 14px 0 0px">{{ research.publishDate }}
+                      <span
+                        class="textcommon-fontsize"
+                        style="margin: 0 14px 0 0px"
+                        >{{ research.publishDate }}
                       </span>
                       <span>|</span>
                       <div class="d-flex">
-                        <span class="textcommon-fontsize" style="margin-left: 14px">Category:
+                        <span
+                          class="textcommon-fontsize"
+                          style="margin-left: 14px"
+                          >Category:
                         </span>
                         <div *ngFor="let category of research.categoryList">
-                          <a style="
+                          <a
+                            style="
                               text-decoration: none;
                               color: #1673fd;
                               cursor: pointer;
-                            " (click)="onCategoryClick(category)">
-                            <span style="margin-left: 5px" class="textcommon-fontsize">{{ category }}</span>
+                            "
+                            (click)="onCategoryClick(category)"
+                          >
+                            <span
+                              style="margin-left: 5px"
+                              class="textcommon-fontsize"
+                              >{{ category }}</span
+                            >
                           </a>
                         </div>
                       </div>
                     </div>
                     <div class="" style="margin-top: 14px">
-                      <a routerLink="/research-single" class="research-title"
-                        (click)="navigateToResearchSingle(research)">{{ research.reportType }} :
+                      <a
+                        routerLink="/research-single"
+                        class="research-title"
+                        (click)="navigateToResearchSingle(research)"
+                        >{{ research.reportType }} :
                         {{ research.report }}
                       </a>
                       <br />
                       <div style="margin-top: 14px; display: flex">
                         <p class="textcommon-fontsize">Authors:</p>
                         <div *ngIf="research.authors.length == 0">
-                          <p class="textcommon-fontsize" style="
+                          <p
+                            class="textcommon-fontsize"
+                            style="
                               margin-left: 4px;
                               color: #1673fd;
                               cursor: pointer;
-                            " (click)="onAuthorClick('NA')">
+                            "
+                            (click)="onAuthorClick('NA')"
+                          >
                             NA
                           </p>
                         </div>
-                        <div class="d-flex textcommon-fontsize" *ngIf="research.authors.length != 0">
+                        <div
+                          class="d-flex textcommon-fontsize"
+                          *ngIf="research.authors.length != 0"
+                        >
                           <div *ngFor="let author of research.authors">
-                            <a style="
+                            <a
+                              style="
                                 text-decoration: none;
                                 color: #1673fd;
                                 cursor: pointer;
-                              ">
-                              <span style="
+                              "
+                            >
+                              <span
+                                style="
                                   color: #0d6efd;
                                   cursor: pointer;
                                   margin: 0 5px;
-                                " (click)="onAuthorClick(author)">
+                                "
+                                (click)="onAuthorClick(author)"
+                              >
                                 {{ author }}
                               </span>
                             </a>
@@ -332,89 +514,137 @@
                     </div>
 
                     <div class="research-description">
-                      <p style="font-size: 16px;margin: 0px !important;"
-                        [innerHtml]="getFirstParagraph(research.description)"></p>
-
+                      <p
+                        style="font-size: 16px; margin: 0px !important"
+                        [innerHtml]="getFirstParagraph(research.description)"
+                      ></p>
                     </div>
                   </div>
-                  <div class="col-md-3 d-flex align-items-center justify-content-center ">
+                  <div
+                    class="col-md-3 d-flex align-items-center justify-content-center"
+                  >
                     <!-- if the report if not subscribed -->
-                    <div class="col-md-12 d-flex align-items-center  justify-content-center"
-                      *ngIf="research.isSubscribed === false">
+                    <div
+                      class="col-md-12 d-flex align-items-center justify-content-center"
+                      *ngIf="research.isSubscribed === false"
+                    >
                       <div *ngIf="research.isSubscribed === false">
-                        <div class="row  d-flex align-items-center  justify-content-center" style="gap:10px">
+                        <div
+                          class="row d-flex align-items-center justify-content-center"
+                          style="gap: 10px"
+                        >
                           <div class="col-md-6 im">
-                            <a (click)="addToCart(research)" style="cursor: pointer"><img
-                                src="../../assets//cart.svg" />
+                            <a
+                              (click)="addToCart(research)"
+                              style="cursor: pointer"
+                              ><img src="../../assets//cart.svg" />
                             </a>
                           </div>
                           <div class="col-md-6 im1">
-                            <a (click)="downloadForm(research)" style="cursor: pointer"><img
-                                src="../../assets/download.svg" />
+                            <a
+                              (click)="downloadForm(research)"
+                              style="cursor: pointer"
+                              ><img src="../../assets/download.svg" />
                             </a>
                           </div>
                         </div>
-                        <button class="bn" style="font-size: 17px; border: 0px;margin-top: 10px;"
-                          (click)="buyNow(research)">
+                        <button
+                          class="bn"
+                          style="font-size: 17px; border: 0px; margin-top: 14px"
+                          (click)="buyNow(research)"
+                        >
                           Buy Now
                         </button>
-
                       </div>
-
                     </div>
                     <!-- If the report is subscribed -->
-                    <div class="d-flex align-items-center" *ngIf="research.isSubscribed === true">
+                    <div
+                      class="d-flex align-items-center"
+                      *ngIf="research.isSubscribed === true"
+                    >
                       <div style="margin-top: 40px">
-                        <button class="btn button-download" style="
+                        <button
+                          class="btn button-download"
+                          style="
                             margin-bottom: 15px !important;
                             font-size: 17px;
-                          " (click)="downloadResearch(research.id)">
-                          <img style="height: 20px; width: 20px" src="../../assets/download.svg" />
-                          <p style="margin: 0px;padding-left: 4px;">Download</p>
+                          "
+                          (click)="downloadResearch(research.id)"
+                        >
+                          <img
+                            style="height: 20px; width: 20px"
+                            src="../../assets/download.svg"
+                          />
+                          <p style="margin: 0px; padding-left: 4px">Download</p>
                         </button>
-                        <button class="btn btn-success bn" style="
+                        <button
+                          class="btn btn-success bn"
+                          style="
                             margin-bottom: 15px !important;
                             font-size: 17px;
                             width: 120px;
                             border: 0px;
-                          " (click)="readReport(research.id)">
+                          "
+                          (click)="readReport(research.id)"
+                        >
                           Read View
                         </button>
-
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="d-flex" style="margin-top: 3px;">
-                  <div class="d-flex col-md-9  align-items-center p-0">
-                    <span class="textcommon-fontsize" style="
-                                            color: #212529;
-                                            margin-top: 1px;
-                                            font-size: 16px;
-                                            padding-left: 8px;
-                                          ">Price:
+                <div class="d-flex" style="margin-top: 3px">
+                  <div class="d-flex col-md-9 align-items-center p-0">
+                    <span
+                      class="textcommon-fontsize"
+                      style="
+                        color: #212529;
+                        margin-top: 1px;
+                        font-size: 16px;
+                        padding-left: 8px;
+                      "
+                      >Price:
                     </span>
                     <span class="prc">$ {{ research.price }}</span>
                   </div>
-                  <div class="col-md-3 d-flex align-items-center justify-content-center" style="">
-                    <a href="/research-single" routerLink="/research-single"
+                  <div
+                    class="col-md-3 d-flex align-items-center justify-content-center read"
+                    style=""
+                  >
+                    <a
+                      href="/research-single"
+                      routerLink="/research-single"
                       (click)="navigateToResearchSingle(research)"
-                      style="text-decoration: none;font-size: 17px;font-family: Arial Nova; ">Read
-                      More
+                      style="
+                        text-decoration: none;
+                        font-size: 17px;
+                        font-family: Arial Nova;
+                      "
+                      >Read More
                     </a>
-                    <img src="../../assets//arrow-right.svg" />
+                    <img src="../../assets/arrow-right.svg" />
                   </div>
                 </div>
 
                 <hr style="border: 1px solid #00327a33; width: 100%" />
               </div>
             </div>
-            <div *ngIf="mappedReports.length === 0" class="d-flex justify-content-center" style="height: 80vh">
+            <div
+              *ngIf="mappedReports.length === 0"
+              class="d-flex justify-content-center"
+              style="height: 80vh"
+            >
               <h1>No data</h1>
             </div>
             <div class="row" *ngIf="totalPages > 0">
-              <ul class="pagination" style="justify-content: center; align-items: center">
-                <li class="page-item d-flex" [class.disabled]="currentPage === 1">
+              <ul
+                class="pagination"
+                style="justify-content: center; align-items: center"
+              >
+                <li
+                  class="page-item d-flex"
+                  [class.disabled]="currentPage === 1"
+                >
                   <!-- <a
                 style="padding: 6px 0px"
                 class="page-link"
@@ -437,29 +667,65 @@
                   <polyline points="18 17 13 12 18 7"></polyline>
                 </svg>
               </a> -->
-                  <a style="padding: 6px 0px" class="page-link"
-                    (click)="currentPage !== 1 && onPageChange(currentPage - 1)" aria-label="Previous"
-                    [style.cursor]="currentPage !== 1 ? 'pointer' : 'default'">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
-                      stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                  <a
+                    style="padding: 6px 0px"
+                    class="page-link"
+                    (click)="currentPage !== 1 && onPageChange(currentPage - 1)"
+                    aria-label="Previous"
+                    [style.cursor]="currentPage !== 1 ? 'pointer' : 'default'"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="css-i6dzq1"
+                    >
                       <polyline points="15 18 9 12 15 6"></polyline>
                     </svg>
                   </a>
                 </li>
                 <ng-container *ngFor="let page of getVisiblePages()">
                   <li class="page-item" [class.active]="page === currentPage">
-                    <a class="page-link" (click)="onPageChange(page)" [style.cursor]="'pointer'">{{ page }}</a>
+                    <a
+                      class="page-link"
+                      (click)="onPageChange(page)"
+                      [style.cursor]="'pointer'"
+                      >{{ page }}</a
+                    >
                   </li>
                 </ng-container>
-                <li class="page-item d-flex" [class.disabled]="currentPage === getLastPage()">
-                  <a style="padding: 6px 0px" class="page-link" (click)="
+                <li
+                  class="page-item d-flex"
+                  [class.disabled]="currentPage === getLastPage()"
+                >
+                  <a
+                    style="padding: 6px 0px"
+                    class="page-link"
+                    (click)="
                       currentPage !== getLastPage() &&
                         onPageChange(currentPage + 1)
-                    " aria-label="Next" [style.cursor]="
+                    "
+                    aria-label="Next"
+                    [style.cursor]="
                       currentPage !== getLastPage() ? 'pointer' : 'default'
-                    ">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
-                      stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                    "
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="css-i6dzq1"
+                    >
                       <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
                   </a>
