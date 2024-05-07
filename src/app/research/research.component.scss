@@ -1,5 +1,7 @@
+$blue-1: #00327a;
+
 .sd {
-  background: linear-gradient(170deg, #4cccd6 -5%, #00327a 20%);
+  background: linear-gradient(170deg, #4cccd6 -5%, $blue-1 20%);
   padding: 35px;
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
@@ -159,7 +161,7 @@ button#dropdownMenuButton:active {
 }
 
 .sdr {
-  color: #00327a;
+  color: $blue-1;
   font-size: 14px;
   font-style: normal;
   font-weight: 300;
@@ -176,13 +178,13 @@ button#dropdownMenuButton:active {
 
 .fa {
   margin-left: 10px;
-  color: #00327a;
+  color: $blue-1;
 }
 
 .fas {
   font-family: "FontAwesome";
   font-weight: 700;
-  color: #00327a;
+  color: $blue-1;
   padding-left: 6px;
 }
 
@@ -211,7 +213,7 @@ button#dropdownMenuButton:active {
 }
 
 .rd {
-  color: #00327a;
+  color: $blue-1;
   font-size: 14px;
   font-style: normal;
   font-weight: 300;
@@ -230,7 +232,7 @@ button#dropdownMenuButton:active {
   width: 500px !important;
 
   border: none;
-  border-bottom: 2px solid #00327a33;
+  border-bottom: 2px solid $blue-1;
   font-size: 18px;
   background-color: white;
   background-position: 10px 10px;
@@ -241,7 +243,7 @@ button#dropdownMenuButton:active {
 }
 
 ::placeholder {
-  color: #00327a;
+  color: $blue-1;
   font-family: "Arial Nova";
   font-style: normal;
   font-weight: 300;
@@ -268,7 +270,7 @@ button#dropdownMenuButton:active {
 }
 
 .research-title {
-  color: #00327a;
+  color: $blue-1;
 
   font-size: 20px;
   font-style: normal;
@@ -344,22 +346,21 @@ button#dropdownMenuButton:active {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
+  background: linear-gradient(275deg, #4cd6b0 -6.18%, $blue-1 100%);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .button-download {
   display: flex;
   width: 120px;
   height: 40px;
-  color: #00327a;
+  color: $blue-1;
   font-size: 17px;
   font-style: normal;
   font-weight: 400;
-
   line-height: normal;
   justify-content: center;
   align-items: center;
-  border: 3px solid #00327a;
+  border: 2px solid $blue-1;
   border-radius: 5px;
   background-color: white !important;
 }
@@ -374,7 +375,7 @@ button#dropdownMenuButton:active {
   /* The rgba() function allows you to set the color with alpha transparency */
 }
 .im {
-  border: 3px solid #00327a;
+  border: 2px solid $blue-1;
   border-radius: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -382,8 +383,7 @@ button#dropdownMenuButton:active {
 }
 
 .im1 {
-  border: 3px solid #00327a;
-
+  border: 2px solid $blue-1;
   border-radius: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -428,19 +428,19 @@ button#dropdownMenuButton:active {
 .redi span {
   padding: 6px;
   font-size: 14px;
-  color: #00327a;
+  color: $blue-1;
 }
 input[type="radio"] {
   height: 10px;
-  color: #00327a;
+  color: $blue-1;
   margin: 4px;
 
   // box-shadow: 0 0 0 2px gray;
 }
 input[type="checkbox"],
 input[type="radio"] {
-  border: #00327a !important;
-  accent-color: #00327a !important;
+  border: $blue-1 !important;
+  accent-color: $blue-1 !important;
 }
 
 .page-link {
@@ -451,7 +451,7 @@ input[type="radio"] {
 }
 
 .page-link:hover {
-  color: #00327a !important;
+  color: $blue-1 !important;
   background: linear-gradient(
     176deg,
     rgba(76, 214, 176, 0.25) 39.72%,
