@@ -429,15 +429,12 @@
             </div>
             <br /><br /><br /><br /><br /><br /><br /><br />
           </div>
+          <!-- Main List of Research Items -->
           <div *ngIf="!isLoading">
             <div *ngIf="mappedReports.length > 0">
               <div class="research-item" *ngFor="let research of mappedReports">
-                <div
-                  class="row p-2"
-                  [id]="research.id"
-                  style="margin-top: 10px"
-                >
-                  <div class="col-md-9">
+                <div class="row" [id]="research.id">
+                  <div class="row col-md-9" style="row-gap: 14px">
                     <div class="d-flex">
                       <!-- <span>Date :</span> -->
                       <span
@@ -470,7 +467,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="" style="margin-top: 14px">
+                    <div class="" style="">
                       <a
                         routerLink="/research-single"
                         class="research-title"
@@ -479,46 +476,37 @@
                         {{ research.report }}
                       </a>
                       <br />
-                      <div style="margin-top: 14px; display: flex">
-                        <p class="textcommon-fontsize">Authors:</p>
-                        <div *ngIf="research.authors.length == 0">
-                          <p
-                            class="textcommon-fontsize"
-                            style="
-                              margin-left: 4px;
-                              color: #1673fd;
-                              cursor: pointer;
-                            "
-                            (click)="onAuthorClick('NA')"
-                          >
-                            NA
-                          </p>
-                        </div>
-                        <div
-                          class="d-flex textcommon-fontsize"
-                          *ngIf="research.authors.length != 0"
+                    </div>
+                    <div style="display: flex">
+                      <p class="textcommon-fontsize mb-0">Authors:</p>
+                      <div *ngIf="research.authors.length == 0">
+                        <p
+                          class="textcommon-fontsize"
+                          style="
+                            margin-left: 4px;
+                            color: #1673fd;
+                            cursor: pointer;
+                          "
+                          (click)="onAuthorClick('NA')"
                         >
-                          <div *ngFor="let author of research.authors">
-                            <a
-                              style="
-                                text-decoration: none;
-                                color: #1673fd;
-                                cursor: pointer;
-                              "
-                            >
-                              <span
-                                style="
-                                  color: #0d6efd;
-                                  cursor: pointer;
-                                  margin: 0 5px;
-                                "
-                                (click)="onAuthorClick(author)"
-                              >
-                                {{ author }}
-                              </span>
-                            </a>
-                          </div>
-                        </div>
+                          NA
+                        </p>
+                      </div>
+                      <div
+                        class="d-flex textcommon-fontsize"
+                        *ngIf="research.authors.length != 0"
+                      >
+                        <a
+                          class="item-link"
+                          *ngFor="let author of research.authors"
+                        >
+                          <span
+                            style="margin: 0 5px"
+                            (click)="onAuthorClick(author)"
+                          >
+                            {{ author }}
+                          </span>
+                        </a>
                       </div>
                     </div>
 
@@ -534,12 +522,12 @@
                   >
                     <!-- if the report if not subscribed -->
                     <div
-                      class="col-md-12 d-flex align-items-center justify-content-center"
+                      class="col-md-12 d-flex align-items-center justify-content-end"
                       *ngIf="research.isSubscribed === false"
                     >
                       <div *ngIf="research.isSubscribed === false">
                         <div
-                          class="row d-flex align-items-center justify-content-center"
+                          class="row d-flex align-items-center justify-content-end"
                           style="gap: 10px"
                         >
                           <div class="col-md-6 im">
@@ -557,13 +545,19 @@
                             </a>
                           </div>
                         </div>
-                        <button
-                          class="bn"
-                          style="font-size: 17px; border: 0px; margin-top: 14px"
-                          (click)="buyNow(research)"
-                        >
-                          Buy Now
-                        </button>
+                        <div class="row d-flex justify-content-end">
+                          <button
+                            class="bn"
+                            style="
+                              font-size: 17px;
+                              border: 0px;
+                              margin-top: 14px;
+                            "
+                            (click)="buyNow(research)"
+                          >
+                            Buy Now
+                          </button>
+                        </div>
                       </div>
                     </div>
                     <!-- If the report is subscribed -->
@@ -602,22 +596,17 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex" style="margin-top: 3px">
+                <div class="d-flex mt-3">
                   <div class="d-flex col-md-9 align-items-center p-0">
                     <span
                       class="textcommon-fontsize"
-                      style="
-                        color: #212529;
-                        margin-top: 1px;
-                        font-size: 16px;
-                        padding-left: 8px;
-                      "
+                      style="color: #212529; font-size: 16px"
                       >Price:
                     </span>
                     <span class="prc">$ {{ formatPrice(research.price) }}</span>
                   </div>
                   <div
-                    class="col-md-3 d-flex align-items-center justify-content-center"
+                    class="col-md-3 d-flex align-items-center justify-content-end"
                     style=""
                   >
                     <a
@@ -631,7 +620,10 @@
                   </div>
                 </div>
 
-                <hr style="border: 1px solid #00327a33; width: 100%" />
+                <hr
+                  class="my-4"
+                  style="border: 1px solid #dddddd; width: 100%"
+                />
               </div>
             </div>
             <div
@@ -641,6 +633,7 @@
             >
               <h1>No data</h1>
             </div>
+            <!-- Pagination Component -->
             <div class="row" *ngIf="totalPages > 0">
               <ul
                 class="pagination"
