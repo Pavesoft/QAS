@@ -306,8 +306,16 @@ button#dropdownMenuButton:active {
   line-height: normal;
   padding-left: 7px;
 }
+.read {
+  font-size: 17px;
+  text-decoration: none;
+  font-size: 17px !important;
+  font-family: Arial Nova;
+}
 .read:hover {
-  font-size: 25px;
+  font-size: 20px !important;
+
+  color: #0d6efd;
 }
 .readmore {
   display: flex;
