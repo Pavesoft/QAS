@@ -39,6 +39,7 @@ export class TokenInterceptor implements HttpInterceptor {
               });
               return next.handle(newAuthReq); // Retry the request
             }),
+
             catchError((refreshError) => {
               console.error("Failed to refresh token:", refreshError);
               return throwError(refreshError); // Return the error if refreshing fails

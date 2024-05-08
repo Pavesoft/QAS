@@ -93,7 +93,7 @@ export class TopbarComponent implements OnInit {
 
   onLogout() {
     localStorage.removeItem("jwtToken");
-    localStorage.removeItem("fname"); // Remove the JWT token
+    localStorage.removeItem("refreshToken"); // Remove the JWT token
     this.isLoggedIn = false; // Update the login status
     localStorage.setItem("isLogin", this.isLoggedIn.toString());
     window.location.reload();
