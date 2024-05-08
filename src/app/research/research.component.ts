@@ -24,6 +24,7 @@ export class ResearchComponent implements OnInit {
     "Market Outlook",
     "SPARK Matrix",
   ];
+  date: any;
   startDate: Date | undefined;
   endDate: Date | undefined;
   isLoading: Boolean = true;
@@ -63,24 +64,27 @@ export class ResearchComponent implements OnInit {
   }[] = [];
   searchText: string = "";
   debouncedSearch = debounce(this.makeApiCall, 300);
-  selectedRange: { start: any; end: any };
+  formattedDate: any = "";
   showDateRangePicker: boolean = false;
 
   range: any = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
-
+  foods: any[] = [
+    { value: "10", viewValue: "10" },
+    { value: "25", viewValue: "25" },
+    { value: "50", viewValue: "50" },
+    { value: "75", viewValue: "75" },
+    { value: "100", viewValue: "100" },
+  ];
   constructor(
     private httpClient: HttpClient,
     private router: Router,
     private apiService: ApiService,
     public authService: AuthService,
     private cartService: CartService
-  ) {
-    this.selectedRange = { start: null, end: null };
-    console.log("date rang", this.range.value);
-  }
+  ) {}
 
   ngOnInit(): void {
     const accessToken = this.authService.getAccessToken();
@@ -111,6 +115,18 @@ export class ResearchComponent implements OnInit {
     });
   }
 
+  clearDateRange() {
+    this.range.reset(); // Resets the form controls to their initial state (null in this case)
+    if (this.searchObject.searchCriteriaList.length > 0) {
+      this.loadSearchData();
+    } else {
+      this.loadResearchData();
+    }
+  }
+  formatPrice(price: number): string {
+    // Convert the number to a string and add commas every three digits from the right
+    return price.toLocaleString("en-US");
+  }
   onDateRangeChange() {
     const startDate = new Date(this.range.value.start).toLocaleDateString(
       "en-GB",
@@ -126,12 +142,12 @@ export class ResearchComponent implements OnInit {
       month: "2-digit",
       year: "numeric",
     });
-    const formattedDate = `${startDate}, ${endDate}`;
-    if (formattedDate !== "") {
+    this.formattedDate = `${startDate}, ${endDate}`;
+    if (this.formattedDate !== "") {
       this.isLoading = true;
       const requestBody = {
         filterKey: "publishDate",
-        value: formattedDate,
+        value: this.formattedDate,
         operation: "bt",
       };
       const publishDateFilterIndex =
@@ -141,7 +157,7 @@ export class ResearchComponent implements OnInit {
       if (publishDateFilterIndex !== -1) {
         // Update value for existing publishDate filter
         this.searchObject.searchCriteriaList[publishDateFilterIndex].value =
-          formattedDate;
+          this.formattedDate;
       } else {
         this.searchObject.searchCriteriaList.push(requestBody);
         this.searchObject.dataOption = "all";
@@ -159,10 +175,7 @@ export class ResearchComponent implements OnInit {
             };
           });
           console.log(response.researchMasterList);
-          console.log(
-            "response for search",
-            response.researchMasterList.length
-          );
+          console.log("response for search", this.mappedReports);
           // this.totalPages =
           //   response.researchMasterList.length / this.itemsPerPage;
           this.currentPage = response.pagination.currentPage + 1;
@@ -260,7 +273,7 @@ export class ResearchComponent implements OnInit {
     }
   }
 
-  onItemsPerPageChange(itemsPerPage: number): void {
+  onItemsPerPageChange(itemsPerPage: any): void {
     this.itemsPerPage = itemsPerPage;
     this.currentPage = 1; // Reset to the first page when items per page changes
     if (this.searchObject.searchCriteriaList.length > 0) {

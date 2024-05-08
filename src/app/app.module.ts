@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { BrowserModule, Title, Meta } from "@angular/platform-browser";
+import { TokenInterceptor } from "./intercepter/token-interceptor.service";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -24,7 +25,7 @@ import { WorkinprogressComponent } from "./workinprogress/workinprogress.compone
 import { HomepageComponent } from "./homepage/homepage.component";
 import { ResearchListComponent } from "./header/menubar/research-list/research-list.component";
 import { EcommBackendService } from "./Services/ecomm-backend-service.service";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { SingleResearchComponent } from "./header/menubar/single-research/single-research.component";
 import { CartComponent } from "./header/menubar/cart/cart.component";
 import { CheckoutComponent } from "./header/menubar/checkout/checkout.component";
@@ -117,8 +118,8 @@ import { ResearchComponent } from "./research/research.component";
 import { ResearchSingleComponent } from "./research-single/research-single.component";
 import { SubscriptionComponent } from "./subscription/subscription.component";
 import { EnquiryformComponent } from "./enquiryform/enquiryform.component";
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
 
 import { FilterPipe } from "./filter.pipe";
 
@@ -247,7 +248,17 @@ import { FilterPipe } from "./filter.pipe";
 
     // RouterModule.forRoot(appRoutes)
   ],
-  providers: [EcommBackendService, CookieService, Title, Meta],
+  providers: [
+    EcommBackendService,
+    CookieService,
+    Title,
+    Meta,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

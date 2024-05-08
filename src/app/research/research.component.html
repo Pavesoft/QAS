@@ -39,7 +39,7 @@
                 *ngFor="let option of reportTypeOptions; let last = last"
               >
                 <p style="margin: 0 3px">
-                  {{ option }}{{ reportTypeOptions.length > 1 ? ", " : " " }}
+                  {{ option }}{{ !last ? ", " : " " }}
                 </p>
                 <!-- <span *ngIf="!last">,</span> -->
               </ng-container>
@@ -92,7 +92,7 @@
                 *ngFor="let option of categoryOptions; let last = last"
               >
                 <p style="margin: 0 3px">
-                  {{ option }}{{ categoryOptions.length > 1 ? ", " : " " }}
+                  {{ option }}{{ !last ? ", " : " " }}
                 </p>
                 <!-- <span *ngIf="!last">,</span> -->
               </ng-container>
@@ -146,7 +146,7 @@
                 *ngFor="let option of regionNameOptions; let last = last"
               >
                 <p style="margin: 0 3px">
-                  {{ option }}{{ regionNameOptions.length > 1 ? ", " : " " }}
+                  {{ option }}{{ !last ? ", " : " " }}
                 </p>
               </ng-container>
             </ng-container>
@@ -195,7 +195,7 @@
                 *ngFor="let option of authorsOptions; let last = last"
               >
                 <p style="margin: 0 3px">
-                  {{ option }}{{ authorsOptions.length > 1 ? ", " : " " }}
+                  {{ option }}{{ !last ? ", " : " " }}
                 </p>
                 <!-- <span *ngIf="!last">,</span> -->
               </ng-container>
@@ -237,7 +237,7 @@
           </button>
         </div> -->
       </div>
-      <div class="col-md-9" style="padding-right: 70px">
+      <div class="col-md-9" style="padding-right: 70px; padding-left: 50px">
         <div class="container-fluid">
           <div
             class="row"
@@ -267,7 +267,7 @@
                 style="font-size: 16px !important; margin-top: -12px"
                 >Date Range</span
               >
-              <mat-form-field appearance="fill">
+              <mat-form-field appearance="fill" class="custome-date-picker">
                 <mat-label>Enter a date range</mat-label>
                 <mat-date-range-input
                   [formGroup]="range"
@@ -284,31 +284,20 @@
                     placeholder="End date"
                     (dateChange)="onDateRangeChange()"
                   />
-                  <button>close</button>
                 </mat-date-range-input>
+                <button
+                  style="border: 0px; padding: 0"
+                  matSuffix
+                  (click)="clearDateRange()"
+                >
+                  <mat-icon>close</mat-icon>
+                </button>
                 <mat-datepicker-toggle
                   matIconSuffix
                   [for]="picker"
                 ></mat-datepicker-toggle>
                 <mat-date-range-picker #picker></mat-date-range-picker>
               </mat-form-field>
-
-              <!-- <p>Selected range: {{range.value | json}}</p>  -->
-              <!-- <mat-form-field appearance="fill" style="height: 70px">
-                <mat-label>Select date range</mat-label>
-                <mat-date-range-input
-                  [rangePicker]="picker"
-                  (onChange)="onDateRangeChange($event)"
-                >
-                  <input matStartDate placeholder="Start date" />
-                  <input matEndDate placeholder="End date" />
-                </mat-date-range-input>
-                <mat-datepicker-toggle
-                  matIconSuffix
-                  [for]="picker"
-                ></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
-              </mat-form-field> -->
             </div>
             <div
               class="col-md-6 my-4 d-flex align-items-center justify-content-end"
@@ -338,7 +327,10 @@
                     />
                   </div>
                   <div>
-                    <i class="fa fa-search"></i>
+                    <i
+                      class="fa fa-search"
+                      style="width: 24px; height: 24px"
+                    ></i>
                   </div>
                 </div>
               </form>
@@ -357,7 +349,12 @@
                   />
                   <label
                     for="allResearch"
-                    style="cursor: pointer; color: #00327a; font-size: 16px"
+                    style="
+                      cursor: pointer;
+                      color: #00327a;
+                      font-size: 16px;
+                      font-family: Arial Nova;
+                    "
                     >All Research</label
                   >
                 </span>
@@ -371,7 +368,12 @@
                   />
                   <label
                     for="subscribedResearch"
-                    style="cursor: pointer; color: #00327a; font-size: 16px"
+                    style="
+                      cursor: pointer;
+                      color: #00327a;
+                      font-size: 16px;
+                      font-family: Arial Nova;
+                    "
                     >Subscribed Research</label
                   >
                 </span>
@@ -395,7 +397,16 @@
               </div>
             </div>
             <div class="col-md-3 d-flex justify-content-end align-items-center">
-              <label style="margin: 0px 7px 0px 0px">Item Per Page : </label>
+              <label style="margin: 0px 7px 0px 0px">Items Per Page : </label>
+              <!-- <mat-form-field appearance="fill">
+                <mat-label>Items Per Page</mat-label>
+                <mat-select (change)="onItemsPerPageChange($event)">
+                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{ food.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field> -->
+
               <select
                 style="width: 4rem"
                 class="form-control"
@@ -420,463 +431,287 @@
             </div>
             <br /><br /><br /><br /><br /><br /><br /><br />
           </div>
+          <!-- Main List of Research Items -->
           <div *ngIf="!isLoading">
             <div *ngIf="mappedReports.length > 0">
               <div class="research-item" *ngFor="let research of mappedReports">
                 <div class="row" [id]="research.id">
                   <div
-                    class="research-item"
-                    style="padding-top: 18px"
-                    *ngFor="
-                      let research of searchText
-                        ? (mappedReports | filter : searchText)
-                        : mappedReports
-                    "
+                    class="row col-md-9"
+                    style="row-gap: 14px; margin-right: 0"
                   >
-                    <div class="row hover-effect" [id]="research.id">
-                      <div class="col-md-9">
-                        <div class="d-flex">
-                          <!-- <span>Date :</span> -->
-                          <span
-                            class="textcommon-fontsize"
-                            style="margin: 0 14px 0 0px"
-                            >{{ research.publishDate }}
-                          </span>
-                          <span>|</span>
-                          <div class="d-flex">
-                            <span
-                              class="textcommon-fontsize"
-                              style="margin-left: 14px"
-                              >Category:
-                            </span>
-                            <div *ngFor="let category of research.categoryList">
-                              <a
-                                style="
-                                  text-decoration: none;
-                                  color: #1673fd;
-                                  cursor: pointer;
-                                "
-                                (click)="onCategoryClick(category)"
-                              >
-                                <span
-                                  style="margin-left: 5px"
-                                  class="textcommon-fontsize"
-                                  >{{ category }}</span
-                                >
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="" style="margin-top: 10px">
+                    <div class="d-flex">
+                      <!-- <span>Date :</span> -->
+                      <span
+                        class="textcommon-fontsize"
+                        style="margin: 0 14px 0 0px"
+                        >{{ research.publishDate }}
+                      </span>
+                      <span>|</span>
+                      <div class="d-flex">
+                        <span
+                          class="textcommon-fontsize"
+                          style="margin-left: 14px"
+                          >Category:
+                        </span>
+                        <div *ngFor="let category of research.categoryList">
                           <a
-                            routerLink="/research-single"
-                            class="research-title"
-                            (click)="navigateToResearchSingle(research)"
-                            >{{ research.reportType && research.reportType }} :
-                            {{ research.report && research.report }}
-                          </a>
-                          <br />
-                          <div style="margin: 0.5rem 0; display: flex">
-                            <p class="textcommon-fontsize">Authors:</p>
-                            <div *ngIf="research.authors.length == 0">
-                              <p
-                                class="textcommon-fontsize"
-                                style="
-                                  margin-left: 4px;
-                                  color: #1673fd;
-                                  cursor: pointer;
-                                "
-                                (click)="onAuthorClick('NA')"
-                              >
-                                NA
-                              </p>
-                            </div>
-                            <div
-                              class="d-flex"
-                              *ngIf="research.authors.length != 0"
-                            >
-                              <div *ngFor="let author of research.authors">
-                                <a
-                                  style="
-                                    text-decoration: none;
-                                    color: #1673fd;
-                                    cursor: pointer;
-                                  "
-                                >
-                                  <span
-                                    style="
-                                      color: #0d6efd;
-                                      cursor: pointer;
-                                      margin: 0 5px;
-                                    "
-                                    (click)="onAuthorClick(author)"
-                                  >
-                                    {{ author }}
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="research-description">
-                          <p
-                            style="font-size: 16px"
-                            [innerHtml]="
-                              getFirstParagraph(research.description)
-                            "
-                          ></p>
-                          <div class="d-flex" style="margin-top: 6px">
+                            class="category-link"
+                            (click)="onCategoryClick(category)"
+                          >
                             <span
+                              style="margin-left: 5px"
                               class="textcommon-fontsize"
-                              style="
-                                color: #212529;
-                                margin-top: 1px;
-                                font-size: 16px;
-                              "
-                              >Price:
-                            </span>
-                            <p class="prc">$ {{ research.price }}</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <!-- if the report if not subscribed -->
-                        <div
-                          class="col-md-12 d-flex align-items-center"
-                          *ngIf="research.isSubscribed === false"
-                        >
-                          <div *ngIf="research.isSubscribed === false">
-                            <div
-                              class="row"
-                              style="
-                                margin-bottom: 15px !important;
-                                margin-top: 40px;
-                              "
+                              >{{ category }}</span
                             >
-                              <div class="col-md-6 im">
-                                <a
-                                  (click)="addToCart(research)"
-                                  style="cursor: pointer"
-                                  ><svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="#1673fd"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="feather feather-shopping-cart"
-                                  >
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path
-                                      d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
-                                    ></path>
-                                  </svg>
-                                </a>
-                              </div>
-                              <div class="col-md-6 im1">
-                                <a
-                                  (click)="downloadForm(research)"
-                                  style="cursor: pointer"
-                                  ><svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="#1673fd"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="feather feather-download-cloud"
-                                  >
-                                    <polyline
-                                      points="8 17 12 21 16 17"
-                                    ></polyline>
-                                    <line
-                                      x1="12"
-                                      y1="12"
-                                      x2="12"
-                                      y2="21"
-                                    ></line>
-                                    <path
-                                      d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"
-                                    ></path>
-                                  </svg>
-                                </a>
-                              </div>
-                            </div>
-                            <button
-                              class="btn btn-success bn"
-                              style="font-size: 14px; border: 0px"
-                              (click)="buyNow(research)"
-                            >
-                              Buy Now
-                            </button>
-                            <div style="margin-left: 2.6rem; margin-top: 10px">
-                              <a
-                                href="/research-single"
-                                routerLink="/research-single"
-                                (click)="navigateToResearchSingle(research)"
-                                style="text-decoration: none"
-                                >Read More<svg
-                                  viewBox="0 0 24 24"
-                                  width="24"
-                                  height="24"
-                                  stroke="#1673fd"
-                                  stroke-width="2"
-                                  fill="none"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  class="css-i6dzq1"
-                                >
-                                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                                  <polyline
-                                    points="12 5 19 12 12 19"
-                                  ></polyline>
-                                </svg>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- If the report is subscribed -->
-                        <div
-                          class="col-md-12 d-flex align-items-center"
-                          *ngIf="research.isSubscribed === true"
-                        >
-                          <div style="margin-top: 40px">
-                            <button
-                              class="btn btn-success bnd"
-                              style="
-                                margin-bottom: 10px !important;
-                                font-size: 14px;
-                              "
-                              (click)="downloadResearch(research.id)"
-                            >
-                              <svg
-                                viewBox="0 0 24 24"
-                                width="22"
-                                height="22"
-                                stroke="#00327a"
-                                stroke-width="2"
-                                fill="none"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="css-i6dzq1"
-                              >
-                                <polyline points="8 17 12 21 16 17"></polyline>
-                                <line x1="12" y1="12" x2="12" y2="20"></line>
-                                <path
-                                  d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"
-                                ></path>
-                              </svg>
-                              <p style="padding-top: 10px; padding-left: 8px">
-                                Download
-                              </p>
-                            </button>
-                            <button
-                              class="btn btn-success bn"
-                              style="
-                                margin-bottom: 5px !important;
-                                font-size: 14px;
-                                width: 120px;
-                              "
-                              (click)="readReport(research.id)"
-                            >
-                              Read View
-                            </button>
-                            <div style="margin-left: 3.3rem; margin-top: 10px">
-                              <a
-                                href="/research-single"
-                                routerLink="/research-single"
-                                (click)="navigateToResearchSingle(research)"
-                                style="text-decoration: none"
-                                >Read More<svg
-                                  viewBox="0 0 24 24"
-                                  width="24"
-                                  height="24"
-                                  stroke="#1673fd"
-                                  stroke-width="2"
-                                  fill="none"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  class="css-i6dzq1"
-                                >
-                                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                                  <polyline
-                                    points="12 5 19 12 12 19"
-                                  ></polyline>
-                                </svg>
-                              </a>
-                            </div>
-                          </div>
+                          </a>
                         </div>
                       </div>
                     </div>
-                    <!-- <div class="row" style="margin-left: 2px !important">
-                  <div class="d-flex col-md-10" style="margin-top: 4px">
-                    <span
-                      style="
-                        color: rgba(68, 67, 67, 0.75);
-                        margin-top: 1px;
-                        font-size: 16px;
-                      "
-                      >Price:
-                    </span>
-                    <p class="prc">$ {{ research.price }}</p>
-                  </div>
-                  <div class="col-md-2 rm">
-                    <div class="">
+                    <div class="" style="">
                       <a
-                        href="/research-single"
                         routerLink="/research-single"
+                        class="research-title"
                         (click)="navigateToResearchSingle(research)"
-                        style="text-decoration: none"
-                        >Read More<img
-                          src="/assets/Icon.png"
-                          style="width: 28px; height: 10px"
-                      /></a>
+                        >{{ research.reportType }} :
+                        {{ research.report }}
+                      </a>
+                      <br />
+                    </div>
+                    <div style="display: flex">
+                      <p class="textcommon-fontsize mb-0">Authors:</p>
+                      <div *ngIf="research.authors.length == 0">
+                        <p
+                          class="textcommon-fontsize"
+                          style="
+                            margin-left: 4px;
+                            color: #1673fd;
+                            cursor: pointer;
+                          "
+                          (click)="onAuthorClick('NA')"
+                        >
+                          NA
+                        </p>
+                      </div>
+                      <div
+                        class="d-flex textcommon-fontsize"
+                        *ngIf="research.authors.length != 0"
+                      >
+                        <a
+                          class="item-link"
+                          *ngFor="let author of research.authors"
+                        >
+                          <span
+                            style="margin: 0 5px"
+                            (click)="onAuthorClick(author)"
+                          >
+                            {{ author }}
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="research-description">
+                      <p
+                        style="font-size: 16px; margin: 0px !important"
+                        [innerHtml]="getFirstParagraph(research.description)"
+                      ></p>
                     </div>
                   </div>
-                </div> -->
-                    <hr style="border: 1px solid #00327a33; width: 100%" />
+                  <div
+                    class="col-md-3 d-flex align-items-center justify-content-end"
+                  >
+                    <!-- if the report if not subscribed -->
+                    <div
+                      class="col-md-12 d-flex align-items-center justify-content-end"
+                      *ngIf="research.isSubscribed === false"
+                    >
+                      <div *ngIf="research.isSubscribed === false">
+                        <div
+                          class="row d-flex align-items-center justify-content-end"
+                          style="gap: 10px"
+                        >
+                          <div class="col-md-6 im">
+                            <a
+                              (click)="addToCart(research)"
+                              style="cursor: pointer"
+                              ><img src="../../assets//cart.svg" />
+                            </a>
+                          </div>
+                          <div class="col-md-6 im1">
+                            <a
+                              (click)="downloadForm(research)"
+                              style="cursor: pointer"
+                              ><img src="../../assets/download.svg" />
+                            </a>
+                          </div>
+                        </div>
+                        <div class="row d-flex justify-content-end">
+                          <button
+                            class="bn"
+                            style="
+                              font-size: 17px;
+                              border: 0px;
+                              margin-top: 14px;
+                            "
+                            (click)="buyNow(research)"
+                          >
+                            Buy Now
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- If the report is subscribed -->
+                    <div
+                      class="d-flex align-items-center"
+                      *ngIf="research.isSubscribed === true"
+                    >
+                      <div style="margin-top: 40px">
+                        <button
+                          class="btn button-download"
+                          style="
+                            margin-bottom: 15px !important;
+                            font-size: 17px;
+                          "
+                          (click)="downloadResearch(research.id)"
+                        >
+                          <img
+                            style="height: 17px; width: 22px"
+                            src="../../assets/download.svg"
+                          />
+                          <p style="margin: 0px; padding-left: 4px">Download</p>
+                        </button>
+                        <button
+                          class="btn btn-success bn"
+                          style="
+                            margin-bottom: 15px !important;
+                            font-size: 17px;
+                            width: 120px;
+                            border: 0px;
+                          "
+                          (click)="readReport(research.id)"
+                        >
+                          Read View
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+                <div class="d-flex mt-3">
+                  <div class="d-flex col-md-9 align-items-center p-0">
+                    <span
+                      class="textcommon-fontsize"
+                      style="color: #212529; font-size: 16px"
+                      >Price:
+                    </span>
+                    <span class="prc">$ {{ formatPrice(research.price) }}</span>
+                  </div>
+                  <div
+                    class="col-md-3 d-flex align-items-center justify-content-end"
+                    style=""
+                  >
+                    <a
+                      href="/research-single"
+                      routerLink="/research-single"
+                      (click)="navigateToResearchSingle(research)"
+                      class="read"
+                      >Read More
+                    </a>
+                    <img src="../../assets/arrow-right.svg" />
+                  </div>
+                </div>
 
-              <div
-                *ngIf="mappedReports.length === 0"
-                class="d-flex justify-content-center"
-                style="height: 80vh"
+                <hr
+                  class="my-4"
+                  style="border: 1px solid #dddddd; width: 100%"
+                />
+              </div>
+            </div>
+            <div
+              *ngIf="mappedReports.length === 0"
+              class="d-flex justify-content-center"
+              style="height: 80vh"
+            >
+              <h1>No data</h1>
+            </div>
+            <!-- Pagination Component -->
+            <div class="row" *ngIf="totalPages > 0">
+              <ul
+                class="pagination"
+                style="justify-content: center; align-items: center"
               >
-                <h1>No data</h1>
-              </div>
-              <div class="row" *ngIf="totalPages > 0">
-                <ul
-                  class="pagination"
-                  style="justify-content: center; align-items: center"
+                <li
+                  class="page-item d-flex"
+                  [class.disabled]="currentPage === 1"
                 >
-                  <li
-                    class="page-item d-flex"
-                    [class.disabled]="currentPage === 1"
+                  <a
+                    style="padding: 6px 10px"
+                    class="page-link"
+                    (click)="currentPage !== 1 && onPageChange(currentPage - 1)"
+                    aria-label="Previous"
+                    [style.cursor]="currentPage !== 1 ? 'pointer' : 'default'"
                   >
-                    <!-- <a
-                  style="padding: 6px 0px"
-                  class="page-link"
-                  (click)="getFirstPage()"
-                  aria-label="Previous"
-                  [style.cursor]="currentPage !== 1 ? 'pointer' : 'default'"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="css-i6dzq1"
-                  >
-                    <polyline points="11 17 6 12 11 7"></polyline>
-                    <polyline points="18 17 13 12 18 7"></polyline>
-                  </svg>
-                </a> -->
-                    <a
-                      style="padding: 6px 0px"
-                      class="page-link"
-                      (click)="
-                        currentPage !== 1 && onPageChange(currentPage - 1)
-                      "
-                      aria-label="Previous"
-                      [style.cursor]="currentPage !== 1 ? 'pointer' : 'default'"
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="css-i6dzq1"
                     >
-                      <svg
-                        viewBox="0 0 24 24"
-                        width="24"
-                        height="24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="css-i6dzq1"
-                      >
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                      </svg>
+                      <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                  </a>
+                </li>
+                <ng-container *ngFor="let page of getVisiblePages()">
+                  <li class="page-item" [class.active]="page === currentPage">
+                    <a
+                      class="page-link"
+                      (click)="onPageChange(page)"
+                      [style.cursor]="'pointer'"
+                      [style.padding]="'8px 14px'"
+                      [style.background-color]="
+                        page === currentPage ? '#4CD6B0' : ''
+                      "
+                      >{{ page }}
                     </a>
                   </li>
-                  <ng-container *ngFor="let page of getVisiblePages()">
-                    <li class="page-item" [class.active]="page === currentPage">
-                      <a
-                        class="page-link"
-                        (click)="onPageChange(page)"
-                        [style.cursor]="'pointer'"
-                        >{{ page }}</a
-                      >
-                    </li>
-                  </ng-container>
-                  <li
-                    class="page-item d-flex"
-                    [class.disabled]="currentPage === getLastPage()"
-                  >
-                    <a
-                      style="padding: 6px 0px"
-                      class="page-link"
-                      (click)="
-                        currentPage !== getLastPage() &&
-                          onPageChange(currentPage + 1)
-                      "
-                      aria-label="Next"
-                      [style.cursor]="
-                        currentPage !== getLastPage() ? 'pointer' : 'default'
-                      "
-                    >
-                      <svg
-                        viewBox="0 0 24 24"
-                        width="24"
-                        height="24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="css-i6dzq1"
-                      >
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </a>
-                    <!-- <a
-                  style="padding: 6px 0px"
-                  class="page-link"
-                  (click)="getLastPages()"
-                  aria-label="Next"
-                  [style.cursor]="
-                    currentPage !== getLastPages() ? 'pointer' : 'default'
-                  "
+                </ng-container>
+                <li
+                  class="page-item d-flex"
+                  [class.disabled]="currentPage === getLastPage()"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="css-i6dzq1"
+                  <a
+                    style="padding: 6px 4px"
+                    class="page-link"
+                    (click)="
+                      currentPage !== getLastPage() &&
+                        onPageChange(currentPage + 1)
+                    "
+                    aria-label="Next"
+                    [style.cursor]="
+                      currentPage !== getLastPage() ? 'pointer' : 'default'
+                    "
                   >
-                    <polyline points="13 17 18 12 13 7"></polyline>
-                    <polyline points="6 17 11 12 6 7"></polyline>
-                  </svg>
-                </a> -->
-                  </li>
-                </ul>
-              </div>
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="css-i6dzq1"
+                    >
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

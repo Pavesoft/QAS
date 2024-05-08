@@ -1,13 +1,19 @@
-.sd {
-  background: linear-gradient(
-    164.04deg,
-    rgba(76, 214, 176, 0.6) -23.66%,
-    #00327a 86.4%
-  );
+$blue-1: #00327a;
 
-  // width: 325px;
+.sd {
+  background: linear-gradient(170deg, #4cccd6 -5%, $blue-1 20%);
   padding: 35px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+}
+.category-link {
+  text-decoration: none;
+  color: #1673fd;
+  cursor: pointer;
+}
+.category-link:hover {
+  text-decoration: underline;
+  color: #1673fd;
 }
 
 .t1 {
@@ -15,7 +21,7 @@
   height: 29px;
   flex-shrink: 0;
   color: #fff;
-  font-family: "Arial Nova";
+
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -41,7 +47,6 @@ hr {
   height: 25.826px;
   flex-shrink: 0;
   color: #fff;
-  font-family: "Arial Nova";
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -121,7 +126,6 @@ hr {
 
 .dropdown-item {
   color: #fff;
-  font-family: "Arial Nova";
   font-size: 17px;
   font-style: normal;
   margin: 1rem 0;
@@ -153,7 +157,6 @@ button#dropdownMenuButton:active {
 
 .dr {
   color: rgba(68, 67, 67, 0.7);
-  font-family: "Arial Nova";
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -167,8 +170,7 @@ button#dropdownMenuButton:active {
 }
 
 .sdr {
-  color: #00327a;
-  font-family: "Arial Nova";
+  color: $blue-1;
   font-size: 14px;
   font-style: normal;
   font-weight: 300;
@@ -184,14 +186,14 @@ button#dropdownMenuButton:active {
 }
 
 .fa {
-  margin-left: 10px;
-  color: #00327a;
+  margin-left: -10px;
+  color: $blue-1;
 }
 
 .fas {
   font-family: "FontAwesome";
   font-weight: 700;
-  color: #00327a;
+  color: $blue-1;
   padding-left: 6px;
 }
 
@@ -213,7 +215,6 @@ button#dropdownMenuButton:active {
 
 .sb {
   color: rgba(68, 67, 67, 0.7);
-  font-family: "Arial Nova";
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -221,8 +222,7 @@ button#dropdownMenuButton:active {
 }
 
 .rd {
-  color: #00327a;
-  font-family: "Arial Nova";
+  color: $blue-1;
   font-size: 14px;
   font-style: normal;
   font-weight: 300;
@@ -241,7 +241,7 @@ button#dropdownMenuButton:active {
   width: 500px !important;
 
   border: none;
-  border-bottom: 2px solid #00327a33;
+  border-bottom: 2px solid $blue-1;
   font-size: 18px;
   background-color: white;
   background-position: 10px 10px;
@@ -252,7 +252,7 @@ button#dropdownMenuButton:active {
 }
 
 ::placeholder {
-  color: #00327a;
+  color: $blue-1;
   font-family: "Arial Nova";
   font-style: normal;
   font-weight: 300;
@@ -276,49 +276,61 @@ button#dropdownMenuButton:active {
 
 .research-price {
   font-weight: bold;
-  font-family: "Arial Nova";
 }
 
 .research-title {
-  color: #00327a;
-  font-family: "Arial Nova";
+  color: $blue-1;
+
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   text-decoration: none;
 }
+.research-title:hover {
+  text-decoration: underline;
+}
+
 .textcommon-fontsize {
   font-size: 16px;
 }
 .research-category {
   position: relative;
   top: 5px;
-  font-family: "Arial Nova";
+
   padding: 2px;
 }
 
 .research-description {
   margin-top: -10px;
   font-size: 16px;
-  font-family: "Arial Nova";
+  margin: 0px !important;
 }
 
 .prc {
   color: #444343;
-  font-family: "Arial Nova";
   font-size: 16px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
   padding-left: 7px;
 }
+.read {
+  font-size: 17px;
+  text-decoration: none;
+  font-size: 17px !important;
+  font-family: Arial Nova;
+}
+.read:hover {
+  text-decoration: underline;
+
+  color: #0d6efd;
+}
 .readmore {
   display: flex;
   width: 100px;
   height: 35px;
   color: #fff;
-  font-family: "Arial Nova";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -335,7 +347,6 @@ button#dropdownMenuButton:active {
   width: 100px;
   height: 35px;
   color: #fff;
-  font-family: "Arial Nova";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -349,40 +360,36 @@ button#dropdownMenuButton:active {
 }
 .bn {
   display: flex;
-  width: 100px;
-  height: 35px;
+  width: 120px;
+  height: 40px;
   color: #fff;
-  font-family: "Arial Nova";
-  font-size: 12px;
+  font-size: 17px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
+  background: linear-gradient(275deg, #4cd6b0 -6.18%, $blue-1 100%);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  position: relative;
-  top: 0px;
-  left: 37px;
 }
-.bnd {
+.button-download {
   display: flex;
   width: 120px;
-  height: 35px;
-  color: #00327a;
-  font-family: "Arial Nova";
-  font-size: 12px;
+  height: 40px;
+  color: $blue-1;
+  font-size: 17px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   justify-content: center;
   align-items: center;
+  border: 2px solid $blue-1;
   border-radius: 5px;
   background-color: white !important;
-  position: relative;
-  top: 0px;
-  left: 37px;
+}
+.button-download:hover {
+  background-color: #FFCD00 !important;
 }
 
 .hover-effect {
@@ -395,27 +402,25 @@ button#dropdownMenuButton:active {
   /* The rgba() function allows you to set the color with alpha transparency */
 }
 .im {
-  position: relative;
-  left: 50px;
-  border: 1px solid #00327a;
-  top: 5px;
+  border: 2px solid $blue-1;
   border-radius: 5px;
-  padding: 3px 0px 0px 10px;
-
-  margin: 0 6px 0 0;
-  width: 46px;
-  height: 29px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 55px;
+}
+.im:hover {
+  background-color: #FFCD00;
 }
 
 .im1 {
-  position: relative;
-  left: 50px;
-  border: 1px solid #00327a;
-  top: 5px;
+  border: 2px solid $blue-1;
   border-radius: 5px;
-  padding: 3px 0px 0px 10px;
-  width: 46px;
-  height: 29px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 55px;
+}
+.im1:hover {
+  background-color: #FFCD00;
 }
 
 .rm {
@@ -425,7 +430,7 @@ button#dropdownMenuButton:active {
   justify-content: center;
   align-items: center;
   color: #0972ea;
-  font-family: "Arial Nova";
+
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -438,7 +443,7 @@ button#dropdownMenuButton:active {
 .dec {
   color: #444343;
   text-align: justify;
-  font-family: "Arial Nova";
+
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -456,31 +461,43 @@ button#dropdownMenuButton:active {
 .redi span {
   padding: 6px;
   font-size: 14px;
-  color: #00327a;
-  font-family: "Arial Nova";
+  color: $blue-1;
 }
 input[type="radio"] {
   height: 10px;
-  color: #00327a;
+  color: $blue-1;
   margin: 4px;
 
   // box-shadow: 0 0 0 2px gray;
 }
 input[type="checkbox"],
 input[type="radio"] {
-  border: #00327a !important;
-  accent-color: #00327a !important;
+  border: $blue-1 !important;
+  accent-color: $blue-1 !important;
+}
+
+.item-link {
+  color: #1673fd;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.item-link:hover {
+  text-decoration: underline;
+  color: rgb(26, 117, 253);
 }
 
 .page-link {
+  width: 40px;
+  height: 40px;
   border: none !important;
-  font-size: 12px !important;
+  font-size: 18px !important;
   font-family: "Arial Nova";
   color: #444343 !important;
 }
 
 .page-link:hover {
-  color: #00327a !important;
+  color: $blue-1 !important;
   background: linear-gradient(
     176deg,
     rgba(76, 214, 176, 0.25) 39.72%,
@@ -522,4 +539,7 @@ input[type="radio"] {
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: #d2f5eb !important;
+}
+.mdc-text-field {
+  background-color: red;
 }
