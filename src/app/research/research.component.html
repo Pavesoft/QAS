@@ -293,7 +293,6 @@
                   <mat-icon>close</mat-icon>
                 </button>
                 <mat-datepicker-toggle
-                  (click)="onIconClick()"
                   matIconSuffix
                   [for]="picker"
                 ></mat-datepicker-toggle>
@@ -434,7 +433,10 @@
             <div *ngIf="mappedReports.length > 0">
               <div class="research-item" *ngFor="let research of mappedReports">
                 <div class="row" [id]="research.id">
-                  <div class="row col-md-9" style="row-gap: 14px">
+                  <div
+                    class="row col-md-9"
+                    style="row-gap: 14px; margin-right: 0"
+                  >
                     <div class="d-flex">
                       <!-- <span>Date :</span> -->
                       <span

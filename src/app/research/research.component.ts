@@ -114,11 +114,14 @@ export class ResearchComponent implements OnInit {
       // console.table("Report Typ", this.categoryData);
     });
   }
-  onIconClick() {
-    this.range.reset();
-  }
+
   clearDateRange() {
     this.range.reset(); // Resets the form controls to their initial state (null in this case)
+    if (this.searchObject.searchCriteriaList.length > 0) {
+      this.loadSearchData();
+    } else {
+      this.loadResearchData();
+    }
   }
   formatPrice(price: number): string {
     // Convert the number to a string and add commas every three digits from the right
