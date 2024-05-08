@@ -116,10 +116,25 @@ export class ResearchComponent implements OnInit {
   }
 
   clearDateRange() {
-    this.range.reset(); // Resets the form controls to their initial state (null in this case)
+    // Reset the form controls to their initial state
+    this.range.reset();
+
+    // Before removing the 'publishDate' filter
+
+    // Explicitly define the type of 'item' in the lambda function
+    this.searchObject.searchCriteriaList =
+      this.searchObject.searchCriteriaList.filter(
+        (item: any) => item.filterKey !== "publishDate"
+      );
+
+    // After removing the 'publishDate' filter
+
+    // Check if the searchCriteriaList has any remaining criteria
     if (this.searchObject.searchCriteriaList.length > 0) {
+      // If there are any criteria left, call loadSearchData()
       this.loadSearchData();
     } else {
+      // If there's nothing left in searchCriteriaList, call loadResearchData()
       this.loadResearchData();
     }
   }
@@ -162,7 +177,7 @@ export class ResearchComponent implements OnInit {
         this.searchObject.searchCriteriaList.push(requestBody);
         this.searchObject.dataOption = "all";
       }
-      console.log(this.searchObject);
+
       this.apiService
         .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
         .subscribe((response) => {
@@ -174,8 +189,7 @@ export class ResearchComponent implements OnInit {
               publishDate: this.epochToDate(report.publishDate),
             };
           });
-          console.log(response.researchMasterList);
-          console.log("response for search", this.mappedReports);
+
           // this.totalPages =
           //   response.researchMasterList.length / this.itemsPerPage;
           this.currentPage = response.pagination.currentPage + 1;
@@ -197,7 +211,6 @@ export class ResearchComponent implements OnInit {
 
   makeApiCall(searchText: string) {
     if (searchText !== "") {
-      console.log("in if");
       this.isLoading = true;
       const requestBody = {
         filterKey: "description",
@@ -219,7 +232,6 @@ export class ResearchComponent implements OnInit {
       this.onPageChange(this.currentPage);
       this.isLoading = false;
     } else if (this.searchObject.searchCriteriaList.length > 0) {
-      console.log("in else if");
       // Assuming searchObject is already defined with the provided structure
       this.searchObject.searchCriteriaList =
         this.searchObject.searchCriteriaList.filter(
@@ -239,7 +251,7 @@ export class ResearchComponent implements OnInit {
 
     // Calculate total height including padding
     const totalHeight = totalOptionsHeight + paddingVertical;
-    console.log(totalHeight);
+
     return totalHeight;
   }
   // onItemsPerPageChange() {
@@ -264,7 +276,6 @@ export class ResearchComponent implements OnInit {
     return (this.currentPage = this.totalPages);
   }
   onPageChange(page: number): void {
-    console.log("on page called");
     this.currentPage = page;
     if (this.searchObject.searchCriteriaList.length > 0) {
       this.loadSearchData();
@@ -332,7 +343,6 @@ export class ResearchComponent implements OnInit {
   }
 
   addToCart(research: ResearchMasterDto): void {
-    console.log(research);
     const cart = this.cartService.getCart();
     const existingCartItem = cart.find(
       (item) => item.research.id === research.id
@@ -517,7 +527,7 @@ export class ResearchComponent implements OnInit {
 
   updateMappedReports(type: string) {
     // const searchCriteriaList: any = [];
-    console.log("mapped reports in update", this.mappedReports);
+
     let criteriaIndex = this.searchCriteriaList.findIndex(
       (criteria: any) => criteria.filterKey === type
     );
@@ -547,7 +557,7 @@ export class ResearchComponent implements OnInit {
       this.mappedReports =
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
     }
-    console.log("before", this.searchObject);
+
     let filterArray: any = [];
     if (criteriaIndex !== -1) {
       // Update existing criteria
@@ -572,7 +582,7 @@ export class ResearchComponent implements OnInit {
 
     // Ensure dataOption is set to "all"
     this.searchObject.dataOption = "all";
-    console.log("after", this.searchObject);
+
     if (
       this.selectedOptions.length > 0 ||
       this.searchObject.searchCriteriaList.length > 0
@@ -590,7 +600,7 @@ export class ResearchComponent implements OnInit {
                 publishDate: this.epochToDate(report.publishDate),
               };
             });
-            console.log("API response:", this.mappedReports);
+
             // this.totalPages = data.researchMasterList.length / this.itemsPerPage;
             this.currentPage = data.pagination.currentPage + 1;
             this.itemsPerPage = data.pagination.pageSize;
@@ -665,7 +675,7 @@ export class ResearchComponent implements OnInit {
         .subscribe(
           (data) => {
             // Handle the API response here
-            console.log("remove optipn API response:", data);
+
             this.mappedReports = data.researchMasterList;
             this.mappedReports = this.mappedReports.map((report: any) => {
               return {
@@ -708,7 +718,7 @@ export class ResearchComponent implements OnInit {
       this.Reports = data.researchMasterList;
       this.mappedReports = this.Reports;
       console.table(this.mappedReports);
-      console.log(this.mappedReports[0].authors.length);
+
       data.researchMasterList.forEach((item: any) => {
         if (!this.authorsSet.has(item.author)) {
           this.authorsSet.add(item.author);
@@ -725,7 +735,7 @@ export class ResearchComponent implements OnInit {
           publishDate: this.epochToDate(report.publishDate),
         };
       });
-      console.log("mapped report in load function", this.mappedReports);
+
       // this.totalPages = data.researchMasterList.length / this.itemsPerPage;
       this.currentPage = data.pagination.currentPage + 1;
       this.itemsPerPage = data.pagination.pageSize;
@@ -748,7 +758,6 @@ export class ResearchComponent implements OnInit {
             publishDate: this.epochToDate(report.publishDate),
           };
         });
-        console.log(this.mappedReports);
 
         // this.totalPages =
         //   response.researchMasterList.length / this.itemsPerPage;
@@ -784,7 +793,7 @@ export class ResearchComponent implements OnInit {
       return first100 ? `${first100}...` : "";
     } else {
       // If htmlContent is empty or doesn't contain HTML tags, return the first 100 words directly
-      console.log("if no html or empty", this.getFirst100Words(htmlContent));
+
       return this.getFirst100Words(htmlContent);
     }
   }
