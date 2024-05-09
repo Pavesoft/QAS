@@ -526,12 +526,15 @@ export class ResearchComponent implements OnInit {
   }
 
   updateMappedReports(type: string) {
-    // const searchCriteriaList: any = [];
+    // This will be the search criteria list to be updated
+    let filterArray: any[] = [...this.searchObject.searchCriteriaList];
 
-    let criteriaIndex = this.searchCriteriaList.findIndex(
-      (criteria: any) => criteria.filterKey === type
+    // Check if there's already a criteria for the given type
+    const criteriaIndex = filterArray.findIndex(
+      (criteria) => criteria.filterKey === type
     );
 
+    // Depending on the type, apply appropriate filtering logic
     if (type === "category") {
       const filteredReports = this.mappedReports.filter((report) =>
         this.categoryOptions.includes(report.categoryName)
@@ -558,29 +561,40 @@ export class ResearchComponent implements OnInit {
         filteredReports.length > 0 ? filteredReports : this.mappedReports;
     }
 
-    let filterArray: any = [];
+    // Create or update the filter criteria
+    const newCriteriaValue = this[type + "Options"].join(", ");
+
     if (criteriaIndex !== -1) {
-      // Update existing criteria
-      filterArray[criteriaIndex].value = this[type + "Options"].join(", ");
+      // If criteria exists, update its value
+      filterArray[criteriaIndex].value = newCriteriaValue;
     } else {
+      // Otherwise, create a new one
       filterArray.push({
         filterKey: type,
-        value: this[type + "Options"].join(", "),
+        value: newCriteriaValue,
         operation: "in",
       });
     }
 
-    // Filter out criteria with empty values
-    const filteredArray = filterArray.filter(
-      (criteria: any) => criteria.value.trim() !== ""
+    // Remove duplicate criteria for the same filterKey
+    filterArray = filterArray.reduce((acc, item) => {
+      const existingIndex = acc.findIndex(
+        (criteria: any) => criteria.filterKey === item.filterKey
+      );
+      if (existingIndex !== -1) {
+        acc[existingIndex] = item; // Keep the last instance
+      } else {
+        acc.push(item);
+      }
+      return acc;
+    }, []);
+
+    // Ensure empty criteria are removed
+    this.searchObject.searchCriteriaList = filterArray.filter(
+      (criteria) => criteria.value.trim() !== ""
     );
 
-    // Push filteredArray into searchObject.searchCriteriaList
-    filteredArray.forEach((criteria: any) => {
-      this.searchObject.searchCriteriaList.push(criteria);
-    });
-
-    // Ensure dataOption is set to "all"
+    // Set dataOption to "all"
     this.searchObject.dataOption = "all";
 
     if (
@@ -592,31 +606,24 @@ export class ResearchComponent implements OnInit {
         .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
         .subscribe(
           (data) => {
-            // Handle the API response here
-            let temp = data.researchMasterList;
-            this.mappedReports = temp.map((report: any) => {
+            // Handle API response
+            this.mappedReports = data.researchMasterList.map((report: any) => {
               return {
                 ...report,
                 publishDate: this.epochToDate(report.publishDate),
               };
             });
-
-            // this.totalPages = data.researchMasterList.length / this.itemsPerPage;
             this.currentPage = data.pagination.currentPage + 1;
             this.itemsPerPage = data.pagination.pageSize;
             this.totalPages = data.pagination.totalPages;
           },
           (error) => {
-            // Handle any API errors here
             console.error("API error:", error);
           }
         );
       this.isLoading = false;
       this.onPageChange(1);
-    } else if (
-      this.selectedOptions.length <= 0 ||
-      this.searchObject.searchCriteriaList.length < 0
-    ) {
+    } else {
       this.loadResearchData();
     }
   }
