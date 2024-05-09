@@ -1,28 +1,39 @@
-
 <div class="container">
-    <div class="row">
-      <div class="col-sm-2">
-       
-      </div>
-      <div class="col-sm-4" style="background: #011F41;">
-       
-        <p class="ident" style="color:white;padding-top: 30px;padding-bottom: 30px;padding-left: 25px;"><b>Identify and accelerate growth opportunities with us!</b></p>
-      </div>
-      <div class="col-sm-4" style="background: #011F41;">
-        
-
-          <!-- <div class="input-group" style="padding-top: 30px;padding-bottom: 30px;">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div
+      class="col-sm-4 d-flex align-items-center justify-content-center"
+      style="background: #011f41"
+    >
+      <p
+        class="ident"
+        style="
+          color: white;
+          padding-top: 30px;
+          padding-bottom: 30px;
+          padding-left: 25px;
+          margin: 0px;
+        "
+      >
+        <b>Identify and accelerate growth opportunities with us!</b>
+      </p>
+    </div>
+    <div
+      class="col-sm-4 d-flex align-items-center justify-content-center"
+      style="background: #011f41"
+    >
+      <!-- <div class="input-group" style="padding-top: 30px;padding-bottom: 30px;">
 
             <input type="search" class="form-control rounded search" placeholder="Search" aria-label="Search" aria-describedby="search-addon"  />
             <button type="button" class="btn btn-outline-primary radius">Send</button>
           </div> -->
 
-          <!-- <div class="input-group" style="padding-top: 30px;padding-bottom: 30px;">
+      <!-- <div class="input-group" style="padding-top: 30px;padding-bottom: 30px;">
             <input type="search" class="form-control " placeholder="Email here" aria-label="Search" aria-describedby="search-addon"  style="border-radius:20px 0px 0px 20px;"/>
             <button type="button" class="btn btn-outline-primary">Subscribe Now</button>
           </div> -->
 
-          <!-- <form (ngSubmit)="onSubmit1()" [formGroup]="form" class="mb">
+      <!-- <form (ngSubmit)="onSubmit1()" [formGroup]="form" class="mb">
             
 
             <div id="inline">
@@ -46,38 +57,87 @@
             
             
           </form> -->
-          <br><bR>
+      <br /><bR />
 
-          <form (ngSubmit)="onSubmit1()" [formGroup]="form" class="mb">
-          <div class="single">
-            <div class="input-group" style="border-radius:  0px 0px 10px!important;color:white;width: 100%; " [ngClass]="{ 'full-width': form.controls['officeEmail'].invalid || form.controls['officeEmail'].value === '' }" style="border-radius: 0px 0px 10px!important; color: white;" >
-                   <input type="email"  id="officeEmail" class="form-control" maxlength="50"  formControlName="officeEmail" required placeholder="Official Email*"  style="margin-top: 0px!important;background-color: #011f41;color:white;::placeholder { color: white; }" >
-                   <div *ngIf="form.controls['officeEmail'].invalid && (form.controls['officeEmail'].dirty || form.controls['officeEmail'].touched)">
-                    <div class="invalidemail" *ngIf="form.controls['officeEmail'].errors?.['required']" style="margin-top: 43px!important;">Office Email is required.</div>
-                    
-                    
+      <form (ngSubmit)="onSubmit1()" [formGroup]="form" class="mb">
+        <div class="single">
+          <div
+            class="input-group"
+            style="
+              border-radius: 0px 0px 10px !important;
+              color: white;
+              width: 100%;
+            "
+            [ngClass]="{
+              'full-width':
+                form.controls['officeEmail'].invalid ||
+                form.controls['officeEmail'].value === ''
+            }"
+            style="border-radius: 0px 0px 10px !important; color: white"
+          >
+            <input
+              type="email"
+              id="officeEmail"
+              class="form-control"
+              maxlength="50"
+              formControlName="officeEmail"
+              required
+              placeholder="Official Email*"
+              style="
+                margin-top: 0px !important;
+                background-color: #011f41;
+                color: white;
+                ::placeholder {
+                  color: white;
+                }
+              "
+            />
+            <div
+              *ngIf="
+                form.controls['officeEmail'].invalid &&
+                (form.controls['officeEmail'].dirty ||
+                  form.controls['officeEmail'].touched)
+              "
+            >
+              <div
+                class="invalidemail"
+                *ngIf="form.controls['officeEmail'].errors?.['required']"
+                style="margin-top: 43px !important"
+              >
+                Office Email is required.
+              </div>
 
-                    <div class="invd" *ngIf="form.controls['officeEmail'].errors?.['email']">Invalid email format.</div>
-                    <div *ngIf="form.controls['officeEmail'].errors?.['maxLength']">Email length exceeded the limit.</div>
-    
-                  </div>
-                   <span class="input-group-btn" style="font-family: 'Arial Nova Bold';">
-                   <button class="btn btn-theme" type="submit" style="color:black;background-color:white;border-radius: 0px 8px 8px 0px !important;">Subscribe Now</button>
-                   </span>
-                    </div>
+              <div
+                class="invd"
+                *ngIf="form.controls['officeEmail'].errors?.['email']"
+              >
+                Invalid email format.
+              </div>
+              <div *ngIf="form.controls['officeEmail'].errors?.['maxLength']">
+                Email length exceeded the limit.
+              </div>
             </div>
-
-          </form>
-
-      </div>
-
-      
-
-      <div class="col-sm-2">
-        
-      </div>
+            <span
+              class="input-group-btn"
+              style="font-family: 'Arial Nova Bold'"
+            >
+              <button
+                class="btn btn-theme"
+                type="submit"
+                style="
+                  color: black;
+                  background-color: white;
+                  border-radius: 0px 8px 8px 0px !important;
+                "
+              >
+                Subscribe Now
+              </button>
+            </span>
+          </div>
+        </div>
+      </form>
     </div>
+
+    <div class="col-sm-2"></div>
   </div>
-
-
-  
+</div>

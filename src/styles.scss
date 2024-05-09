@@ -35,3 +35,23 @@ body {
   margin: 0;
   font-family: "Arial Nova", "Helvetica Neue", sans-serif;
 }
+
+.mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+  background: linear-gradient(
+    176deg,
+    rgba(76, 214, 176, 0.25) 39.72%,
+    rgba(9, 114, 234, 0.19) 96.84%
+  );
+  border: 0px !important;
+}
+.mat-icon {
+  background: linear-gradient(
+    176deg,
+    rgba(76, 214, 176, 0.25) 39.72%,
+    rgba(9, 114, 234, 0.19) 96.84%
+  );
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled)
+  .mdc-line-ripple::before {
+  border-color: white !important;
+}
