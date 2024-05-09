@@ -383,19 +383,29 @@ export class ResearchComponent implements OnInit {
     const existingCartItem = cart.find(
       (item) => item.research.id === research.id
     );
+    const Research: ResearchMasterDto = {
+      id: +research.id,
+      report: research.report,
+      price: +research.price,
+      categoryName: "",
+      reportType: "",
+      description: "",
+      author: "",
+      mAuthor: "",
+      publishDate: new Date(),
+      price2: 0,
+      tableOfContent: "",
+    };
     if (existingCartItem) {
       this.alertType = "Failed";
       this.message = "This item is already in the cart.";
       this.showCustomAlert();
     } else {
-      this.router.navigate(["/cart"], {
-        queryParams: {
-          productId: research.id,
-          productName: research.report,
-          price: research.price,
-          quantity: 1,
-        },
-      });
+      this.alertType = "Success";
+      this.message = "This item was added to cart.";
+      this.cartService.addToCart(Research);
+      this.showCustomAlert();
+      this.router.navigate(["/cart"]);
     }
   }
 
