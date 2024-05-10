@@ -2,8 +2,8 @@ $blue-1: #00327a;
 
 .sd {
   background: linear-gradient(170deg, #4cccd6 -5%, $blue-1 20%);
-  padding: 35px;
-
+  padding: 38px;
+  margin-bottom: 52px !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
 }
 .category-link {
@@ -281,7 +281,7 @@ button#dropdownMenuButton:active {
 .research-title {
   color: $blue-1;
 
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -292,7 +292,7 @@ button#dropdownMenuButton:active {
 }
 
 .textcommon-fontsize {
-  font-size: 16px;
+  font-size: 15px !important;
 }
 .research-category {
   position: relative;
@@ -302,8 +302,7 @@ button#dropdownMenuButton:active {
 }
 
 .research-description {
-  margin-top: -10px;
-  font-size: 16px;
+  font-size: 15px !important;
   margin: 0px !important;
 }
 
@@ -389,7 +388,7 @@ button#dropdownMenuButton:active {
   background-color: white !important;
 }
 .button-download:hover {
-  background-color: #FFCD00 !important;
+  background-color: #ffcd00 !important;
 }
 
 .hover-effect {
@@ -409,7 +408,7 @@ button#dropdownMenuButton:active {
   width: 55px;
 }
 .im:hover {
-  background-color: #FFCD00;
+  background-color: #ffcd00;
 }
 
 .im1 {
@@ -420,7 +419,7 @@ button#dropdownMenuButton:active {
   width: 55px;
 }
 .im1:hover {
-  background-color: #FFCD00;
+  background-color: #ffcd00;
 }
 
 .rm {
