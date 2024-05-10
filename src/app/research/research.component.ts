@@ -612,25 +612,7 @@ export class ResearchComponent implements OnInit {
       this.searchObject.searchCriteriaList.length > 0
     ) {
       this.isLoading = true;
-      this.apiService
-        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
-        .subscribe(
-          (data) => {
-            // Handle API response
-            this.mappedReports = data.researchMasterList.map((report: any) => {
-              return {
-                ...report,
-                publishDate: this.epochToDate(report.publishDate),
-              };
-            });
-            this.currentPage = data.pagination.currentPage + 1;
-            this.itemsPerPage = data.pagination.pageSize;
-            this.totalPages = data.pagination.totalPages;
-          },
-          (error) => {
-            console.error("API error:", error);
-          }
-        );
+      this.loadSearchData();
       this.isLoading = false;
       this.onPageChange(1);
     } else {
