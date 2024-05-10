@@ -41,7 +41,7 @@ body {
     176deg,
     rgba(76, 214, 176, 0.25) 39.72%,
     rgba(9, 114, 234, 0.19) 96.84%
-  );
+  ) !important;
   border: 0px !important;
 }
 .mat-icon {
@@ -54,4 +54,51 @@ body {
 .mdc-text-field--filled:not(.mdc-text-field--disabled)
   .mdc-line-ripple::before {
   border-color: white !important;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  flex-wrap: wrap;
+  color: #fff;
+  border-radius: 7px;
+  border: 1px solid #d9d9d9;
+  background: linear-gradient(
+    118deg,
+    rgba(255, 255, 255, 0.4) -2.91%,
+    rgba(255, 255, 255, 0) 109.82%
+  );
+
+  text-align: left;
+}
+.mat-mdc-select-value {
+  color: white !important;
+}
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: white !important;
+}
+.mat-mdc-select-arrow svg {
+  color: white !important;
+}
+.mdc-menu-surface.mat-mdc-select-panel {
+  background: linear-gradient(170deg, #4cccd6 -15%, #00327a 80%) !important;
+}
+.mdc-list-item__primary-text {
+  color: white !important;
+}
+.mat-pseudo-checkbox-full {
+  color: white !important;
+}
+.mat-mdc-select-panel .mdc-menu-surface.mat-mdc-select-panel {
+  position: relative;
+  background: linear-gradient(170deg, #4cccd6 -5%, #00327a 20%) !important;
+}
+.mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-full,
+.mat-primary .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-full {
+  background-color: #00327a !important;
+}
+
+.mat-mdc-option .mat-icon,
+.mat-mdc-option .mat-pseudo-checkbox-full {
+  background-color: white !important;
+}
+.mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
 }

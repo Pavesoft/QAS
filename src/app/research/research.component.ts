@@ -24,6 +24,20 @@ export class ResearchComponent implements OnInit {
     "Market Outlook",
     "SPARK Matrix",
   ];
+
+  toppingsControl = new FormControl([]);
+  selectedAuthors: string[] = [];
+
+  onAuthorCheck(event: Event, author: string) {
+    const checked = (event.target as HTMLInputElement).checked;
+    if (checked) {
+      this.selectedAuthors.push(author);
+    } else {
+      this.selectedAuthors = this.selectedAuthors.filter(
+        (item) => item !== author
+      );
+    }
+  }
   date: any;
   startDate: Date | undefined;
   endDate: Date | undefined;
@@ -106,6 +120,7 @@ export class ResearchComponent implements OnInit {
 
     this.apiService.getAuthors().subscribe((data: any) => {
       this.authorData = data.map((item: any) => item.name);
+      this.authorData.sort((a: string, b: string) => a.localeCompare(b));
       // console.table("Report Typ", this.categoryData);
     });
 
@@ -517,15 +532,15 @@ export class ResearchComponent implements OnInit {
     this.updateMappedReports("regionName");
   }
 
-  onAnalystCheck(event: any, option: string) {
-    if (event.target && event.target.checked) {
-      this.authorsOptions.push(option);
+  onAnalystCheck(event: any) {
+    if (event.value.length > this.authorsOptions.length) {
+      this.authorsOptions = event.value;
     } else {
-      const index = this.authorsOptions.indexOf(option);
-      if (index !== -1) {
-        this.authorsOptions.splice(index, 1);
-      }
+      event.value = this.authorsOptions;
     }
+
+    console.log("author check", this.authorsOptions);
+
     this.selectedOptions = [
       ...this.reportTypeOptions,
       ...this.categoryOptions,
@@ -612,7 +627,25 @@ export class ResearchComponent implements OnInit {
       this.searchObject.searchCriteriaList.length > 0
     ) {
       this.isLoading = true;
-      this.loadSearchData();
+      this.apiService
+        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
+        .subscribe(
+          (data) => {
+            // Handle API response
+            this.mappedReports = data.researchMasterList.map((report: any) => {
+              return {
+                ...report,
+                publishDate: this.epochToDate(report.publishDate),
+              };
+            });
+            this.currentPage = data.pagination.currentPage + 1;
+            this.itemsPerPage = data.pagination.pageSize;
+            this.totalPages = data.pagination.totalPages;
+          },
+          (error) => {
+            console.error("API error:", error);
+          }
+        );
       this.isLoading = false;
       this.onPageChange(1);
     } else {
@@ -639,6 +672,7 @@ export class ResearchComponent implements OnInit {
     }
     if (this.authorsOptions.includes(removedOption)) {
       const analystIndex = this.authorsOptions.indexOf(removedOption);
+      this.onAnalystCheck(this.authorsOptions);
       this.authorsOptions.splice(analystIndex, 1);
     }
 
@@ -744,44 +778,27 @@ export class ResearchComponent implements OnInit {
   }
 
   loadSearchData(): void {
-    if (this.isSubscribed) {
-      this.searchObject.isSubscribed = true;
-    } else {
-      if (this.searchObject.isSubscribed === true) {
-        delete this.searchObject.isSubscribed;
-      }
-    }
-    const apiCall = this.isSubscribed
-      ? this.apiService.serachFiltersToken(
-          this.searchObject,
-          this.currentPage,
-          this.itemsPerPage
-        )
-      : this.apiService.serachFilters(
-          this.searchObject,
-          this.currentPage,
-          this.itemsPerPage
+    this.apiService
+      .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
+      .subscribe((response) => {
+        this.mappedReports = response.researchMasterList;
+        this.mappedReports.sort(
+          (a: any, b: any) => a.publishDate - b.publishDate
         );
-    apiCall.subscribe((response) => {
-      this.mappedReports = response.researchMasterList;
-      this.mappedReports.sort(
-        (a: any, b: any) => a.publishDate - b.publishDate
-      );
-      this.mappedReports = this.mappedReports.map((report: any) => {
-        return {
-          ...report,
-          publishDate: this.epochToDate(report.publishDate),
-        };
+        this.mappedReports = this.mappedReports.map((report: any) => {
+          return {
+            ...report,
+            publishDate: this.epochToDate(report.publishDate),
+          };
+        });
+
+        // this.totalPages =
+        //   response.researchMasterList.length / this.itemsPerPage;
+        this.currentPage = response.pagination.currentPage + 1;
+        this.itemsPerPage = response.pagination.pageSize;
+        this.totalPages = response.pagination.totalPages;
       });
-
-      // this.totalPages =
-      //   response.researchMasterList.length / this.itemsPerPage;
-      this.currentPage = response.pagination.currentPage + 1;
-      this.itemsPerPage = response.pagination.pageSize;
-      this.totalPages = response.pagination.totalPages;
-    });
   }
-
   getFirstParagraph(htmlContent: string): string {
     if (/<[a-z][\s\S]*>/i.test(htmlContent)) {
       const parser = new DOMParser();
