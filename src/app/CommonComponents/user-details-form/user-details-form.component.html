@@ -1,24 +1,48 @@
- <h2 mat-dialog-title class="form-title">User Details</h2>
+<h2 mat-dialog-title class="form-title">User Details</h2>
 <div mat-dialog-content class="form-content">
   <form class="user-details-form">
     <mat-form-field class="form-field">
-      <input matInput placeholder="Full Name" [(ngModel)]="fullName" name="fullName" required>
-     
-     
+      <input
+        matInput
+        placeholder="Full Name"
+        [(ngModel)]="fullName"
+        name="fullName"
+        required
+      />
     </mat-form-field>
 
     <mat-form-field class="form-field">
-      <input matInput placeholder="Work Email" [(ngModel)]="workEmail" name="workEmail" required email>
+      <input
+        matInput
+        placeholder="Work Email"
+        [(ngModel)]="workEmail"
+        name="workEmail"
+        required
+        email
+      />
     </mat-form-field>
 
     <mat-form-field class="form-field">
-      <input matInput placeholder="Mobile Number with Country Code" [(ngModel)]="mobileNumber" name="mobileNumber" required>
+      <input
+        matInput
+        placeholder="Mobile Number with Country Code"
+        [(ngModel)]="mobileNumber"
+        name="mobileNumber"
+        required
+      />
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions class="form-actions">
   <!-- <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Cancel</button> -->
-  <button mat-raised-button color="primary" [mat-dialog-close]="data" (click)="submitForm()" [disabled]="!isFormValid()">Submit</button>
-</div> 
-
-
+  <button mat-button [mat-dialog-close]>Close</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [mat-dialog-close]="data"
+    (click)="submitForm()"
+    [disabled]="!isFormValid()"
+  >
+    Submit
+  </button>
+</div>

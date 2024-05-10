@@ -2,6 +2,27 @@
   class="container-fluid"
   style="margin-bottom: 70px; background-color: #f3f4f5"
 >
+  <div class="d-flex pt-3 pl-5">
+    <p
+      (click)="goToBack()"
+      style="
+        font-size: 17px !important;
+        cursor: pointer;
+        margin: 0px !important;
+      "
+    >
+      Research >
+    </p>
+    <span
+      style="
+        font-size: 17px;
+        padding-left: 4px;
+        color: #0d6efd;
+        margin: 0px !important;
+      "
+      >{{ Reports.report }}
+    </span>
+  </div>
   <div
     id="customAlert"
     class="alert"
@@ -121,7 +142,7 @@
                       style="color: #212529; margin-top: 1px; font-size: 16px"
                       >Price:
                     </span>
-                    <p class="prc">$ {{ Reports.price }}</p>
+                    <span class="prc">$ {{ formatPrice(Reports.price) }}</span>
                   </div>
                 </div>
               </div>

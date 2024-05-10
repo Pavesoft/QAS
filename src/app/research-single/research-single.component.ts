@@ -87,7 +87,14 @@ export class ResearchSingleComponent implements OnInit {
       }
     }, 100);
   }
+  formatPrice(price: number): string {
+    // Convert the number to a string and add commas every three digits from the right
+    return price.toLocaleString("en-US");
+  }
 
+  goToBack() {
+    this.router.navigate(["/research"]);
+  }
   closeCustomAlert(): void {
     const customAlert = document.getElementById("customAlert");
     if (customAlert) {

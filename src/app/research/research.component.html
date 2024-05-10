@@ -326,11 +326,8 @@
                       (input)="onSearchChange($event)"
                     />
                   </div>
-                  <div>
-                    <i
-                      class="fa fa-search"
-                      style="width: 24px; height: 24px"
-                    ></i>
+                  <div style="margin-left: -20px; margin-bottom: 8px">
+                    <img src="../../assets/search.svg" />
                   </div>
                 </div>
               </form>
@@ -498,7 +495,7 @@
                         *ngIf="research.authors.length != 0"
                       >
                         <a
-                          class="item-link"
+                          class="item-link textcommon-fontsize"
                           *ngFor="let author of research.authors"
                         >
                           <span
@@ -513,7 +510,7 @@
 
                     <div class="research-description">
                       <p
-                        style="font-size: 16px; margin: 0px !important"
+                        style="font-size: 15px; margin: 0px !important"
                         [innerHtml]="getFirstParagraph(research.description)"
                       ></p>
                     </div>
@@ -550,7 +547,7 @@
                           <button
                             class="bn"
                             style="
-                              font-size: 17px;
+                              font-size: 16px;
                               border: 0px;
                               margin-top: 14px;
                             "
@@ -571,7 +568,7 @@
                           class="btn button-download"
                           style="
                             margin-bottom: 15px !important;
-                            font-size: 17px;
+                            font-size: 16px;
                           "
                           (click)="downloadResearch(research.id)"
                         >
@@ -585,7 +582,7 @@
                           class="btn btn-success bn"
                           style="
                             margin-bottom: 15px !important;
-                            font-size: 17px;
+                            font-size: 16px;
                             width: 120px;
                             border: 0px;
                           "
@@ -635,7 +632,11 @@
               <h1>No data</h1>
             </div>
             <!-- Pagination Component -->
-            <div class="row" *ngIf="totalPages > 0">
+            <div
+              class="row"
+              style="margin-bottom: 120px"
+              *ngIf="totalPages > 0"
+            >
               <ul
                 class="pagination"
                 style="justify-content: center; align-items: center"
@@ -713,10 +714,10 @@
                 </li>
               </ul>
             </div>
+            <app-searchbar></app-searchbar>
           </div>
         </div>
       </div>
     </div>
-    <app-searchbar></app-searchbar>
   </div>
 </div>
