@@ -762,27 +762,44 @@ export class ResearchComponent implements OnInit {
   }
 
   loadSearchData(): void {
-    this.apiService
-      .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
-      .subscribe((response) => {
-        this.mappedReports = response.researchMasterList;
-        this.mappedReports.sort(
-          (a: any, b: any) => a.publishDate - b.publishDate
+    if (this.isSubscribed) {
+      this.searchObject.isSubscribed = true;
+    } else {
+      if (this.searchObject.isSubscribed === true) {
+        delete this.searchObject.isSubscribed;
+      }
+    }
+    const apiCall = this.isSubscribed
+      ? this.apiService.serachFiltersToken(
+          this.searchObject,
+          this.currentPage,
+          this.itemsPerPage
+        )
+      : this.apiService.serachFilters(
+          this.searchObject,
+          this.currentPage,
+          this.itemsPerPage
         );
-        this.mappedReports = this.mappedReports.map((report: any) => {
-          return {
-            ...report,
-            publishDate: this.epochToDate(report.publishDate),
-          };
-        });
-
-        // this.totalPages =
-        //   response.researchMasterList.length / this.itemsPerPage;
-        this.currentPage = response.pagination.currentPage + 1;
-        this.itemsPerPage = response.pagination.pageSize;
-        this.totalPages = response.pagination.totalPages;
+    apiCall.subscribe((response) => {
+      this.mappedReports = response.researchMasterList;
+      this.mappedReports.sort(
+        (a: any, b: any) => a.publishDate - b.publishDate
+      );
+      this.mappedReports = this.mappedReports.map((report: any) => {
+        return {
+          ...report,
+          publishDate: this.epochToDate(report.publishDate),
+        };
       });
+
+      // this.totalPages =
+      //   response.researchMasterList.length / this.itemsPerPage;
+      this.currentPage = response.pagination.currentPage + 1;
+      this.itemsPerPage = response.pagination.pageSize;
+      this.totalPages = response.pagination.totalPages;
+    });
   }
+
   getFirstParagraph(htmlContent: string): string {
     if (/<[a-z][\s\S]*>/i.test(htmlContent)) {
       const parser = new DOMParser();

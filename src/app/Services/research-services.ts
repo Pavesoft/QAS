@@ -49,6 +49,25 @@ export class ApiService {
       { headers: headers }
     );
   }
+
+  serachFilters(post: any, page: any, size: any): Observable<any> {
+    return this.http.post<any>(
+      `${this.apiUrl}/research-masters/search?page=${page - 1}&size=${size}`,
+      post
+    );
+  }
+  serachFiltersToken(post: any, page: any, size: any): Observable<any> {
+    const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.post<any>(
+      `${this.apiUrl}/research-masters/search?page=${page - 1}&size=${size}`,
+      post,
+      { headers: headers }
+    );
+  }
+
   getReportType(): Observable<any[]> {
     // const token = localStorage.getItem("jwtToken");
     const headers = new HttpHeaders({
@@ -120,13 +139,6 @@ export class ApiService {
 
   addPost(post: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/posts`, post);
-  }
-
-  serachFilters(post: any, page: any, size: any): Observable<any> {
-    return this.http.post<any>(
-      `${this.apiUrl}/research-masters/search?page=${page - 1}&size=${size}`,
-      post
-    );
   }
 
   updatePost(id: number, post: any): Observable<any> {
