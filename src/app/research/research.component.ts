@@ -532,15 +532,15 @@ export class ResearchComponent implements OnInit {
     this.updateMappedReports("regionName");
   }
 
-  onAnalystCheck(event: any) {
-    if (event.value.length > this.authorsOptions.length) {
-      this.authorsOptions = event.value;
+  onAnalystCheck(event: any, option: string) {
+    if (event.target && event.target.checked) {
+      this.authorsOptions.push(option);
     } else {
-      event.value = this.authorsOptions;
+      const index = this.authorsOptions.indexOf(option);
+      if (index !== -1) {
+        this.authorsOptions.splice(index, 1);
+      }
     }
-
-    console.log("author check", this.authorsOptions);
-
     this.selectedOptions = [
       ...this.reportTypeOptions,
       ...this.categoryOptions,
@@ -672,7 +672,6 @@ export class ResearchComponent implements OnInit {
     }
     if (this.authorsOptions.includes(removedOption)) {
       const analystIndex = this.authorsOptions.indexOf(removedOption);
-      this.onAnalystCheck(this.authorsOptions);
       this.authorsOptions.splice(analystIndex, 1);
     }
 

@@ -126,7 +126,6 @@
         </div>
         <hr />
         <h4 class="t2">Region</h4>
-
         <div class="dropdown">
           <div
             [ngClass]="{
@@ -178,23 +177,56 @@
         </div>
         <hr />
         <h4 class="t2">Author</h4>
-
-        <mat-form-field class="w-100">
-          <mat-label>Select Author</mat-label>
-          <mat-select
-            style="color: white"
-            [formControl]="toppingsControl"
-            multiple
-            (selectionChange)="onAnalystCheck($event)"
+        <div class="dropdown">
+          <div
+            [ngClass]="{
+              'btn form-select dropdown-toggle': true,
+              'custom-styles': authorsOptions.length !== 0,
+              'custom-styles2': authorsOptions.length === 0
+            }"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
           >
-            <mat-option *ngFor="let author of authorData" [value]="author">
-              {{ author }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <!-- Custom Dropdown with Bootstrap-like styling -->
-
+            <ng-container *ngIf="authorsOptions.length > 0; else selectAuthor">
+              <ng-container
+                *ngFor="let option of authorsOptions; let last = last"
+              >
+                <p style="margin: 0 3px">
+                  {{ option }}{{ !last ? ", " : " " }}
+                </p>
+                <!-- <span *ngIf="!last">,</span> -->
+              </ng-container>
+            </ng-container>
+            <ng-template #selectAuthor>Select Author</ng-template>
+          </div>
+          <div
+            class="form-selectt dropdown-menu"
+            aria-labelledby="dropdownMenuButton"
+            style="
+              max-height: 350px;
+              overflow-y: auto;
+              width: 100%;
+              background: linear-gradient(
+                118deg,
+                rgba(100, 100, 100, 0.6) 30%,
+                rgba(200, 200, 200, 0.1) 109.82%
+              );
+            "
+          >
+            <label class="dropdown-item" *ngFor="let option of authorData">
+              <input
+                type="checkbox"
+                [value]="option"
+                (change)="onAnalystCheck($event, option)"
+                [checked]="authorsOptions.includes(option)"
+              />
+              {{ option }}
+            </label>
+          </div>
+        </div>
         <!-- <div class="d-flex justify-content-end position-relative">
           <button
             class="btn btn-success bn position-absolute left-0 mt-4"
@@ -205,7 +237,7 @@
           </button>
         </div> -->
       </div>
-      <div class="col-md-9" style="padding-right: 70px; padding-left: 50px">
+      <div class="col-md-9 main-container">
         <div class="container-fluid">
           <div
             class="row"
@@ -229,16 +261,14 @@
               <div *ngIf="showDateRangePicker">
               </div>
             </div> -->
-            <div class="col-md-6 mt-3 d-flex align-items-center">
+            <div class="col-md-6 mt-3 align-items-center date-picker">
               <span
                 class="sb mr-2"
                 style="font-size: 16px !important; margin-top: -12px"
                 >Date Range</span
               >
               <mat-form-field appearance="fill" class="custome-date-picker">
-                <mat-label style="color: #00327a !important"
-                  >Enter a date range</mat-label
-                >
+                <mat-label>Enter a date range</mat-label>
                 <mat-date-range-input
                   [formGroup]="range"
                   [rangePicker]="picker"
@@ -256,7 +286,7 @@
                   />
                 </mat-date-range-input>
                 <button
-                  style="border: 0px; padding: 0"
+                  style="border: 0px; padding: 0; background-color: #cfecef"
                   matSuffix
                   (click)="clearDateRange()"
                 >
@@ -305,7 +335,7 @@
             <div
               class="col-sm-6 plt d-flex align-items-center justify-content-end"
             >
-              <div *ngIf="isLogin">
+              <div *ngIf="isLogin" class="radio_button">
                 <span>
                   <input
                     type="radio"
@@ -391,11 +421,10 @@
 
           <div *ngIf="isLoading">
             <br /><br /><br /><br /><br /><br /><br /><br />
-            <div class="loading-spinner" style="width: 80px; height: 80px">
-              <!-- <div class="logo-pre">
-                      <img src="../../../../assets/lg.gif" alt="Logo" class="img-fluid" height="40px;width:40px;">
-                  </div> -->
-            </div>
+            <div
+              class="loading-spinner"
+              style="width: 80px; height: 80px"
+            ></div>
             <br /><br /><br /><br /><br /><br /><br /><br />
           </div>
           <!-- Main List of Research Items -->
@@ -407,20 +436,16 @@
                     class="row col-md-9"
                     style="row-gap: 14px; margin-right: 0"
                   >
-                    <div class="d-flex">
+                    <div class="upper_part">
                       <!-- <span>Date :</span> -->
                       <span
                         class="textcommon-fontsize"
                         style="margin: 0 14px 0 0px"
                         >{{ research.publishDate }}
                       </span>
-                      <span>|</span>
-                      <div class="d-flex">
-                        <span
-                          class="textcommon-fontsize"
-                          style="margin-left: 14px"
-                          >Category:
-                        </span>
+                      <span class="seperator">|</span>
+                      <div class="d-flex category">
+                        <span class="textcommon-fontsize">Category: </span>
                         <div *ngFor="let category of research.categoryList">
                           <a
                             class="category-link"
@@ -435,7 +460,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="" style="">
+                    <div>
                       <a
                         routerLink="/research-single"
                         class="research-title"
