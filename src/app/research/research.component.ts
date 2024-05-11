@@ -115,7 +115,6 @@ export class ResearchComponent implements OnInit {
 
     this.apiService.getCategories().subscribe((data: any) => {
       this.categoryData = data.map((item: any) => item.categoryName);
-      // console.table("Report Typ", this.categoryData);
     });
 
     this.apiService.getAuthors().subscribe((data: any) => {
@@ -126,7 +125,6 @@ export class ResearchComponent implements OnInit {
 
     this.apiService.getRegion().subscribe((data: any) => {
       this.regionData = data.map((item: any) => item.regionName);
-      // console.table("Report Typ", this.categoryData);
     });
   }
 
@@ -193,24 +191,7 @@ export class ResearchComponent implements OnInit {
         this.searchObject.dataOption = "all";
       }
 
-      this.apiService
-        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
-        .subscribe((response) => {
-          this.mappedReports = response.researchMasterList;
-          this.mappedReports.sort((a, b) => a.publishDate - b.publishDate);
-          this.mappedReports = this.mappedReports.map((report: any) => {
-            return {
-              ...report,
-              publishDate: this.epochToDate(report.publishDate),
-            };
-          });
-
-          // this.totalPages =
-          //   response.researchMasterList.length / this.itemsPerPage;
-          this.currentPage = response.pagination.currentPage + 1;
-          this.itemsPerPage = response.pagination.pageSize;
-          this.totalPages = response.pagination.totalPages;
-        });
+      this.loadSearchData();
       this.onPageChange(1);
       this.isLoading = false;
     } else {
@@ -702,29 +683,7 @@ export class ResearchComponent implements OnInit {
       this.selectedOptions.length > 0 ||
       this.searchObject.searchCriteriaList.length > 0
     ) {
-      this.apiService
-        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
-        .subscribe(
-          (data) => {
-            // Handle the API response here
-
-            this.mappedReports = data.researchMasterList;
-            this.mappedReports = this.mappedReports.map((report: any) => {
-              return {
-                ...report,
-                publishDate: this.epochToDate(report.publishDate),
-              };
-            });
-            // this.totalPages = data.researchMasterList.length / this.itemsPerPage;
-            this.currentPage = data.pagination.currentPage + 1;
-            this.itemsPerPage = data.pagination.pageSize;
-            this.totalPages = data.pagination.totalPages;
-          },
-          (error) => {
-            // Handle any API errors here
-            console.error("API error:", error);
-          }
-        );
+      this.loadSearchData();
       this.onPageChange(1);
     } else if (
       this.selectedOptions.length <= 0 ||
@@ -777,26 +736,35 @@ export class ResearchComponent implements OnInit {
   }
 
   loadSearchData(): void {
-    this.apiService
-      .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
-      .subscribe((response) => {
-        this.mappedReports = response.researchMasterList;
-        this.mappedReports.sort(
-          (a: any, b: any) => a.publishDate - b.publishDate
+    const apiCall = this.isSubscribed
+      ? this.apiService.serachFiltersToken(
+          this.searchObject,
+          this.currentPage,
+          this.itemsPerPage
+        )
+      : this.apiService.serachFilters(
+          this.searchObject,
+          this.currentPage,
+          this.itemsPerPage
         );
-        this.mappedReports = this.mappedReports.map((report: any) => {
-          return {
-            ...report,
-            publishDate: this.epochToDate(report.publishDate),
-          };
-        });
-
-        // this.totalPages =
-        //   response.researchMasterList.length / this.itemsPerPage;
-        this.currentPage = response.pagination.currentPage + 1;
-        this.itemsPerPage = response.pagination.pageSize;
-        this.totalPages = response.pagination.totalPages;
+    apiCall.subscribe((response) => {
+      this.mappedReports = response.researchMasterList;
+      this.mappedReports.sort(
+        (a: any, b: any) => a.publishDate - b.publishDate
+      );
+      this.mappedReports = this.mappedReports.map((report: any) => {
+        return {
+          ...report,
+          publishDate: this.epochToDate(report.publishDate),
+        };
       });
+
+      // this.totalPages =
+      //   response.researchMasterList.length / this.itemsPerPage;
+      this.currentPage = response.pagination.currentPage + 1;
+      this.itemsPerPage = response.pagination.pageSize;
+      this.totalPages = response.pagination.totalPages;
+    });
   }
   getFirstParagraph(htmlContent: string): string {
     if (/<[a-z][\s\S]*>/i.test(htmlContent)) {
@@ -872,6 +840,11 @@ export class ResearchComponent implements OnInit {
   toggleResearchType(isSubscribed: boolean): void {
     this.isSubscribed = isSubscribed;
     if (this.searchObject.searchCriteriaList.length > 0) {
+      if (this.isSubscribed) {
+        this.searchObject.isSubscribed = true;
+      } else {
+        delete this.searchObject.isSubscribed;
+      }
       // If there are any criteria left, call loadSearchData()
       this.loadSearchData();
     } else {

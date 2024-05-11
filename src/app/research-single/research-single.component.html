@@ -2,7 +2,7 @@
   class="container-fluid"
   style="margin-bottom: 70px; background-color: #f3f4f5"
 >
-  <div class="d-flex pt-3 pl-5">
+  <div class="d-flex pt-3 pl-5 single_navigation">
     <p
       (click)="goToBack()"
       style="
@@ -11,8 +11,9 @@
         margin: 0px !important;
       "
     >
-      Research >
+      Research
     </p>
+    <p style="margin: 0 5px">></p>
     <span
       style="
         font-size: 17px;
@@ -36,12 +37,13 @@
       {{ message }}
     </div>
   </div>
-  <div class="row" style="padding: 20px; margin: 0 20px">
+  <div class="row single_main_container">
     <div
       class="col-md-2"
       style="
         background-color: white;
         height: 218px;
+        margin-bottom: 10px;
 
         /* box-shadow: 3px 3px 3px 3px #efefef; */
       "
@@ -66,7 +68,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-7" style="padding-left: 25px">
+    <div class="col-md-7 middle_reportDetails_container">
       <div *ngIf="isLoading">
         <br /><br /><br /><br /><br /><br /><br /><br />
         <div class="loading-spinner" style="width: 80px; height: 80px">
@@ -87,32 +89,33 @@
           <div class="row">
             <div class="col-md-9">
               <div class="row">
-                <div
-                  class="d-flex align-items-center"
-                  style="margin-bottom: 10px"
-                >
-                  <span class="textcommon-fontsize">{{
-                    Reports.publishDate
-                  }}</span>
-                  <span style="margin-left: 10px; font-size: 16px">|</span>
-                  <span class="textcommon-fontsize" style="margin-left: 10px"
-                    >Category:</span
-                  >
-                  <div *ngFor="let category of Reports.categoryList">
-                    <a class="category-link">
-                      <span
-                        style="margin-left: 5px; color: #0d6efd"
-                        class="textcommon-fontsize"
-                        >{{ category }}</span
-                      >
-                    </a>
+                <div class="upper_part">
+                  <!-- <span>Date :</span> -->
+                  <span class="textcommon-fontsize" style="margin: 0 14px 0 0px"
+                    >{{ Reports.publishDate }}
+                  </span>
+                  <span class="seperator">|</span>
+                  <div class="d-flex category">
+                    <span class="textcommon-fontsize">Category: </span>
+                    <div *ngFor="let category of Reports.categoryList">
+                      <a class="category-link">
+                        <span
+                          style="margin-left: 5px"
+                          class="textcommon-fontsize"
+                          >{{ category }}</span
+                        >
+                      </a>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <span href="#" class="research-title" style="font-size: 20px"
                     >{{ Reports.report }}
                   </span>
-                  <div style="margin-top: 6px !important">
+                  <div
+                    class="report_category"
+                    style="margin-top: 6px !important"
+                  >
                     <span class="research-category"
                       >Report Type:
                       <a style="text-decoration: none"
@@ -121,7 +124,7 @@
                         }}</span></a
                       >
                     </span>
-                    <span class="research-category" style="margin-left: 14px"
+                    <span class="research-category"
                       >Authors:
                       <span
                         class="item-link"
@@ -227,15 +230,7 @@
           </div>
         </div>
 
-        <div
-          class="row"
-          style="
-            margin: 30px 1px 1px 1px;
-            background-color: white;
-            /* box-shadow: 3px 3px 3px 3px #efefef; */
-            padding: 25px;
-          "
-        >
+        <div class="row single_report_description">
           <div class="col-sm-12">
             <p
               style="
@@ -252,7 +247,7 @@
       </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3 third_container">
       <div
         class="d-flex flex-column justify-content-center"
         style="
@@ -307,9 +302,9 @@
           <div>
             <i class="fa fa-envelope-open-o"></i>&nbsp;
             <a
-              href="mailto:ajinkya@quadrant-solutions.com"
+              href="mailto:infoleads@quadrant-solutions.com"
               style="text-decoration: none; font-size: 16px"
-              >ajinkya@quadrant-solutions.com</a
+              >infoleads@quadrant-solutions.com</a
             >
           </div>
           <div style="margin-top: 10px !important">

@@ -1,40 +1,74 @@
-
-
-<div class="row" style="padding-bottom: 3%; margin-top: -33px;">
+<div class="row" style="padding-bottom: 3%; margin-top: -48px">
   <div class="col-sm-12">
     <h1 class="ct">Contact Us</h1>
     <div class="myimg">
-      <img class="myimage" src="assets/contact1.png">
+      <img class="myimage" src="assets/contact1.png" />
     </div>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-6" id="spacing" style="padding-top: 80px;">
+    <div class="col-sm-6" id="spacing" style="padding-top: 80px">
       <ul class="list-unstyled">
         <h2>For any inquiries call now</h2>
-        <img src="assets/Phone.png" style="width: 25px;">
-        <a href="tel:(+1) 978-344-2770" style="text-decoration: none; font-family: Arial Nova; font-size: 16px;">(+1) 978-344-2770</a>
-        <br><br>
+        <img src="assets/Phone.png" style="width: 25px" />
+        <a
+          href="tel:(+1) 978-344-2770"
+          style="
+            text-decoration: none;
+            font-family: Arial Nova;
+            font-size: 16px;
+          "
+          >(+1) 978-344-2770</a
+        >
+        <br /><br />
         <h2>For any inquiries email now</h2>
-        <img src="assets/Mail.png" style="width: 25px;">
-        <a href="mailto:ajinkya@quadrant-solutions.com"
-          style="text-decoration: none; font-family: Arial Nova; font-size: 16px;">ajinkya@quadrant-solutions.com</a>
+        <img src="assets/Mail.png" style="width: 25px" />
+        <a
+          href="mailto:infoleads@quadrant-solutions.com"
+          style="
+            text-decoration: none;
+            font-family: Arial Nova;
+            font-size: 16px;
+          "
+          >infoleads@quadrant-solutions.com</a
+        >
       </ul>
     </div>
-    <div class="col-sm-6" style="background-color: #EAEAEA;padding-bottom: 22px;">
+    <div
+      class="col-sm-6"
+      style="background-color: #eaeaea; padding-bottom: 22px"
+    >
       <div class="container py-4">
-        
         <div *ngIf="loading" class="loader">Loading...</div>
-
 
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div>
             <!-- <label for="fName"> Name:</label> -->
-            <input type="text" id="fName" formControlName="fName" maxlength="50"  class="form-control" required placeholder="Name*" onkeyup=" this.value = this.value.replace(/[^a-z0-9 .]/gi,'')" oninput=" this.value = this.value.replace(/[0-9]/g,'')">
-            <div *ngIf="form.controls['fName'].invalid && (form.controls['fName'].dirty || form.controls['fName'].touched)">
-              <div *ngIf="form.controls['fName'].errors?.['required']" style="color: red;"> Name is required.</div>
+            <input
+              type="text"
+              id="fName"
+              formControlName="fName"
+              maxlength="50"
+              class="form-control"
+              required
+              placeholder="Name*"
+              onkeyup=" this.value = this.value.replace(/[^a-z0-9 .]/gi,'')"
+              oninput=" this.value = this.value.replace(/[0-9]/g,'')"
+            />
+            <div
+              *ngIf="
+                form.controls['fName'].invalid &&
+                (form.controls['fName'].dirty || form.controls['fName'].touched)
+              "
+            >
+              <div
+                *ngIf="form.controls['fName'].errors?.['required']"
+                style="color: red"
+              >
+                Name is required.
+              </div>
             </div>
           </div>
           <!-- <div>
@@ -44,23 +78,76 @@
           </div> -->
           <div>
             <!-- <label for="officeEmail">Office Email:</label> -->
-            <input type="email" id="officeEmail" class="form-control" maxlength="30" formControlName="officeEmail" required placeholder="Official Email*">
-            <div *ngIf="form.controls['officeEmail'].invalid && (form.controls['officeEmail'].dirty || form.controls['officeEmail'].touched)">
-              <div *ngIf="form.controls['officeEmail'].errors?.['required']" style="color: red;">Office Email is required.</div>
-              <div *ngIf="form.controls['officeEmail'].errors?.['email']" style="color: red;">Invalid email format.</div>
+            <input
+              type="email"
+              id="officeEmail"
+              class="form-control"
+              maxlength="30"
+              formControlName="officeEmail"
+              required
+              placeholder="Official Email*"
+            />
+            <div
+              *ngIf="
+                form.controls['officeEmail'].invalid &&
+                (form.controls['officeEmail'].dirty ||
+                  form.controls['officeEmail'].touched)
+              "
+            >
+              <div
+                *ngIf="form.controls['officeEmail'].errors?.['required']"
+                style="color: red"
+              >
+                Office Email is required.
+              </div>
+              <div
+                *ngIf="form.controls['officeEmail'].errors?.['email']"
+                style="color: red"
+              >
+                Invalid email format.
+              </div>
             </div>
           </div>
           <div>
             <!-- <label for="businessPhone">Business Phone:</label> -->
-            <input type="tel" id="businessPhone" formControlName="businessPhone" class="form-control" required placeholder="Phone*" style="margin-bottom:20px;" onkeyup="this.value = this.value.replace(/[^0-9-]/g, '');">
+            <input
+              type="tel"
+              id="businessPhone"
+              formControlName="businessPhone"
+              class="form-control"
+              required
+              placeholder="Phone*"
+              style="margin-bottom: 20px"
+              onkeyup="this.value = this.value.replace(/[^0-9-]/g, '');"
+            />
             <!-- Add other validation messages for businessPhone if needed -->
           </div>
 
           <div>
             <!-- <label for="fName"> Name:</label> -->
-            <input type="text" id="companyName" formControlName="companyName" maxlength="50"  class="form-control" required placeholder="Company Name*" oninput=" this.value = this.value.replace(/[0-9]/g,'')">
-            <div *ngIf="form.controls['companyName'].invalid && (form.controls['companyName'].dirty || form.controls['companyNames'].touched)">
-              <div *ngIf="form.controls['companyName'].errors?.['required']" style="color: red;">Company Name is required.</div>
+            <input
+              type="text"
+              id="companyName"
+              formControlName="companyName"
+              maxlength="50"
+              class="form-control"
+              required
+              placeholder="Company Name*"
+              oninput=" this.value = this.value.replace(/[0-9]/g,'')"
+            />
+            <div
+              *ngIf="
+                form.controls['companyName'].invalid &&
+                (form.controls['companyName'].dirty ||
+                  form.controls['companyNames'].touched)
+              "
+            >
+              <div
+                *ngIf="form.controls['companyName'].errors?.['required']"
+                style="color: red"
+              >
+                Company Name is required.
+              </div>
             </div>
           </div>
 
@@ -73,60 +160,111 @@
 
           <div>
             <!-- <label for="fName"> Name:</label> -->
-            <textarea type="textarea" id="description" formControlName="description" maxlength="600"  class="form-control " required placeholder="Message To Quadrant*"></textarea>
-            <div *ngIf="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)">
-              <div *ngIf="form.controls['description'].errors?.['required']" style="color: red;"> Message is required.</div>
+            <textarea
+              type="textarea"
+              id="description"
+              formControlName="description"
+              maxlength="600"
+              class="form-control"
+              required
+              placeholder="Message To Quadrant*"
+            ></textarea>
+            <div
+              *ngIf="
+                form.controls['description'].invalid &&
+                (form.controls['description'].dirty ||
+                  form.controls['description'].touched)
+              "
+            >
+              <div
+                *ngIf="form.controls['description'].errors?.['required']"
+                style="color: red"
+              >
+                Message is required.
+              </div>
             </div>
           </div>
           <!-- Add other form fields similarly -->
-          <br>
-          <p>This website is secure and we do not share your personal information with any third party. <a href="/PersonalInformation" style="text-decoration: none;">Privacy Policy</a></p>
+          <br />
+          <p>
+            This website is secure and we do not share your personal information
+            with any third party.
+            <a href="/PersonalInformation" style="text-decoration: none"
+              >Privacy Policy</a
+            >
+          </p>
 
-          <button   type="submit"   class="becobtn btn btBtn btn-primary btnNormalWidth step-submit-action-button form-submit-button" [disabled]="buttonDisabled" >Send Us</button>
+          <button
+            type="submit"
+            class="becobtn btn btBtn btn-primary btnNormalWidth step-submit-action-button form-submit-button"
+            [disabled]="buttonDisabled"
+          >
+            Send Us
+          </button>
         </form>
-      
-        
-
       </div>
     </div>
   </div>
 </div>
 
-<br><br>
+<br /><br />
 
 <div class="row">
-  <div class="col-sm-2">
-  </div>
-  <div class="col-sm-4" id="usoff" style="margin-right: 40px;">
-    <div class="card" style="background-color: #0972EA;">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-4" id="usoff" style="margin-right: 40px">
+    <div class="card" style="background-color: #0972ea">
       <div class="card-body">
-        <h2 class="card-title text-center" style="color: white;">US Office</h2>
-        <p class="card-text text-center" style="color: white;">Regus Business Center 35<br>Village Road, Suite 100,
-          Middleton<br> Massachusetts 01949<br>United States</p>
-        <p class="text-center"><a href="tel:(+1) 978-344-2770" class="card-text text-center" style="color: white;">(+1) 978-344-2770</a></p><br><br><br>
+        <h2 class="card-title text-center" style="color: white">US Office</h2>
+        <p class="card-text text-center" style="color: white">
+          Regus Business Center 35<br />Village Road, Suite 100, Middleton<br />
+          Massachusetts 01949<br />United States
+        </p>
+        <p class="text-center">
+          <a
+            href="tel:(+1) 978-344-2770"
+            class="card-text text-center"
+            style="color: white"
+            >(+1) 978-344-2770</a
+          >
+        </p>
+        <br /><br /><br />
       </div>
     </div>
   </div>
-  <div class="col-sm-4" id="usoff" style="margin-left: 40px;">
-    <div class="card" style="background-color: #0972EA;padding-bottom: 30px;">
+  <div class="col-sm-4" id="usoff" style="margin-left: 40px">
+    <div class="card" style="background-color: #0972ea; padding-bottom: 30px">
       <div class="card-body">
-        <h2 class="card-title text-center" style="color: white;">Pune Office</h2>
-        <p class="card-text text-center" style="color: white;">3rd Floor, Wing 4, Cluster D,<br> EON IT Park,
-          Kharadi,<br> Pune, Maharashtra,<br> 411014 India</p>
-        <p class="text-center"><a href="#" class="card-text text-center" style="color: white;">(+91) 992-960-2999</a></p>
-        <p class="text-center"><a href="#" class="card-text text-center" style="color: white;">vipin@quadrant-solutions.com</a></p>
-
+        <h2 class="card-title text-center" style="color: white">Pune Office</h2>
+        <p class="card-text text-center" style="color: white">
+          3rd Floor, Wing 4, Cluster D,<br />
+          EON IT Park, Kharadi,<br />
+          Pune, Maharashtra,<br />
+          411014 India
+        </p>
+        <p class="text-center">
+          <a href="#" class="card-text text-center" style="color: white"
+            >(+91) 992-960-2999</a
+          >
+        </p>
+        <p class="text-center">
+          <a href="#" class="card-text text-center" style="color: white"
+            >vipin@quadrant-solutions.com</a
+          >
+        </p>
       </div>
     </div>
   </div>
-  <div class="col-sm-2">
-
-  </div>
+  <div class="col-sm-2"></div>
 </div>
 
-<br><br><br><br>
+<br /><br /><br /><br />
 
-<div id="video-carousel-example" class="carousel slide carousel-fade" data-ride="carousel" style="margin-bottom: 5%;">
+<div
+  id="video-carousel-example"
+  class="carousel slide carousel-fade"
+  data-ride="carousel"
+  style="margin-bottom: 5%"
+>
   <style>
     #myimage {
       width: 100%;
@@ -136,20 +274,30 @@
     }
 
     div#video-carousel-example {
-      background-color: #011F41;
+      background-color: #011f41;
       mix-blend-mode: multiply;
     }
   </style>
   <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
-      <img id="myimage" src="assets/quadrant_banner.png">
+      <img id="myimage" src="assets/quadrant_banner.png" />
       <div class="carousel-caption font-weight-bold text-warning">
         <h3 class="text-left t1">Life @ Quadrant</h3>
-        <p class="text-left t2">It all begins with an intense curiosity about clients, colleagues, and the <br>future. We,
-          at Quadrant, bring a diverse set of perspectives as well as the<br> courage of their convictions to work on
-          ideas and initiatives that shift the<br> trajectory of business. As a trusted advisor to the world's most
-          prominent<br> firms, we live at the crossroads of of what's next.</p>
-        <h1 class="text-left t3"><a href="/career" style="color:White;text-decoration: none;">Join Us >></a></h1>
+        <p class="text-left t2">
+          It all begins with an intense curiosity about clients, colleagues, and
+          the <br />future. We, at Quadrant, bring a diverse set of perspectives
+          as well as the<br />
+          courage of their convictions to work on ideas and initiatives that
+          shift the<br />
+          trajectory of business. As a trusted advisor to the world's most
+          prominent<br />
+          firms, we live at the crossroads of of what's next.
+        </p>
+        <h1 class="text-left t3">
+          <a href="/career" style="color: White; text-decoration: none"
+            >Join Us >></a
+          >
+        </h1>
       </div>
     </div>
   </div>
@@ -285,6 +433,4 @@
   </div>
 </div> -->
 
-
 <app-searchbar></app-searchbar>
-

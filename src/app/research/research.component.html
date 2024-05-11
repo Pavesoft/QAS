@@ -262,11 +262,13 @@
               </div>
             </div> -->
             <div class="col-md-6 mt-3 align-items-center date-picker">
-              <span
-                class="sb mr-2"
-                style="font-size: 16px !important; margin-top: -12px"
-                >Date Range</span
-              >
+              <div class="date-text">
+                <span
+                  class="sb mr-2"
+                  style="font-size: 16px !important; margin-top: 0px"
+                  >Date Range</span
+                >
+              </div>
               <mat-form-field appearance="fill" class="custome-date-picker">
                 <mat-label>Enter a date range</mat-label>
                 <mat-date-range-input
@@ -286,7 +288,7 @@
                   />
                 </mat-date-range-input>
                 <button
-                  style="border: 0px; padding: 0; background-color: #cfecef"
+                  style="border: 0px; padding: 0; background-color: #d2f4eb"
                   matSuffix
                   (click)="clearDateRange()"
                 >
@@ -304,7 +306,7 @@
             >
               <span class="sb" style="font-size: 16px !important">Sort By</span>
               <span class="rd" style="font-size: 16px !important">
-                Release Date <a href="#"><i class="fas fa-angle-down"></i></a>
+                Release Date <i class="fas fa-angle-down"></i>
               </span>
             </div>
           </div>

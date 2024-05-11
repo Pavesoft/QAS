@@ -45,11 +45,7 @@ body {
   border: 0px !important;
 }
 .mat-icon {
-  background: linear-gradient(
-    176deg,
-    rgba(76, 214, 176, 0.25) 39.72%,
-    rgba(9, 114, 234, 0.19) 96.84%
-  );
+  background-color: #D2F4EB;
 }
 .mdc-text-field--filled:not(.mdc-text-field--disabled)
   .mdc-line-ripple::before {
@@ -101,4 +97,7 @@ body {
 }
 .mat-mdc-form-field-subscript-wrapper {
   display: none !important;
+}
+.mat-mdc-form-field-icon-suffix {
+  display: flex;
 }

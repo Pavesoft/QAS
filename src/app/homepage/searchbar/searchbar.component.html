@@ -1,59 +1,14 @@
 <div class="container">
-  <div class="row">
+  <div class="d-flex">
     <div
-      class="col-sm-9 d-flex align-items-center justify-content-center p-5"
-      style="
-        background: #011f41;
-        margin-left: 150px !important;
-        margin-right: 150px !important;
-      "
+      class="col-md-9 align-items-center justify-content-center p-5 app-searchBar"
     >
-      <div class="col-sm-6 d-flex align-items-center justify-content-center">
+      <div class="">
         <p class="ident" style="color: white; margin: 0px !important">
           <b>Identify and accelerate growth opportunities with us!</b>
         </p>
       </div>
-      <div
-        class="col-sm-6 d-flex align-items-center justify-content-center"
-        style="background: #011f41"
-      >
-        <!-- <div class="input-group" style="padding-top: 30px;padding-bottom: 30px;">
-
-            <input type="search" class="form-control rounded search" placeholder="Search" aria-label="Search" aria-describedby="search-addon"  />
-            <button type="button" class="btn btn-outline-primary radius">Send</button>
-          </div> -->
-
-        <!-- <div class="input-group" style="padding-top: 30px;padding-bottom: 30px;">
-            <input type="search" class="form-control " placeholder="Email here" aria-label="Search" aria-describedby="search-addon"  style="border-radius:20px 0px 0px 20px;"/>
-            <button type="button" class="btn btn-outline-primary">Subscribe Now</button>
-          </div> -->
-
-        <!-- <form (ngSubmit)="onSubmit1()" [formGroup]="form" class="mb">
-            
-
-            <div id="inline">
-              <input type="email" id="officeEmail" class="form-control" maxlength="50" formControlName="officeEmail" required placeholder="Official Email*"  style="border-radius:20px 0px 0px 20px;width:60%;">
-
-              
-              <div style="height: 0px;">
-              <div *ngIf="form.controls['officeEmail'].invalid && (form.controls['officeEmail'].dirty || form.controls['officeEmail'].touched)">
-                <div *ngIf="form.controls['officeEmail'].errors?.['required']">Office Email is required.</div>
-                <div *ngIf="form.controls['officeEmail'].errors?.['email']">Invalid email format.</div>
-                <div *ngIf="form.controls['officeEmail'].errors?.['maxLength']">Email length exceeded the limit.</div>
-
-              </div>
-            </div>
-
-            
-              <button type="submit" class="btn btn-outline-primary">Subscribe Now</button>
-
-            </div>
-            
-            
-            
-          </form> -->
-        <br /><bR />
-
+      <div class="subs" style="background: #011f41">
         <form (ngSubmit)="onSubmit1()" [formGroup]="form" class="mb">
           <div class="single">
             <div
@@ -73,7 +28,7 @@
               <input
                 type="email"
                 id="officeEmail"
-                class="form-control"
+                class="form-control subs_input"
                 maxlength="50"
                 formControlName="officeEmail"
                 required
@@ -112,22 +67,16 @@
                   Email length exceeded the limit.
                 </div>
               </div>
-              <span
-                class="input-group-btn"
-                style="font-family: 'Arial Nova Bold'"
-              >
-                <button
-                  class="btn btn-theme"
-                  type="submit"
-                  style="
-                    color: black;
-                    background-color: white;
-                    border-radius: 0px 8px 8px 0px !important;
-                  "
+              <div class="d-flex justify-content-center subs_width">
+                <span
+                  class="input-group-btn"
+                  style="font-family: 'Arial Nova Bold'"
                 >
-                  Subscribe Now
-                </button>
-              </span>
+                  <button class="btn btn-theme subs_button" type="submit">
+                    Subscribe Now
+                  </button>
+                </span>
+              </div>
             </div>
           </div>
         </form>
