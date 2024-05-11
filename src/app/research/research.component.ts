@@ -839,18 +839,16 @@ export class ResearchComponent implements OnInit {
 
   toggleResearchType(isSubscribed: boolean): void {
     this.isSubscribed = isSubscribed;
+    if (this.isSubscribed) {
+      this.searchObject.isSubscribed = true;
+    } else {
+      delete this.searchObject.isSubscribed;
+    }
     if (this.searchObject.searchCriteriaList.length > 0) {
-      if (this.isSubscribed) {
-        this.searchObject.isSubscribed = true;
-      } else {
-        delete this.searchObject.isSubscribed;
-      }
-      // If there are any criteria left, call loadSearchData()
       this.loadSearchData();
     } else {
-      // If there's nothing left in searchCriteriaList, call loadResearchData()
       this.loadResearchData();
-    } // Reload data based on selected type
+    }
   }
 
   navigateToResearchSingle(research: any) {
