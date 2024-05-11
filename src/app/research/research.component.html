@@ -237,7 +237,7 @@
           </button>
         </div> -->
       </div>
-      <div class="col-md-9" style="padding-right: 70px; padding-left: 50px">
+      <div class="col-md-9 main-container">
         <div class="container-fluid">
           <div
             class="row"
@@ -261,12 +261,14 @@
               <div *ngIf="showDateRangePicker">
               </div>
             </div> -->
-            <div class="col-md-6 mt-3 d-flex align-items-center">
-              <span
-                class="sb mr-2"
-                style="font-size: 16px !important; margin-top: -12px"
-                >Date Range</span
-              >
+            <div class="col-md-6 mt-3 align-items-center date-picker">
+              <div class="date-text">
+                <span
+                  class="sb mr-2"
+                  style="font-size: 16px !important; margin-top: 0px"
+                  >Date Range</span
+                >
+              </div>
               <mat-form-field appearance="fill" class="custome-date-picker">
                 <mat-label>Enter a date range</mat-label>
                 <mat-date-range-input
@@ -286,7 +288,7 @@
                   />
                 </mat-date-range-input>
                 <button
-                  style="border: 0px; padding: 0"
+                  style="border: 0px; padding: 0; background-color: #d2f4eb"
                   matSuffix
                   (click)="clearDateRange()"
                 >
@@ -304,7 +306,7 @@
             >
               <span class="sb" style="font-size: 16px !important">Sort By</span>
               <span class="rd" style="font-size: 16px !important">
-                Release Date <a href="#"><i class="fas fa-angle-down"></i></a>
+                Release Date <i class="fas fa-angle-down"></i>
               </span>
             </div>
           </div>
@@ -335,7 +337,7 @@
             <div
               class="col-sm-6 plt d-flex align-items-center justify-content-end"
             >
-              <div *ngIf="isLogin">
+              <div *ngIf="isLogin" class="radio_button">
                 <span>
                   <input
                     type="radio"
@@ -421,11 +423,10 @@
 
           <div *ngIf="isLoading">
             <br /><br /><br /><br /><br /><br /><br /><br />
-            <div class="loading-spinner" style="width: 80px; height: 80px">
-              <!-- <div class="logo-pre">
-                      <img src="../../../../assets/lg.gif" alt="Logo" class="img-fluid" height="40px;width:40px;">
-                  </div> -->
-            </div>
+            <div
+              class="loading-spinner"
+              style="width: 80px; height: 80px"
+            ></div>
             <br /><br /><br /><br /><br /><br /><br /><br />
           </div>
           <!-- Main List of Research Items -->
@@ -437,20 +438,16 @@
                     class="row col-md-9"
                     style="row-gap: 14px; margin-right: 0"
                   >
-                    <div class="d-flex">
+                    <div class="upper_part">
                       <!-- <span>Date :</span> -->
                       <span
                         class="textcommon-fontsize"
                         style="margin: 0 14px 0 0px"
                         >{{ research.publishDate }}
                       </span>
-                      <span>|</span>
-                      <div class="d-flex">
-                        <span
-                          class="textcommon-fontsize"
-                          style="margin-left: 14px"
-                          >Category:
-                        </span>
+                      <span class="seperator">|</span>
+                      <div class="d-flex category">
+                        <span class="textcommon-fontsize">Category: </span>
                         <div *ngFor="let category of research.categoryList">
                           <a
                             class="category-link"
@@ -465,7 +462,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="" style="">
+                    <div>
                       <a
                         routerLink="/research-single"
                         class="research-title"

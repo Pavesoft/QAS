@@ -24,6 +24,20 @@ export class ResearchComponent implements OnInit {
     "Market Outlook",
     "SPARK Matrix",
   ];
+
+  toppingsControl = new FormControl([]);
+  selectedAuthors: string[] = [];
+
+  onAuthorCheck(event: Event, author: string) {
+    const checked = (event.target as HTMLInputElement).checked;
+    if (checked) {
+      this.selectedAuthors.push(author);
+    } else {
+      this.selectedAuthors = this.selectedAuthors.filter(
+        (item) => item !== author
+      );
+    }
+  }
   date: any;
   startDate: Date | undefined;
   endDate: Date | undefined;
@@ -101,17 +115,16 @@ export class ResearchComponent implements OnInit {
 
     this.apiService.getCategories().subscribe((data: any) => {
       this.categoryData = data.map((item: any) => item.categoryName);
-      // console.table("Report Typ", this.categoryData);
     });
 
     this.apiService.getAuthors().subscribe((data: any) => {
       this.authorData = data.map((item: any) => item.name);
+      this.authorData.sort((a: string, b: string) => a.localeCompare(b));
       // console.table("Report Typ", this.categoryData);
     });
 
     this.apiService.getRegion().subscribe((data: any) => {
       this.regionData = data.map((item: any) => item.regionName);
-      // console.table("Report Typ", this.categoryData);
     });
   }
 
@@ -178,24 +191,7 @@ export class ResearchComponent implements OnInit {
         this.searchObject.dataOption = "all";
       }
 
-      this.apiService
-        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
-        .subscribe((response) => {
-          this.mappedReports = response.researchMasterList;
-          this.mappedReports.sort((a, b) => a.publishDate - b.publishDate);
-          this.mappedReports = this.mappedReports.map((report: any) => {
-            return {
-              ...report,
-              publishDate: this.epochToDate(report.publishDate),
-            };
-          });
-
-          // this.totalPages =
-          //   response.researchMasterList.length / this.itemsPerPage;
-          this.currentPage = response.pagination.currentPage + 1;
-          this.itemsPerPage = response.pagination.pageSize;
-          this.totalPages = response.pagination.totalPages;
-        });
+      this.loadSearchData();
       this.onPageChange(1);
       this.isLoading = false;
     } else {
@@ -612,7 +608,25 @@ export class ResearchComponent implements OnInit {
       this.searchObject.searchCriteriaList.length > 0
     ) {
       this.isLoading = true;
-      this.loadSearchData();
+      this.apiService
+        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
+        .subscribe(
+          (data) => {
+            // Handle API response
+            this.mappedReports = data.researchMasterList.map((report: any) => {
+              return {
+                ...report,
+                publishDate: this.epochToDate(report.publishDate),
+              };
+            });
+            this.currentPage = data.pagination.currentPage + 1;
+            this.itemsPerPage = data.pagination.pageSize;
+            this.totalPages = data.pagination.totalPages;
+          },
+          (error) => {
+            console.error("API error:", error);
+          }
+        );
       this.isLoading = false;
       this.onPageChange(1);
     } else {
@@ -669,29 +683,7 @@ export class ResearchComponent implements OnInit {
       this.selectedOptions.length > 0 ||
       this.searchObject.searchCriteriaList.length > 0
     ) {
-      this.apiService
-        .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
-        .subscribe(
-          (data) => {
-            // Handle the API response here
-
-            this.mappedReports = data.researchMasterList;
-            this.mappedReports = this.mappedReports.map((report: any) => {
-              return {
-                ...report,
-                publishDate: this.epochToDate(report.publishDate),
-              };
-            });
-            // this.totalPages = data.researchMasterList.length / this.itemsPerPage;
-            this.currentPage = data.pagination.currentPage + 1;
-            this.itemsPerPage = data.pagination.pageSize;
-            this.totalPages = data.pagination.totalPages;
-          },
-          (error) => {
-            // Handle any API errors here
-            console.error("API error:", error);
-          }
-        );
+      this.loadSearchData();
       this.onPageChange(1);
     } else if (
       this.selectedOptions.length <= 0 ||
@@ -744,13 +736,6 @@ export class ResearchComponent implements OnInit {
   }
 
   loadSearchData(): void {
-    if (this.isSubscribed) {
-      this.searchObject.isSubscribed = true;
-    } else {
-      if (this.searchObject.isSubscribed === true) {
-        delete this.searchObject.isSubscribed;
-      }
-    }
     const apiCall = this.isSubscribed
       ? this.apiService.serachFiltersToken(
           this.searchObject,
@@ -781,7 +766,6 @@ export class ResearchComponent implements OnInit {
       this.totalPages = response.pagination.totalPages;
     });
   }
-
   getFirstParagraph(htmlContent: string): string {
     if (/<[a-z][\s\S]*>/i.test(htmlContent)) {
       const parser = new DOMParser();
@@ -856,6 +840,11 @@ export class ResearchComponent implements OnInit {
   toggleResearchType(isSubscribed: boolean): void {
     this.isSubscribed = isSubscribed;
     if (this.searchObject.searchCriteriaList.length > 0) {
+      if (this.isSubscribed) {
+        this.searchObject.isSubscribed = true;
+      } else {
+        delete this.searchObject.isSubscribed;
+      }
       // If there are any criteria left, call loadSearchData()
       this.loadSearchData();
     } else {

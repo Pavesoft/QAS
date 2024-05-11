@@ -1,18 +1,16 @@
 $blue-1: #00327a;
 
 .sd {
-  background: linear-gradient(170deg, #4cccd6 -5%, $blue-1 35%);
+  background: linear-gradient(170deg, #4cccd6 -5%, $blue-1 20%);
   padding: 38px;
   margin-bottom: 52px !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
 }
-
 .category-link {
   text-decoration: none;
   color: #1673fd;
   cursor: pointer;
 }
-
 .category-link:hover {
   text-decoration: underline;
   color: #1673fd;
@@ -62,38 +60,34 @@ hr {
   // justify-content: end;
   align-items: center;
 }
-
 .custom-styles2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .form-select {
   flex-wrap: wrap;
   color: #fff;
   border-radius: 7px;
   border: 1px solid #d9d9d9;
-  background: linear-gradient(118deg,
-      rgba(255, 255, 255, 0.4) -2.91%,
-      rgba(255, 255, 255, 0) 109.82%);
+  background: linear-gradient(
+    118deg,
+    rgba(255, 255, 255, 0.4) -2.91%,
+    rgba(255, 255, 255, 0) 109.82%
+  );
   box-shadow: 10px 10px 250px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
   text-align: left;
 }
-
 .alert {
   position: fixed;
   right: 0%;
   bottom: 2%;
   transform: translate(-50%, -50%);
-  background-color: #f44336;
-  /* Red background color */
-  color: white;
-  /* White text color */
+  background-color: #f44336; /* Red background color */
+  color: white; /* White text color */
   padding: 20px;
-  display: none;
-  /* Hide the alert by default */
+  display: none; /* Hide the alert by default */
   z-index: 1000;
 }
 
@@ -112,13 +106,11 @@ hr {
 }
 
 .success {
-  background-color: #4caf50;
-  /* Green background color */
+  background-color: #4caf50; /* Green background color */
 }
 
 .failed {
-  background-color: #f44336;
-  /* Red background color */
+  background-color: #f44336; /* Red background color */
 }
 
 #overlay {
@@ -127,10 +119,8 @@ hr {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  /* Semi-transparent black background */
-  display: none;
-  /* Hide the overlay by default */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: none; /* Hide the overlay by default */
   z-index: 999;
 }
 
@@ -153,9 +143,11 @@ hr {
   border: 1px solid #d9d9d9;
   background: rgb(0, 54, 117);
   background: rgb(110, 158, 215);
-  background: linear-gradient(173deg,
-      rgba(110, 158, 215, 1) 0%,
-      rgba(73, 135, 206, 1) 100%);
+  background: linear-gradient(
+    173deg,
+    rgba(110, 158, 215, 1) 0%,
+    rgba(73, 135, 206, 1) 100%
+  );
   backdrop-filter: blur(10px);
 }
 
@@ -183,9 +175,11 @@ button#dropdownMenuButton:active {
   font-style: normal;
   font-weight: 300;
   line-height: normal;
-  background: linear-gradient(176deg,
-      rgba(76, 214, 176, 0.25) 39.72%,
-      rgba(9, 114, 234, 0.19) 96.84%);
+  background: linear-gradient(
+    176deg,
+    rgba(76, 214, 176, 0.25) 39.72%,
+    rgba(9, 114, 234, 0.19) 96.84%
+  );
   padding: 8px;
   border-radius: 2px;
   margin-left: 10px;
@@ -233,9 +227,11 @@ button#dropdownMenuButton:active {
   font-style: normal;
   font-weight: 300;
   line-height: normal;
-  background: linear-gradient(176deg,
-      rgba(76, 214, 176, 0.25) 39.72%,
-      rgba(9, 114, 234, 0.19) 96.84%);
+  background: linear-gradient(
+    176deg,
+    rgba(76, 214, 176, 0.25) 39.72%,
+    rgba(9, 114, 234, 0.19) 96.84%
+  );
   padding: 8px;
   border-radius: 2px;
   margin-left: 10px;
@@ -291,7 +287,6 @@ button#dropdownMenuButton:active {
   line-height: normal;
   text-decoration: none;
 }
-
 .research-title:hover {
   text-decoration: underline;
 }
@@ -299,7 +294,6 @@ button#dropdownMenuButton:active {
 .textcommon-fontsize {
   font-size: 15px !important;
 }
-
 .research-category {
   position: relative;
   top: 5px;
@@ -320,19 +314,16 @@ button#dropdownMenuButton:active {
   line-height: normal;
   padding-left: 7px;
 }
-
 .read {
   text-decoration: none;
   font-size: 16px !important;
   font-family: Arial Nova;
 }
-
 .read:hover {
   text-decoration: underline;
 
   color: #0d6efd;
 }
-
 .readmore {
   display: flex;
   width: 100px;
@@ -349,7 +340,6 @@ button#dropdownMenuButton:active {
   top: 35px;
   left: 39px;
 }
-
 .readmore-subscribed {
   display: flex;
   width: 100px;
@@ -366,7 +356,6 @@ button#dropdownMenuButton:active {
   top: 32px;
   left: 37px;
 }
-
 .bn {
   display: flex;
   width: 120px;
@@ -382,7 +371,6 @@ button#dropdownMenuButton:active {
   background: linear-gradient(275deg, #4cd6b0 -6.18%, $blue-1 100%);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-
 .button-download {
   display: flex;
   width: 120px;
@@ -398,23 +386,19 @@ button#dropdownMenuButton:active {
   border-radius: 5px;
   background-color: white !important;
 }
-
 .button-download:hover {
   background-color: #ffcd00 !important;
 }
 
 .hover-effect {
-  transition: all 0.3s ease-in-out;
-  /* Smooth transition */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
 }
 
 .hover-effect:hover {
   box-shadow: 0px 10px 10px 0px rgba(76, 214, 176, 0.25),
-    0px 10px 10px 0px rgba(9, 114, 234, 0.19);
-  /* Dual-colored shadow effect */
+    0px 10px 10px 0px rgba(9, 114, 234, 0.19); /* Dual-colored shadow effect */
   /* The rgba() function allows you to set the color with alpha transparency */
 }
-
 .im {
   border: 2px solid $blue-1;
   border-radius: 5px;
@@ -422,7 +406,6 @@ button#dropdownMenuButton:active {
   padding-bottom: 5px;
   width: 55px;
 }
-
 .im:hover {
   background-color: #ffcd00;
 }
@@ -434,7 +417,6 @@ button#dropdownMenuButton:active {
   padding-bottom: 5px;
   width: 55px;
 }
-
 .im1:hover {
   background-color: #ffcd00;
 }
@@ -469,19 +451,16 @@ button#dropdownMenuButton:active {
 .plt {
   top: 15px;
 }
-
 .redi {
   position: relative;
   left: -75px;
   top: -20px;
 }
-
 .redi span {
   padding: 6px;
   font-size: 14px;
   color: $blue-1;
 }
-
 input[type="radio"] {
   height: 10px;
   color: $blue-1;
@@ -489,7 +468,6 @@ input[type="radio"] {
 
   // box-shadow: 0 0 0 2px gray;
 }
-
 input[type="checkbox"],
 input[type="radio"] {
   border: $blue-1 !important;
@@ -518,9 +496,11 @@ input[type="radio"] {
 
 .page-link:hover {
   color: $blue-1 !important;
-  background: linear-gradient(176deg,
-      rgba(76, 214, 176, 0.25) 39.72%,
-      rgba(9, 114, 234, 0.19) 96.84%) !important;
+  background: linear-gradient(
+    176deg,
+    rgba(76, 214, 176, 0.25) 39.72%,
+    rgba(9, 114, 234, 0.19) 96.84%
+  ) !important;
 }
 
 .selectedOptions_button {
@@ -531,13 +511,11 @@ input[type="radio"] {
   padding: 0.5rem 1.5rem;
   border-radius: 8px;
 }
-
 .remove-icon {
   margin-left: 5px;
   cursor: pointer;
   color: red;
 }
-
 .loading-spinner {
   border: 4px solid #f3f3f3;
   border-top: 4px solid #3498db;
@@ -552,7 +530,6 @@ input[type="radio"] {
   0% {
     transform: rotate(0deg);
   }
-
   100% {
     transform: rotate(360deg);
   }
@@ -561,7 +538,69 @@ input[type="radio"] {
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: #d2f5eb !important;
 }
-
 .mdc-text-field {
   background-color: red;
+}
+.custom-date-picker {
+  background: linear-gradient(
+    176deg,
+    rgba(76, 214, 176, 0.25) 39.72%,
+    rgba(9, 114, 234, 0.19) 96.84%
+  ) !important;
+  border: 0px !important;
+  padding: 0px !important;
+  margin: 0px !important;
+  height: 56px !important;
+}
+.main-container {
+  padding-right: 70px;
+  padding-left: 50px;
+}
+
+.date-picker {
+  display: flex;
+  flex-direction: row;
+}
+.upper_part {
+  display: flex;
+}
+.category {
+  margin-left: 14px;
+}
+.seperator {
+  display: visible;
+}
+@media only screen and (max-width: 767px) {
+  .main-container {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .date-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 1;
+  }
+  .srch {
+    width: 100% !important;
+  }
+  .radio_button {
+    flex-direction: column;
+    display: flex;
+    margin: 0px 0px 15px 0px;
+  }
+  .upper_part {
+    display: flex;
+    flex-direction: column;
+  }
+  .category {
+    margin-left: 0px;
+    margin-top: 7px;
+  }
+  .seperator {
+    display: none;
+  }
+  .date-text {
+    width: 100%;
+    margin-left: 3rem;
+  }
 }
