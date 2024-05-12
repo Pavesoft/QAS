@@ -9,7 +9,7 @@ import urls from "src/utils/api-url";
   providedIn: "root",
 })
 export class EcommBackendService {
-  private apiUrl = "https://technont.in";
+  private apiUrl = "https://technonxt.in";
   //  private apiUrl = 'http://localhost:8090';
   //private apiUrl='http://localhost:8090/QuadrantEcom-0.0.1-SNAPSHOT'
 
