@@ -6,7 +6,7 @@ import { map } from "rxjs/operators";
   providedIn: "root",
 })
 export class ApiService {
-  apiUrl = "https://10.0.51.3:8091";
+  apiUrl = "https://technonxt.in";
   constructor(private http: HttpClient) {}
 
   getReseachList(page: any, size: any): Observable<any[]> {

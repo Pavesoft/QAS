@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   title = "Quadrant-Solutions";
 
   receiveData(data: string) {
-    console.log("Data received in parent:", data);
+    // console.log("Data received in parent:", data);
   }
 
   getResearchById(id: number, currenturl: String): void {
