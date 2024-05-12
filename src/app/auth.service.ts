@@ -46,18 +46,16 @@ export class AuthService {
 
     const body = { token };
 
-    return this.http
-      .post("https://10.0.51.3:8091/users/refreshToken", body)
-      .pipe(
-        switchMap((response: any) => {
-          console.log("refresh token ", response.jwtToken);
-          localStorage.setItem("jwtToken", response.jwtToken); // Store the new access token
-          return of(response.jwtToken);
-        }),
-        catchError((error) => {
-          console.error("Failed to refresh token:", error);
-          return throwError(error);
-        })
-      );
+    return this.http.post("https://technonxt.in/users/refreshToken", body).pipe(
+      switchMap((response: any) => {
+        // console.log("refresh token ", response.jwtToken);
+        localStorage.setItem("jwtToken", response.jwtToken); // Store the new access token
+        return of(response.jwtToken);
+      }),
+      catchError((error) => {
+        console.error("Failed to refresh token:", error);
+        return throwError(error);
+      })
+    );
   }
 }
