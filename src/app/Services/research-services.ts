@@ -2,11 +2,11 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import { baseURl } from "const";
 @Injectable({
   providedIn: "root",
 })
 export class ApiService {
-  apiUrl = "https://technonxt.in";
   constructor(private http: HttpClient) {}
 
   getReseachList(page: any, size: any): Observable<any[]> {
@@ -16,9 +16,7 @@ export class ApiService {
     });
 
     return this.http.get<any[]>(
-      `${this.apiUrl}/research-masters/research-list?page=${
-        page - 1
-      }&size=${size}`
+      `${baseURl}/research-masters/research-list?page=${page - 1}&size=${size}`
       // { headers: headers }
     );
   }
@@ -29,9 +27,7 @@ export class ApiService {
     });
 
     return this.http.get<any[]>(
-      `${this.apiUrl}/research-masters/research-list?page=${
-        page - 1
-      }&size=${size}`,
+      `${baseURl}/research-masters/research-list?page=${page - 1}&size=${size}`,
       { headers: headers }
     );
   }
@@ -43,7 +39,7 @@ export class ApiService {
     });
 
     return this.http.get<any[]>(
-      `${this.apiUrl}/research-masters/research-list-subscribed?page=${
+      `${baseURl}/research-masters/research-list-subscribed?page=${
         page - 1
       }&size=${size}`,
       { headers: headers }
@@ -52,7 +48,7 @@ export class ApiService {
 
   serachFilters(post: any, page: any, size: any): Observable<any> {
     return this.http.post<any>(
-      `${this.apiUrl}/research-masters/search?page=${page - 1}&size=${size}`,
+      `${baseURl}/research-masters/search?page=${page - 1}&size=${size}`,
       post
     );
   }
@@ -62,7 +58,7 @@ export class ApiService {
       Authorization: `Bearer ${token}`,
     });
     return this.http.post<any>(
-      `${this.apiUrl}/research-masters/search?page=${page - 1}&size=${size}`,
+      `${baseURl}/research-masters/search?page=${page - 1}&size=${size}`,
       post,
       { headers: headers }
     );
@@ -73,7 +69,7 @@ export class ApiService {
     const headers = new HttpHeaders({
       // Authorization: `Bearer ${token}`,
     });
-    return this.http.get<any[]>(`${this.apiUrl}/research-masters/report-types`);
+    return this.http.get<any[]>(`${baseURl}/research-masters/report-types`);
   }
 
   getCategories(): Observable<any[]> {
@@ -81,21 +77,21 @@ export class ApiService {
     const headers = new HttpHeaders({
       // Authorization: `Bearer ${token}`,
     });
-    return this.http.get<any[]>(`${this.apiUrl}/research-masters/categories`);
+    return this.http.get<any[]>(`${baseURl}/research-masters/categories`);
   }
   getAuthors(): Observable<any[]> {
     // const token = localStorage.getItem("jwtToken");
     const headers = new HttpHeaders({
       // Authorization: `Bearer ${token}`,
     });
-    return this.http.get<any[]>(`${this.apiUrl}/research-masters/authors`);
+    return this.http.get<any[]>(`${baseURl}/research-masters/authors`);
   }
   getRegion(): Observable<any[]> {
     // const token = localStorage.getItem("jwtToken");
     const headers = new HttpHeaders({
       // Authorization: `Bearer ${token}`,
     });
-    return this.http.get<any[]>(`${this.apiUrl}/research-masters/regions`);
+    return this.http.get<any[]>(`${baseURl}/research-masters/regions`);
   }
 
   downloadReport(id: any): Observable<Blob | any> {
@@ -105,7 +101,7 @@ export class ApiService {
     });
 
     return this.http
-      .get(`${this.apiUrl}/research-masters/downloadReport/2856`, {
+      .get(`${baseURl}/research-masters/downloadReport/2856`, {
         headers: headers,
         responseType: "blob",
         observe: "response", // Include the full response
@@ -134,18 +130,18 @@ export class ApiService {
   }
 
   getResearchById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/research-masters/${id}`);
+    return this.http.get<any>(`${baseURl}/research-masters/${id}`);
   }
 
   addPost(post: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/posts`, post);
+    return this.http.post<any>(`${baseURl}/posts`, post);
   }
 
   updatePost(id: number, post: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/posts/${id}`, post);
+    return this.http.put<any>(`${baseURl}/posts/${id}`, post);
   }
 
   deletePost(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/posts/${id}`);
+    return this.http.delete<any>(`${baseURl}/posts/${id}`);
   }
 }

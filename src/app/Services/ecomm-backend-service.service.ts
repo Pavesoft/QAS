@@ -4,12 +4,12 @@ import { Observable, catchError, filter, map, of } from "rxjs";
 import { FormDto, ResearchMasterDto } from "../Interfaces/research-master-dto";
 import { ApiResponse, OrderRequestDto } from "../Interfaces/api-response";
 import urls from "src/utils/api-url";
+import { baseURl } from "const";
 
 @Injectable({
   providedIn: "root",
 })
 export class EcommBackendService {
-  private apiUrl = "https://technonxt.in";
   //  private apiUrl = 'http://localhost:8090';
   //private apiUrl='http://localhost:8090/QuadrantEcom-0.0.1-SNAPSHOT'
 
@@ -37,20 +37,20 @@ export class EcommBackendService {
     //
     const headers = new HttpHeaders({ "Content-Type": "application/json" });
     return this.http.post<ApiResponse>(
-      `${this.apiUrl}/form-data/save-form-details?fName=${fName}&lName=${lName}&officeEmail=${officeEmail}&businessPhone=${businessPhone}&jobTitle=${jobTitle}&formCategory=${formCategory}&countryId=${countryId}&companyName=${companyName}&cityName=${cityName}&zipCode=${zipCode}&description=${description}`,
+      `${baseURl}/form-data/save-form-details?fName=${fName}&lName=${lName}&officeEmail=${officeEmail}&businessPhone=${businessPhone}&jobTitle=${jobTitle}&formCategory=${formCategory}&countryId=${countryId}&companyName=${companyName}&cityName=${cityName}&zipCode=${zipCode}&description=${description}`,
       { headers }
     );
   }
 
   searchByName(searchString: any) {
     return this.http.get(
-      `${this.apiUrl}/quadrant-solutions/get-result-with-name?reportName=${searchString}`
+      `${baseURl}/quadrant-solutions/get-result-with-name?reportName=${searchString}`
     );
   }
 
   createOrder(orderRequestDto: OrderRequestDto): Observable<ApiResponse> {
     return this.http.post<ApiResponse>(
-      `${this.apiUrl}/orders/create-order`,
+      `${baseURl}/orders/create-order`,
       orderRequestDto
     );
   }
@@ -60,31 +60,27 @@ export class EcommBackendService {
       sessionRequestDto: sessionRequestDto,
       orderRequestDto: orderRequestDto,
     };
-    return this.http.post(
-      `https://technonxt.in/session/creation`,
-      mergedData,
-      {}
-    );
+    return this.http.post(`${baseURl}/session/creation`, mergedData, {});
   }
 
   setPaymentFlag(uid: string, successIndicator: string) {
     if (uid === "") {
       return this.http.post<ApiResponse>(
         `
-      ${this.apiUrl}/orders/change-payment-status?successIndicator=${successIndicator}
+      ${baseURl}/orders/change-payment-status?successIndicator=${successIndicator}
       `,
         {}
       );
     } else {
       return this.http.post<ApiResponse>(
-        `${this.apiUrl}/orders/change-payment-status?uid=${uid}`,
+        `${baseURl}/orders/change-payment-status?uid=${uid}`,
         {}
       );
     }
   }
 
   getResearchMasterDtoById(id: number): Observable<ResearchMasterDto> {
-    const url = `${this.apiUrl}/research-masters/fetch-research-with-id?id=${id}`;
+    const url = `${baseURl}/research-masters/fetch-research-with-id?id=${id}`;
     return this.http.get<ApiResponse>(url).pipe(
       catchError((error): Observable<ApiResponse> => {
         console.error("Error fetching research:", error);
@@ -107,7 +103,7 @@ export class EcommBackendService {
   }
 
   getPressReleaseById(id: number): Observable<ApiResponse> {
-    const url = `${this.apiUrl}/blogs/get-blog-by-id?id=${id}`;
+    const url = `${baseURl}/blogs/get-blog-by-id?id=${id}`;
     return this.http.get<ApiResponse>(url);
   }
 
@@ -117,7 +113,7 @@ export class EcommBackendService {
       .set("size", size.toString());
 
     return this.http.get<ApiResponse>(
-      `${this.apiUrl}/research-masters/research-list`,
+      `${baseURl}/research-masters/research-list`,
       { params }
     );
   }
@@ -127,7 +123,7 @@ export class EcommBackendService {
       .set("page", page.toString())
       .set("size", size.toString());
 
-    return this.http.get<ApiResponse>(`${this.apiUrl}/research/research-list`, {
+    return this.http.get<ApiResponse>(`${baseURl}/research/research-list`, {
       params,
     });
   }
@@ -136,7 +132,7 @@ export class EcommBackendService {
       .set("page", page.toString())
       .set("size", size.toString());
 
-    return this.http.get(`${this.apiUrl}/research-masters/research-list`, {
+    return this.http.get(`${baseURl}/research-masters/research-list`, {
       params,
     });
   }
@@ -146,7 +142,7 @@ export class EcommBackendService {
       .set("page", page.toString())
       .set("size", size.toString());
 
-    return this.http.get<ApiResponse>(`${this.apiUrl}/blogs/get-all-blogs`, {
+    return this.http.get<ApiResponse>(`${baseURl}/blogs/get-all-blogs`, {
       params,
     });
   }
@@ -156,19 +152,19 @@ export class EcommBackendService {
       .set("page", page.toString())
       .set("size", size.toString());
 
-    return this.http.get<ApiResponse>(`${this.apiUrl}/blogs/get-blogs-list`, {
+    return this.http.get<ApiResponse>(`${baseURl}/blogs/get-blogs-list`, {
       params,
     });
   }
 
   getBlogById(id: number): Observable<ApiResponse> {
-    const url = `${this.apiUrl}/blogs/get-single-blog-by-id?id=${id}`;
+    const url = `${baseURl}/blogs/get-single-blog-by-id?id=${id}`;
     return this.http.get<ApiResponse>(url);
   }
 
   getTotalResearch(): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(
-      `${this.apiUrl}/research-masters/get-total-research-number`
+      `${baseURl}/research-masters/get-total-research-number`
     );
   }
 
@@ -182,10 +178,10 @@ export class EcommBackendService {
       .set("page", page.toString())
       .set("pageSize", pageSize.toString());
 
-    //console.log(`${this.apiUrl}/research-masters/research-by-report-type`, params)
+    //console.log(`${baseURl}/research-masters/research-by-report-type`, params)
 
     return this.http.get(
-      `${this.apiUrl}/research-masters/research-by-report-type`,
+      `${baseURl}/research-masters/research-by-report-type`,
       { params }
     );
   }
@@ -201,7 +197,7 @@ export class EcommBackendService {
       .set("pageSize", pageSize.toString());
 
     return this.http.get<ApiResponse>(
-      `${this.apiUrl}/research-masters/research-by-report-coverage`,
+      `${baseURl}/research-masters/research-by-report-coverage`,
       { params }
     );
   }
@@ -217,38 +213,34 @@ export class EcommBackendService {
       .set("pageSize", pageSize.toString());
 
     return this.http.get<ApiResponse>(
-      `${this.apiUrl}/research-masters/fetch-research-with-name`,
+      `${baseURl}/research-masters/fetch-research-with-name`,
       { params }
     );
   }
 
   getTotalResearchCount(): Observable<number> {
-    return this.http.get<number>(
-      `${this.apiUrl}/research-masters/research/count`
-    );
+    return this.http.get<number>(`${baseURl}/research-masters/research/count`);
   }
 
   getLatestApplicationDevelopmentDomainData(): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(
-      `${this.apiUrl}/domains/application-development`
+      `${baseURl}/domains/application-development`
     );
   }
 
   getLatestCLoudManagementDomainData(): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(
-      `${this.apiUrl}/domains/cloud-management`
-    );
+    return this.http.get<ApiResponse>(`${baseURl}/domains/cloud-management`);
   }
 
   getLatestBankingFinancialDomainData(): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(
-      `${this.apiUrl}/domains/Banking-Financial-Services`
+      `${baseURl}/domains/Banking-Financial-Services`
     );
   }
 
   getlatestreportdata(): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(
-      `${this.apiUrl}/research-masters/latest-reports`
+      `${baseURl}/research-masters/latest-reports`
     );
   }
 }

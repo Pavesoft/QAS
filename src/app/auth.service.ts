@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Subject, throwError } from "rxjs";
 import { catchError, switchMap } from "rxjs/operators";
 import { TopbarComponent } from "./header/topbar/topbar.component";
-
+import { baseURl } from "const";
 @Injectable({
   providedIn: "root",
 })
@@ -48,7 +48,7 @@ export class AuthService {
 
     const body = { token };
 
-    return this.http.post("https://technonxt.in/users/refreshToken", body).pipe(
+    return this.http.post(`${baseURl}/users/refreshToken`, body).pipe(
       switchMap((response: any) => {
         console.log("called function", response.jwtToken);
         localStorage.setItem("jwtToken", response.jwtToken); // Store the new access token

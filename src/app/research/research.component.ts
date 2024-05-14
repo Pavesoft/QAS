@@ -857,11 +857,8 @@ export class ResearchComponent implements OnInit {
         research: research,
       },
     };
-    this.router.navigate([
-      "/research-single",
-      research.id,
-      research.isSubscribed,
-    ]);
+    const reportSlug = research.report.replace(/\s+/g, "-");
+    this.router.navigate(["/market-research", `${reportSlug}-${research.id}`]);
   }
 
   downloadResearch(id: any) {

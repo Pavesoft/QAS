@@ -93,7 +93,7 @@ export class ResearchSingleComponent implements OnInit {
   }
 
   goToBack() {
-    this.router.navigate(["/research"]);
+    this.router.navigate(["/market-research"]);
   }
   closeCustomAlert(): void {
     const customAlert = document.getElementById("customAlert");
@@ -194,14 +194,28 @@ export class ResearchSingleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const researchId: any = this.route.snapshot.paramMap.get("id");
+    let id = this.route.snapshot.params["reportName-:reportId"];
+    const matches = id.match(/-(\d+)$/); // Extract numeric part following the last dash "-"
+
+    if (matches && matches.length > 1) {
+      const reportId = matches[1];
+      this.apiService.getResearchById(reportId).subscribe((data: any) => {
+        this.Reports = data.researchMaster;
+        this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
+        this.isLoading = false;
+      });
+    } else {
+      // Handle the case where there is no valid reportId
+      console.error("Invalid reportId");
+    }
+
     this.isSubscribed = this.route.snapshot.paramMap.get("subscribed");
 
-    this.apiService.getResearchById(researchId).subscribe((data: any) => {
-      this.Reports = data.researchMaster;
-      this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
-      this.isLoading = false;
-    });
+    // this.apiService.getResearchById(researchId).subscribe((data: any) => {
+    //   this.Reports = data.researchMaster;
+    //   this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
+    //   this.isLoading = false;
+    // });
     // if (isSubscribed == "true") {
     //   this.isLoading = true;
     //   this.apiService.getReseachListSubscribed().subscribe((data: any) => {
