@@ -129,15 +129,13 @@
 
                       <span
                         class="item-link"
-                        *ngFor="let author of research.authors; let last = last"
+                        *ngFor="let author of Reports.authors; let last = last"
                       >
                         <ng-container *ngIf="!last; else lastAuthor">
-                          <span style="margin: 0 2px">
-                            {{ author }}
-                          </span>
+                          <span> {{ author }}, </span>
                         </ng-container>
                         <ng-template #lastAuthor>
-                          <span style="margin: 0 2px">
+                          <span>
                             {{ author }}
                           </span>
                         </ng-template>
@@ -150,10 +148,10 @@
                   >
                     <span
                       class="textcommon-fontsize"
-                      style="color: #212529; margin-top: 1px; font-size: 16px"
+                      style="color: #212529; margin-top: 1px"
                       >Price:
                     </span>
-                    <span class="prc">$ {{ formatPrice(Reports.price) }}</span>
+                    <span class="prc">${{ formatPrice(Reports.price) }}</span>
                   </div>
                 </div>
               </div>

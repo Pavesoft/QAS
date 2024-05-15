@@ -15,7 +15,7 @@
   <div class="container-fluid" style="margin-bottom: 10px">
     <div id="overlay" *ngIf="showOverlay"></div>
     <div class="row pb-2">
-      <div class="col-md-3 sd sticky-div">
+      <div class="col-md-3 sd sticky-div" style="z-index: 5">
         <h4 class="t1">Filter By</h4>
         <hr />
         <h4 class="t2">Report Type</h4>
@@ -49,6 +49,7 @@
           <div
             class="form-selectt dropdown-menu"
             style="
+              min-height: 250px;
               width: 100%;
               background: linear-gradient(
                 118deg,
@@ -103,7 +104,7 @@
             class="form-selectt dropdown-menu"
             aria-labelledby="dropdownMenuButton"
             style="
-              max-height: 350px;
+              max-height: 250px;
               overflow-y: auto;
               width: 100%;
               background: linear-gradient(
@@ -206,7 +207,7 @@
             class="form-selectt dropdown-menu"
             aria-labelledby="dropdownMenuButton"
             style="
-              max-height: 350px;
+              max-height: 250px;
               overflow-y: auto;
               width: 100%;
               background: linear-gradient(
@@ -407,8 +408,12 @@
               </mat-form-field> -->
 
               <select
-                style="width: 4rem"
-                class="form-control"
+                style="
+                  width: 3.5rem;
+                  border: 1px solid grey;
+                  border-radius: 5px;
+                  padding: 0.45rem 0px;
+                "
                 [(ngModel)]="itemsPerPage"
                 (change)="onItemsPerPageChange(itemsPerPage)"
               >
@@ -464,12 +469,7 @@
                     </div>
                     <div>
                       <a
-                        [href]="
-                          '/market-research/' +
-                          replaceSpaces(research.report) +
-                          '-' +
-                          research.id
-                        "
+                        href="{{ researchHref(research.report, research.id) }}"
                         class="research-title"
                       >
                         {{ research.report }}
@@ -504,7 +504,7 @@
                         >
                           <ng-container *ngIf="!last; else lastAuthor">
                             <span
-                              style="margin: 0 5px"
+                              style="margin: 0 2px"
                               (click)="onAuthorClick(author)"
                             >
                               {{ author }},
@@ -512,7 +512,7 @@
                           </ng-container>
                           <ng-template #lastAuthor>
                             <span
-                              style="margin: 0 5px"
+                              style="margin: 0 2px"
                               (click)="onAuthorClick(author)"
                             >
                               {{ author }}
@@ -731,7 +731,9 @@
                 </li>
               </ul>
             </div>
-            <app-searchbar></app-searchbar>
+            <app-searchbar
+              style="position: relative; z-index: 10"
+            ></app-searchbar>
           </div>
         </div>
       </div>

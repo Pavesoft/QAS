@@ -88,6 +88,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  margin-top: 1px;
 }
 
 .bn {
@@ -488,11 +489,12 @@ a.fa.fa-linkedin {
 .prc {
   color: #444343;
   font-family: "Arial Nova";
-  font-size: 16px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
   padding-left: 7px;
+  margin-top: 2px;
 }
 .category-link {
   text-decoration: none;
@@ -524,6 +526,7 @@ a.fa.fa-linkedin {
 }
 .report_category {
   display: flex;
+  column-gap: 10px;
 }
 .single_report_description {
   margin: 30px 1px 1px 1px;
