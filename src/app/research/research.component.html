@@ -464,9 +464,13 @@
                     </div>
                     <div>
                       <a
-                        routerLink="/market-research"
+                        [href]="
+                          '/market-research/' +
+                          replaceSpaces(research.report) +
+                          '-' +
+                          research.id
+                        "
                         class="research-title"
-                        (click)="navigateToResearchSingle(research)"
                       >
                         {{ research.report }}
                       </a>
@@ -493,14 +497,27 @@
                       >
                         <a
                           class="item-link textcommon-fontsize"
-                          *ngFor="let author of research.authors"
+                          *ngFor="
+                            let author of research.authors;
+                            let last = last
+                          "
                         >
-                          <span
-                            style="margin: 0 5px"
-                            (click)="onAuthorClick(author)"
-                          >
-                            {{ author }}
-                          </span>
+                          <ng-container *ngIf="!last; else lastAuthor">
+                            <span
+                              style="margin: 0 5px"
+                              (click)="onAuthorClick(author)"
+                            >
+                              {{ author }},
+                            </span>
+                          </ng-container>
+                          <ng-template #lastAuthor>
+                            <span
+                              style="margin: 0 5px"
+                              (click)="onAuthorClick(author)"
+                            >
+                              {{ author }}
+                            </span>
+                          </ng-template>
                         </a>
                       </div>
                     </div>
@@ -598,15 +615,19 @@
                       style="color: #212529; font-size: 16px"
                       >Price:
                     </span>
-                    <span class="prc">$ {{ formatPrice(research.price) }}</span>
+                    <span class="prc">${{ formatPrice(research.price) }}</span>
                   </div>
                   <div
                     class="col-md-3 d-flex align-items-center justify-content-end"
                     style=""
                   >
                     <a
-                      routerLink="/market-research"
-                      (click)="navigateToResearchSingle(research)"
+                      [href]="
+                        '/market-research/' +
+                        replaceSpaces(research.report) +
+                        '-' +
+                        research.id
+                      "
                       class="read"
                       >Read More
                     </a>

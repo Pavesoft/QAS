@@ -132,6 +132,15 @@ export class ApiService {
   getResearchById(id: number): Observable<any> {
     return this.http.get<any>(`${baseURl}/research-masters/${id}`);
   }
+  getResearchByIdToken(id: number): Observable<any> {
+    const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any>(`${baseURl}/research-masters/${id}`, {
+      headers: headers,
+    });
+  }
 
   addPost(post: any): Observable<any> {
     return this.http.post<any>(`${baseURl}/posts`, post);

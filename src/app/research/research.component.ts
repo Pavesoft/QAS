@@ -115,6 +115,7 @@ export class ResearchComponent implements OnInit {
 
     this.apiService.getCategories().subscribe((data: any) => {
       this.categoryData = data.map((item: any) => item.categoryName);
+      this.categoryData.sort((a: string, b: string) => a.localeCompare(b));
     });
 
     this.apiService.getAuthors().subscribe((data: any) => {
@@ -836,7 +837,9 @@ export class ResearchComponent implements OnInit {
     }
     this.showOverlay = false;
   }
-
+  replaceSpaces(value: string): string {
+    return value.replace(/\s+/g, "-");
+  }
   toggleResearchType(isSubscribed: boolean): void {
     this.isSubscribed = isSubscribed;
     if (this.isSubscribed) {

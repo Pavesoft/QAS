@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ApiService } from "../Services/research-services";
 import { ResearchMasterDto } from "../Interfaces/research-master-dto";
 import { CartService } from "../Services/cart.service";
+import { AuthService } from "../auth.service";
 
 @Component({
   selector: "app-research-single",
@@ -16,6 +17,7 @@ export class ResearchSingleComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private apiService: ApiService,
+    public authService: AuthService,
     private cartService: CartService
   ) {}
 
@@ -28,6 +30,7 @@ export class ResearchSingleComponent implements OnInit {
   authorsSet = new Set();
   isSubscribed: any = "";
   isLoading: boolean = true;
+  isLogin: any;
   alertType = "";
   message = "";
   showOverlay: boolean = false;
@@ -194,22 +197,27 @@ export class ResearchSingleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const accessToken = this.authService.getAccessToken();
+    this.isLogin = accessToken !== null ? true : false;
     let id = this.route.snapshot.params["reportName-:reportId"];
     const matches = id.match(/-(\d+)$/); // Extract numeric part following the last dash "-"
 
     if (matches && matches.length > 1) {
       const reportId = matches[1];
-      this.apiService.getResearchById(reportId).subscribe((data: any) => {
+      const apiCall = this.isLogin
+        ? this.apiService.getResearchByIdToken(reportId)
+        : this.apiService.getResearchById(reportId);
+      apiCall.subscribe((data: any) => {
         this.Reports = data.researchMaster;
         this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
         this.isLoading = false;
+        console.log(this.Reports.isSubscribed);
+        this.isSubscribed = this.Reports.isSubscribed;
       });
     } else {
       // Handle the case where there is no valid reportId
       console.error("Invalid reportId");
     }
-
-    this.isSubscribed = this.route.snapshot.paramMap.get("subscribed");
 
     // this.apiService.getResearchById(researchId).subscribe((data: any) => {
     //   this.Reports = data.researchMaster;
