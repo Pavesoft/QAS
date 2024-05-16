@@ -124,8 +124,8 @@
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog" role="document">
-    <div class="modal-content" style="height: 430px; background: #ddefed">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="height: 460px; background: #ddefed">
       <div class="modal-header">
         <h5 class="modal-title ef" id="exampleModalLabel">Enquiry Form</h5>
         <img src="/assets/Line.png" class="bln" />
@@ -140,43 +140,65 @@
       </div>
       <div class="modal-body">
         <form>
-          <div class="mb-3">
+          <div class="d-flex mb-2">
+            <img
+              style="height: 42px"
+              src="../../../assets//Form-component.png"
+            />
             <input
               type="text"
               class="form-control"
-              id="inputName"
+              id="inputEmail"
               placeholder="Name"
+              formControlName="name"
               required
             />
           </div>
-          <div class="mb-3">
+
+          <div class="d-flex mb-2">
+            <img
+              style="height: 42px"
+              src="../../../assets//Form-Component2.png"
+            />
             <input
               type="email"
               class="form-control"
               id="inputEmail"
               placeholder="Email"
+              formControlName="email"
               required
             />
           </div>
-          <div class="mb-3">
+          <div class="d-flex mb-2">
+            <img
+              style="height: 42px"
+              src="../../../assets//Form-Component3.png"
+            />
             <input
-              type="tel"
+              type="number"
               class="form-control"
-              id="inputTel"
-              placeholder="Phone"
+              id="inputEmail"
+              placeholder="Contact"
+              formControlName="contact"
               required
             />
           </div>
-          <div class="mb-3">
+          <div class="d-flex mb-2">
+            <img
+              style="height: 42px"
+              src="../../../assets//Form-Component4.png"
+            />
             <input
               type="text"
               class="form-control"
-              id="inputCompanyname"
-              placeholder="Company Name"
+              id="inputEmail"
+              placeholder="Company name"
+              formControlName="companyname"
               required
             />
           </div>
-          <div class="mb-3">
+
+          <div class="mb-2">
             <select class="form-select fmc" id="inputRole">
               <option selected>Queries...</option>
               <option value="1">Developer</option>
@@ -185,12 +207,17 @@
               <option value="4">Other</option>
             </select>
           </div>
-          <div class="mb-3">
+          <div class="d-flex mb-4">
+            <img
+              style="height: 42px"
+              src="../../../assets//Form-Component6.png"
+            />
             <input
               type="text"
               class="form-control"
-              id="inputMessage"
+              id="inputEmail"
               placeholder="Message"
+              formControlName="message"
               required
             />
           </div>
