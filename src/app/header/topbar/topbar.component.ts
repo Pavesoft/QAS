@@ -6,7 +6,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { catchError } from "rxjs/operators";
 import { of } from "rxjs";
-
+import { baseURl } from "const";
 @Component({
   selector: "app-topbar",
   templateUrl: "./topbar.component.html",
@@ -14,6 +14,7 @@ import { of } from "rxjs";
 })
 export class TopbarComponent implements OnInit {
   loginForm: FormGroup;
+  enquiryForm: FormGroup;
   isLoggedIn = false;
   totalCartItems = 0;
   errorMessage = "";
@@ -25,6 +26,14 @@ export class TopbarComponent implements OnInit {
     private cartService: CartService,
     public dialog: MatDialog
   ) {
+    this.enquiryForm = this.fb.group({
+      name: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
+      contact: ["", Validators.required],
+      companyname: ["", Validators.required],
+      message: ["", Validators.required],
+      queries: ["Queries...", Validators.required],
+    });
     // Initialize the form with validations
     this.loginForm = this.fb.group({
       email: [
@@ -50,6 +59,9 @@ export class TopbarComponent implements OnInit {
     localStorage.setItem("isLogin", this.isLoggedIn.toString());
   }
 
+  onSubmitEnquiryForm() {
+    console.log("Form Values:", this.enquiryForm.value);
+  }
   onLogin() {
     if (this.loginForm.invalid) {
       this.errorMessage =
@@ -63,7 +75,7 @@ export class TopbarComponent implements OnInit {
     };
 
     this.http
-      .post("https://technonxt.in/users/login", loginData)
+      .post(`${baseURl}/users/login`, loginData)
       .pipe(
         catchError((error) => {
           console.error("Login failed:", error);

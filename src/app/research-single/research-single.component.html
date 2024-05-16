@@ -108,7 +108,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 mt-3">
                   <span href="#" class="research-title" style="font-size: 20px"
                     >{{ Reports.report }}
                   </span>
@@ -126,13 +126,19 @@
                     </span>
                     <span class="research-category"
                       >Authors:
+
                       <span
                         class="item-link"
-                        *ngFor="let author of Reports.authors"
+                        *ngFor="let author of Reports.authors; let last = last"
                       >
-                        <span style="margin: 0 2px">
-                          {{ author }}
-                        </span>
+                        <ng-container *ngIf="!last; else lastAuthor">
+                          <span> {{ author }}, </span>
+                        </ng-container>
+                        <ng-template #lastAuthor>
+                          <span>
+                            {{ author }}
+                          </span>
+                        </ng-template>
                       </span>
                     </span>
                   </div>
@@ -142,10 +148,10 @@
                   >
                     <span
                       class="textcommon-fontsize"
-                      style="color: #212529; margin-top: 1px; font-size: 16px"
+                      style="color: #212529; margin-top: 1px"
                       >Price:
                     </span>
-                    <span class="prc">$ {{ formatPrice(Reports.price) }}</span>
+                    <span class="prc">${{ formatPrice(Reports.price) }}</span>
                   </div>
                 </div>
               </div>
@@ -154,7 +160,7 @@
             <div
               class="col-md-3 d-flex align-items-center justify-content-center"
             >
-              <div *ngIf="isSubscribed === 'true'">
+              <div *ngIf="isSubscribed">
                 <button
                   class="btn btn-success button-download"
                   style="margin-bottom: 10px !important; font-size: 14px"
@@ -187,7 +193,7 @@
                 </button>
               </div>
               <div
-                *ngIf="isSubscribed === 'false'"
+                *ngIf="!isSubscribed"
                 class="row d-flex justify-content-center align-items-center"
               >
                 <div

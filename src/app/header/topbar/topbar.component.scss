@@ -153,12 +153,13 @@ span.badge.badge-dark {
 }
 
 input#inputName {
-  padding-left: 45px;
-  background-image: url(/assets/Form-component.png);
+  position: relative;
+  left: -3px;
   background-size: 40px;
   background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
   background-repeat: no-repeat;
-  height: 30px;
+  height: 42px;
   font-size: 14px;
   background-color: #ecfbf8;
 }
@@ -176,34 +177,37 @@ input#inputEmail {
 }
 
 input#inputTel {
-  padding-left: 45px;
-  background-image: url(/assets/Form-Component3.png);
+  position: relative;
+  left: -3px;
   background-size: 40px;
   background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
   background-repeat: no-repeat;
-  height: 30px;
+  height: 42px;
   font-size: 14px;
   background-color: #ecfbf8;
 }
 
 input#inputMessage {
-  padding-left: 45px;
-  background-image: url(/assets/Form-Component6.png);
+  position: relative;
+  left: -3px;
   background-size: 40px;
   background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
   background-repeat: no-repeat;
-  height: 30px;
+  height: 42px;
   font-size: 14px;
   background-color: #ecfbf8;
 }
 
 input#inputCompanyname {
-  padding-left: 45px;
-  background-image: url(/assets/Form-Component4.png);
+  position: relative;
+  left: -3px;
   background-size: 40px;
   background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
   background-repeat: no-repeat;
-  height: 30px;
+  height: 42px;
   font-size: 14px;
   background-color: #ecfbf8;
 }
@@ -219,6 +223,12 @@ input#exampleInputPassword1 {
   font-size: 14px;
   background-color: #ecfbf8;
 }
+.dropdownValueName {
+  cursor: pointer;
+  color: #444343 !important;
+  font-weight: 400;
+  font-size: 19px !important;
+}
 
 .fmc {
   // padding-left: 35px;
@@ -226,12 +236,12 @@ input#exampleInputPassword1 {
   // background-size: 30px;
   // background-position: 2px center;
   // background-repeat: no-repeat;
-  padding-left: 45px;
+  padding-left: 64px;
   background-image: url(/assets/Form-Component5.png);
-  background-size: 40px;
+  background-size: 55px 42px;
   background-position: 0px center;
   background-repeat: no-repeat;
-  height: 32px;
+  height: 42px;
   font-size: 14px;
   background-color: #ecfbf8;
 }

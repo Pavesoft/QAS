@@ -8,7 +8,7 @@ import { ResearchMasterDto } from "../Interfaces/research-master-dto";
 import { CartService } from "../Services/cart.service";
 import { debounce } from "lodash";
 import { FormControl, FormGroup } from "@angular/forms";
-
+import * as _ from "lodash";
 @Component({
   selector: "app-research",
   templateUrl: "./research.component.html",
@@ -80,7 +80,7 @@ export class ResearchComponent implements OnInit {
   debouncedSearch = debounce(this.makeApiCall, 300);
   formattedDate: any = "";
   showDateRangePicker: boolean = false;
-
+  oldUrlData: any;
   range: any = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
@@ -101,6 +101,12 @@ export class ResearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.httpClient
+      .get<any[]>("assets/fonts/data/oldUrlData.json")
+      .subscribe((data: any) => {
+        console.log(data.oldUrlData);
+        this.oldUrlData = data.oldUrlData;
+      });
     const accessToken = this.authService.getAccessToken();
 
     this.isLogin = accessToken !== null ? true : false;
@@ -111,10 +117,31 @@ export class ResearchComponent implements OnInit {
 
     this.apiService.getReportType().subscribe((data: any) => {
       this.reportTypeData = data.map((item: any) => item.reportType);
+      let desiredOrder = [
+        "Market Share",
+        "Market Forecast",
+        "Market Insight",
+        "SPARK Matrix",
+      ];
+      function customSort(a: any, b: any) {
+        let indexA = desiredOrder.indexOf(a);
+        let indexB = desiredOrder.indexOf(b);
+        if (indexA !== -1 && indexB !== -1) {
+          return indexA - indexB; // Maintain the desired order for the first four elements
+        } else if (indexA !== -1) {
+          return -1; // Place elements from desiredOrder before others
+        } else if (indexB !== -1) {
+          return 1; // Place elements not in desiredOrder after others
+        } else {
+          return 0; // Maintain the original order for elements not in desiredOrder
+        }
+      }
+      this.reportTypeData.sort(customSort);
     });
 
     this.apiService.getCategories().subscribe((data: any) => {
       this.categoryData = data.map((item: any) => item.categoryName);
+      this.categoryData.sort((a: string, b: string) => a.localeCompare(b));
     });
 
     this.apiService.getAuthors().subscribe((data: any) => {
@@ -837,6 +864,35 @@ export class ResearchComponent implements OnInit {
     this.showOverlay = false;
   }
 
+  replaceSpaces(value: string): string {
+    if (value && typeof value === "string") {
+      return value
+        .replaceAll(",", "")
+        .replaceAll(":", "")
+        .replaceAll("(", " ")
+        .replaceAll(")", " ")
+        .replace(/\s+/g, "-")
+        .replace("™", "")
+        .toLowerCase();
+    } else {
+      return "";
+    }
+  }
+
+  researchHref(name: string, id: any) {
+    let nameChange = this.replaceSpaces(name);
+    let href = "/market-research/" + nameChange + "-" + id;
+    const objIndex = _.findIndex(
+      this.oldUrlData,
+      (item: any) => item.URL_ID == id
+    );
+    if (objIndex !== -1) {
+      href = this.oldUrlData[objIndex].To_URL;
+    }
+
+    return href;
+  }
+
   toggleResearchType(isSubscribed: boolean): void {
     this.isSubscribed = isSubscribed;
     if (this.isSubscribed) {
@@ -857,11 +913,8 @@ export class ResearchComponent implements OnInit {
         research: research,
       },
     };
-    this.router.navigate([
-      "/research-single",
-      research.id,
-      research.isSubscribed,
-    ]);
+    const reportSlug = research.report.replace(/\s+/g, "-");
+    this.router.navigate(["/market-research", `${reportSlug}-${research.id}`]);
   }
 
   downloadResearch(id: any) {

@@ -79,7 +79,6 @@ import { CloudManagementComponent } from "./domains/cloud-management/cloud-manag
 import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
 
-import { OldUrlRedirectComponent } from "./CommonComponents/old-url-redirect-component/old-url-redirect-component.component";
 import { PaymentFailedComponent } from "./header/menubar/payment-failed/payment-failed.component";
 import { CommunicationCollaborationComponent } from "./domains/communication-collaboration/communication-collaboration.component";
 import { CxAndMartechComponent } from "./domains/cx-and-martech/cx-and-martech.component";
