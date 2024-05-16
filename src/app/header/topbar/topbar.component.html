@@ -90,18 +90,29 @@
         </a>
 
         <!-- The dropdown menu -->
-        <ul
-          class="dropdown-menu dropdown-menu-right"
-          style="padding: 0px 42px; margin-top: 10px"
+        <div
+          class="dropdown-menu dropdown-menu-right d-flex flex-column row-gap-4 p-4"
+          style="width: 312px; background: #c1ece7; top: 35px !important"
         >
-          <li>
-            <a
-              (click)="onLogout()"
-              style="cursor: pointer; color: black !important"
-              >Logout</a
-            >
-          </li>
-        </ul>
+          <div class="d-flex column-gap-4">
+            <img src="../../../assets/profile_icon.svg" alt="User icon" />
+            <a class="dropdownValueName">Your Profile</a>
+          </div>
+          <div class="d-flex column-gap-4">
+            <img src="../../../assets/subscribed_logo.svg" alt="User icon" />
+            <a class="dropdownValueName">Subscribed Research</a>
+          </div>
+
+          <div class="d-flex column-gap-4">
+            <img src="../../../assets/all_research.svg" alt="User icon" />
+            <a class="dropdownValueName">All Research</a>
+          </div>
+
+          <div class="d-flex column-gap-4">
+            <img src="../../../assets/logout.svg" alt="User icon" />
+            <a (click)="onLogout()" class="dropdownValueName">Logout</a>
+          </div>
+        </div>
       </div>
       <a routerLink="/cart" style="text-decoration: none">
         <div class="d-flex">
