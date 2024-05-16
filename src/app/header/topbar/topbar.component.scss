@@ -153,12 +153,13 @@ span.badge.badge-dark {
 }
 
 input#inputName {
-  padding-left: 45px;
-  background-image: url(/assets/Form-component.png);
+  position: relative;
+  left: -3px;
   background-size: 40px;
   background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
   background-repeat: no-repeat;
-  height: 30px;
+  height: 42px;
   font-size: 14px;
   background-color: #ecfbf8;
 }
@@ -176,34 +177,37 @@ input#inputEmail {
 }
 
 input#inputTel {
-  padding-left: 45px;
-  background-image: url(/assets/Form-Component3.png);
+  position: relative;
+  left: -3px;
   background-size: 40px;
   background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
   background-repeat: no-repeat;
-  height: 30px;
+  height: 42px;
   font-size: 14px;
   background-color: #ecfbf8;
 }
 
 input#inputMessage {
-  padding-left: 45px;
-  background-image: url(/assets/Form-Component6.png);
+  position: relative;
+  left: -3px;
   background-size: 40px;
   background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
   background-repeat: no-repeat;
-  height: 30px;
+  height: 42px;
   font-size: 14px;
   background-color: #ecfbf8;
 }
 
 input#inputCompanyname {
-  padding-left: 45px;
-  background-image: url(/assets/Form-Component4.png);
+  position: relative;
+  left: -3px;
   background-size: 40px;
   background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
   background-repeat: no-repeat;
-  height: 30px;
+  height: 42px;
   font-size: 14px;
   background-color: #ecfbf8;
 }

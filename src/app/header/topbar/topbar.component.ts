@@ -14,6 +14,7 @@ import { baseURl } from "const";
 })
 export class TopbarComponent implements OnInit {
   loginForm: FormGroup;
+  enquiryForm: FormGroup;
   isLoggedIn = false;
   totalCartItems = 0;
   errorMessage = "";
@@ -25,6 +26,14 @@ export class TopbarComponent implements OnInit {
     private cartService: CartService,
     public dialog: MatDialog
   ) {
+    this.enquiryForm = this.fb.group({
+      name: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
+      contact: ["", Validators.required],
+      companyname: ["", Validators.required],
+      message: ["", Validators.required],
+      queries: ["Queries...", Validators.required],
+    });
     // Initialize the form with validations
     this.loginForm = this.fb.group({
       email: [
@@ -50,6 +59,9 @@ export class TopbarComponent implements OnInit {
     localStorage.setItem("isLogin", this.isLoggedIn.toString());
   }
 
+  onSubmitEnquiryForm() {
+    console.log("Form Values:", this.enquiryForm.value);
+  }
   onLogin() {
     if (this.loginForm.invalid) {
       this.errorMessage =

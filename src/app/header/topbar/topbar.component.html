@@ -139,7 +139,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form [formGroup]="enquiryForm" (ngSubmit)="onSubmitEnquiryForm()">
           <div class="d-flex mb-2">
             <img
               style="height: 42px"
@@ -148,7 +148,7 @@
             <input
               type="text"
               class="form-control"
-              id="inputEmail"
+              id="inputName"
               placeholder="Name"
               formControlName="name"
               required
@@ -177,7 +177,7 @@
             <input
               type="number"
               class="form-control"
-              id="inputEmail"
+              id="inputTel"
               placeholder="Contact"
               formControlName="contact"
               required
@@ -191,7 +191,7 @@
             <input
               type="text"
               class="form-control"
-              id="inputEmail"
+              id="inputCompanyname"
               placeholder="Company name"
               formControlName="companyname"
               required
@@ -199,12 +199,16 @@
           </div>
 
           <div class="mb-2">
-            <select class="form-select fmc" id="inputRole">
+            <select
+              class="form-select fmc"
+              id="queries"
+              formControlName="queries"
+            >
               <option selected>Queries...</option>
-              <option value="1">Developer</option>
-              <option value="2">Designer</option>
-              <option value="3">Manager</option>
-              <option value="4">Other</option>
+              <option value="1">Connect to Analyst</option>
+              <option value="2">Connect to Account Manager</option>
+              <option value="3">Custom Request</option>
+              <option value="4">Inqueries Related to Deliverables</option>
             </select>
           </div>
           <div class="d-flex mb-4">
@@ -215,7 +219,7 @@
             <input
               type="text"
               class="form-control"
-              id="inputEmail"
+              id="inputMessage"
               placeholder="Message"
               formControlName="message"
               required
