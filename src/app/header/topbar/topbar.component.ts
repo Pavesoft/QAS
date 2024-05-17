@@ -15,10 +15,30 @@ import { baseURl } from "const";
 export class TopbarComponent implements OnInit {
   loginForm: FormGroup;
   enquiryForm: FormGroup;
+  showDropdownNotificationMenu: boolean = false;
+  showDropProfiledownMenu: boolean = false;
   isLoggedIn = false;
   totalCartItems = 0;
   errorMessage = "";
-  firstName: string = ""; // For showing error messages
+  firstName: string = "";
+
+  notificationData = [
+    {
+      name: "SPARK Matrix : Governance Risk & Compliance (GRC), 2024",
+      status: "Available Now",
+      time: "2 Hrs",
+    },
+    {
+      name: "Security Compliance Report 2024",
+      status: "Available Now",
+      time: "1 Hr",
+    },
+    {
+      name: "Annual Risk Assessment 2024",
+      status: "Available Now",
+      time: "3 Hrs",
+    },
+  ]; // For showing error messages
 
   constructor(
     private fb: FormBuilder,
@@ -59,6 +79,20 @@ export class TopbarComponent implements OnInit {
     localStorage.setItem("isLogin", this.isLoggedIn.toString());
   }
 
+  toggleDropdownNotificationMenu() {
+    this.showDropdownNotificationMenu = !this.showDropdownNotificationMenu;
+
+    if (this.showDropProfiledownMenu === true) {
+      this.showDropProfiledownMenu = false;
+    }
+  }
+  toggleDropdownProfileMenu() {
+    this.showDropProfiledownMenu = !this.showDropProfiledownMenu;
+
+    if (this.showDropdownNotificationMenu === true) {
+      this.showDropdownNotificationMenu = false;
+    }
+  }
   onSubmitEnquiryForm() {
     console.log("Form Values:", this.enquiryForm.value);
   }
