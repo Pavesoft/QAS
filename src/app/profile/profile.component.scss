@@ -1,0 +1,81 @@
+$blue-1: #00327a;
+$white: #ffffff;
+.sidebar {
+  background: linear-gradient(20deg, $blue-1, #4cccd6);
+  padding: 38px;
+  margin-bottom: 70px !important;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+}
+.sidebar-heading {
+  font-size: 25px;
+  color: $white;
+  font-weight: 700;
+  line-height: 30.24px;
+  margin: 10px 0px 20px 0px;
+}
+.sidebar-title {
+  font-size: 20px;
+  color: $white;
+  font-weight: 400;
+  line-height: 24.19px;
+}
+.horizontal-line {
+  border-bottom: 1px solid #ffffff;
+}
+.content-title {
+  font-size: 26px !important;
+  font-weight: 700px !important;
+  line-height: 50px;
+  color: $blue-1;
+}
+.password-heading {
+  font-size: 20px !important;
+  font-weight: 700px !important;
+
+  color: $blue-1;
+}
+form {
+  width: 80%;
+  max-width: 800px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  background-color: #d9d9d980;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+label {
+  font-weight: 400;
+  font-size: 16px;
+}
+.submit-btn {
+  display: flex;
+  width: 90px;
+  height: 32px;
+  font-size: 16px;
+  font-family: "Arial Nova";
+  padding: 14px 34px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+.edit-btn {
+  margin-left: 60%;
+}
