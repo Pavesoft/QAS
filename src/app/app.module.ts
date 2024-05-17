@@ -121,6 +121,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 
 import { FilterPipe } from "./filter.pipe";
+import { ProfileComponent } from "./profile/profile.component";
 
 // const appRoutes:Routes=[
 //   {path:'aboutus' , component: WorkinprogressComponent},
@@ -218,6 +219,7 @@ import { FilterPipe } from "./filter.pipe";
     ResearchSingleComponent,
     SubscriptionComponent,
     EnquiryformComponent,
+    ProfileComponent,
   ],
   imports: [
     HttpClientModule,

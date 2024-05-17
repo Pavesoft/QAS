@@ -70,6 +70,7 @@ import { ResearchSingleComponent } from "./research-single/research-single.compo
 import { SubscriptionComponent } from "./subscription/subscription.component";
 import { ThankyouComponent } from "./thankyou/thankyou.component";
 import { EnquiryformComponent } from "./enquiryform/enquiryform.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 // const routes: Routes = [];
 const routes: Routes = [
@@ -114,6 +115,10 @@ const routes: Routes = [
   {
     path: "cart",
     component: CartComponent,
+  },
+  {
+    path: "my-profile",
+    component: ProfileComponent,
   },
   {
     path: "checkout",
