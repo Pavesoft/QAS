@@ -106,8 +106,8 @@ export class ResearchSingleComponent implements OnInit {
     this.showOverlay = false;
   }
 
-  downloadResearch(id: any) {
-    this.apiService.downloadReport(id).subscribe(
+  downloadResearch(id: any, reportName: any) {
+    this.apiService.downloadReport(id, reportName).subscribe(
       (data) => {
         this.saveFile(data.blob, data.filename);
       },
@@ -117,8 +117,8 @@ export class ResearchSingleComponent implements OnInit {
     );
   }
 
-  readReport(id: any) {
-    this.apiService.downloadReport(id).subscribe(
+  readReport(id: any, reportName: any) {
+    this.apiService.downloadReport(id, reportName).subscribe(
       (data) => {
         this.readView(data.blob, data.filename);
       },

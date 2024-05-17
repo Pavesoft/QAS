@@ -94,14 +94,14 @@ export class ApiService {
     return this.http.get<any[]>(`${baseURl}/research-masters/regions`);
   }
 
-  downloadReport(id: any): Observable<Blob | any> {
+  downloadReport(id: any, reportName: any): Observable<Blob | any> {
     const token = localStorage.getItem("jwtToken");
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
 
     return this.http
-      .get(`${baseURl}/research-masters/downloadReport/2856`, {
+      .get(`${baseURl}/research-masters/downloadReport/${id}`, {
         headers: headers,
         responseType: "blob",
         observe: "response", // Include the full response
@@ -113,10 +113,10 @@ export class ApiService {
           );
           const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
           const matches = filenameRegex.exec(contentDisposition);
-          const filename =
-            matches && matches.length > 1
-              ? matches[1].replace(/['"]/g, "")
-              : "downloaded.pdf";
+          console.log("fileName regex", filenameRegex);
+          console.log("matches", matches);
+          const filename = `${reportName}.pdf`;
+
           console.log("contentDisposition", contentDisposition);
           console.log("filename regex", filenameRegex);
           console.log("matches", matches);

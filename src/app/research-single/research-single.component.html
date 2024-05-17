@@ -164,7 +164,7 @@
                 <button
                   class="btn btn-success button-download"
                   style="margin-bottom: 10px !important; font-size: 14px"
-                  (click)="downloadResearch(Reports.id)"
+                  (click)="downloadResearch(Reports.id, Reports.report)"
                 >
                   <img
                     src="../../assets/download.svg"
@@ -187,7 +187,7 @@
                     font-size: 17px;
                     border: 0px !important;
                   "
-                  (click)="readReport(Reports.id)"
+                  (click)="readReport(Reports.id, Reports.report)"
                 >
                   Read View
                 </button>

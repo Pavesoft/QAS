@@ -869,6 +869,7 @@ export class ResearchComponent implements OnInit {
       return value
         .replaceAll(",", "")
         .replaceAll(":", "")
+        .replaceAll("/", "")
         .replaceAll("(", " ")
         .replaceAll(")", " ")
         .replace(/\s+/g, "-")
@@ -917,8 +918,8 @@ export class ResearchComponent implements OnInit {
     this.router.navigate(["/market-research", `${reportSlug}-${research.id}`]);
   }
 
-  downloadResearch(id: any) {
-    this.apiService.downloadReport(id).subscribe(
+  downloadResearch(id: any, reportName: any) {
+    this.apiService.downloadReport(id, reportName).subscribe(
       (data) => {
         this.saveFile(data.blob, data.filename);
       },
@@ -928,8 +929,8 @@ export class ResearchComponent implements OnInit {
     );
   }
 
-  readReport(id: any) {
-    this.apiService.downloadReport(id).subscribe(
+  readReport(id: any, reportName: any) {
+    this.apiService.downloadReport(id, reportName).subscribe(
       (data) => {
         this.readView(data.blob, data.filename);
       },

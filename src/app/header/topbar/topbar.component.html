@@ -90,29 +90,18 @@
         </a>
 
         <!-- The dropdown menu -->
-        <div
-          class="dropdown-menu dropdown-menu-right d-flex flex-column row-gap-4 p-4"
-          style="width: 312px; background: #c1ece7; top: 35px !important"
+        <ul
+          class="dropdown-menu dropdown-menu-right"
+          style="padding: 0px 42px; margin-top: 10px"
         >
-          <div class="d-flex column-gap-4">
-            <img src="../../../assets/profile_icon.svg" alt="User icon" />
-            <a class="dropdownValueName">Your Profile</a>
-          </div>
-          <div class="d-flex column-gap-4">
-            <img src="../../../assets/subscribed_logo.svg" alt="User icon" />
-            <a class="dropdownValueName">Subscribed Research</a>
-          </div>
-
-          <div class="d-flex column-gap-4">
-            <img src="../../../assets/all_research.svg" alt="User icon" />
-            <a class="dropdownValueName">All Research</a>
-          </div>
-
-          <div class="d-flex column-gap-4">
-            <img src="../../../assets/logout.svg" alt="User icon" />
-            <a (click)="onLogout()" class="dropdownValueName">Logout</a>
-          </div>
-        </div>
+          <li>
+            <a
+              (click)="onLogout()"
+              style="cursor: pointer; color: black !important"
+              >Logout</a
+            >
+          </li>
+        </ul>
       </div>
       <a routerLink="/cart" style="text-decoration: none">
         <div class="d-flex">
@@ -135,8 +124,8 @@
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content" style="height: 460px; background: #ddefed">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="height: 430px; background: #ddefed">
       <div class="modal-header">
         <h5 class="modal-title ef" id="exampleModalLabel">Enquiry Form</h5>
         <img src="/assets/Line.png" class="bln" />
@@ -150,89 +139,58 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="enquiryForm" (ngSubmit)="onSubmitEnquiryForm()">
-          <div class="d-flex mb-2">
-            <img
-              style="height: 42px"
-              src="../../../assets//Form-component.png"
-            />
+        <form>
+          <div class="mb-3">
             <input
               type="text"
               class="form-control"
               id="inputName"
               placeholder="Name"
-              formControlName="name"
               required
             />
           </div>
-
-          <div class="d-flex mb-2">
-            <img
-              style="height: 42px"
-              src="../../../assets//Form-Component2.png"
-            />
+          <div class="mb-3">
             <input
               type="email"
               class="form-control"
               id="inputEmail"
               placeholder="Email"
-              formControlName="email"
               required
             />
           </div>
-          <div class="d-flex mb-2">
-            <img
-              style="height: 42px"
-              src="../../../assets//Form-Component3.png"
-            />
+          <div class="mb-3">
             <input
-              type="number"
+              type="tel"
               class="form-control"
               id="inputTel"
-              placeholder="Contact"
-              formControlName="contact"
+              placeholder="Phone"
               required
             />
           </div>
-          <div class="d-flex mb-2">
-            <img
-              style="height: 42px"
-              src="../../../assets//Form-Component4.png"
-            />
+          <div class="mb-3">
             <input
               type="text"
               class="form-control"
               id="inputCompanyname"
-              placeholder="Company name"
-              formControlName="companyname"
+              placeholder="Company Name"
               required
             />
           </div>
-
-          <div class="mb-2">
-            <select
-              class="form-select fmc"
-              id="queries"
-              formControlName="queries"
-            >
+          <div class="mb-3">
+            <select class="form-select fmc" id="inputRole">
               <option selected>Queries...</option>
-              <option value="1">Connect to Analyst</option>
-              <option value="2">Connect to Account Manager</option>
-              <option value="3">Custom Request</option>
-              <option value="4">Inqueries Related to Deliverables</option>
+              <option value="1">Developer</option>
+              <option value="2">Designer</option>
+              <option value="3">Manager</option>
+              <option value="4">Other</option>
             </select>
           </div>
-          <div class="d-flex mb-4">
-            <img
-              style="height: 42px"
-              src="../../../assets//Form-Component6.png"
-            />
+          <div class="mb-3">
             <input
               type="text"
               class="form-control"
               id="inputMessage"
               placeholder="Message"
-              formControlName="message"
               required
             />
           </div>
