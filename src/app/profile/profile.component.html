@@ -156,8 +156,25 @@
       </div>
     </div>
 
-    <div>
-      <p *ngIf="content === 'Subscription'"></p>
+    <div *ngIf="content === 'Subscription'">
+      <div class="d-flex row row-gap-1 m-5 pr-5">
+        <h3
+          class="content-title p-0 m-0 mb-2"
+          style="border-bottom: 3px solid #00327a; width: 100%"
+        >
+          Subscription
+        </h3>
+      </div>
+    </div>
+    <div *ngIf="content === 'Download Invoice'">
+      <div class="d-flex row row-gap-1 m-5 pr-5">
+        <h3
+          class="content-title p-0 m-0 mb-2"
+          style="border-bottom: 3px solid #00327a; width: 100%"
+        >
+          Download Invoice
+        </h3>
+      </div>
     </div>
   </div>
 </div>
