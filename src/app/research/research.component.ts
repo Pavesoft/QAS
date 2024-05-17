@@ -865,16 +865,10 @@ export class ResearchComponent implements OnInit {
   }
 
   replaceSpaces(value: string): string {
+    const regexPattern = /[,:/()™\-_+*!@#$%^&=;'"`~\\\[\]{}|<>?]+\s+/g;
+
     if (value && typeof value === "string") {
-      return value
-        .replaceAll(",", "")
-        .replaceAll(":", "")
-        .replaceAll("/", "")
-        .replaceAll("(", " ")
-        .replaceAll(")", " ")
-        .replace(/\s+/g, "-")
-        .replace("™", "")
-        .toLowerCase();
+      return value.replace(regexPattern, "-").toLowerCase();
     } else {
       return "";
     }
