@@ -1,231 +1,281 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <link rel="canonical" />
 
-<head>
+    <script>
+      function setCanonicalUrl(canonicalUrl) {
+        document
+          .querySelector('link[rel="canonical"]')
+          .setAttribute("href", canonicalUrl);
+      }
 
-   <link rel="canonical"  />
+      document.getElementsByTagName("head").innerHTML = "";
+      const currentUrl = window.location.href
+        .replace("https://quadrant-solutions.com/", "")
+        .replace(/^\/+/, "");
 
-<script>
+      const matches = currentUrl.match(/-(\d+)$/);
 
+      if (matches && currentUrl.startsWith("blogs/")) {
+        document.getElementsByTagName("head").innerHTML = "";
 
-function setCanonicalUrl(canonicalUrl) {
-      document.querySelector('link[rel="canonical"]').setAttribute('href', canonicalUrl);
-      
-     
-    }
+        var bloggUrl = document.createElement("meta");
+        bloggUrl.setAttribute("name", "url");
+        bloggUrl.setAttribute("property", "og:url");
+        bloggUrl.setAttribute(
+          "content",
+          "https://quadrant-solutions.com/" + currentUrl
+        );
+        document.getElementsByTagName("head")[0].appendChild(bloggUrl);
 
-    
+        var blogType = document.createElement("meta");
+        blogType.setAttribute("name", "type");
+        blogType.setAttribute("property", "og:type");
+        blogType.setAttribute("content", "website");
 
+        document.getElementsByTagName("head")[0].appendChild(blogType);
 
+        var blogdesc = document.createElement("meta");
+        blogdesc.setAttribute("name", "description");
+        blogdesc.setAttribute("property", "og:description");
 
-document.getElementsByTagName('head').innerHTML="";
-   const currentUrl = window.location.href.replace('https://quadrant-solutions.com/','').replace(/^\/+/, '');
-    
-    const matches = currentUrl.match(/-(\d+)$/);
-    
-    if(matches && (currentUrl.startsWith("blogs/"))){
-      document.getElementsByTagName('head').innerHTML="";
+        var blogTitle = document.createElement("meta");
+        blogTitle.setAttribute("name", "title");
+        blogTitle.setAttribute("property", "og:title");
 
-      var bloggUrl = document.createElement('meta');
-      bloggUrl.setAttribute('name', 'url');
-      bloggUrl.setAttribute('property', 'og:url');
-      bloggUrl.setAttribute('content', 'https://quadrant-solutions.com/'+currentUrl);
-    document.getElementsByTagName('head')[0].appendChild(bloggUrl);
-    
-    var blogType = document.createElement('meta');
-    blogType.setAttribute('name', 'type');
-    blogType.setAttribute('property', 'og:type');
-    blogType.setAttribute('content', 'website');
+        var blogImage = document.createElement("meta");
+        blogImage.setAttribute("name", "image");
+        blogImage.setAttribute("property", "og:image");
+        run();
 
-    document.getElementsByTagName('head')[0].appendChild(blogType);
+        function run() {
+          // Creating Our XMLHttpRequest object
+          let xhr = new XMLHttpRequest();
 
-    var blogdesc = document.createElement('meta');
-    blogdesc.setAttribute('name', 'description');
-    blogdesc.setAttribute('property', 'og:description');
+          // Making our connection
+          let url =
+            "https://backend.quadrant-solutions.com/blogs/get-blog-by-id?id=" +
+            matches[1];
+          xhr.open("GET", url, true);
 
+          // Sending our request
+          xhr.send();
 
-    var blogTitle = document.createElement('meta');
-   blogTitle.setAttribute('name', 'title');
-    blogTitle.setAttribute('property', 'og:title');
+          // function execute after request is successful
+          xhr.onreadystatechange = function () {
+            if (this.readyState == 3 && this.status == 200) {
+              var jsonResponse = JSON.parse(this.response);
 
-    var blogImage = document.createElement('meta');
-    blogImage.setAttribute('name', 'image');
-    blogImage.setAttribute('property', 'og:image');
-    run();
-    
-    function run() {
-      // Creating Our XMLHttpRequest object 
-     let xhr = new XMLHttpRequest();
-    
-     // Making our connection  
-     let url = 'https://technonxt.in/blogs/get-blog-by-id?id='+matches[1];
-     xhr.open("GET", url, true);
-    
-    
-     // Sending our request 
-     xhr.send();
-    
-      // function execute after request is successful 
-      xhr.onreadystatechange = function () {
-         if (this.readyState ==3 && this.status == 200) {
-          var jsonResponse = JSON.parse(this.response);
-        
-          blogImage.setAttribute('content', jsonResponse.singlePressRelease.postImgPath);   
-          blogTitle.setAttribute('content', jsonResponse.singlePressRelease.blogTitle); 
-          blogdesc.setAttribute('content', jsonResponse.singlePressRelease.blogTitle);      
-     
-   
-             
-         }
-     }
-    }
-    
-    document.getElementsByTagName('head')[0].appendChild(blogTitle);
-    document.getElementsByTagName('head')[0].appendChild(blogdesc);
+              blogImage.setAttribute(
+                "content",
+                jsonResponse.singlePressRelease.postImgPath
+              );
+              blogTitle.setAttribute(
+                "content",
+                jsonResponse.singlePressRelease.blogTitle
+              );
+              blogdesc.setAttribute(
+                "content",
+                jsonResponse.singlePressRelease.blogTitle
+              );
+            }
+          };
+        }
 
-    document.getElementsByTagName('head')[0].appendChild(blogImage);
-    }else if(matches && (currentUrl.startsWith("press-release/"))){
-      document.getElementsByTagName('head').innerHTML="";
+        document.getElementsByTagName("head")[0].appendChild(blogTitle);
+        document.getElementsByTagName("head")[0].appendChild(blogdesc);
 
-      var  PressUrl = document.createElement('meta');
-      PressUrl.setAttribute('name', 'url');
-      PressUrl.setAttribute('property', 'og:url');
-      PressUrl.setAttribute('content', 'https://quadrant-solutions.com/'+currentUrl);
-    document.getElementsByTagName('head')[0].appendChild(PressUrl);
+        document.getElementsByTagName("head")[0].appendChild(blogImage);
+      } else if (matches && currentUrl.startsWith("press-release/")) {
+        document.getElementsByTagName("head").innerHTML = "";
 
-    var  Pressimage = document.createElement('meta');
-      Pressimage.setAttribute('name', 'image');
-      Pressimage.setAttribute('property', 'og:image');
-      Pressimage.setAttribute('content', '');
-    document.getElementsByTagName('head')[0].appendChild(Pressimage);
+        var PressUrl = document.createElement("meta");
+        PressUrl.setAttribute("name", "url");
+        PressUrl.setAttribute("property", "og:url");
+        PressUrl.setAttribute(
+          "content",
+          "https://quadrant-solutions.com/" + currentUrl
+        );
+        document.getElementsByTagName("head")[0].appendChild(PressUrl);
 
-    var  Presstype = document.createElement('meta');
-    Presstype.setAttribute('name', 'type');
-    Presstype.setAttribute('property', 'og:type');
-      Presstype.setAttribute('content', 'website');
-    document.getElementsByTagName('head')[0].appendChild(Presstype);
+        var Pressimage = document.createElement("meta");
+        Pressimage.setAttribute("name", "image");
+        Pressimage.setAttribute("property", "og:image");
+        Pressimage.setAttribute("content", "");
+        document.getElementsByTagName("head")[0].appendChild(Pressimage);
 
-    
+        var Presstype = document.createElement("meta");
+        Presstype.setAttribute("name", "type");
+        Presstype.setAttribute("property", "og:type");
+        Presstype.setAttribute("content", "website");
+        document.getElementsByTagName("head")[0].appendChild(Presstype);
 
+        var Pressdesc = document.createElement("meta");
+        Pressdesc.setAttribute("name", "description");
+        Pressdesc.setAttribute("property", "og:description");
 
-    var  Pressdesc = document.createElement('meta');
-    Pressdesc.setAttribute('name', 'description');
-    Pressdesc.setAttribute('property', 'og:description');
-    
+        var PressTitle = document.createElement("meta");
+        PressTitle.setAttribute("name", "title");
+        PressTitle.setAttribute("property", "og:title");
+        run();
 
-    
-    var PressTitle = document.createElement('meta');
-    PressTitle.setAttribute('name', 'title');
-    PressTitle.setAttribute('property', 'og:title');
-    run();
-    
-    function run() {
-      // Creating Our XMLHttpRequest object 
-     let xhr = new XMLHttpRequest();
-    
-     // Making our connection  
-     let url = 'https://technonxt.in/blogs/get-blog-by-id?id='+matches[1];
-     xhr.open("GET", url, true);
-    
-    
-     // Sending our request 
-     xhr.send();
-    
-      // function execute after request is successful 
-      xhr.onreadystatechange = function () {
-         if (this.readyState ==3 && this.status == 200) {
-          var jsonResponse = JSON.parse(this.response);
-        
-          PressTitle.setAttribute('content', jsonResponse.singlePressRelease.blogTitle);      
-          Pressdesc.setAttribute('content', jsonResponse.singlePressRelease.blogTitle);
-             
-         }
-     }
-    }
-    document.getElementsByTagName('head')[0].appendChild(PressTitle);
-    document.getElementsByTagName('head')[0].appendChild(Pressdesc);
+        function run() {
+          // Creating Our XMLHttpRequest object
+          let xhr = new XMLHttpRequest();
 
-    
-    }
+          // Making our connection
+          let url =
+            "https://backend.quadrant-solutions.com/blogs/get-blog-by-id?id=" +
+            matches[1];
+          xhr.open("GET", url, true);
+
+          // Sending our request
+          xhr.send();
+
+          // function execute after request is successful
+          xhr.onreadystatechange = function () {
+            if (this.readyState == 3 && this.status == 200) {
+              var jsonResponse = JSON.parse(this.response);
+
+              PressTitle.setAttribute(
+                "content",
+                jsonResponse.singlePressRelease.blogTitle
+              );
+              Pressdesc.setAttribute(
+                "content",
+                jsonResponse.singlePressRelease.blogTitle
+              );
+            }
+          };
+        }
+        document.getElementsByTagName("head")[0].appendChild(PressTitle);
+        document.getElementsByTagName("head")[0].appendChild(Pressdesc);
+      }
     </script>
 
-  <style>
-    body,html{
-      overflow-x: hidden;
-    }
-  </style>
+    <style>
+      body,
+      html {
+        overflow-x: hidden;
+      }
+    </style>
 
-  
-  <meta charset="utf-8">
+    <meta charset="utf-8" />
 
-  <title>Business Management Consultants | Quadrant Solutions</title>  
+    <title>Business Management Consultants | Quadrant Solutions</title>
 
-<meta http-equiv="expires" content="0;">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="expires" content="0;" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
 
+    <base href="/" />
+    <meta
+      name="google-site-verification"
+      content="Ln9KN2e0NgNpW1JyvpspS3r_QRsU93moE_D6R6SqZZc"
+    />
+    <meta
+      name="description"
+      content="As Business Management Consultants, Quadrant Knowledge Solutions conducts quantitative &amp; qualitative analysis to learn and provide solutions to clients facing business challenges."
+    />
 
-  <base href="/">
-  <meta name="google-site-verification" content="Ln9KN2e0NgNpW1JyvpspS3r_QRsU93moE_D6R6SqZZc" />
-   <meta name="description" content="As Business Management Consultants, Quadrant Knowledge Solutions conducts quantitative &amp; qualitative analysis to learn and provide solutions to clients facing business challenges." /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index" />
+    <link rel="icon" type="image/x-icon" href="/assets/cropped.png" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="index">
-  <link rel="icon" type="image/x-icon" href="/assets/cropped.png">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+      integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
 
-  
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.12.0.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"
+    ></script>
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
-    integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-    crossorigin="anonymous"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-  <!-- <script src="https://hdfcbank.test.gateway.mastercard.com/static/checkout/checkout.min.js" data-error="errorCallback"
+    <!-- <script src="https://hdfcbank.test.gateway.mastercard.com/static/checkout/checkout.min.js" data-error="errorCallback"
   data-cancel="cancelCallback" data-complete="completeCallback"></script> -->
-    
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <script src="https://www.paypal.com/sdk/js?client-id=AS-cocQmqKl6gdB3aAALqMA8LTuYipD04eo1RobS2GwObPc1mF-ctZZYr8ApNIDhDMImLuK1WTeNbzKa&components=buttons"></script>
-  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    
-    })(window,document,'script','dataLayer','GTM-53M5TXL');</script> 
- 
-</head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script src="https://www.paypal.com/sdk/js?client-id=AS-cocQmqKl6gdB3aAALqMA8LTuYipD04eo1RobS2GwObPc1mF-ctZZYr8ApNIDhDMImLuK1WTeNbzKa&components=buttons"></script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-53M5TXL");
+    </script>
+  </head>
 
-<body  class="mat-typography">
-  <app-root></app-root>
+  <body class="mat-typography">
+    <app-root></app-root>
 
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53M5TXL"
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-53M5TXL"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+  </body>
 
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-</body>
-
-<script>
-  
-
-</script>
+  <script></script>
 </html>
