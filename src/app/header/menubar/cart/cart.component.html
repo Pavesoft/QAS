@@ -1,4 +1,146 @@
-<div class="cart-container">
+<div class="col-md-12 d-flex cart-container">
+  <div class="col-md-9 p-5">
+    <div class="d-flex justify-content-between cart-header">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3 class="m-0 p-3">Reports</h3>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <h3 class="m-0 p-3">Price ( Inclusive of GST )</h3>
+      </div>
+    </div>
+    <div class="pb-4" style="background-color: white">
+      <div
+        style="border-bottom: 1px #00327a33 solid"
+        class="row mx-4"
+        *ngFor="let item of cart"
+      >
+        <div class="col-md-8 d-flex py-4">
+          <div class="d-flex row row-gap-3">
+            <div class="d-flex">
+              <span class="category-heading">Category:</span>
+              <div *ngFor="let category of item.research.categoryList">
+                <span class="category-list">{{ category }}</span
+                ><br />
+              </div>
+            </div>
+            <div>
+              <span class="report-title">{{ item.research.report }}</span>
+            </div>
+            <div class="d-flex">
+              <span class="authors-heading">Authors:</span>
+              <div *ngFor="let author of item.research.authors">
+                <span class="authors-list">{{ author }}</span
+                ><br />
+              </div>
+            </div>
+            <div>
+              <div class="mt-1">
+                <img
+                  src="../../../../assets/decrement_button.svg"
+                  (click)="decrement()"
+                  style="cursor: pointer"
+                />
+                <span style="margin: 10px">{{ count }}</span>
+                <img
+                  src="../../../../assets/increment_button.svg"
+                  (click)="increment()"
+                  style="cursor: pointer"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 py-4">
+          <div class="d-flex justify-content-between">
+            <div class="price">${{ item.research.price }}</div>
+            <div>
+              <img
+                src="../../../../assets/delete_button.svg"
+                (click)="removeFromCart(item)"
+                style="cursor: pointer"
+              />
+            </div>
+          </div>
+          <div class="gst-conatainer d-flex">
+            <div class="d-flex row row-gap-3">
+              <div class="d-flex justify-content-between">
+                <span class="reports-gst-label">Price</span>
+                <span class="reports-gst-value"
+                  >${{ item.research.price }}</span
+                >
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="reports-gst-label">GST@18%</span>
+                <span class="reports-gst-value">0</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="reports-gst-label">Final Price</span>
+                <span class="reports-gst-value"
+                  >${{ item.research.price }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 pt-5 pr-5">
+    <div class="d-flex row justify-content-between cart-header">
+      <div class="d-flex justify-content-between cart-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h3 class="m-0 p-3">Payment Summary</h3>
+        </div>
+      </div>
+
+      <div
+        class="pb-4"
+        style="background-color: white; height: 300px !important"
+      >
+        <div class="d-flex row row-gap-3 mx-3 mt-3">
+          <div class="d-flex justify-content-between">
+            <span class="payment-label">Total Reports</span
+            ><span class="payment-value">04</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span class="payment-label">Discount</span
+            ><span class="payment-discount-value">-$1500</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span class="payment-label">Subtotal</span
+            ><span class="payment-value">$18500</span>
+          </div>
+          <hr style="width: 95%" />
+        </div>
+
+        <div
+          class="d-flex justify-content-between mx-2 py-3 px-3"
+          style="background-color: #f3f4f5"
+        >
+          <span class="payment-label">Total</span>
+          <span class="payment-value">$18500</span>
+        </div>
+        <div>
+          <button
+            type="submit"
+            class="btn btn-primary procced-btn"
+            style="
+              margin-top: 25px !important;
+
+              border: 0px;
+              font-size: 17px !important;
+            "
+          >
+            Proceed Payment
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="cart-container">
   <h2>Cart</h2>
   <h4 style="color: #ff0000">
     <span style="font-weight: bolder"> * NOTE :</span> Do not refresh / close
@@ -8,7 +150,7 @@
     <thead>
       <tr>
         <th scope="col">Report</th>
-        <!-- <th scope="col">Quantity</th> -->
+        <th scope="col">Quantity</th>
         <th scope="col">Price</th>
         <th scope="col"></th>
       </tr>
@@ -16,7 +158,7 @@
     <tbody>
       <tr *ngFor="let item of cart">
         <td>{{ item.research.report }}</td>
-        <!-- <td>{{ item.quantity }}</td> -->
+        <td>{{ item.quantity }}</td>
         <td><i class="fas fa-dollar-sign"></i> {{ item.research.price }}</td>
         <td>
           <button
@@ -60,4 +202,4 @@
     <p>Your cart is empty.</p>
   </div>
 </div>
-<app-searchbar></app-searchbar>
+<app-searchbar></app-searchbar> -->

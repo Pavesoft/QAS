@@ -14,6 +14,17 @@ export class CartComponent {
     quantity: number;
     totalPrice: number;
   }[] = [];
+  count: number = 0;
+
+  increment(): void {
+    this.count++;
+  }
+
+  decrement(): void {
+    if (this.count > 0) {
+      this.count--;
+    }
+  }
 
   constructor(
     public cartService: CartService,
@@ -43,6 +54,8 @@ export class CartComponent {
           publishDate: new Date(),
           price2: 0,
           tableOfContent: "",
+          categoryList: [],
+          authors: [],
         };
 
         const item = {
