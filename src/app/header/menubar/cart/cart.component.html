@@ -37,13 +37,13 @@
               <div class="mt-1">
                 <img
                   src="../../../../assets/decrement_button.svg"
-                  (click)="decrement()"
+                  (click)="decrement(item)"
                   style="cursor: pointer"
                 />
-                <span style="margin: 10px">{{ count }}</span>
+                <span style="margin: 10px">{{ item.count }}</span>
                 <img
                   src="../../../../assets/increment_button.svg"
-                  (click)="increment()"
+                  (click)="increment(item)"
                   style="cursor: pointer"
                 />
               </div>
@@ -96,20 +96,20 @@
 
       <div
         class="pb-4"
-        style="background-color: white; height: 300px !important"
+        style="background-color: white; height: 320px !important"
       >
-        <div class="d-flex row row-gap-3 mx-3 mt-3">
+        <div class="d-flex row row-gap-4 mx-3 mt-3">
           <div class="d-flex justify-content-between">
             <span class="payment-label">Total Reports</span
-            ><span class="payment-value">04</span>
+            ><span class="payment-value">{{ getTotalReports() }}</span>
           </div>
           <div class="d-flex justify-content-between">
             <span class="payment-label">Discount</span
-            ><span class="payment-discount-value">-$1500</span>
+            ><span class="payment-discount-value">0</span>
           </div>
           <div class="d-flex justify-content-between">
             <span class="payment-label">Subtotal</span
-            ><span class="payment-value">$18500</span>
+            ><span class="payment-value">${{ getTotalPrice() }}</span>
           </div>
           <hr style="width: 95%" />
         </div>
@@ -119,7 +119,7 @@
           style="background-color: #f3f4f5"
         >
           <span class="payment-label">Total</span>
-          <span class="payment-value">$18500</span>
+          <span class="payment-value">${{ getTotalPrice() }}</span>
         </div>
         <div>
           <button

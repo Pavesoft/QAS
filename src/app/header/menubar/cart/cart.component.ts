@@ -13,18 +13,8 @@ export class CartComponent {
     research: ResearchMasterDto;
     quantity: number;
     totalPrice: number;
+    count: number;
   }[] = [];
-  count: number = 0;
-
-  increment(): void {
-    this.count++;
-  }
-
-  decrement(): void {
-    if (this.count > 0) {
-      this.count--;
-    }
-  }
 
   constructor(
     public cartService: CartService,
@@ -34,7 +24,10 @@ export class CartComponent {
 
   ngOnInit(): void {
     ////console.log(this.cartService.cart);
-    this.cart = this.cartService.cart;
+    this.cart = this.cartService.cart.map((item) => ({
+      ...item,
+      count: 1, // Set count to 0 or appropriate initial value
+    }));
     this.route.queryParams.subscribe((params) => {
       const productId = params["productId"];
       const productName = params["productName"];
@@ -62,6 +55,7 @@ export class CartComponent {
           research: research,
           quantity: +quantity,
           totalPrice: +price * +quantity,
+          count: 1,
         };
 
         // Add the buy now item to the cart
@@ -70,25 +64,23 @@ export class CartComponent {
       console.log("thi.cart", this.cart);
     });
   }
-
   removeFromCart(item: {
     research: ResearchMasterDto;
     quantity: number;
     totalPrice: number;
+    count: number;
   }): void {
-    ////console.log('Before:', this.cart);
-
-    this.cartService.removeFromCart(item);
-
-    ////console.log('After:', this.cart);
-  }
-
-  getTotalPrice(): number {
-    let totalPrice = 0;
-    for (const item of this.cart) {
-      totalPrice += item.totalPrice;
+    const index = this.cart.indexOf(item);
+    if (index !== -1) {
+      this.cart.splice(index, 1);
+      this.cartService.removeFromCart(item);
     }
-    return totalPrice;
+  }
+  getTotalPrice(): number {
+    return this.cart.reduce(
+      (total, item) => total + item.research.price * item.count,
+      0
+    );
   }
 
   checkout(totalPrice: any): void {
@@ -99,7 +91,21 @@ export class CartComponent {
     });
   }
 
+  increment(item: any): void {
+    item.count++;
+  }
+
+  decrement(item: any): void {
+    if (item.count > 1) {
+      item.count--;
+    }
+  }
+
   getTotalCartItems(): number {
     return this.cartService.getTotalCartItems();
+  }
+
+  getTotalReports(): number {
+    return this.cart.reduce((total, item) => total + item.count, 0);
   }
 }
