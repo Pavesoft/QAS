@@ -27,7 +27,9 @@
   left: -77px;
   font-weight: bold;
 }
-
+.no-border-bottom {
+  border-bottom: none !important;
+}
 .cart-summary button {
   margin-top: 10px;
 }
@@ -109,32 +111,32 @@
 }
 .payment-label {
   font-size: 22px;
-  font-family: 700;
+  font-weight: 700;
   color: #00327a;
 }
 .payment-value {
   font-size: 20px;
-  font-family: 700;
+  font-weight: 700;
   color: #444343;
 }
 .payment-discount-value {
   font-size: 20px;
-  font-family: 700;
+  font-weight: 700;
   color: red;
 }
 .reports-gst-label {
   font-size: 16px;
-  font-family: 400;
+  font-weight: 400;
   color: #444343;
 }
 .reports-gst-value {
   font-size: 16px;
-  font-family: 400;
+  font-weight: 400;
   color: #444343;
 }
 .count-style {
   font-size: 24px;
-  font-family: 700;
+  font-weight: 700;
   color: #000000;
   margin: 0px 20px;
   padding-top: 10px !important;
