@@ -48,7 +48,11 @@ export class TopbarComponent implements OnInit {
   ) {
     this.enquiryForm = this.fb.group({
       name: ["", Validators.required],
-      email: ["", [Validators.required, Validators.email]],
+      email: [
+        "",
+        [Validators.required, Validators.email],
+        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+      ],
       contact: ["", Validators.required],
       companyname: ["", Validators.required],
       message: ["", Validators.required],
@@ -58,7 +62,11 @@ export class TopbarComponent implements OnInit {
     this.loginForm = this.fb.group({
       email: [
         "",
-        [Validators.required, Validators.email], // Ensure it's a valid email and required
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+        ],
       ],
       password: [
         "",
