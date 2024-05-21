@@ -127,6 +127,7 @@
                   passwordForm.get('password')?.invalid &&
                   passwordForm.get('password')?.touched
                 "
+                class="text-danger"
               >
                 Password is required.
               </div>
@@ -143,6 +144,7 @@
               />
               <div
                 *ngIf="passwordForm.errors?.['mismatch'] && passwordForm.get('confirmPassword')?.touched"
+                class="text-danger"
               >
                 Passwords must match.
               </div>
