@@ -72,13 +72,23 @@
             <div class="form-group">
               <label for="email">Email</label>
               <input
-                type="text"
-                id="email"
+                type="email"
                 placeholder="john@infomatica.com"
+                id="email"
+                formControlName="email"
                 [disabled]="!isEditing"
+                required
               />
-            </div>
 
+              <div *ngIf="passwordForm.controls['email'].errors">
+                <small
+                  class="text-danger"
+                  *ngIf="passwordForm.controls['email'].errors['email']"
+                >
+                  Invalid email address.
+                </small>
+              </div>
+            </div>
             <div class="form-group">
               <label for="phone">Phone</label>
               <input
