@@ -163,7 +163,12 @@ input#inputName {
   font-size: 14px;
   background-color: #ecfbf8;
 }
-
+#queries {
+  background-color: #ecfbf8 !important;
+  height: 42px;
+  margin-right: 4px !important;
+  border-radius: 0px 8px 8px 0px;
+}
 input#inputEmail {
   position: relative;
   left: -3px;

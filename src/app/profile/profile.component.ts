@@ -5,6 +5,7 @@ import {
   Validators,
   AbstractControl,
 } from "@angular/forms";
+import * as intlTelInput from "intl-tel-input";
 
 @Component({
   selector: "app-profile",
@@ -15,6 +16,18 @@ export class ProfileComponent implements OnInit {
   content: string = "My Profile";
   passwordForm: any = FormGroup;
   isEditing = false;
+
+  ngAfterViewInit(): void {
+    const inputElement = document.querySelector("#businessPhone1");
+    if (inputElement) {
+      intlTelInput(inputElement, {
+        initialCountry: "us",
+        separateDialCode: true,
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.8/js/utils.min.js",
+      });
+    }
+  }
   invoices = [
     {
       title: "Download Invoice",

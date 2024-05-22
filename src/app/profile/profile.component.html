@@ -89,12 +89,19 @@
                 </small>
               </div>
             </div>
+
             <div class="form-group">
               <label for="phone">Phone</label>
+
               <input
-                type="text"
-                id="phone"
-                placeholder="7655342566"
+                type="tel"
+                id="businessPhone1"
+                maxlength="16"
+                class="form-control"
+                required
+                placeholder="Phone*"
+                style="margin-bottom: 20px"
+                onkeyup="this.value = this.value.replace(/[^0-9-]/g, '');"
                 [disabled]="!isEditing"
               />
             </div>
