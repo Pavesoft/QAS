@@ -5,6 +5,7 @@ import { ApiService } from "../Services/research-services";
 import { ResearchMasterDto } from "../Interfaces/research-master-dto";
 import { CartService } from "../Services/cart.service";
 import { AuthService } from "../auth.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: "app-research-single",
@@ -18,7 +19,8 @@ export class ResearchSingleComponent implements OnInit {
     private route: ActivatedRoute,
     private apiService: ApiService,
     public authService: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
+    private titleService: Title
   ) {}
 
   research: any;
@@ -155,21 +157,32 @@ export class ResearchSingleComponent implements OnInit {
     const existingCartItem = cart.find(
       (item) => item.research.id === research.id
     );
+    const Research: ResearchMasterDto = {
+      id: +research.id,
+      report: research.report,
+      price: +research.price,
+      categoryName: "",
+      reportType: "",
+      description: "",
+      author: "",
+      mAuthor: "",
+      publishDate: new Date(),
+      price2: 0,
+      tableOfContent: "",
+    };
     if (existingCartItem) {
       this.alertType = "Failed";
       this.message = "This item is already in the cart.";
       this.showCustomAlert();
     } else {
-      this.router.navigate(["/cart"], {
-        queryParams: {
-          productId: research.id,
-          productName: research.report,
-          price: research.price,
-          quantity: 1,
-        },
-      });
+      this.alertType = "Success";
+      this.message = "This item was added to cart.";
+      this.cartService.addToCart(Research);
+      this.showCustomAlert();
+      this.router.navigate(["/cart"]);
     }
   }
+
   downloadForm(research: any) {
     console.log(research);
 
@@ -209,6 +222,7 @@ export class ResearchSingleComponent implements OnInit {
         : this.apiService.getResearchById(reportId);
       apiCall.subscribe((data: any) => {
         this.Reports = data.researchMaster;
+        this.titleService.setTitle(this.Reports.report);
         this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
         this.isLoading = false;
         console.log(this.Reports.isSubscribed);

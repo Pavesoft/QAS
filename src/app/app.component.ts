@@ -1,11 +1,12 @@
 import { Component, HostListener, OnInit } from "@angular/core";
-import { NavigationEnd } from "@angular/router";
+import { NavigationEnd, NavigationStart } from "@angular/router";
 import { Title, Meta } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { EcommBackendService } from "src/app/Services/ecomm-backend-service.service";
 import { ApiResponse } from "src/app/Interfaces/api-response";
 import { ResearchMasterDto } from "src/app/Interfaces/research-master-dto";
 import { filter } from "rxjs";
+import { UrlMappingService } from "./Services/urlMappingService";
 
 @Component({
   selector: "app-root",
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit {
   constructor(
     private meta: Meta,
     private router: Router,
-    private ecommBackendService: EcommBackendService
+    private ecommBackendService: EcommBackendService,
+    private urlMappingService: UrlMappingService
   ) {}
 
   title = "Quadrant-Solutions";
@@ -80,9 +82,18 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // window.onbeforeunload = function() {
-    // };
-
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        const currentUrl = new URL(event.url, window.location.origin).href;
+        console.log(currentUrl);
+        this.urlMappingService.getMapping(currentUrl).subscribe((toUrl) => {
+          console.log(toUrl);
+          if (toUrl) {
+            window.location.href = toUrl;
+          }
+        });
+      }
+    });
     window.onbeforeunload = null;
     this.setCanonicalUrl();
 

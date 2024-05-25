@@ -121,6 +121,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 
 import { FilterPipe } from "./filter.pipe";
+import { UrlMappingService } from "./Services/urlMappingService";
 
 // const appRoutes:Routes=[
 //   {path:'aboutus' , component: WorkinprogressComponent},
@@ -257,6 +258,7 @@ import { FilterPipe } from "./filter.pipe";
       useClass: TokenInterceptor,
       multi: true,
     },
+    UrlMappingService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

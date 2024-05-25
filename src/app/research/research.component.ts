@@ -104,7 +104,6 @@ export class ResearchComponent implements OnInit {
     this.httpClient
       .get<any[]>("assets/fonts/data/oldUrlData.json")
       .subscribe((data: any) => {
-        console.log(data.oldUrlData);
         this.oldUrlData = data.oldUrlData;
       });
     const accessToken = this.authService.getAccessToken();
@@ -315,7 +314,7 @@ export class ResearchComponent implements OnInit {
         .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
         .subscribe((response) => {
           this.mappedReports = response.researchMasterList;
-          this.mappedReports.sort((a, b) => a.publishDate - b.publishDate);
+          this.mappedReports.sort((a, b) => b.publishDate - a.publishDate);
           this.mappedReports = this.mappedReports.map((report: any) => {
             return {
               ...report,
@@ -723,6 +722,9 @@ export class ResearchComponent implements OnInit {
 
   loadResearchData(): void {
     this.isLoading = true;
+    this.isSubscribed =
+      localStorage.getItem("isSubscribed") === "true" ? true : false;
+    console.log(this.isSubscribed);
     const apiCall = this.isSubscribed
       ? this.apiService.getReseachListSubscribed(
           this.currentPage,
@@ -735,7 +737,6 @@ export class ResearchComponent implements OnInit {
     apiCall.subscribe((data: any) => {
       this.Reports = data.researchMasterList;
       this.mappedReports = this.Reports;
-      console.table(this.mappedReports);
 
       data.researchMasterList.forEach((item: any) => {
         if (!this.authorsSet.has(item.author)) {
@@ -746,7 +747,7 @@ export class ResearchComponent implements OnInit {
         }
       });
       // console.log("author array", this.authorsArray);
-      this.mappedReports.sort((a, b) => a.publishDate - b.publishDate);
+      this.mappedReports.sort((a, b) => b.publishDate - a.publishDate);
       this.mappedReports = this.mappedReports.map((report: any) => {
         return {
           ...report,
@@ -777,7 +778,7 @@ export class ResearchComponent implements OnInit {
     apiCall.subscribe((response) => {
       this.mappedReports = response.researchMasterList;
       this.mappedReports.sort(
-        (a: any, b: any) => a.publishDate - b.publishDate
+        (a: any, b: any) => b.publishDate - a.publishDate
       );
       this.mappedReports = this.mappedReports.map((report: any) => {
         return {
@@ -865,10 +866,13 @@ export class ResearchComponent implements OnInit {
   }
 
   replaceSpaces(value: string): string {
-    const regexPattern = /[,:/()™\-_+*!@#$%^&=;'"`~\\\[\]{}|<>?]+\s+/g;
+    const regexPattern = /[^a-zA-Z0-9\s]/g;
 
     if (value && typeof value === "string") {
-      return value.replace(regexPattern, "-").toLowerCase();
+      return value
+        .replace(regexPattern, " ")
+        .replace(/\s+/g, "-")
+        .toLowerCase();
     } else {
       return "";
     }
@@ -889,7 +893,9 @@ export class ResearchComponent implements OnInit {
   }
 
   toggleResearchType(isSubscribed: boolean): void {
-    this.isSubscribed = isSubscribed;
+    localStorage.setItem("isSubscribed", String(isSubscribed));
+    this.isSubscribed =
+      localStorage.getItem("isSubscribed") === "true" ? true : false;
     if (this.isSubscribed) {
       this.searchObject.isSubscribed = true;
     } else {
