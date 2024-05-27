@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import * as _ from "lodash";
 
 interface UrlMapping {
   fromUrl: string;
@@ -17,19 +18,16 @@ export class UrlMappingService {
   constructor(private httpClient: HttpClient) {}
 
   getMapping(fromUrl: string): Observable<string | undefined> {
-    console.log(fromUrl);
     return this.httpClient
-      .get<UrlMapping[]>(
-        "../../assets/fonts/Research_report_URL_redirection.json"
-      )
+      .get<UrlMapping[]>("../../assets/fonts/Redirection_url.json")
       .pipe(
         map((data) => {
           this.urlMappings = data;
-          console.log(this.urlMappings[0].fromUrl);
-          const mapping = this.urlMappings.find(
+          const mapping = _.find(
+            this.urlMappings,
             (m) => m.fromUrl === fromUrl + "/"
           );
-          return mapping && mapping.toUrl;
+          return mapping ? mapping.toUrl : undefined;
         })
       );
   }
