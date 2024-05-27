@@ -70,6 +70,7 @@ import { ResearchSingleComponent } from "./research-single/research-single.compo
 import { SubscriptionComponent } from "./subscription/subscription.component";
 import { ThankyouComponent } from "./thankyou/thankyou.component";
 import { EnquiryformComponent } from "./enquiryform/enquiryform.component";
+import { UrlMappingGuard } from "./url-mapping.guard";
 
 // const routes: Routes = [];
 const routes: Routes = [
@@ -431,10 +432,12 @@ const routes: Routes = [
   {
     path: "**",
     component: OldPressReleseRedirectComponent,
+    canActivate: [UrlMappingGuard],
   },
   {
     path: "not-found",
     component: OldPressReleseRedirectComponent,
+    canActivate: [UrlMappingGuard],
   },
   {
     path: "**",
