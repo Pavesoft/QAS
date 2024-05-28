@@ -1,65 +1,156 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
-
+import { map } from "rxjs/operators";
+import { baseURl } from "const";
 @Injectable({
   providedIn: "root",
 })
 export class ApiService {
-  apiUrl = "http://10.0.51.3:8091";
   constructor(private http: HttpClient) {}
 
-  getReseachList(): Observable<any[]> {
+  getReseachList(page: any, size: any): Observable<any[]> {
+    // const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      // Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.get<any[]>(
+      `${baseURl}/research-masters/research-list?page=${page - 1}&size=${size}`
+      // { headers: headers }
+    );
+  }
+  getReseachListToken(page: any, size: any): Observable<any[]> {
     const token = localStorage.getItem("jwtToken");
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
 
     return this.http.get<any[]>(
-      `${this.apiUrl}/research-masters/research-list`,
+      `${baseURl}/research-masters/research-list?page=${page - 1}&size=${size}`,
       { headers: headers }
     );
   }
 
-  getReseachListSubscribed(): Observable<any[]> {
+  getReseachListSubscribed(page: any, size: any): Observable<any[]> {
     const token = localStorage.getItem("jwtToken");
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
 
     return this.http.get<any[]>(
-      `${this.apiUrl}/research-masters/research-list-subscribed`,
+      `${baseURl}/research-masters/research-list-subscribed?page=${
+        page - 1
+      }&size=${size}`,
       { headers: headers }
     );
   }
+
+  serachFilters(post: any, page: any, size: any): Observable<any> {
+    return this.http.post<any>(
+      `${baseURl}/research-masters/search?page=${page - 1}&size=${size}`,
+      post
+    );
+  }
+  serachFiltersToken(post: any, page: any, size: any): Observable<any> {
+    const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.post<any>(
+      `${baseURl}/research-masters/search?page=${page - 1}&size=${size}`,
+      post,
+      { headers: headers }
+    );
+  }
+
   getReportType(): Observable<any[]> {
-    const token = localStorage.getItem("jwtToken");
+    // const token = localStorage.getItem("jwtToken");
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
+      // Authorization: `Bearer ${token}`,
     });
-    return this.http.get<any[]>(`${this.apiUrl}/research-masters/report-types`);
-  }
-  getCategories(): Observable<any[]> {
-    const token = localStorage.getItem("jwtToken");
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.get<any[]>(`${this.apiUrl}/research-masters/categories`);
+    return this.http.get<any[]>(`${baseURl}/research-masters/report-types`);
   }
 
-  getPostById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/posts/${id}`);
+  getCategories(): Observable<any[]> {
+    // const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      // Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any[]>(`${baseURl}/research-masters/categories`);
+  }
+  getAuthors(): Observable<any[]> {
+    // const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      // Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any[]>(`${baseURl}/research-masters/authors`);
+  }
+  getRegion(): Observable<any[]> {
+    // const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      // Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any[]>(`${baseURl}/research-masters/regions`);
+  }
+
+  downloadReport(id: any, reportName: any): Observable<Blob | any> {
+    const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http
+      .get(`${baseURl}/research-masters/downloadReport/${id}`, {
+        headers: headers,
+        responseType: "blob",
+        observe: "response", // Include the full response
+      })
+      .pipe(
+        map((response: HttpResponse<Blob>) => {
+          const contentDisposition: any = response.headers.get(
+            "Content-Disposition"
+          );
+          const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+          const matches = filenameRegex.exec(contentDisposition);
+          console.log("fileName regex", filenameRegex);
+          console.log("matches", matches);
+          const filename = `${reportName}.pdf`;
+
+          console.log("contentDisposition", contentDisposition);
+          console.log("filename regex", filenameRegex);
+          console.log("matches", matches);
+          console.log("filename", filename);
+          return {
+            blob: response.body,
+            filename: filename,
+          };
+        })
+      );
+  }
+
+  getResearchById(id: number): Observable<any> {
+    return this.http.get<any>(`${baseURl}/research-masters/${id}`);
+  }
+  getResearchByIdToken(id: number): Observable<any> {
+    const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any>(`${baseURl}/research-masters/${id}`, {
+      headers: headers,
+    });
   }
 
   addPost(post: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/posts`, post);
+    return this.http.post<any>(`${baseURl}/posts`, post);
   }
 
   updatePost(id: number, post: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/posts/${id}`, post);
+    return this.http.put<any>(`${baseURl}/posts/${id}`, post);
   }
 
   deletePost(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/posts/${id}`);
+    return this.http.delete<any>(`${baseURl}/posts/${id}`);
   }
 }

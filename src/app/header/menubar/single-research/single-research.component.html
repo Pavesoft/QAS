@@ -1,14 +1,17 @@
 <div *ngIf="isLoading" class="loader-container">
-  <br><br><br><br><br><br><br><br>
-  <div class="loading-spinner" style="width: 80px; height: 80px;">
-     
-  </div>
-  <br><br><br><br><br><br><br><br>
+  <br /><br /><br /><br /><br /><br /><br /><br />
+  <div class="loading-spinner" style="width: 80px; height: 80px"></div>
+  <br /><br /><br /><br /><br /><br /><br /><br />
 </div>
 
-
-
-<div id="customAlert" class="alert" [ngClass]="{'success': alertType === 'Success', 'failed': alertType === 'Failed'}">
+<div
+  id="customAlert"
+  class="alert"
+  [ngClass]="{
+    success: alertType === 'Success',
+    failed: alertType === 'Failed'
+  }"
+>
   <div class="alert-content">
     <span class="closebtn" (click)="closeCustomAlert()">&times;</span>
     {{ message }}
@@ -27,9 +30,14 @@
   <p><strong>Publish Date : </strong>{{ researchMaster.publishDate | date: 'dd-MM-yyyy' }}</p>
 </div> -->
 
-<div class="container-fluid" style="margin-bottom: 15%;" *ngIf="!isLoading">
-  <div class="breadcrumbs" style=" z-index: 999;">
-    <a routerLink='/market-research' style="color:white; font-size: 14px;">Research ></a> <span style="color:#0972EA;font-size: 14px;"> {{this.researchMaster.report}}</span>
+<div class="container-fluid" style="margin-bottom: 15%" *ngIf="!isLoading">
+  <div class="breadcrumbs" style="z-index: 999">
+    <a routerLink="/market-research" style="color: white; font-size: 14px"
+      >Research ></a
+    >
+    <span style="color: #0972ea; font-size: 14px">
+      {{ this.researchMaster.report }}</span
+    >
   </div>
   <div class="row">
     <div class="col-md-2"></div>
@@ -38,16 +46,33 @@
         <h1>{{ researchMaster.report }}</h1>
         <!-- <p><strong>Publish Date : </strong>{{ researchMaster.publishDate | date: 'dd-MM-yyyy' }}</p> -->
       </div>
-      <div class="research-details" style="margin-bottom: 20px;">
-      <div class="details-actions">
-        
-        <p class="big" >  <strong>Price:</strong> ${{ researchMaster.price }} 
-          <mat-icon *ngIf="isSparkMatrix" matTooltipPosition="above" matTooltip="This is preview copy">info</mat-icon>
-        </p> 
-        <button class="btn btn-primary bt" (click)="addToCart(researchMaster)">Add to Cart</button>
-        <button class="btn btn-success bt1" (click)="buyNow(researchMaster)">Buy Now</button>
-        <button class="btn btn-success bt2" (click)="downloadForm(researchMaster)"> Download Sample Report</button>
-        <!-- <div class="col-md-2 text-right" id="singcart" style="margin-top: 5px;margin-left: -25px;">
+      <div class="research-details" style="margin-bottom: 20px">
+        <div class="details-actions">
+          <p class="big">
+            <strong>Price:</strong> ${{ researchMaster.price }}
+            <mat-icon
+              *ngIf="isSparkMatrix"
+              matTooltipPosition="above"
+              matTooltip="This is preview copy"
+              >info</mat-icon
+            >
+          </p>
+          <button
+            class="btn btn-primary bt"
+            (click)="addToCart(researchMaster)"
+          >
+            Add to Cart
+          </button>
+          <button class="btn btn-success bt1" (click)="buyNow(researchMaster)">
+            Buy Now
+          </button>
+          <button
+            class="btn btn-success bt2"
+            (click)="downloadForm(researchMaster)"
+          >
+            Download Sample Report
+          </button>
+          <!-- <div class="col-md-2 text-right" id="singcart" style="margin-top: 5px;margin-left: -25px;">
           <a routerLink="/cart">
               <span class="badge badge-dark">
                   <i class="fa fa-cart-plus fa-2x fa-fw"></i>
@@ -55,13 +80,26 @@
               </span>
           </a>
       </div> -->
+        </div>
       </div>
-    </div>
     </div>
     <div class="col-md-2"></div>
   </div>
   <div class="row">
-    <div class="col-md-2" id="searsing" style="background-color: #eaeaea;padding-top:20px;width:20%;left: 15px;height: 200px;top: -50px;border-radius: 5px;z-index: 99;">
+    <div
+      class="col-md-2"
+      id="searsing"
+      style="
+        background-color: #eaeaea;
+        padding-top: 20px;
+        width: 20%;
+        left: 15px;
+        height: 200px;
+        top: -50px;
+        border-radius: 5px;
+        z-index: 99;
+      "
+    >
       <!-- <div class="input-group">
         <input class="form-control border-end-0 border" type="search" value="search" id="example-search-input">
         <span class="input-group-append">
@@ -72,42 +110,98 @@
     </div> -->
       <!-- <button  class="marbtn" style="cursor: pointer;z-index: 999;"><a routerLink="/become-a-client" style="text-decoration: none;">Connect with Our<br> Analyst</a>  <p class="arr">></p></button>
       <button class="marbtn1" style="cursor: pointer;z-index: 999;"><a routerLink="/talk-to-analyst" style="text-decoration: none;">Connect with Our<br> Service Partner </a> <p class="arr1">></p></button>  -->
-      <a href="/become-a-client"><img  src="assets/Connect-To-Analyst.png" style="width: 230px!important;cursor:pointer"></a>
-      <a href="/talk-to-analyst"><img src="assets/Connect-Server-Partner.png" style="width: 230px!important;margin-left: -8px;"></a> 
-
-      
-  </div>
+      <a href="/become-a-client"
+        ><img
+          src="assets/Connect-To-Analyst.png"
+          style="width: 230px !important; cursor: pointer"
+      /></a>
+      <a href="/talk-to-analyst"
+        ><img
+          src="assets/Connect-Server-Partner.png"
+          style="width: 230px !important; margin-left: -8px"
+      /></a>
+    </div>
     <div class="col-md-7">
-
-      <div class="research-details" id="rdet" style="margin-bottom: 20px;top: 100px;">
+      <div
+        class="research-details"
+        id="rdet"
+        style="margin-bottom: 20px; top: 100px"
+      >
         <div class="details-header">
-          
           <p><strong>Category:</strong> {{ researchMaster.categoryName }}</p>
           <p><strong>Report Type:</strong> {{ researchMaster.reportType }}</p>
-          <p><strong>Publish Date : </strong>{{ researchMaster.publishDate | date: 'dd-MM-yyyy' }}</p>
+          <p>
+            <strong>Publish Date : </strong
+            >{{ researchMaster.publishDate | date : "dd-MM-yyyy" }}
+          </p>
           <!-- <p><strong>Author : </strong>{{ capitalizeFirstChar(research.author)}}</p> -->
           <!-- <p><strong>Price:</strong> {{ researchMaster.price }} USD</p> -->
         </div>
         <div class="details-description">
           <p><strong>Description:</strong></p>
-          <div class="description" [innerHTML]="researchMaster.description"></div>
+          <div
+            class="description"
+            [innerHTML]="researchMaster.description"
+          ></div>
         </div>
-        
       </div>
-
     </div>
-    <div class="col-md-3" id="singlistres" style="background-color: #eaeaea;padding-top:20px;width:20%;left: -15px;height: 430px;top: -50px;">
+    <div
+      class="col-md-3"
+      id="singlistres"
+      style="
+        background-color: #eaeaea;
+        padding-top: 20px;
+        width: 20%;
+        left: -15px;
+        height: 430px;
+        top: -50px;
+      "
+    >
       <!-- <button class="btn btn-success bt3" (click)="buyNow(researchMaster)"><a href="/download-form">Download Sample Report</a></button> -->
-      <button class="btn btn-success bt2" (click)="downloadForm(researchMaster)"> Download Sample Report</button>
-      <p class="links" style="margin-left: 12px;"><a href="#" class="fa fa-envelope-o"></a><a href="https://www.linkedin.com/company/quadrant-knowledge-solutions/" target="_blank" class="fa fa-linkedin"></a><a href="https://twitter.com/QKS_Quadrant" target="_blank" class="fa fa-twitter"></a><a href="#" class="fa fa-facebook"></a></p>
-      <h3 style="margin-left: 12px;">Questions</h3>
-      <hr>
-      <p style="margin-left: 12px;">For more information, please contact your account manager:</p>
-      <h4 style="margin-left: 12px;">Quadrant Sales</h4>
-      <p style="margin-left: 12px;">Phone: <a href="tel:(+1) 978-344-2770" style="text-decoration: none;">(+1) 978-344-2770</a>  <br>Email: <a href="mailto:ajinkya@quadrant-solutions.com" style="text-decoration: none;">ajinkya@quadrant-solutions.com</a></p>
-      <h2 style="margin-left: 12px;">Need a brief overview?</h2>
-      <b style="color:#0972EA;margin-left: 12px;"><a href="/contact-us" style="text-decoration: none;">Enquire Now</a></b>
-  </div>
+      <button
+        class="btn btn-success bt2"
+        (click)="downloadForm(researchMaster)"
+      >
+        Download Sample Report
+      </button>
+      <p class="links" style="margin-left: 12px">
+        <a href="#" class="fa fa-envelope-o"></a
+        ><a
+          href="https://www.linkedin.com/company/quadrant-knowledge-solutions/"
+          target="_blank"
+          class="fa fa-linkedin"
+        ></a
+        ><a
+          href="https://twitter.com/QKS_Quadrant"
+          target="_blank"
+          class="fa fa-twitter"
+        ></a
+        ><a href="#" class="fa fa-facebook"></a>
+      </p>
+      <h3 style="margin-left: 12px">Questions</h3>
+      <hr />
+      <p style="margin-left: 12px">
+        For more information, please contact your account manager:
+      </p>
+      <h4 style="margin-left: 12px">Quadrant Sales</h4>
+      <p style="margin-left: 12px">
+        Phone:
+        <a href="tel:(+1) 978-344-2770" style="text-decoration: none"
+          >(+1) 978-344-2770</a
+        >
+        <br />Email:
+        <a
+          href="mailto:infoleads@quadrant-solutions.com"
+          style="text-decoration: none"
+          >infoleads@quadrant-solutions.com</a
+        >
+      </p>
+      <h2 style="margin-left: 12px">Need a brief overview?</h2>
+      <b style="color: #0972ea; margin-left: 12px"
+        ><a href="/contact-us" style="text-decoration: none">Enquire Now</a></b
+      >
+    </div>
   </div>
 </div>
 
@@ -131,4 +225,3 @@
   </div>
 </div> -->
 <app-searchbar></app-searchbar>
-

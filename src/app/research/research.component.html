@@ -1,445 +1,750 @@
-<div class="container-fluid" style="margin-bottom: 70px">
-  <div class="row">
-    <div class="col-md-2 sd">
-      <h4 class="t1">Filter By</h4>
-      <hr />
-      <h4 class="t2">Report Type</h4>
-      <div class="dropdown">
-        <div
-          class="btn form-select dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          <ng-container *ngIf="reportOptions.length > 0; else selectReport">
-            <ng-container *ngFor="let option of reportOptions; let last = last">
-              <p>{{ option }}</p>
-              <!-- <span *ngIf="!last">,</span> -->
-            </ng-container>
-          </ng-container>
-          <ng-template #selectReport>Select Report</ng-template>
-        </div>
-        <div
-          class="form-selectt dropdown-menu"
-          aria-labelledby="dropdownMenuButton"
-        >
-          <label class="dropdown-item" *ngFor="let option of reportTypeData">
-            <input
-              type="checkbox"
-              [value]="option"
-              (change)="onReportCheck($event, option)"
-              [checked]="reportOptions.includes(option)"
-            />
-            {{ option }}
-          </label>
-        </div>
-      </div>
-
-      <hr />
-      <h4 class="t2">Category</h4>
-      <div class="dropdown">
-        <div
-          class="btn form-select dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          <ng-container *ngIf="categoryOptions.length > 0; else selectCategory">
-            <ng-container
-              *ngFor="let option of categoryOptions; let last = last"
-            >
-              <p>{{ option }}</p>
-              <!-- <span *ngIf="!last">,</span> -->
-            </ng-container>
-          </ng-container>
-          <ng-template #selectCategory>Select Category</ng-template>
-        </div>
-        <div
-          class="form-selectt dropdown-menu"
-          aria-labelledby="dropdownMenuButton"
-          style="max-height: 350px; overflow-y: auto"
-        >
-          <label class="dropdown-item" *ngFor="let option of categoryData">
-            <input
-              type="checkbox"
-              [value]="option"
-              (change)="onDomainCheck($event, option)"
-              [checked]="categoryOptions.includes(option)"
-            />
-            {{ option }}
-          </label>
-        </div>
-      </div>
-      <!-- <hr />
-      <h4 class="t2">Region</h4>
-      <div class="dropdown">
-        <div
-          class="btn form-select dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          <ng-container *ngIf="categoryOptions.length > 0; else selectRegion">
-            <ng-container
-              *ngFor="let option of categoryOptions; let last = last"
-            >
-              <p>{{ option }}</p>
-            </ng-container>
-          </ng-container>
-          <ng-template #selectRegion>Select Report</ng-template>
-        </div>
-        <div
-          class="form-selectt dropdown-menu"
-          aria-labelledby="dropdownMenuButton"
-        >
-          <label class="dropdown-item" *ngFor="let option of options">
-            <input
-              type="checkbox"
-              [value]="option"
-              (change)="onRegionCheck($event, option)"
-              [checked]="regionOptions.includes(option)"
-            />
-            {{ option }}
-          </label>
-        </div>
-      </div> -->
-      <hr />
-      <h4 class="t2">Analyst</h4>
-      <div class="dropdown">
-        <div
-          class="btn form-select dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          <ng-container *ngIf="authorOptions.length > 0; else selectAuthor">
-            <ng-container *ngFor="let option of authorOptions; let last = last">
-              <p>{{ option }}</p>
-              <!-- <span *ngIf="!last">,</span> -->
-            </ng-container>
-          </ng-container>
-          <ng-template #selectAuthor>Select Author</ng-template>
-        </div>
-        <div
-          class="form-selectt dropdown-menu"
-          aria-labelledby="dropdownMenuButton"
-          style="max-height: 350px; overflow-y: auto"
-        >
-          <label class="dropdown-item" *ngFor="let option of authorsArray">
-            <input
-              type="checkbox"
-              [value]="option"
-              (change)="onAnalystCheck($event, option)"
-              [checked]="authorOptions.includes(option)"
-            />
-            {{ option }}
-          </label>
-        </div>
-      </div>
-      <div class="d-flex justify-content-end position-relative">
-        <button
-          class="btn btn-success bn position-absolute left-0 mt-4"
-          mat-button
-          (click)="apply()"
-        >
-          Apply
-        </button>
-      </div>
+<div>
+  <div
+    id="customAlert"
+    class="alert"
+    [ngClass]="{
+      success: alertType === 'Success',
+      failed: alertType === 'Failed'
+    }"
+  >
+    <div class="alert-content">
+      <span class="closebtn" (click)="closeCustomAlert()">&times;</span>
+      {{ message }}
     </div>
-    <div class="col-md-10" style="width: 72%">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6 -ss">
-            <span class="dr">Date Range</span>
-            <span class="sdr">
-              Select a Date Range
-              <i class="fa fa-calendar-minus-o"></i>
-            </span>
-            <div *ngIf="showDateRangePicker">
-              <!-- Date range picker content goes here -->
-            </div>
+  </div>
+  <div class="container-fluid" style="margin-bottom: 10px">
+    <div id="overlay" *ngIf="showOverlay"></div>
+    <div class="row pb-2">
+      <div class="col-md-3 sd sticky-div" style="z-index: 5">
+        <h4 class="t1">Filter By</h4>
+        <hr />
+        <h4 class="t2">Report Type</h4>
+        <div class="dropdown">
+          <div
+            [ngClass]="{
+              'btn form-select dropdown-toggle': true,
+              'custom-styles': reportTypeOptions.length !== 0,
+              'custom-styles2': reportTypeOptions.length === 0
+            }"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <ng-container
+              *ngIf="reportTypeOptions.length > 0; else selectReport"
+            >
+              <ng-container
+                *ngFor="let option of reportTypeOptions; let last = last"
+              >
+                <p style="margin: 0 3px">
+                  {{ option }}{{ !last ? ", " : " " }}
+                </p>
+                <!-- <span *ngIf="!last">,</span> -->
+              </ng-container>
+            </ng-container>
+            <ng-template #selectReport>Select Report</ng-template>
           </div>
-          <div class="col-md-6 rt">
-            <span class="sb">Sort By</span>
-            <span class="rd">
-              Release Date <a href="#"><i class="fas fa-angle-down"></i></a>
-            </span>
-          </div>
-        </div>
-
-        <hr class="linebt" />
-        <div class="row">
-          <div class="col-sm-6">
-            <form>
+          <div
+            class="form-selectt dropdown-menu"
+            style="
+              max-height: 250px;
+              overflow-y: auto;
+              width: 100%;
+              background: linear-gradient(
+                118deg,
+                rgba(100, 100, 100, 0.6) 30%,
+                rgba(200, 200, 200, 0.1) 109.82%
+              );
+            "
+            aria-labelledby="dropdownMenuButton"
+          >
+            <label class="dropdown-item" *ngFor="let option of reportTypeData">
               <input
-                class="srch"
-                type="text"
-                name="search"
-                placeholder="Search Topic"
-                [(ngModel)]="searchValue"
-              /><i class="fa fa-search"></i>
-            </form>
+                type="checkbox"
+                [value]="option"
+                (change)="onReportCheck($event, option)"
+                [checked]="reportTypeOptions.includes(option)"
+              />
+              {{ option }}
+            </label>
           </div>
-          <div class="col-sm-6 plt">
-            <!-- <div class="redi">
-              <span><a routerLink="/research" style="text-decoration: none;"><input type="radio" name="radio">All Research</a></span>
-              <span><a routerLink="/subscription" style="text-decoration: none;"><input type="radio" name="radio">Subscribed Research</a></span>
+        </div>
+
+        <hr />
+        <h4 class="t2">Category</h4>
+        <div class="dropdown">
+          <div
+            [ngClass]="{
+              'btn form-select dropdown-toggle': true,
+              'custom-styles': categoryOptions.length !== 0,
+              'custom-styles2': categoryOptions.length === 0
+            }"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <ng-container
+              *ngIf="categoryOptions.length > 0; else selectCategory"
+            >
+              <ng-container
+                *ngFor="let option of categoryOptions; let last = last"
+              >
+                <p style="margin: 0 3px">
+                  {{ option }}{{ !last ? ", " : " " }}
+                </p>
+                <!-- <span *ngIf="!last">,</span> -->
+              </ng-container>
+            </ng-container>
+            <ng-template #selectCategory>Select Category</ng-template>
+          </div>
+          <div
+            class="form-selectt dropdown-menu"
+            aria-labelledby="dropdownMenuButton"
+            style="
+              max-height: 250px;
+              overflow-y: auto;
+              width: 100%;
+              background: linear-gradient(
+                118deg,
+                rgba(100, 100, 100, 0.6) 30%,
+                rgba(200, 200, 200, 0.1) 109.82%
+              );
+            "
+          >
+            <label class="dropdown-item" *ngFor="let option of categoryData">
+              <input
+                type="checkbox"
+                [value]="option"
+                (change)="onCategoryCheck($event, option)"
+                [checked]="categoryOptions.includes(option)"
+              />
+              {{ option }}
+            </label>
+          </div>
+        </div>
+        <hr />
+        <h4 class="t2">Region</h4>
+        <div class="dropdown">
+          <div
+            [ngClass]="{
+              'btn form-select dropdown-toggle': true,
+              'custom-styles': regionNameOptions.length !== 0,
+              'custom-styles2': regionNameOptions.length === 0
+            }"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <ng-container
+              *ngIf="regionNameOptions.length > 0; else selectRegion"
+            >
+              <ng-container
+                *ngFor="let option of regionNameOptions; let last = last"
+              >
+                <p style="margin: 0 3px">
+                  {{ option }}{{ !last ? ", " : " " }}
+                </p>
+              </ng-container>
+            </ng-container>
+            <ng-template #selectRegion>Select Region</ng-template>
+          </div>
+          <div
+            class="form-selectt dropdown-menu"
+            aria-labelledby="dropdownMenuButton"
+            style="
+              width: 100%;
+              background: linear-gradient(
+                118deg,
+                rgba(100, 100, 100, 0.6) 30%,
+                rgba(200, 200, 200, 0.1) 109.82%
+              );
+            "
+          >
+            <label class="dropdown-item" *ngFor="let option of regionData">
+              <input
+                type="checkbox"
+                [value]="option"
+                (change)="onRegionCheck($event, option)"
+                [checked]="regionNameOptions.includes(option)"
+              />
+              {{ option }}
+            </label>
+          </div>
+        </div>
+        <hr />
+        <h4 class="t2">Author</h4>
+        <div class="dropdown">
+          <div
+            [ngClass]="{
+              'btn form-select dropdown-toggle': true,
+              'custom-styles': authorsOptions.length !== 0,
+              'custom-styles2': authorsOptions.length === 0
+            }"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <ng-container *ngIf="authorsOptions.length > 0; else selectAuthor">
+              <ng-container
+                *ngFor="let option of authorsOptions; let last = last"
+              >
+                <p style="margin: 0 3px">
+                  {{ option }}{{ !last ? ", " : " " }}
+                </p>
+                <!-- <span *ngIf="!last">,</span> -->
+              </ng-container>
+            </ng-container>
+            <ng-template #selectAuthor>Select Author</ng-template>
+          </div>
+          <div
+            class="form-selectt dropdown-menu"
+            aria-labelledby="dropdownMenuButton"
+            style="
+              max-height: 250px;
+              overflow-y: auto;
+              width: 100%;
+              background: linear-gradient(
+                118deg,
+                rgba(100, 100, 100, 0.6) 30%,
+                rgba(200, 200, 200, 0.1) 109.82%
+              );
+            "
+          >
+            <label class="dropdown-item" *ngFor="let option of authorData">
+              <input
+                type="checkbox"
+                [value]="option"
+                (change)="onAnalystCheck($event, option)"
+                [checked]="authorsOptions.includes(option)"
+              />
+              {{ option }}
+            </label>
+          </div>
+        </div>
+        <!-- <div class="d-flex justify-content-end position-relative">
+          <button\
+            class="btn btn-success bn position-absolute left-0 mt-4"
+            mat-button
+            (click)="apply()"
+          >
+            Apply
+          </button>
+        </div> -->
+      </div>
+      <div class="col-md-9 main-container">
+        <div class="container-fluid">
+          <div
+            class="row"
+            style="
+              border-bottom: 3px solid;
+              color: rgba(0, 50, 122, 0.75) !important;
+
+              opacity: 1;
+            "
+          >
+            <!-- <div
+              class="col-md-6 my-4 d-flex align-items-center justify-content-start"
+            >
+              <span class="dr" style="font-size: 16px !important"
+                >Date Range</span
+              >
+              <span class="sdr" style="font-size: 16px !important">
+                Select a Date Range
+                <i class="fa fa-calendar-minus-o"></i>
+              </span>
+              <div *ngIf="showDateRangePicker">
+              </div>
             </div> -->
-            <!-- <div class="redi">
-              <span>
-                <input type="radio" name="radio" (click)="navigate('/research')">
-                <label for="allResearch" style="cursor: pointer;">All Research</label>
-              </span>
-              <span>
-                <input type="radio" name="radio" (click)="navigate('/subscription')">
-                <label for="subscribedResearch" style="cursor: pointer;">Subscribed Research</label>
-              </span>
-            </div> -->
-            <div class="redi">
-              <span>
-                <input
-                  type="radio"
-                  name="radio"
-                  (change)="toggleResearchType(false)"
-                  id="allResearch"
-                  [checked]="!isSubscribed"
-                />
-                <label for="allResearch" style="cursor: pointer"
-                  >All Research</label
+            <div class="col-md-6 mt-3 align-items-center date-picker">
+              <div class="date-text">
+                <span
+                  class="sb mr-2"
+                  style="font-size: 16px !important; margin-top: 0px"
+                  >Date Range</span
                 >
-              </span>
-              <span>
-                <input
-                  type="radio"
-                  name="radio"
-                  (change)="toggleResearchType(true)"
-                  id="subscribedResearch"
-                  [checked]="isSubscribed"
-                />
-                <label for="subscribedResearch" style="cursor: pointer"
-                  >Subscribed Research</label
+              </div>
+              <mat-form-field appearance="fill" class="custome-date-picker">
+                <mat-label style="color: black">Enter a date range</mat-label>
+                <mat-date-range-input
+                  [formGroup]="range"
+                  [rangePicker]="picker"
                 >
+                  <input
+                    matStartDate
+                    formControlName="start"
+                    placeholder="Start date"
+                  />
+                  <input
+                    matEndDate
+                    formControlName="end"
+                    placeholder="End date"
+                    (dateChange)="onDateRangeChange()"
+                  />
+                </mat-date-range-input>
+                <button
+                  style="border: 0px; padding: 0; background-color: #d2f4eb"
+                  matSuffix
+                  (click)="clearDateRange()"
+                >
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6 my-4 d-flex align-items-center justify-content-end"
+            >
+              <span class="sb" style="font-size: 16px !important">Sort By</span>
+              <span class="rd" style="font-size: 16px !important">
+                Release Date <i class="fas fa-angle-down"></i>
               </span>
             </div>
           </div>
-        </div>
-        <div *ngIf="selectedOptions.length > 0">
-          <div>
-            <button
-              class="selectedOptions_button"
-              *ngFor="let option of selectedOptions; let i = index"
-            >
-              {{ option }}
-              <span class="remove-icon" (click)="removeOption(i)">✖</span>
-            </button>
-          </div>
-        </div>
-        <div class="row">
-          <ul class="pagination">
-            <li class="page-item" [class.disabled]="currentPage === 1">
-              <a
-                class="page-link"
-                (click)="currentPage !== 1 && onPageChange(currentPage - 1)"
-                aria-label="Previous"
-                [style.cursor]="currentPage !== 1 ? 'pointer' : 'default'"
-              >
-                <span aria-hidden="true">&lt;</span>
-              </a>
-            </li>
-            <li
-              class="page-item"
-              *ngFor="let page of getPages()"
-              [class.active]="page === currentPage"
-            >
-              <a
-                class="page-link"
-                (click)="onPageChange(page)"
-                [style.cursor]="'pointer'"
-                >{{ page }}</a
-              >
-            </li>
-            <li
-              class="page-item"
-              [class.disabled]="currentPage === getLastPage()"
-            >
-              <a
-                class="page-link"
-                (click)="
-                  currentPage !== getLastPage() && onPageChange(currentPage + 1)
-                "
-                aria-label="Next"
-                [style.cursor]="
-                  currentPage !== getLastPage() ? 'pointer' : 'default'
-                "
-              >
-                <span aria-hidden="true">&gt;</span>
-              </a>
-            </li>
-          </ul>
-        </div>
 
-        <div
-          class="research-item"
-          *ngFor="
-            let research of mappedReports
-              | filter : searchValue
-              | slice : startIndex : endIndex
-          "
-        >
-          <div class="row" [id]="research.id">
-            <div class="col-md-6" style="padding-bottom: 5px">
-              <div class="row">
-                <div class="col-sm-5">
-                  <span>Date :</span>
-                  <span>{{ research.publishDate }} | </span>
+          <!-- <hr class="linebt" /> -->
+          <div class="row d-flex my-2">
+            <div
+              class="col-md-6 d-flex align-items-center justify-content-start"
+            >
+              <form>
+                <div class="d-flex align-items-center">
+                  <div>
+                    <input
+                      class="srch"
+                      type="text"
+                      name="search"
+                      placeholder="Search Topic"
+                      [(ngModel)]="searchText"
+                      (input)="onSearchChange($event)"
+                    />
+                  </div>
+                  <div style="margin-left: -20px; margin-bottom: 8px">
+                    <img src="../../assets/search.svg" />
+                  </div>
                 </div>
-                <div class="col-sm-7">
-                  <span>Category :</span>
-                  <a href="" style="text-decoration: none"
-                    ><span> {{ research.categoryName }}</span></a
+              </form>
+            </div>
+            <div
+              class="col-sm-6 plt d-flex align-items-center justify-content-end"
+            >
+              <div *ngIf="isLogin" class="radio_button">
+                <span>
+                  <input
+                    type="radio"
+                    name="radio"
+                    (change)="toggleResearchType(false)"
+                    id="allResearch"
+                    [checked]="!isSubscribed"
+                  />
+                  <label
+                    for="allResearch"
+                    style="
+                      cursor: pointer;
+                      color: #00327a;
+                      font-size: 16px;
+                      font-family: Arial Nova;
+                    "
+                    >All Research</label
                   >
-                </div>
+                </span>
+                <span>
+                  <input
+                    type="radio"
+                    name="radio"
+                    (change)="toggleResearchType(true)"
+                    id="subscribedResearch"
+                    [checked]="isSubscribed"
+                  />
+                  <label
+                    for="subscribedResearch"
+                    style="
+                      cursor: pointer;
+                      color: #00327a;
+                      font-size: 16px;
+                      font-family: Arial Nova;
+                    "
+                    >Subscribed Research</label
+                  >
+                </span>
               </div>
             </div>
-            <div class="col-md-6"></div>
           </div>
           <div class="row">
             <div class="col-md-9">
-              <a
-                routerLink="/research-single"
-                class="research-title"
-                (click)="navigateToResearchSingle(research)"
-                >{{ research.reportType }} </a
-              ><br />
-              <span class="mt-3">Author : {{ research.author }}</span>
-              <!-- <span class="research-category" *ngFor="let a of research.author">
-                <a href="#" style="text-decoration: none"
-                  ><span>{{ a }} </span></a
-                >
-              </span> -->
-            </div>
-            <div class="col-md-3">
-              <div class="row" *ngIf="!research.isSubscribed">
-                <div class="col-md-6 im">
-                  <a href=""
-                    ><img src="/assets/cart.png" style="width: 18px"
-                  /></a>
-                </div>
-                <div class="col-md-6 im1">
-                  <a href=""
-                    ><img src="/assets/download.png" style="width: 18px"
-                  /></a>
-                </div>
-              </div>
-              <div class="row" *ngIf="research.isSubscribed">
-                <div class="col-md-3">
-                  <button class="btn btn-success bn">Download</button>
-                </div>
-                <!-- <div class="col-md-6 im1  ">
-                  <a href="">Download</a>
-                </div> -->
-              </div>
-              <!-- 
-              <div class="row" *ngIf="isSubscribed">
-                <div class="col-md-12 im1">
-                  <a href="" style="text-decoration: none"
-                    ><img
-                      src="/assets/download.png"
-                      style="width: 18px"
-                    />Download</a
+              <div *ngIf="selectedOptions.length > 0">
+                <div>
+                  <button
+                    class="selectedOptions_button"
+                    *ngFor="let option of selectedOptions; let i = index"
                   >
+                    {{ option }}
+                    <span style="margin-left: 7px" (click)="removeOption(i)"
+                      >✖</span
+                    >
+                  </button>
                 </div>
-              </div> -->
+              </div>
+            </div>
+            <div class="col-md-3 d-flex justify-content-end align-items-center">
+              <label style="margin: 0px 7px 0px 0px">Items Per Page : </label>
+              <!-- <mat-form-field appearance="fill">
+                <mat-label>Items Per Page</mat-label>
+                <mat-select (change)="onItemsPerPageChange($event)">
+                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{ food.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field> -->
+
+              <select
+                style="
+                  width: 3.5rem;
+                  border: 1px solid grey;
+                  border-radius: 5px;
+                  padding: 0.45rem 0px;
+                "
+                [(ngModel)]="itemsPerPage"
+                (change)="onItemsPerPageChange(itemsPerPage)"
+              >
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="75">75</option>
+                <option value="100">100</option>
+              </select>
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-md-9"></div>
-            <div class="col-md-9 research-description">
-              <!-- {{
-                getFormattedDescription(research.description) | slice : 0 : 100
-              }}{{ research.description.length > 20 ? "..." : "" }} -->
-              <div [innerHtml]="getFirstParagraph(research.description)"></div>
-            </div>
-            <div class="col-md-3 mt-3">
-              <button class="btn btn-success bn">Buy Now</button>
-            </div>
+          <div *ngIf="isLoading">
+            <br /><br /><br /><br /><br /><br /><br /><br />
+            <div
+              class="loading-spinner"
+              style="width: 80px; height: 80px"
+            ></div>
+            <br /><br /><br /><br /><br /><br /><br /><br />
           </div>
-          <div class="row">
-            <div class="col-sm-9">
-              <span>Price : </span
-              ><span class="prc">
-                <i class="fas fa-dollar-sign" style="color: #444343"></i>
-                {{ research.price }}
-              </span>
-            </div>
-            <div class="col-sm-3 rm mt-1">
-              <a
-                href="/research-single"
-                routerLink="/research-single"
-                style="text-decoration: none"
-                >Read More<img
-                  src="/assets/Icon.png"
-                  style="width: 28px; height: 10px"
-              /></a>
-            </div>
-          </div>
-          <hr style="border: 1px solid #00327a33; width: 100%" />
-        </div>
+          <!-- Main List of Research Items -->
+          <div *ngIf="!isLoading">
+            <div *ngIf="mappedReports.length > 0">
+              <div class="research-item" *ngFor="let research of mappedReports">
+                <div class="row" [id]="research.id">
+                  <div
+                    class="row col-md-9"
+                    style="row-gap: 14px; margin-right: 0"
+                  >
+                    <div class="upper_part">
+                      <!-- <span>Date :</span> -->
+                      <span
+                        class="textcommon-fontsize"
+                        style="margin: 0 14px 0 0px"
+                        >{{ research.publishDate }}
+                      </span>
+                      <span class="seperator">|</span>
+                      <div class="d-flex category">
+                        <span class="textcommon-fontsize">Category: </span>
+                        <div *ngFor="let category of research.categoryList">
+                          <a
+                            class="category-link"
+                            (click)="onCategoryClick(category)"
+                          >
+                            <span
+                              style="margin-left: 5px"
+                              class="textcommon-fontsize"
+                              >{{ category }}</span
+                            >
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <a
+                        href="{{ researchHref(research.report, research.id) }}"
+                        class="research-title"
+                      >
+                        {{ research.report }}
+                      </a>
+                      <br />
+                    </div>
+                    <div style="display: flex">
+                      <p class="textcommon-fontsize mb-0">Authors:</p>
+                      <div *ngIf="research.authors.length == 0">
+                        <p
+                          class="textcommon-fontsize"
+                          style="
+                            margin-left: 4px;
+                            color: #1673fd;
+                            cursor: pointer;
+                          "
+                          (click)="onAuthorClick('NA')"
+                        >
+                          NA
+                        </p>
+                      </div>
+                      <div
+                        class="d-flex textcommon-fontsize"
+                        *ngIf="research.authors.length != 0"
+                      >
+                        <a
+                          class="item-link textcommon-fontsize"
+                          *ngFor="
+                            let author of research.authors;
+                            let last = last
+                          "
+                        >
+                          <ng-container *ngIf="!last; else lastAuthor">
+                            <span
+                              style="margin: 0 2px"
+                              (click)="onAuthorClick(author)"
+                            >
+                              {{ author }},
+                            </span>
+                          </ng-container>
+                          <ng-template #lastAuthor>
+                            <span
+                              style="margin: 0 2px"
+                              (click)="onAuthorClick(author)"
+                            >
+                              {{ author }}
+                            </span>
+                          </ng-template>
+                        </a>
+                      </div>
+                    </div>
 
-        <div class="row">
-          <ul class="pagination">
-            <li class="page-item" [class.disabled]="currentPage === 1">
-              <a
-                class="page-link"
-                (click)="currentPage !== 1 && onPageChange(currentPage - 1)"
-                aria-label="Previous"
-                [style.cursor]="currentPage !== 1 ? 'pointer' : 'default'"
-              >
-                <span aria-hidden="true">&lt;</span>
-              </a>
-            </li>
-            <li
-              class="page-item"
-              *ngFor="let page of getPages()"
-              [class.active]="page === currentPage"
+                    <div class="research-description">
+                      <p
+                        style="
+                          font-size: 15px;
+                          margin: 0px !important;
+                          text-align: justify !important;
+                          width: 90% !important;
+                        "
+                        [innerHtml]="getFirstParagraph(research.description)"
+                      ></p>
+                    </div>
+                  </div>
+                  <div
+                    class="col-md-3 d-flex align-items-center justify-content-end"
+                  >
+                    <!-- if the report if not subscribed -->
+                    <div
+                      class="col-md-12 d-flex align-items-center justify-content-end"
+                      *ngIf="research.isSubscribed === false"
+                    >
+                      <div *ngIf="research.isSubscribed === false">
+                        <div
+                          class="row d-flex align-items-center justify-content-end"
+                          style="gap: 10px"
+                        >
+                          <div class="col-md-6 im">
+                            <a
+                              (click)="addToCart(research)"
+                              style="cursor: pointer"
+                              ><img src="../../assets//cart.svg" />
+                            </a>
+                          </div>
+                          <div class="col-md-6 im1">
+                            <a
+                              (click)="downloadForm(research)"
+                              style="cursor: pointer"
+                              ><img src="../../assets/download.svg" />
+                            </a>
+                          </div>
+                        </div>
+                        <div class="row d-flex justify-content-end">
+                          <button
+                            class="bn"
+                            style="
+                              font-size: 16px;
+                              border: 0px;
+                              margin-top: 14px;
+                            "
+                            (click)="buyNow(research)"
+                          >
+                            Buy Now
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- If the report is subscribed -->
+                    <div
+                      class="d-flex align-items-center"
+                      *ngIf="research.isSubscribed === true"
+                    >
+                      <div style="margin-top: 40px">
+                        <button
+                          class="btn button-download"
+                          style="
+                            margin-bottom: 15px !important;
+                            font-size: 16px;
+                          "
+                          (click)="
+                            downloadResearch(research.id, research.report)
+                          "
+                        >
+                          <img
+                            style="height: 17px; width: 22px"
+                            src="../../assets/download.svg"
+                          />
+                          <p style="margin: 0px; padding-left: 4px">Download</p>
+                        </button>
+                        <button
+                          class="btn btn-success bn"
+                          style="
+                            margin-bottom: 15px !important;
+                            font-size: 16px;
+                            width: 120px;
+                            border: 0px;
+                          "
+                          (click)="readReport(research.id, research.report)"
+                        >
+                          Read View
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex mt-3">
+                  <div class="d-flex col-md-9 align-items-center p-0">
+                    <span
+                      class="textcommon-fontsize"
+                      style="color: #212529; font-size: 16px"
+                      >Price:
+                    </span>
+                    <span class="prc">${{ formatPrice(research.price) }}</span>
+                  </div>
+                  <div
+                    class="col-md-3 d-flex align-items-center justify-content-end"
+                    style=""
+                  >
+                    <a
+                      [href]="
+                        '/market-research/' +
+                        replaceSpaces(research.report) +
+                        '-' +
+                        research.id
+                      "
+                      class="read"
+                      >Read More
+                    </a>
+                    <img src="../../assets/arrow-right.svg" />
+                  </div>
+                </div>
+
+                <hr
+                  class="my-4"
+                  style="border: 1px solid #dddddd; width: 100%"
+                />
+              </div>
+            </div>
+            <div
+              *ngIf="mappedReports.length === 0"
+              class="d-flex justify-content-center"
+              style="height: 80vh"
             >
-              <a
-                class="page-link"
-                (click)="onPageChange(page)"
-                [style.cursor]="'pointer'"
-                >{{ page }}</a
-              >
-            </li>
-            <li
-              class="page-item"
-              [class.disabled]="currentPage === getLastPage()"
+              <h1>No data</h1>
+            </div>
+            <!-- Pagination Component -->
+            <div
+              class="row"
+              style="margin-bottom: 120px"
+              *ngIf="totalPages > 0"
             >
-              <a
-                class="page-link"
-                (click)="
-                  currentPage !== getLastPage() && onPageChange(currentPage + 1)
-                "
-                aria-label="Next"
-                [style.cursor]="
-                  currentPage !== getLastPage() ? 'pointer' : 'default'
-                "
+              <ul
+                class="pagination"
+                style="justify-content: center; align-items: center"
               >
-                <span aria-hidden="true">&gt;</span>
-              </a>
-            </li>
-          </ul>
+                <li
+                  class="page-item d-flex"
+                  [class.disabled]="currentPage === 1"
+                >
+                  <a
+                    style="padding: 6px 10px"
+                    class="page-link"
+                    (click)="currentPage !== 1 && onPageChange(currentPage - 1)"
+                    aria-label="Previous"
+                    [style.cursor]="currentPage !== 1 ? 'pointer' : 'default'"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="css-i6dzq1"
+                    >
+                      <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                  </a>
+                </li>
+                <ng-container *ngFor="let page of getVisiblePages()">
+                  <li class="page-item" [class.active]="page === currentPage">
+                    <a
+                      class="page-link"
+                      (click)="onPageChange(page)"
+                      [style.cursor]="'pointer'"
+                      [style.padding]="'8px 14px'"
+                      [style.background-color]="
+                        page === currentPage ? '#4CD6B0' : ''
+                      "
+                      >{{ page }}
+                    </a>
+                  </li>
+                </ng-container>
+                <li
+                  class="page-item d-flex"
+                  [class.disabled]="currentPage === getLastPage()"
+                >
+                  <a
+                    style="padding: 6px 4px"
+                    class="page-link"
+                    (click)="
+                      currentPage !== getLastPage() &&
+                        onPageChange(currentPage + 1)
+                    "
+                    aria-label="Next"
+                    [style.cursor]="
+                      currentPage !== getLastPage() ? 'pointer' : 'default'
+                    "
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="css-i6dzq1"
+                    >
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <app-searchbar
+              style="position: relative; z-index: 10"
+            ></app-searchbar>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<app-searchbar></app-searchbar>

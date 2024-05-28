@@ -1,47 +1,56 @@
-<div id="customAlert" class="alert" [ngClass]="{'success': alertType === 'Success', 'failed': alertType === 'Failed'}">
-    
-  </div>
-  
-  <div *ngIf="isLoading">
-    <br><br><br><br><br><br><br><br>
-    <div class="loading-spinner" style="width: 80px; height: 80px;">
-        <!-- <div class="logo-pre">
+<div
+  id="customAlert"
+  class="alert"
+  [ngClass]="{
+    success: alertType === 'Success',
+    failed: alertType === 'Failed'
+  }"
+></div>
+
+<div *ngIf="isLoading">
+  <br /><br /><br /><br /><br /><br /><br /><br />
+  <div class="loading-spinner" style="width: 80px; height: 80px">
+    <!-- <div class="logo-pre">
             <img src="../../../../assets/lg.gif" alt="Logo" class="img-fluid" height="40px;width:40px;">
         </div> -->
-    </div>
-    <br><br><br><br><br><br><br><br>
   </div>
+  <br /><br /><br /><br /><br /><br /><br /><br />
+</div>
 
-  <div id="overlay" *ngIf="showOverlay && !isLoading"></div>
-  
-  <div class="container-fluid heading" id="breadcrumbpr" *ngIf="!isLoading">
-    <!-- <h1 class="prtitle">{{ researchMaster.blogTitle }}</h1> -->
-    <div class="breadcrumbs">
-      <a routerLink='/press-release' style="color: #fff; font-size: 14px;">Press Release > </a><span style="color:#0972EA;font-size: 14px;">{{this.researchMaster.blogTitle}}</span>
-    </div>
-    <!-- <p class="date"><strong>Publish Date : </strong>{{ researchMaster.postDate | date: 'dd-MM-yyyy' }}</p> -->
+<div id="overlay" *ngIf="showOverlay && !isLoading"></div>
+
+<div class="container-fluid heading" id="breadcrumbpr" *ngIf="!isLoading">
+  <!-- <h1 class="prtitle">{{ researchMaster.blogTitle }}</h1> -->
+  <div class="breadcrumbs">
+    <a routerLink="/press-release" style="color: #fff; font-size: 14px"
+      >Press Release > </a
+    ><span style="color: #0972ea; font-size: 14px">{{
+      this.researchMaster.blogTitle
+    }}</span>
   </div>
-  
-  <!-- <div class="breadcrumbs">
+  <!-- <p class="date"><strong>Publish Date : </strong>{{ researchMaster.postDate | date: 'dd-MM-yyyy' }}</p> -->
+</div>
+
+<!-- <div class="breadcrumbs">
     <a routerLink='/press-release'>Press Release > </a>{{this.researchMaster.blogTitle}}
   </div> -->
 
-  <div class="container-fluid" *ngIf="!isLoading">
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8 sec">
-        <div class="research-details" style="margin-bottom: 20px;">
-        <div class="details-actions"><br><Br>
-         
+<div class="container-fluid" *ngIf="!isLoading">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 sec">
+      <div class="research-details" style="margin-bottom: 20px">
+        <div class="details-actions">
+          <br /><Br />
+
           <!-- <button class="btn btn-success bt2" >Download Sample Report</button> -->
-          
         </div>
       </div>
-      </div>
-      <div class="col-md-2"></div>
     </div>
-    <div class="row">
-      <!-- <div class="col-md-2" id="searsing" style="background-color: #eaeaea;padding-top:20px;width:20%;left: 15px;height: 200px;">
+    <div class="col-md-2"></div>
+  </div>
+  <div class="row">
+    <!-- <div class="col-md-2" id="searsing" style="background-color: #eaeaea;padding-top:20px;width:20%;left: 15px;height: 200px;">
         <div class="input-group">
           <input class="form-control border-end-0 border" type="search" value="search" id="example-search-input">
           <span class="input-group-append">
@@ -54,49 +63,91 @@
         <button class="marbtn1">Connect with Our<br> Service Partner  <p class="arr1">></p></button>
         
     </div> -->
-      <div class="col-md-8" id="prdata">
-  
-        <div class="research-details" style="margin-bottom: 20px;">
-          <div class="details-header">
-            <h1 class="prtitles">{{ researchMaster.blogTitle }}</h1>
-            <p class="date"><strong>Publish Date : </strong>{{ researchMaster.postDate | date: 'dd-MM-yyyy' }}</p>
+    <div class="col-md-8" id="prdata">
+      <div class="research-details" style="margin-bottom: 20px">
+        <div class="details-header">
+          <h1 class="prtitles">{{ researchMaster.blogTitle }}</h1>
+          <p class="date">
+            <strong>Publish Date : </strong
+            >{{ researchMaster.postDate | date : "dd-MM-yyyy" }}
+          </p>
 
-
-            <!-- <p><strong>Category:</strong> {{ researchMaster.postCategory }}</p>
+          <!-- <p><strong>Category:</strong> {{ researchMaster.postCategory }}</p>
             <p><strong>Report Type:</strong> {{ researchMaster.postType }}</p>
             <p><strong>Price:</strong> {{ researchMaster.price }} USD</p>  -->
-          </div>
-          <div class="details-description">
-            <!-- <p><strong>Description:</strong></p> -->
-            <div class="description" [innerHTML]="researchMaster.postContent"></div>
-          </div>
-          
         </div>
-  
+        <div class="details-description">
+          <!-- <p><strong>Description:</strong></p> -->
+          <div
+            class="description"
+            [innerHTML]="researchMaster.postContent"
+          ></div>
+        </div>
       </div>
-      <div class="col-md-4" id="singlistres" style="background-color: #eaeaea;padding-top:20px;width:20%;left: -15px;height: 430px;">
-        <!-- <button class="btn btn-success bt3" >Download Sample Report</button> -->
-        <!-- <h1 class="prtitless">{{ researchMaster.blogTitle }}</h1> -->
-        <button class="btn btn-success bt3" (click)="downloadForm(researchMaster)">Download Sample Report</button> 
-
-        <!-- <p class="links" style="margin-left: 12px;"><a href="https://www.linkedin.com/company/quadrant-knowledge-solutions/" target="_blank" class="fa fa-linkedin"></a><a href="https://twitter.com/QKS_Quadrant" target="_blank" class="fa fa-twitter"></a><a href="https://www.youtube.com/channel/UC3m0FzPazwQCREA5Vc9-9VQ" target="_blank" class="fa fa-youtube"></a><a href="#" class="fa fa-facebook"></a><a href="#" class="fa fa-instagram"></a></p> -->
-        <p class="links"><a href="#" class="fa fa-envelope-o"></a><a href="https://www.linkedin.com/company/quadrant-knowledge-solutions/" target="_blank" class="fa fa-linkedin"></a>
-          <a href="https://twitter.com/QKS_Quadrant" target="_blank" class="fa fa-twitter"></a>
-          <a href="#" class="fa fa-facebook"></a>
-      </p>
-        <h3 class="question" style="margin-left: 12px;">Questions</h3>
-        <hr>
-        <p style="margin-left: 12px;">For more information, please contact your account manager:</p>
-        <h4 class="question" style="margin-left: 12px;">Quadrant Sales</h4>
-        <p style="margin-left: 12px;">Phone:<a style="color:black;list-style-type: none;text-decoration: none;" href="tel:(+1) 978-344-2770 ">(+1) 978-344-2770 </a> 
-          <br>Email: <a href="mailto:ajinkya@quadrant-solutions.com" style="color:black;list-style-type: none;text-decoration: none;">ajinkya@quadrant-solutions.com</a></p>
-        <h2 style="margin-left: 12px;">Need a brief overview?</h2>
-        <b style="color:#0972EA;margin-left: 12px;"><a href="/contact-us" style="text-decoration: none;">Enquire Now</a></b>
     </div>
+    <div
+      class="col-md-4"
+      id="singlistres"
+      style="
+        background-color: #eaeaea;
+        padding-top: 20px;
+        width: 20%;
+        left: -15px;
+        height: 430px;
+      "
+    >
+      <!-- <button class="btn btn-success bt3" >Download Sample Report</button> -->
+      <!-- <h1 class="prtitless">{{ researchMaster.blogTitle }}</h1> -->
+      <button
+        class="btn btn-success bt3"
+        (click)="downloadForm(researchMaster)"
+      >
+        Download Sample Report
+      </button>
+
+      <!-- <p class="links" style="margin-left: 12px;"><a href="https://www.linkedin.com/company/quadrant-knowledge-solutions/" target="_blank" class="fa fa-linkedin"></a><a href="https://twitter.com/QKS_Quadrant" target="_blank" class="fa fa-twitter"></a><a href="https://www.youtube.com/channel/UC3m0FzPazwQCREA5Vc9-9VQ" target="_blank" class="fa fa-youtube"></a><a href="#" class="fa fa-facebook"></a><a href="#" class="fa fa-instagram"></a></p> -->
+      <p class="links">
+        <a href="#" class="fa fa-envelope-o"></a
+        ><a
+          href="https://www.linkedin.com/company/quadrant-knowledge-solutions/"
+          target="_blank"
+          class="fa fa-linkedin"
+        ></a>
+        <a
+          href="https://twitter.com/QKS_Quadrant"
+          target="_blank"
+          class="fa fa-twitter"
+        ></a>
+        <a href="#" class="fa fa-facebook"></a>
+      </p>
+      <h3 class="question" style="margin-left: 12px">Questions</h3>
+      <hr />
+      <p style="margin-left: 12px">
+        For more information, please contact your account manager:
+      </p>
+      <h4 class="question" style="margin-left: 12px">Quadrant Sales</h4>
+      <p style="margin-left: 12px">
+        Phone:<a
+          style="color: black; list-style-type: none; text-decoration: none"
+          href="tel:(+1) 978-344-2770 "
+          >(+1) 978-344-2770
+        </a>
+        <br />Email:
+        <a
+          href="mailto:infoleads@quadrant-solutions.com"
+          style="color: black; list-style-type: none; text-decoration: none"
+          >infoleads@quadrant-solutions.com</a
+        >
+      </p>
+      <h2 style="margin-left: 12px">Need a brief overview?</h2>
+      <b style="color: #0972ea; margin-left: 12px"
+        ><a href="/contact-us" style="text-decoration: none">Enquire Now</a></b
+      >
     </div>
   </div>
-  
-  <!-- <div class="research-details" style="margin-bottom: 20px;">
+</div>
+
+<!-- <div class="research-details" style="margin-bottom: 20px;">
     <div class="details-header">
       
       <p><strong>Category:</strong> {{ researchMaster.categoryName }}</p>
@@ -116,7 +167,5 @@
     </div>
   </div> -->
 
-  <br><br>
-  <app-searchbar></app-searchbar>
-  
-  
+<br /><br />
+<app-searchbar></app-searchbar>

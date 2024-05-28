@@ -1,297 +1,308 @@
 .chandrayan {
-    width: 100%;
-    height: 35px;
-    background-color: #ff671f;
+  width: 100%;
+  height: 35px;
+  background-color: #ff671f;
+}
+
+.chandrayan1 {
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
+}
+
+.chandrayan2 {
+  width: 100%;
+  height: 35px;
+  background-color: #046a38;
+}
+
+marquee {
+  font-family: "Arial Nova bold";
+  font-size: 18px;
+  margin: 6px;
+}
+
+.topbar {
+  height: 60px;
+  background: #0972ea 0% 0% no-repeat padding-box;
+}
+
+ul li a {
+  color: #ffffff;
+}
+
+.nav-item {
+  font-family: "Arial Nova";
+  color: white;
+}
+
+.nav-link {
+  font-family: "Arial Nova";
+  color: white !important;
+}
+
+.nav-link:hover {
+  font-family: "Arial Nova";
+  color: white !important;
+}
+
+/*--- new top bar---*/
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  // background-color: #0972ea;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  text-decoration: none;
+  font-family: "Arial Nova";
+}
+
+a#bec {
+  margin-left: -10px !important;
+}
+
+span.badge.badge-dark {
+  background: none;
+  color: #fff;
+}
+
+.fx {
+  position: relative;
+  left: 320px;
+  top: 2px;
+}
+
+.fn {
+  font-size: 20px;
+  padding: 5px;
+  color: #011f41;
+}
+
+.fxr {
+  position: relative;
+  left: 130px;
+  top: 5px;
+}
+
+.slt {
+  background: none;
+  color: #00327a;
+  width: 90px;
+  font-family: "Arial Nova";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  border: none;
+  padding: 5px;
+  outline: none;
+}
+
+.ef {
+  color: #00327a;
+  text-align: center;
+  font-family: "Arial Nova";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.btp {
+  display: flex;
+  width: 90px;
+  height: 32px;
+  font-size: 14px;
+  font-family: "Arial Nova";
+  padding: 14px 34px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+.form-control {
+  font-family: "Arial Nova" !important;
+}
+
+.bln {
+  position: absolute;
+  top: 45px;
+  width: 455px;
+}
+
+input#inputName {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+
+input#inputEmail {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+
+input#inputTel {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+
+input#inputMessage {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+
+input#inputCompanyname {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+
+input#exampleInputPassword1 {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+.dropdownValueName {
+  cursor: pointer;
+  color: #444343 !important;
+  font-weight: 400;
+  font-size: 19px !important;
+}
+
+.fmc {
+  // padding-left: 35px;
+  // background-image: url(/assets/Form-component.png);
+  // background-size: 30px;
+  // background-position: 2px center;
+  // background-repeat: no-repeat;
+  padding-left: 64px;
+  background-image: url(/assets/Form-Component5.png);
+  background-size: 55px 42px;
+  background-position: 0px center;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+
+.form-control:focus {
+  border: 1px solid #4cd6b0 !important;
+  /* color: var(--bs-body-color); */
+  /* background-color: var(--bs-body-bg); */
+  // border-color: white;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.form-select:focus {
+  border: 1px solid #4cd6b0 !important;
+  outline: none;
+  box-shadow: none !important;
+}
+
+// .mat-mdc-raised-button.mat-unthemed {
+//     --mdc-protected-button-container-color: none;
+//     --mdc-protected-button-label-text-color: #000;
+// }
+@media screen and (max-width: 480px) {
+  nav#tobar {
+    height: 50px !important;
   }
-  
-  .chandrayan1 {
-    width: 100%;
-    height: 50px;
-    background-color: #fff;
-  }
-  
-  .chandrayan2 {
-    width: 100%;
-    height: 35px;
-    background-color: #046a38;
-  }
-  
-  marquee {
-    font-family: "Arial Nova bold";
-    font-size: 18px;
-    margin: 6px;
-  }
-  
-  .topbar {
-    height: 60px;
-    background: #0972ea 0% 0% no-repeat padding-box;
-  }
-  
-  ul li a {
-    color: #ffffff;
-  }
-  
-  .nav-item {
-    font-family: "Arial Nova";
-    color: white;
-  }
-  
-  .nav-link {
-    font-family: "Arial Nova";
-    color: white !important;
-  }
-  
-  .nav-link:hover {
-    font-family: "Arial Nova";
-    color: white !important;
-  }
-  
-  /*--- new top bar---*/
-  
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    // background-color: #0972ea;
-  }
-  
-  li {
-    float: left;
-  }
-  
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 8px;
-    text-decoration: none;
-    font-family: "Arial Nova";
-  }
-  
+
   a#bec {
-    margin-left: -10px !important;
+    float: left !important;
+    padding-left: 18px !important;
+    margin-top: -30px !important;
   }
-  
+
+  .col-md-2.text-right {
+    // top: -30px!important;
+    visibility: visible;
+    position: initial;
+  }
+
   span.badge.badge-dark {
     background: none;
     color: #fff;
-  }
-  
-  .fx {
     position: relative;
-    left: 320px;
-    top: 2px;
+    top: -30px;
   }
-  
-  .fn {
-    font-size: 20px;
-    padding: 5px;
-    color: #011f41;
-  }
-  
-  .fxr {
-    position: relative;
-    left: 130px;
-    top: 5px;
-  }
-  
-  .slt {
-    background: none;
-    color: #00327a;
-    width: 90px;
-    font-family: "Arial Nova";
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    border: none;
-    padding: 5px;
-    outline: none;
-  }
-  
-  .ef {
-    color: #00327a;
-    text-align: center;
-    font-family: "Arial Nova";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 0;
-  }
-  
-  .modal-header {
-    border-bottom: none;
-  }
-  
-  .btp {
-    display: flex;
-    width: 90px;
-    height: 32px;
-    font-size: 14px;
-    font-family: "Arial Nova";
-    padding: 14px 34px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 5px;
-    background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-  }
-  
-  .form-control {
-    font-family: "Arial Nova" !important;
-  }
-  
-  .bln {
-    position: absolute;
-    top: 45px;
-    width: 455px;
-  }
-  
-  input#inputName {
-    padding-left: 45px;
-    background-image: url(/assets/Form-component.png);
-    background-size: 40px;
-    background-position: 0px center;
-    background-repeat: no-repeat;
-    height: 30px;
-    font-size: 14px;
-    background-color: #ecfbf8;
-  }
-  
-  input#inputEmail {
-    padding-left: 45px;
-    background-image: url(/assets/Form-Component2.png);
-    background-size: 40px;
-    background-position: 0px center;
-    background-repeat: no-repeat;
-    height: 30px;
-    font-size: 14px;
-    background-color: #ecfbf8;
-  }
-  
-  input#inputTel {
-    padding-left: 45px;
-    background-image: url(/assets/Form-Component3.png);
-    background-size: 40px;
-    background-position: 0px center;
-    background-repeat: no-repeat;
-    height: 30px;
-    font-size: 14px;
-    background-color: #ecfbf8;
-  }
-  
-  input#inputMessage {
-    padding-left: 45px;
-    background-image: url(/assets/Form-Component6.png);
-    background-size: 40px;
-    background-position: 0px center;
-    background-repeat: no-repeat;
-    height: 30px;
-    font-size: 14px;
-    background-color: #ecfbf8;
-  }
-  
-  input#inputCompanyname {
-    padding-left: 45px;
-    background-image: url(/assets/Form-Component4.png);
-    background-size: 40px;
-    background-position: 0px center;
-    background-repeat: no-repeat;
-    height: 30px;
-    font-size: 14px;
-    background-color: #ecfbf8;
-  }
-  
-  input#exampleInputPassword1 {
-    padding-left: 45px;
-    background-image: url(/assets/Password-icon.png);
-    background-size: 40px;
-    background-position: 0px center;
-    background-repeat: no-repeat;
-    height: 30px;
-    font-size: 14px;
-    background-color: #ecfbf8;
-  }
-  
-  .fmc {
-    // padding-left: 35px;
-    // background-image: url(/assets/Form-component.png);
-    // background-size: 30px;
-    // background-position: 2px center;
-    // background-repeat: no-repeat;
-    padding-left: 45px;
-    background-image: url(/assets/Form-Component5.png);
-    background-size: 40px;
-    background-position: 0px center;
-    background-repeat: no-repeat;
-    height: 32px;
-    font-size: 14px;
-    background-color: #ecfbf8;
-  }
-  
-  .form-control:focus {
-    border: 1px solid #4cd6b0 !important;
-    /* color: var(--bs-body-color); */
-    /* background-color: var(--bs-body-bg); */
-    // border-color: white;
-    outline: none;
-    box-shadow: none !important;
-  }
-  
-  .form-select:focus {
-    border: 1px solid #4cd6b0 !important;
-    outline: none;
-    box-shadow: none !important;
-  }
-  
-  // .mat-mdc-raised-button.mat-unthemed {
-  //     --mdc-protected-button-container-color: none;
-  //     --mdc-protected-button-label-text-color: #000;
+
+  // .fx{
+  //     position: relative;
+  //     left: 255px;
+  //     top: -65px;
   // }
-  @media screen and (max-width: 480px) {
-    nav#tobar {
-      height: 50px !important;
-    }
-  
-    a#bec {
-      float: left !important;
-      padding-left: 18px !important;
-      margin-top: -30px !important;
-    }
-  
-    .col-md-2.text-right {
-      // top: -30px!important;
-      visibility: visible;
-      position: initial;
-    }
-  
-    span.badge.badge-dark {
-      background: none;
-      color: #fff;
-      position: relative;
-      top: -30px;
-    }
-  
-    // .fx{
-    //     position: relative;
-    //     left: 255px;
-    //     top: -65px;
-    // }
-    // .fxr{
-    //     position: relative;
-    //     left: 100px;
-    //     top: -60px;
-    // }
-    // .cf{
-    //     height: 80px;
-    // }
-  }
-  .logout-link {
-    cursor: pointer;
-  }
-  
+  // .fxr{
+  //     position: relative;
+  //     left: 100px;
+  //     top: -60px;
+  // }
+  // .cf{
+  //     height: 80px;
+  // }
+}
+.logout-link {
+  cursor: pointer;
+}

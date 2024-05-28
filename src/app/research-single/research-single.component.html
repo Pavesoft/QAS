@@ -1,6 +1,53 @@
-<div class="container-fluid" style="margin-bottom: 70px">
-  <div class="row">
-    <div class="col-md-2 lt">
+<div
+  class="container-fluid"
+  style="margin-bottom: 70px; background-color: #f3f4f5"
+>
+  <div class="d-flex pt-3 pl-5 single_navigation">
+    <p
+      (click)="goToBack()"
+      style="
+        font-size: 17px !important;
+        cursor: pointer;
+        margin: 0px !important;
+      "
+    >
+      Research
+    </p>
+    <p style="margin: 0 5px">></p>
+    <span
+      style="
+        font-size: 17px;
+        padding-left: 4px;
+        color: #0d6efd;
+        margin: 0px !important;
+      "
+      >{{ Reports.report }}
+    </span>
+  </div>
+  <div
+    id="customAlert"
+    class="alert"
+    [ngClass]="{
+      success: alertType === 'Success',
+      failed: alertType === 'Failed'
+    }"
+  >
+    <div class="alert-content">
+      <span class="closebtn" (click)="closeCustomAlert()">&times;</span>
+      {{ message }}
+    </div>
+  </div>
+  <div class="row single_main_container">
+    <div
+      class="col-md-2"
+      style="
+        background-color: white;
+        height: 218px;
+        margin-bottom: 10px;
+
+        /* box-shadow: 3px 3px 3px 3px #efefef; */
+      "
+    >
       <form>
         <input
           class="srch"
@@ -9,935 +56,283 @@
           placeholder="Search Topic"
         /><i class="fa fa-search"></i>
       </form>
-      <a routerLink="/talk-to-analyst" class="a1"
-        >Connect With Our Analyst <i class="bi bi-chevron-right"></i
-      ></a>
-      <a routerLink="/become-a-client" class="a2"
-        >Connect With Our Servicer Partner <i class="bi bi-chevron-right"></i
-      ></a>
+      <div>
+        <a routerLink="/talk-to-analyst" class="a1"
+          >Connect With Our Analyst <i class="bi bi-chevron-right"></i
+        ></a>
+        <div>
+          <a routerLink="/become-a-client" class="a2"
+            >Connect With Our Servicer Partner
+            <i class="bi bi-chevron-right"></i
+          ></a>
+        </div>
+      </div>
     </div>
-    <div class="col-md-7 mdl" style="margin-bottom: 110%">
-      <!-- <div class="research-item" *ngFor="let research of Reports"> -->
-      <div class="row">
-        <div class="col-md-6" style="padding-bottom: 5px; width: 425px">
-          <div class="row">
-            <!-- <div class="col-sm-3">
-              <span>{{ Reports.publishDate }}</span>
+    <div class="col-md-7 middle_reportDetails_container">
+      <div *ngIf="isLoading">
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <div class="loading-spinner" style="width: 80px; height: 80px">
+          <!-- <div class="logo-pre">
+                <img src="../../../../assets/lg.gif" alt="Logo" class="img-fluid" height="40px;width:40px;">
             </div> -->
-            <div class="col-sm-9 cat">
-              <span>Category :</span>
-              <a href="" style="text-decoration: none"
-                ><span> {{ Reports.categoryName }}</span></a
-              >
-            </div>
-          </div>
         </div>
-        <div class="col-md-6"></div>
+        <br /><br /><br /><br /><br /><br /><br /><br />
       </div>
-      <div class="row">
-        <div class="col-md-9">
-          <a href="#" class="research-title">{{ Reports.report }} </a><br />
-          <span class="research-category"
-            >Report Type :
-            <a href="#" style="text-decoration: none"
-              ><span>{{ Reports.reportType }}</span></a
-            >
-          </span>
-          <span class="research-category" style="margin-left: 14px"
-            >Author :
-            <a href="#" style="text-decoration: none"
-              ><span>{{ Reports.author }} </span></a
-            >
-          </span>
-        </div>
-        <div class="col-md-3">
+      <div *ngIf="!isLoading">
+        <div
+          style="
+            padding: 20px 20px 20px 20px;
+            background-color: white;
+            /* box-shadow: 3px 3px 3px 3px #efefef; */
+          "
+        >
           <div class="row">
-            <div class="col-md-6 im">
-              <a href=""><img src="/assets/cart.png" style="width: 18px" /></a>
+            <div class="col-md-9">
+              <div class="row">
+                <div class="upper_part">
+                  <!-- <span>Date :</span> -->
+                  <span class="textcommon-fontsize" style="margin: 0 14px 0 0px"
+                    >{{ Reports.publishDate }}
+                  </span>
+                  <span class="seperator">|</span>
+                  <div class="d-flex category">
+                    <span class="textcommon-fontsize">Category: </span>
+                    <div *ngFor="let category of Reports.categoryList">
+                      <a class="category-link">
+                        <span
+                          style="margin-left: 5px"
+                          class="textcommon-fontsize"
+                          >{{ category }}</span
+                        >
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                  <span href="#" class="research-title" style="font-size: 20px"
+                    >{{ Reports.report }}
+                  </span>
+                  <div
+                    class="report_category"
+                    style="margin-top: 6px !important"
+                  >
+                    <span class="research-category"
+                      >Report Type:
+                      <a style="text-decoration: none"
+                        ><span style="color: #0972ea">{{
+                          Reports.reportType
+                        }}</span></a
+                      >
+                    </span>
+                    <span class="research-category"
+                      >Authors:
+
+                      <span
+                        class="item-link"
+                        *ngFor="let author of Reports.authors; let last = last"
+                      >
+                        <ng-container *ngIf="!last; else lastAuthor">
+                          <span> {{ author }}, </span>
+                        </ng-container>
+                        <ng-template #lastAuthor>
+                          <span>
+                            {{ author }}
+                          </span>
+                        </ng-template>
+                      </span>
+                    </span>
+                  </div>
+                  <div
+                    class="d-flex"
+                    style="margin-top: 18px; margin-left: 1px"
+                  >
+                    <span
+                      class="textcommon-fontsize"
+                      style="color: #212529; margin-top: 1px"
+                      >Price:
+                    </span>
+                    <span class="prc">${{ formatPrice(Reports.price) }}</span>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-sm-1">|</div> -->
             </div>
-            <div class="col-md-6 im1">
-              <a href=""
-                ><img src="/assets/download.png" style="width: 18px"
-              /></a>
+            <div
+              class="col-md-3 d-flex align-items-center justify-content-center"
+            >
+              <div *ngIf="isSubscribed">
+                <button
+                  class="btn btn-success button-download"
+                  style="margin-bottom: 10px !important; font-size: 14px"
+                  (click)="downloadResearch(Reports.id, Reports.report)"
+                >
+                  <img
+                    src="../../assets/download.svg"
+                    style="height: 17px; width: 22px"
+                  />
+                  <p
+                    style="
+                      padding-top: 10px;
+                      padding-left: 8px;
+                      font-size: 17px;
+                    "
+                  >
+                    Download
+                  </p>
+                </button>
+                <button
+                  class="btn btn-success bn"
+                  style="
+                    margin-bottom: 5px !important;
+                    font-size: 17px;
+                    border: 0px !important;
+                  "
+                  (click)="readReport(Reports.id, Reports.report)"
+                >
+                  Read View
+                </button>
+              </div>
+              <div
+                *ngIf="!isSubscribed"
+                class="row d-flex justify-content-center align-items-center"
+              >
+                <div
+                  class="row d-flex justify-content-center align-items-center"
+                >
+                  <div class="col-md-6 im">
+                    <a (click)="addToCart(Reports)" style="cursor: pointer"
+                      ><img src="../../assets//cart.svg" />
+                    </a>
+                  </div>
+                  <div class="col-md-6 im1">
+                    <a (click)="downloadForm(Reports)" style="cursor: pointer"
+                      ><img src="../../assets/download.svg" />
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="row d-flex justify-content-center align-items-center"
+                >
+                  <button
+                    class="btn btn-success bn"
+                    style="font-size: 17px; margin-top: 15px; border: 0px"
+                    (click)="buyNow(Reports)"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <div class="row">
+            <div class="d-flex align-items-center">
+              <!-- <span>Price : </span
+              ><span class="prc">
+                <i class="fas fa-dollar-sign" style="color: #444343"></i>
+                {{ Reports.price }}
+              </span> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="row single_report_description">
+          <div class="col-sm-12">
+            <p
+              style="
+                font-weight: 600;
+                font-size: 19px;
+                color: rgba(68, 67, 67, 1);
+              "
+            >
+              Description:
+            </p>
+            <p
+              style="font-size: 16px; text-align: justify"
+              [innerHtml]="Reports.description"
+            ></p>
           </div>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col-md-9 research-description">
-          <!-- <p class="dec">{{research.description}}</p> -->
-        </div>
-        <div class="col-md-3">
-          <button class="btn btn-success bn">Buy Now</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-9">
-          <span>Price : </span
-          ><span class="prc">
-            <i class="fas fa-dollar-sign" style="color: #444343"></i>
-            {{ Reports.price }}
-          </span>
-        </div>
-        <div class="col-sm-3"></div>
-      </div>
-
-      <!-- </div> -->
-      <br /><br /><br />
-      <div class="row">
-        <div class="col-sm-12">
-          <b>Description:</b><br /><br />
-          <div [innerHtml]="Reports.description"></div>
-        </div>
-      </div>
-      <!-- <div class="row">
-        <div class="col-sm-12">
-          <div class="cav">
-            <h4>Customer Also Viewed</h4>
-          </div>
-        </div>
-      </div>
-      <div id="carouselExampleDark" class="carousel carousel-dark slide">
-        <div class="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleDark"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleDark"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleDark"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-        </div>
-        <div class="carousel-inner">
-          <div
-            class="carousel-item active"
-            data-bs-interval="10000"
-            *ngFor="let research of mappedReports"
-          >
-            <div class="row ht">
-              <div class="col-md-6 rc1">
-                <a href="#" class="research-title rt">{{ research.report }}</a>
-                <div class="row rt1">
-                  <div class="col-sm-6">
-                    Date :<br />
-                    <span>{{ research.publishedDate }}</span>
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Report Type :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.reportType }}</span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <div class="row rt2">
-                  <div class="col-sm-6">
-                    <span>Category :</span><br />
-                    <a href="" style="text-decoration: none; color: #444343"
-                      ><span> {{ research.categoryName }}</span></a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Author :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.author }} </span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <span class="rt3"
-                  >{{ research.description
-                  }}<a href="#" style="text-decoration: none" class="rm"
-                    >Read More<img
-                      src="/assets/Icon.png"
-                      style="width: 28px; height: 10px" /></a
-                ></span>
-                <div class="row rt4">
-                  <div class="col-md-6">
-                    <span>Price : </span><br /><span class="prc">
-                      <i class="fas fa-dollar-sign" style="color: #444343"></i>
-                      {{ research.price }}
-                    </span>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="" class="atc"
-                      ><img src="/assets/cart.png" style="width: 18px" />Add To
-                      Cart</a
-                    >
-                    <button class="btn btn-success bnn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 rc">
-                <a href="#" class="research-title rt">{{ research.title }}</a>
-                <div class="row rt1">
-                  <div class="col-sm-6">
-                    Date :<br />
-                    <span>{{ research.date }}</span>
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Report Type :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.reporttype }}</span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <div class="row rt2">
-                  <div class="col-sm-6">
-                    <span>Category :</span><br />
-                    <a href="" style="text-decoration: none; color: #444343"
-                      ><span> {{ research.category }}</span></a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Author :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.author }} </span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <span class="rt3"
-                  >{{ research.description
-                  }}<a href="#" style="text-decoration: none" class="rm"
-                    >Read More<img
-                      src="/assets/Icon.png"
-                      style="width: 28px; height: 10px" /></a
-                ></span>
-
-                <div class="row rt4">
-                  <div class="col-md-6">
-                    <span>Price : </span><br /><span class="prc">
-                      <i class="fas fa-dollar-sign" style="color: #444343"></i>
-                      {{ research.price }}
-                    </span>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="" class="atc"
-                      ><img src="/assets/cart.png" style="width: 18px" />Add To
-                      Cart</a
-                    >
-                    <button class="btn btn-success bnn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="carousel-item"
-            data-bs-interval="2000"
-            *ngFor="let research of Reports"
-          >
-            <div class="row ht">
-              <div class="col-md-6 rc1">
-                <a href="#" class="research-title rt">{{ research.title }}</a>
-                <div class="row rt1">
-                  <div class="col-sm-6">
-                    Date :<br />
-                    <span>{{ research.date }}</span>
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Report Type :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.reporttype }}</span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <div class="row rt2">
-                  <div class="col-sm-6">
-                    <span>Category :</span><br />
-                    <a href="" style="text-decoration: none; color: #444343"
-                      ><span> {{ research.category }}</span></a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Author :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.author }} </span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <span class="rt3"
-                  >{{ research.description
-                  }}<a href="#" style="text-decoration: none" class="rm"
-                    >Read More<img
-                      src="/assets/Icon.png"
-                      style="width: 28px; height: 10px" /></a
-                ></span>
-                <div class="row rt4">
-                  <div class="col-md-6">
-                    <span>Price : </span><br /><span class="prc">
-                      <i class="fas fa-dollar-sign" style="color: #444343"></i>
-                      {{ research.price }}
-                    </span>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="" class="atc"
-                      ><img src="/assets/cart.png" style="width: 18px" />Add To
-                      Cart</a
-                    >
-                    <button class="btn btn-success bnn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 rc">
-                <a href="#" class="research-title rt">{{ research.title }}</a>
-                <div class="row rt1">
-                  <div class="col-sm-6">
-                    Date :<br />
-                    <span>{{ research.date }}</span>
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Report Type :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.reporttype }}</span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <div class="row rt2">
-                  <div class="col-sm-6">
-                    <span>Category :</span><br />
-                    <a href="" style="text-decoration: none; color: #444343"
-                      ><span> {{ research.category }}</span></a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Author :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.author }} </span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <span class="rt3"
-                  >{{ research.description
-                  }}<a href="#" style="text-decoration: none" class="rm"
-                    >Read More<img
-                      src="/assets/Icon.png"
-                      style="width: 28px; height: 10px" /></a
-                ></span>
-
-                <div class="row rt4">
-                  <div class="col-md-6">
-                    <span>Price : </span><br /><span class="prc">
-                      <i class="fas fa-dollar-sign" style="color: #444343"></i>
-                      {{ research.price }}
-                    </span>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="" class="atc"
-                      ><img src="/assets/cart.png" style="width: 18px" />Add To
-                      Cart</a
-                    >
-                    <button class="btn btn-success bnn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item" *ngFor="let research of Reports">
-            <div class="row ht">
-              <div class="col-md-6 rc1">
-                <a href="#" class="research-title rt">{{ research.title }}</a>
-                <div class="row rt1">
-                  <div class="col-sm-6">
-                    Date :<br />
-                    <span>{{ research.date }}</span>
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Report Type :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.reporttype }}</span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <div class="row rt2">
-                  <div class="col-sm-6">
-                    <span>Category :</span><br />
-                    <a href="" style="text-decoration: none; color: #444343"
-                      ><span> {{ research.category }}</span></a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Author :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.author }} </span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <span class="rt3"
-                  >{{ research.description
-                  }}<a href="#" style="text-decoration: none" class="rm"
-                    >Read More<img
-                      src="/assets/Icon.png"
-                      style="width: 28px; height: 10px" /></a
-                ></span>
-                <div class="row rt4">
-                  <div class="col-md-6">
-                    <span>Price : </span><br /><span class="prc">
-                      <i class="fas fa-dollar-sign" style="color: #444343"></i>
-                      {{ research.price }}
-                    </span>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="" class="atc"
-                      ><img src="/assets/cart.png" style="width: 18px" />Add To
-                      Cart</a
-                    >
-                    <button class="btn btn-success bnn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 rc">
-                <a href="#" class="research-title rt">{{ research.title }}</a>
-                <div class="row rt1">
-                  <div class="col-sm-6">
-                    Date :<br />
-                    <span>{{ research.date }}</span>
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Report Type :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.reporttype }}</span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <div class="row rt2">
-                  <div class="col-sm-6">
-                    <span>Category :</span><br />
-                    <a href="" style="text-decoration: none; color: #444343"
-                      ><span> {{ research.category }}</span></a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Author :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.author }} </span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <span class="rt3"
-                  >{{ research.description
-                  }}<a href="#" style="text-decoration: none" class="rm"
-                    >Read More<img
-                      src="/assets/Icon.png"
-                      style="width: 28px; height: 10px" /></a
-                ></span>
-
-                <div class="row rt4">
-                  <div class="col-md-6">
-                    <span>Price : </span><br /><span class="prc">
-                      <i class="fas fa-dollar-sign" style="color: #444343"></i>
-                      {{ research.price }}
-                    </span>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="" class="atc"
-                      ><img src="/assets/cart.png" style="width: 18px" />Add To
-                      Cart</a
-                    >
-                    <button class="btn btn-success bnn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleDark"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleDark"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="cav">
-            <h4>Other Related Reports</h4>
-          </div>
-        </div>
-      </div>
-      <div
-        id="carouselExampleIndicators"
-        class="carousel carousel-dark slide"
-        data-bs-ride="carousel"
-      >
-        <div class="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active" *ngFor="let research of Reports">
-            <div class="row ht">
-              <div class="col-md-6 rc1">
-                <a href="#" class="research-title rt">{{ research.title }}</a>
-                <div class="row rt1">
-                  <div class="col-sm-6">
-                    Date :<br />
-                    <span>{{ research.date }}</span>
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Report Type :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.reporttype }}</span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <div class="row rt2">
-                  <div class="col-sm-6">
-                    <span>Category :</span><br />
-                    <a href="" style="text-decoration: none; color: #444343"
-                      ><span> {{ research.category }}</span></a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Author :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.author }} </span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <span class="rt3"
-                  >{{ research.description
-                  }}<a
-                    href="#"
-                    style="text-decoration: none; color: #444343"
-                    class="rm"
-                    >Read More<img
-                      src="/assets/Icon.png"
-                      style="width: 28px; height: 10px" /></a
-                ></span>
-                <div class="row rt4">
-                  <div class="col-md-6">
-                    <span>Price : </span><br /><span class="prc">
-                      <i class="fas fa-dollar-sign" style="color: #444343"></i>
-                      {{ research.price }}
-                    </span>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="" class="atc"
-                      ><img src="/assets/cart.png" style="width: 18px" />Add To
-                      Cart</a
-                    >
-                    <button class="btn btn-success bnn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 rc">
-                <a href="#" class="research-title rt">{{ research.title }}</a>
-                <div class="row rt1">
-                  <div class="col-sm-6">
-                    Date :<br />
-                    <span>{{ research.date }}</span>
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Report Type :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.reporttype }}</span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <div class="row rt2">
-                  <div class="col-sm-6">
-                    <span>Category :</span><br />
-                    <a href="" style="text-decoration: none; color: #444343"
-                      ><span> {{ research.category }}</span></a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Author :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.author }} </span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <span class="rt3"
-                  >{{ research.description
-                  }}<a href="#" style="text-decoration: none" class="rm"
-                    >Read More<img
-                      src="/assets/Icon.png"
-                      style="width: 28px; height: 10px" /></a
-                ></span>
-
-                <div class="row rt4">
-                  <div class="col-md-6">
-                    <span>Price : </span><br /><span class="prc">
-                      <i class="fas fa-dollar-sign" style="color: #444343"></i>
-                      {{ research.price }}
-                    </span>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="" class="atc"
-                      ><img src="/assets/cart.png" style="width: 18px" />Add To
-                      Cart</a
-                    >
-                    <button class="btn btn-success bnn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item" *ngFor="let research of Reports">
-            <div class="row ht">
-              <div class="col-md-6 rc1">
-                <a href="#" class="research-title rt">{{ research.title }}</a>
-                <div class="row rt1">
-                  <div class="col-sm-6">
-                    Date :<br />
-                    <span>{{ research.date }}</span>
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Report Type :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.reporttype }}</span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <div class="row rt2">
-                  <div class="col-sm-6">
-                    <span>Category :</span><br />
-                    <a href="" style="text-decoration: none; color: #444343"
-                      ><span> {{ research.category }}</span></a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Author :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.author }} </span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <span class="rt3"
-                  >{{ research.description
-                  }}<a href="#" style="text-decoration: none" class="rm"
-                    >Read More<img
-                      src="/assets/Icon.png"
-                      style="width: 28px; height: 10px" /></a
-                ></span>
-                <div class="row rt4">
-                  <div class="col-md-6">
-                    <span>Price : </span><br /><span class="prc">
-                      <i class="fas fa-dollar-sign" style="color: #444343"></i>
-                      {{ research.price }}
-                    </span>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="" class="atc"
-                      ><img src="/assets/cart.png" style="width: 18px" />Add To
-                      Cart</a
-                    >
-                    <button class="btn btn-success bnn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 rc">
-                <a href="#" class="research-title rt">{{ research.title }}</a>
-                <div class="row rt1">
-                  <div class="col-sm-6">
-                    Date :<br />
-                    <span>{{ research.date }}</span>
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Report Type :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.reporttype }}</span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <div class="row rt2">
-                  <div class="col-sm-6">
-                    <span>Category :</span><br />
-                    <a href="" style="text-decoration: none; color: #444343"
-                      ><span> {{ research.category }}</span></a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Author :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.author }} </span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <span class="rt3"
-                  >{{ research.description
-                  }}<a href="#" style="text-decoration: none" class="rm"
-                    >Read More<img
-                      src="/assets/Icon.png"
-                      style="width: 28px; height: 10px" /></a
-                ></span>
-
-                <div class="row rt4">
-                  <div class="col-md-6">
-                    <span>Price : </span><br /><span class="prc">
-                      <i class="fas fa-dollar-sign" style="color: #444343"></i>
-                      {{ research.price }}
-                    </span>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="" class="atc"
-                      ><img src="/assets/cart.png" style="width: 18px" />Add To
-                      Cart</a
-                    >
-                    <button class="btn btn-success bnn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item" *ngFor="let research of Reports">
-            <div class="row ht">
-              <div class="col-md-6 rc1">
-                <a href="#" class="research-title rt">{{ research.title }}</a>
-                <div class="row rt1">
-                  <div class="col-sm-6">
-                    Date :<br />
-                    <span>{{ research.date }}</span>
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Report Type :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.reporttype }}</span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <div class="row rt2">
-                  <div class="col-sm-6">
-                    <span>Category :</span><br />
-                    <a href="" style="text-decoration: none; color: #444343"
-                      ><span> {{ research.category }}</span></a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Author :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.author }} </span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <span class="rt3"
-                  >{{ research.description
-                  }}<a href="#" style="text-decoration: none" class="rm"
-                    >Read More<img
-                      src="/assets/Icon.png"
-                      style="width: 28px; height: 10px" /></a
-                ></span>
-                <div class="row rt4">
-                  <div class="col-md-6">
-                    <span>Price : </span><br /><span class="prc">
-                      <i class="fas fa-dollar-sign" style="color: #444343"></i>
-                      {{ research.price }}
-                    </span>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="" class="atc"
-                      ><img src="/assets/cart.png" style="width: 18px" />Add To
-                      Cart</a
-                    >
-                    <button class="btn btn-success bnn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 rc">
-                <a href="#" class="research-title rt">{{ research.title }}</a>
-                <div class="row rt1">
-                  <div class="col-sm-6">
-                    Date :<br />
-                    <span>{{ research.date }}</span>
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Report Type :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.reporttype }}</span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <div class="row rt2">
-                  <div class="col-sm-6">
-                    <span>Category :</span><br />
-                    <a href="" style="text-decoration: none; color: #444343"
-                      ><span> {{ research.category }}</span></a
-                    >
-                  </div>
-                  <div class="col-sm-6">
-                    <span class="research-category"
-                      >Author :<br />
-                      <a href="#" style="text-decoration: none; color: #444343"
-                        ><span>{{ research.author }} </span></a
-                      >
-                    </span>
-                  </div>
-                </div>
-                <span class="rt3"
-                  >{{ research.description
-                  }}<a href="#" style="text-decoration: none" class="rm"
-                    >Read More<img
-                      src="/assets/Icon.png"
-                      style="width: 28px; height: 10px" /></a
-                ></span>
-
-                <div class="row rt4">
-                  <div class="col-md-6">
-                    <span>Price : </span><br /><span class="prc">
-                      <i class="fas fa-dollar-sign" style="color: #444343"></i>
-                      {{ research.price }}
-                    </span>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="" class="atc"
-                      ><img src="/assets/cart.png" style="width: 18px" />Add To
-                      Cart</a
-                    >
-                    <button class="btn btn-success bnn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div> -->
     </div>
 
-    <div class="col-md-3 rts">
-      <button class="btn btn-success bt2">
-        <img class="dic" src="/assets/download-01.png" />Download Sample Report
-      </button>
-      <p class="links" style="margin-left: 0px">
-        <a href="#" class="fa fa-envelope-o"></a
-        ><a
-          href="https://www.linkedin.com/company/quadrant-knowledge-solutions/"
-          target="_blank"
-          class="fa fa-linkedin"
-        ></a
-        ><a
-          href="https://twitter.com/QKS_Quadrant"
-          target="_blank"
-          class="fa fa-twitter"
-        ></a
-        ><a href="#" class="fa fa-facebook"></a
-        ><a href="#" class="fa fa-instagram"></a>
-      </p>
-      <h4 class="qs">Quadrant Sales</h4>
-      <p style="margin-left: 12px">
-        <i class="fa fa-envelope-open-o"></i>&nbsp;
-        <a
-          href="mailto:ajinkya@quadrant-solutions.com"
-          style="text-decoration: none; font-size: 12px"
-          >ajinkya@quadrant-solutions.com</a
-        ><br />
-        <i class="bi bi-telephone"></i>&nbsp;
-        <a
-          href="tel:(+1) 978-344-2770"
-          style="text-decoration: none; font-size: 12px"
-          >(+1) 978-344-2770</a
+    <div class="col-md-3 third_container">
+      <div
+        class="d-flex flex-column justify-content-center"
+        style="
+          background-color: white;
+          padding: 15px;
+
+          /* box-shadow: 3px 3px 3px 3px #efefef; */
+        "
+      >
+        <button
+          class="btn btn-success bt2"
+          style="padding: 15px"
+          (click)="downloadForm(Reports)"
         >
-      </p>
-      <h4 class="qs">Need a brief overview?</h4>
-      <a routerLink="/contact-us" style="text-decoration: none" class="cu"
-        >Contact Us<img src="/assets/arrow-right.png" style="height: 18px"
-      /></a>
+          <img class="dic" src="/assets/download-01.png" />Download Sample
+          Report
+        </button>
+        <div
+          class="links"
+          style="
+            margin-left: 0px;
+            display: flex;
+            justify-content: space-between;
+          "
+        >
+          <div>
+            <a href="#" class="fa fa-envelope-o"></a>
+          </div>
+          <div>
+            <a
+              href="https://www.linkedin.com/company/quadrant-knowledge-solutions/"
+              target="_blank"
+              class="fa fa-linkedin"
+            ></a>
+          </div>
+          <div>
+            <a
+              href="https://twitter.com/QKS_Quadrant"
+              target="_blank"
+              class="fa fa-twitter"
+            ></a>
+          </div>
+          <div>
+            <a href="#" class="fa fa-facebook"></a>
+          </div>
+          <div>
+            <a href="#" class="fa fa-instagram"></a>
+          </div>
+        </div>
+        <h4 class="qs">Quadrant Sales</h4>
+        <div style="margin-left: 12px">
+          <div>
+            <i class="fa fa-envelope-open-o"></i>&nbsp;
+            <a
+              href="mailto:infoleads@quadrant-solutions.com"
+              style="text-decoration: none; font-size: 16px"
+              >infoleads@quadrant-solutions.com</a
+            >
+          </div>
+          <div style="margin-top: 10px !important">
+            <i class="bi bi-telephone"></i>&nbsp;
+            <a
+              href="tel:(+1) 978-344-2770"
+              style="text-decoration: none; font-size: 16px; color: black"
+              >(+1) 978-344-2770</a
+            >
+          </div>
+        </div>
+        <h4 class="qs">Need a brief overview?</h4>
+        <a
+          routerLink="/contact-us"
+          style="text-decoration: none; font-size: 20px"
+          class="cu"
+          >Contact Us<img src="/assets/arrow-right.png" style="height: 18px"
+        /></a>
+      </div>
     </div>
   </div>
 </div>
