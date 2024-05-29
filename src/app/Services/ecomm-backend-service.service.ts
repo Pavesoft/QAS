@@ -10,7 +10,10 @@ import { baseURl } from "const";
   providedIn: "root",
 })
 export class EcommBackendService {
-  //  private apiUrl = 'http://localhost:8090';
+
+   // private apiUrl = 'http://10.0.51.3:8090/';
+
+   //private apiUrl = 'http://localhost:8090';
   //private apiUrl='http://localhost:8090/QuadrantEcom-0.0.1-SNAPSHOT'
 
   constructor(private http: HttpClient) {}
