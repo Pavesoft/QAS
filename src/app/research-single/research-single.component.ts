@@ -6,6 +6,7 @@ import { ResearchMasterDto } from "../Interfaces/research-master-dto";
 import { CartService } from "../Services/cart.service";
 import { AuthService } from "../auth.service";
 import { Title } from "@angular/platform-browser";
+import * as _ from "lodash";
 
 @Component({
   selector: "app-research-single",
@@ -31,6 +32,8 @@ export class ResearchSingleComponent implements OnInit {
   authorsArray: any[] = [];
   authorsSet = new Set();
   isSubscribed: any = "";
+  oldUrlData: any = "";
+  hrefSlug: any = "";
   isLoading: boolean = true;
   isLogin: any;
   alertType = "";
@@ -209,11 +212,47 @@ export class ResearchSingleComponent implements OnInit {
       .replace(/[\s_-]+/g, "-");
   }
 
+  replaceSpaces(value: string): string {
+    const regexPattern = /[^a-zA-Z0-9\s]/g;
+
+    if (value && typeof value === "string") {
+      return value
+        .replace(regexPattern, " ")
+        .replace(/\s+/g, "-")
+        .toLowerCase();
+    } else {
+      return "";
+    }
+  }
+
+  researchHref(name: string, id: any) {
+    let nameChange = this.replaceSpaces(name);
+    let href = "/market-research/" + nameChange + "-" + id;
+    const objIndex = _.findIndex(
+      this.oldUrlData,
+      (item: any) => item.URL_ID == id
+    );
+    if (objIndex !== -1) {
+      href = this.oldUrlData[objIndex].To_URL;
+    }
+    console.log("href", href);
+    // this.updateUrlWithReportName(this.Reports.report, this.Reports.id);
+    return href;
+  }
+
   ngOnInit(): void {
+    this.httpClient
+      .get<any[]>("assets/fonts/data/oldUrlData.json")
+      .subscribe((data: any) => {
+        this.oldUrlData = data.oldUrlData;
+      });
+
     const accessToken = this.authService.getAccessToken();
     this.isLogin = accessToken !== null ? true : false;
     let id = this.route.snapshot.params["reportName-:reportId"];
+    console.log("id", id);
     const matches = id.match(/-(\d+)$/); // Extract numeric part following the last dash "-"
+    console.log("matches", matches);
 
     if (matches && matches.length > 1) {
       const reportId = matches[1];
@@ -225,8 +264,15 @@ export class ResearchSingleComponent implements OnInit {
         this.titleService.setTitle(this.Reports.report);
         this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
         this.isLoading = false;
-        console.log(this.Reports.isSubscribed);
+        console.log(this.Reports);
         this.isSubscribed = this.Reports.isSubscribed;
+        const newSlug = this.researchHref(this.Reports.report, this.Reports.id);
+        console.log("new slug", newSlug);
+        this.updateUrlWithReportName(
+          newSlug,
+          this.Reports.report,
+          this.Reports.id
+        );
       });
     } else {
       // Handle the case where there is no valid reportId
@@ -272,6 +318,20 @@ export class ResearchSingleComponent implements OnInit {
       // console.table("Report Typ", this.categoryData);
     });
   }
+
+  updateUrlWithReportName(
+    newSlug: String,
+    reportName: string,
+    reportId: string
+  ) {
+    // const newUrl = `${reportName}-${reportId}`;
+    this.router.navigate([newSlug], {
+      relativeTo: this.route,
+      replaceUrl: true,
+      state: { reportName, reportId },
+    });
+  }
+
   getFirstParagraph(htmlContent: string): string {
     const parser = new DOMParser();
     const parsedHtml = parser.parseFromString(htmlContent, "text/html");
