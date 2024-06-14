@@ -58,11 +58,9 @@
         data-toggle="modal"
         data-target="#exampleModal"
       >
-        <i class="fa fa-support fn"></i>
+        <img src="../../../assets/headphones.svg" alt="User icon" />
       </span>
-      <a routerLink="">
-        <i class="bi bi-calendar-week fn"></i>
-      </a>
+
       <div class="dropdown" style="cursor: pointer; margin-right: 50px">
         <!-- The icon that triggers the dropdown -->
         <span
@@ -71,7 +69,7 @@
           aria-expanded="false"
           style="cursor: pointer"
         >
-          <i class="bi bi-bell fn" style="margin-right: 30px"></i>
+          <img src="../../../assets/bell.svg" alt="User icon" />
         </span>
 
         <!-- The dropdown menu -->
@@ -110,11 +108,21 @@
 
       <span
         *ngIf="!isLoggedIn"
+        style="cursor: pointer"
+        data-toggle="modal"
+        data-target="#exampleModal1"
+        (click)="toggleLogin()"
+      >
+        Login </span
+      >/
+      <span
+        *ngIf="!isLoggedIn"
         style="cursor: pointer; margin-right: 50px"
         data-toggle="modal"
         data-target="#exampleModal1"
+        (click)="toggleSignup()"
       >
-        Login
+        Sign Up
       </span>
 
       <div
@@ -181,7 +189,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content" style="height: 460px; background: #ddefed">
+      <div class="modal-content" style="height: auto; background: #ddefed">
         <div class="modal-header">
           <h5 class="modal-title ef" id="exampleModalLabel">Enquiry Form</h5>
           <img src="/assets/Line.png" class="bln" />
@@ -281,7 +289,7 @@
                 <option value="4">Inqueries Related to Deliverables</option>
               </select>
             </div>
-            <div class="d-flex mb-4">
+            <div class="d-flex mb-2">
               <img
                 style="height: 42px"
                 src="../../../assets//Form-Component6.png"
@@ -295,24 +303,58 @@
                 required
               />
             </div>
-            <!-- <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="checkTerms">
-            <label class="form-check-label" for="checkTerms">I agree to the terms and conditions</label>
-          </div> -->
+            <div class="form-check mb-2">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="additionalInfoCheckbox"
+                formControlName="provideAdditionalInfo"
+                (change)="onAdditionalInfoChange($event)"
+              />
+              <label class="form-check-label" for="additionalInfoCheckbox"
+                >Provide additional information</label
+              >
+            </div>
+
+            <div *ngIf="showAdditionalInfo" class="d-flex gap-3">
+              <div class="d-flex mb-2">
+                <img
+                  style="height: 42px"
+                  src="../../../assets//Form-Component6.png"
+                />
+                <input
+                  type="date"
+                  class="form-control"
+                  id="inputDate"
+                  formControlName="date"
+                  required
+                />
+              </div>
+              <div class="d-flex mb-3">
+                <img
+                  style="height: 42px"
+                  src="../../../assets//Form-Component6.png"
+                />
+                <input
+                  type="time"
+                  class="form-control"
+                  id="inputTime"
+                  formControlName="time"
+                  required
+                />
+              </div>
+            </div>
             <button type="submit" class="btn btn-primary btp" style="border: 0">
               Submit
             </button>
           </form>
         </div>
-        <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
       </div>
     </div>
   </div>
 
   <!-- Modal For Login -->
+  <!-- Modal For Login and Signup -->
 
   <div
     class="modal fade"
@@ -333,7 +375,7 @@
             id="exampleModalLabel"
             style="font-size: 20px !important"
           >
-            Login
+            {{ isSignup ? "Sign Up" : "Login" }}
           </h1>
           <img src="/assets/Line.png" class="bln" />
 
@@ -346,9 +388,13 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <h3 style="margin-left: 15px !important">Welcome Back !</h3>
         <div class="modal-body">
-          <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <h3>{{ isSignup ? "Welcome" : "Welcome Back !" }}</h3>
+          <form
+            *ngIf="!isSignup"
+            [formGroup]="loginForm"
+            (ngSubmit)="onLogin()"
+          >
             <div class="mb-4">
               <div class="d-flex">
                 <img
@@ -390,7 +436,7 @@
               </div>
               <div *ngIf="loginForm.controls['password'].errors">
                 <!-- <small class="text-danger" *ngIf="loginForm.controls['password'].errors['required']">Password is
-                required.</small> -->
+              required.</small> -->
                 <small
                   class="text-danger"
                   *ngIf="loginForm.controls['password'].errors['minlength']"
@@ -419,15 +465,252 @@
             >
               Submit
             </button>
+
+            <div class="d-flex justify-content-center align-items-center mb-5">
+              <span style="font-size: 15px"> Not registered ? </span
+              ><span class="create-account-navigation" (click)="toggleSignup()"
+                >Create an account</span
+              >
+            </div>
           </form>
-          <!-- Display error message -->
-          <div
-            *ngIf="errorMessage"
-            style="margin-left: 100px"
-            class="text-danger"
+          <!-- Signup Form -->
+
+          <form
+            *ngIf="isSignup"
+            [formGroup]="signupForm"
+            (ngSubmit)="onSignup()"
           >
+            <div class="mb-3">
+              <div class="d-flex">
+                <img
+                  style="height: 42px"
+                  src="../../../assets/Form-component.png"
+                />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputName"
+                  placeholder="FirstName"
+                  formControlName="name"
+                  required
+                />
+              </div>
+              <div
+                *ngIf="
+                  signupForm.get('name')?.touched &&
+                  signupForm.get('name')?.invalid
+                "
+                class="text-danger"
+              >
+                Name is required.
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex">
+                <img
+                  style="height: 42px"
+                  src="../../../assets/Form-component.png"
+                />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputName"
+                  placeholder="LastName"
+                  formControlName="name"
+                  required
+                />
+              </div>
+              <div
+                *ngIf="
+                  signupForm.get('name')?.touched &&
+                  signupForm.get('name')?.invalid
+                "
+                class="text-danger"
+              >
+                Name is required.
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex">
+                <img
+                  style="height: 44px"
+                  src="../../../assets/Form-Component4.png"
+                />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputCompanyName"
+                  placeholder="Company"
+                  formControlName="companyname"
+                  required
+                />
+              </div>
+              <div
+                *ngIf="
+                  signupForm.get('companyname')?.touched &&
+                  signupForm.get('companyname')?.invalid
+                "
+                class="text-danger"
+              >
+                Company name is required.
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex">
+                <img
+                  style="height: 42px"
+                  src="../../../assets/Form-Component3.png"
+                />
+                <input
+                  type="tel"
+                  id="businessPhone1"
+                  maxlength="16"
+                  class="form-control"
+                  required
+                  placeholder="Phone*"
+                  onkeyup="this.value = this.value.replace(/[^0-9-]/g, '');"
+                  formControlName="phone"
+                />
+              </div>
+              <div
+                *ngIf="
+                  signupForm.get('phone')?.touched &&
+                  signupForm.get('phone')?.invalid
+                "
+                class="text-danger"
+              >
+                Phone is required and must be 10-16 digits.
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex">
+                <img
+                  style="height: 42px"
+                  src="../../../assets/Form-Component2.png"
+                />
+                <input
+                  type="email"
+                  class="form-control"
+                  id="inputEmail"
+                  placeholder="Email"
+                  formControlName="email"
+                  required
+                />
+              </div>
+
+              <div
+                *ngIf="
+                  signupForm.get('email')?.touched &&
+                  signupForm.get('email')?.invalid
+                "
+                class="text-danger"
+              >
+                Valid email is required.
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex position-relative">
+                <img
+                  style="height: 42px"
+                  src="../../../assets/Password-icon.png"
+                />
+                <input
+                  [type]="showpassword ? 'text' : 'password'"
+                  class="form-control"
+                  id="inputPassword"
+                  placeholder="Password"
+                  formControlName="password"
+                  required
+                />
+                <img
+                  *ngIf="!showpassword"
+                  (click)="togglePassword()"
+                  class="password-toggle-icon"
+                  src="../../../assets/eye.svg"
+                />
+                <img
+                  *ngIf="showpassword"
+                  (click)="togglePassword()"
+                  class="password-toggle-icon"
+                  src="../../../assets/eye-off.svg"
+                />
+              </div>
+              <div
+                *ngIf="
+                  signupForm.get('password')?.touched &&
+                  signupForm.get('password')?.invalid
+                "
+                class="text-danger"
+              >
+                Password is required.
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex position-relative">
+                <img
+                  style="height: 42px"
+                  src="../../../assets/Password-icon.png"
+                />
+
+                <input
+                  [type]="showconfirmpassword ? 'text' : 'password'"
+                  class="form-control"
+                  id="inputConfirmPassword"
+                  placeholder="Confirm Password"
+                  formControlName="confirmPassword"
+                  required
+                />
+                <img
+                  *ngIf="!showconfirmpassword"
+                  (click)="toggleConfirmPassword()"
+                  class="password-toggle-icon"
+                  src="../../../assets/eye.svg"
+                />
+                <img
+                  *ngIf="showconfirmpassword"
+                  (click)="toggleConfirmPassword()"
+                  class="password-toggle-icon"
+                  src="../../../assets/eye-off.svg"
+                />
+              </div>
+              <div
+                *ngIf="
+                  signupForm.get('confirmPassword')?.touched &&
+                  signupForm.get('confirmPassword')?.invalid
+                "
+                class="text-danger"
+              >
+                Confirm Password is required.
+              </div>
+              <div
+                *ngIf="signupForm.errors?.['passwordMismatch'] && signupForm.get('confirmPassword')?.touched"
+                class="text-danger"
+              >
+                Passwords do not match.
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary signup-btn"
+              style="border: 0px; font-size: 17px !important"
+              [disabled]="signupForm.invalid"
+            >
+              Sign Up
+            </button>
+
+            <div class="d-flex justify-content-center align-items-center my-3">
+              <span style="font-size: 15px">Already have an account?</span>
+              <span class="create-account-navigation" (click)="toggleSignup()">
+                Log in</span
+              >
+            </div>
+          </form>
+
+          <!-- Display error message -->
+          <!-- <div *ngIf="errorMessage" class="text-danger">
             {{ errorMessage }}
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

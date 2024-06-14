@@ -92,7 +92,24 @@
         </div>
         <div class="col-md-4 py-4">
           <div class="d-flex justify-content-between">
-            <div class="price">${{ item.research.price }}</div>
+            <div class="d-flex gap-4">
+              <div class="price">${{ item.research.price }}</div>
+              <div style="color: #0972ea">
+                Details
+                <img
+                  *ngIf="!item.showGstContainer"
+                  src="../../../../assets/plus-details-icon.svg"
+                  (click)="toggleGstContainer(item)"
+                  style="cursor: pointer"
+                />
+                <img
+                  *ngIf="item.showGstContainer"
+                  src="../../../../assets/details-icon.svg"
+                  style="cursor: pointer; margin-left: 2px"
+                  (click)="toggleGstContainer(item)"
+                />
+              </div>
+            </div>
             <div>
               <img
                 src="../../../../assets/delete_button.svg"
@@ -101,7 +118,7 @@
               />
             </div>
           </div>
-          <div class="gst-conatainer d-flex">
+          <div class="gst-conatainer d-flex" *ngIf="item.showGstContainer">
             <div class="d-flex row row-gap-3">
               <div class="d-flex justify-content-between">
                 <span class="reports-gst-label">Price</span>

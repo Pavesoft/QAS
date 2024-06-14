@@ -141,6 +141,23 @@ span.badge.badge-dark {
   margin-right: auto;
   margin-top: 20px;
 }
+.signup-btn {
+  display: flex;
+  width: 160px;
+  height: 40px;
+  font-size: 14px;
+  font-family: "Arial Nova";
+  padding: 14px 34px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
 
 .form-control {
   font-family: "Arial Nova" !important;
@@ -153,6 +170,17 @@ span.badge.badge-dark {
 }
 
 input#inputName {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+input#businessPhone1 {
   position: relative;
   left: -3px;
   background-size: 40px;
@@ -228,11 +256,76 @@ input#exampleInputPassword1 {
   font-size: 14px;
   background-color: #ecfbf8;
 }
+input#inputPassword {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+.password-toggle-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  height: 20px; /* Adjust the size as needed */
+  width: 20px; /* Adjust the size as needed */
+}
+input#inputConfirmPassword {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+input#inputCompanyName {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+input#inputDate {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+input#inputTime {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+
 .dropdownValueName {
   cursor: pointer;
   color: #444343 !important;
   font-weight: 400;
-  font-size: 19px !important;
+  font-size: 16px !important;
 }
 
 .fmc {
@@ -264,6 +357,12 @@ input#exampleInputPassword1 {
   border: 1px solid #4cd6b0 !important;
   outline: none;
   box-shadow: none !important;
+}
+.create-account-navigation {
+  color: #0972ea;
+  font-size: 15px;
+  margin-left: 3px;
+  cursor: pointer;
 }
 
 // .mat-mdc-raised-button.mat-unthemed {
