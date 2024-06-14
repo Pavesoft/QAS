@@ -21,7 +21,12 @@ marquee {
   font-size: 18px;
   margin: 6px;
 }
-
+.signup-button:hover {
+  color: blue;
+}
+.login-button:hover {
+  color: blue;
+}
 .topbar {
   height: 60px;
   background: #0972ea 0% 0% no-repeat padding-box;

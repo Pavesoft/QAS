@@ -109,15 +109,17 @@
       <span
         *ngIf="!isLoggedIn"
         style="cursor: pointer"
+        class="login-button"
         data-toggle="modal"
         data-target="#exampleModal1"
         (click)="toggleLogin()"
       >
-        Login </span
-      >/
+        Login /
+      </span>
       <span
         *ngIf="!isLoggedIn"
         style="cursor: pointer; margin-right: 50px"
+        class="signup-button"
         data-toggle="modal"
         data-target="#exampleModal1"
         (click)="toggleSignup()"
@@ -303,43 +305,30 @@
                 required
               />
             </div>
-            <div class="form-check mb-2">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                id="additionalInfoCheckbox"
-                formControlName="provideAdditionalInfo"
-                (change)="onAdditionalInfoChange($event)"
-              />
-              <label class="form-check-label" for="additionalInfoCheckbox"
-                >Provide additional information</label
-              >
-            </div>
 
-            <div *ngIf="showAdditionalInfo" class="d-flex gap-3">
-              <div class="d-flex mb-2">
+            <div class="d-flex gap-1">
+              <div class="form-check mb-2">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="additionalInfoCheckbox"
+                  formControlName="provideAdditionalInfo"
+                  (change)="onAdditionalInfoChange($event)"
+                />
+                <label class="form-check-label" for="additionalInfoCheckbox"
+                  >Provide additional information</label
+                >
+              </div>
+              <div *ngIf="showAdditionalInfo" class="d-flex mb-2">
                 <img
                   style="height: 42px"
                   src="../../../assets//Form-Component6.png"
                 />
                 <input
-                  type="date"
+                  type="datetime-local"
                   class="form-control"
                   id="inputDate"
                   formControlName="date"
-                  required
-                />
-              </div>
-              <div class="d-flex mb-3">
-                <img
-                  style="height: 42px"
-                  src="../../../assets//Form-Component6.png"
-                />
-                <input
-                  type="time"
-                  class="form-control"
-                  id="inputTime"
-                  formControlName="time"
                   required
                 />
               </div>
