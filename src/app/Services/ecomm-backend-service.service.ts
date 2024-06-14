@@ -11,7 +11,8 @@ import { baseURl } from "const";
 })
 export class EcommBackendService {
 
-   // private apiUrl = 'http://10.0.51.3:8090/';
+   private apiUrl = 'https://backend.quadrant-solutions.com';
+   //private apiUrl='https://technonxt.in/';
 
    //private apiUrl = 'http://localhost:8090';
   //private apiUrl='http://localhost:8090/QuadrantEcom-0.0.1-SNAPSHOT'

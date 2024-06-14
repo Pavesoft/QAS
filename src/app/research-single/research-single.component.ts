@@ -13,6 +13,10 @@ import { Title } from "@angular/platform-browser";
   styleUrls: ["./research-single.component.scss"],
 })
 export class ResearchSingleComponent implements OnInit {
+
+  isSPARKMatrix: boolean = false;
+reportType: any;
+
   constructor(
     private httpClient: HttpClient,
     private router: Router,
@@ -227,6 +231,10 @@ export class ResearchSingleComponent implements OnInit {
         this.isLoading = false;
         console.log(this.Reports.isSubscribed);
         this.isSubscribed = this.Reports.isSubscribed;
+
+        this.isSPARKMatrix = this.Reports.reportType === 'SPARK Matrix';
+
+
       });
     } else {
       // Handle the case where there is no valid reportId

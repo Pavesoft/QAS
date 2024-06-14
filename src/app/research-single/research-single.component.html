@@ -152,6 +152,14 @@
                       >Price:
                     </span>
                     <span class="prc">${{ formatPrice(Reports.price) }}</span>
+                    
+                    
+                  <mat-icon
+                    *ngIf="isSPARKMatrix"
+                    matTooltipPosition="above"
+                    matTooltip="This is Preview Copy"
+                  >info</mat-icon>
+                 
                   </div>
                 </div>
               </div>
