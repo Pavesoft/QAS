@@ -303,6 +303,17 @@ input#inputCompanyName {
   font-size: 14px;
   background-color: #ecfbf8;
 }
+input#businessPhone {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
 input#inputDate {
   position: relative;
   left: -3px;
@@ -331,6 +342,10 @@ input#inputTime {
   color: #444343 !important;
   font-weight: 400;
   font-size: 16px !important;
+}
+.notification-item:hover {
+  background: linear-gradient(360deg, #4cccd6 -10%, #00327a 100%);
+  color: white; /* Optional: change text color for better contrast */
 }
 
 .fmc {

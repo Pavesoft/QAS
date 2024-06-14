@@ -37,19 +37,100 @@ export class TopbarComponent implements OnInit {
 
   notificationData = [
     {
+      src: "../../../assets/list_notification.svg",
       name: "SPARK Matrix : Governance Risk & Compliance (GRC), 2024",
       status: "Available Now",
       time: "2 Hrs",
     },
     {
+      src: "../../../assets/list_notification.svg",
       name: "Security Compliance Report 2024",
       status: "Available Now",
       time: "1 Hr",
     },
     {
+      src: "../../../assets/list_notification.svg",
       name: "Annual Risk Assessment 2024",
       status: "Available Now",
       time: "3 Hrs",
+    },
+    {
+      src: "../../../assets/list_notification.svg",
+      name: "SPARK Matrix : Governance Risk & Compliance (GRC), 2024",
+      status: "Available Now",
+      time: "2 Hrs",
+    },
+    {
+      src: "../../../assets/list_notification.svg",
+      name: "Security Compliance Report 2024",
+      status: "Available Now",
+      time: "1 Hr",
+    },
+    {
+      src: "../../../assets/list_notification.svg",
+      name: "Security Compliance Report 2024",
+      status: "Available Now",
+      time: "1 Hr",
+    },
+    {
+      src: "../../../assets/list_notification.svg",
+      name: "Security Compliance Report 2024",
+      status: "Available Now",
+      time: "1 Hr",
+    },
+    {
+      src: "../../../assets/list_notification.svg",
+      name: "Security Compliance Report 2024",
+      status: "Available Now",
+      time: "1 Hr",
+    },
+    {
+      src: "../../../assets/list_notification.svg",
+      name: "Security Compliance Report 2024",
+      status: "Available Now",
+      time: "1 Hr",
+    },
+    {
+      src: "../../../assets/list_notification.svg",
+      name: "Security Compliance Report 2024",
+      status: "Available Now",
+      time: "1 Hr",
+    },
+    {
+      src: "../../../assets/list_notification.svg",
+      name: "Security Compliance Report 2024",
+      status: "Available Now",
+      time: "1 Hr",
+    },
+    {
+      src: "../../../assets/list_notification.svg",
+      name: "Security Compliance Report 2024",
+      status: "Available Now",
+      time: "1 Hr",
+    },
+    {
+      src: "../../../assets/list_notification.svg",
+      name: "Security Compliance Report 2024",
+      status: "Available Now",
+      time: "1 Hr",
+    },
+    {
+      src: "../../../assets/list_notification.svg",
+      name: "Security Compliance Report 2024",
+      status: "Available Now",
+      time: "1 Hr",
+    },
+    {
+      src: "../../../assets/list_notification.svg",
+      name: "Security Compliance Report 2024",
+      status: "Available Now",
+      time: "1 Hr",
+    },
+    {
+      src: "../../../assets/list_notification.svg",
+      name: "Security Compliance Report 2024",
+      status: "Available Now",
+      time: "1 Hr",
     },
   ]; // For showing error messages
 
@@ -96,7 +177,7 @@ export class TopbarComponent implements OnInit {
       {
         name: ["", Validators.required],
         companyname: ["", Validators.required],
-        phone: ["", [Validators.required, Validators.pattern(/^\d{10,16}$/)]],
+
         email: ["", [Validators.required, Validators.email]],
         password: ["", Validators.required],
         confirmPassword: ["", Validators.required],
@@ -111,7 +192,8 @@ export class TopbarComponent implements OnInit {
       : { passwordMismatch: true };
   }
   ngOnInit() {
-    const inputElement = document.querySelector("#businessPhone1");
+    const inputElement = document.querySelector("#businessPhone");
+
     if (inputElement) {
       intlTelInput(inputElement, {
         initialCountry: "us",
