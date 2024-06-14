@@ -40,7 +40,8 @@ export class UrlMappingService {
     //   "https://quadrant-solutions.com/market_research/2018-emerging-star-iot-security-market-device-identity-management/";
     const newUrl = addWwwToUrl(fromUrl);
 
-    // console.log(newUrl);
+    console.log("newurl", newUrl);
+    console.log("fom url", fromUrl);
 
     return this.httpClient
       .get<UrlMapping[]>("../../assets/fonts/Redirection_url.json")
@@ -49,8 +50,12 @@ export class UrlMappingService {
           this.urlMappings = data;
           const mapping = _.find(
             this.urlMappings,
-            (m) => m.fromUrl === fromUrl + "/" || m.fromUrl === newUrl
+            (m) =>
+              m.fromUrl === fromUrl + "/" ||
+              m.fromUrl === fromUrl ||
+              m.fromUrl === newUrl
           );
+          console.log("chekc in old urldata", mapping);
           return mapping ? mapping.toUrl : undefined;
         })
       );

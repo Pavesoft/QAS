@@ -84,10 +84,11 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
+        console.log("event.url", event.url);
         const currentUrl = new URL(event.url, window.location.origin).href;
-        console.log(currentUrl);
+        console.log("current url", currentUrl);
         this.urlMappingService.getMapping(currentUrl).subscribe((toUrl) => {
-          console.log(toUrl);
+          console.log("to url", toUrl);
           if (toUrl) {
             window.location.href = toUrl;
           }

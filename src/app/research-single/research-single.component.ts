@@ -324,8 +324,9 @@ export class ResearchSingleComponent implements OnInit {
     reportName: string,
     reportId: string
   ) {
-    // const newUrl = `${reportName}-${reportId}`;
-    this.router.navigate([newSlug], {
+    console.log("new slug in single report", newSlug);
+    const newUrl = `/${newSlug}`;
+    this.router.navigate([newUrl], {
       relativeTo: this.route,
       replaceUrl: true,
       state: { reportName, reportId },
