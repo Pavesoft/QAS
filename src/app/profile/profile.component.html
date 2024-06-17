@@ -49,7 +49,7 @@
 
         <div class="p-0 m-0">
           <form [formGroup]="passwordForm">
-            <div class="p-0 edit-btn">
+            <!-- <div class="p-0 edit-btn">
               <button
                 class="btn btn-secondary"
                 style="font-size: 17px !important"
@@ -57,7 +57,7 @@
               >
                 Edit
               </button>
-            </div>
+            </div> -->
 
             <div class="form-group">
               <label for="name">Name</label>
@@ -75,7 +75,6 @@
                 type="email"
                 placeholder="john@infomatica.com"
                 id="email"
-                formControlName="email"
                 [disabled]="!isEditing"
                 required
               />
@@ -121,6 +120,25 @@
             </div>
 
             <div class="form-group">
+              <label for="password">Current Password</label>
+              <input
+                type="password"
+                id="password"
+                formControlName="currentpassword"
+                placeholder="Informatica123456"
+                [disabled]="!isEditing"
+              />
+              <div
+                *ngIf="
+                  passwordForm.get('password')?.invalid &&
+                  passwordForm.get('password')?.touched
+                "
+                class="text-danger"
+              >
+                Password is required.
+              </div>
+            </div>
+            <div class="form-group">
               <label for="password">Reset Password</label>
               <input
                 type="password"
@@ -158,7 +176,7 @@
 
             <div class="d-flex justify-content-between pt-1">
               <div class="pl-4">
-                <input
+                <!-- <input
                   type="checkbox"
                   class="form-check-input"
                   id="checkTerms"
@@ -166,7 +184,7 @@
                 />
                 <label class="form-check-label" for="checkTerms"
                   >Auto Save all the changes</label
-                >
+                > -->
               </div>
               <div>
                 <a href="">
@@ -189,7 +207,6 @@
                 border: 0px;
                 font-size: 17px !important;
               "
-              [disabled]="!isEditing"
             >
               Submit
             </button>

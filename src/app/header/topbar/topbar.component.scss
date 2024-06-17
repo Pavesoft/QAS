@@ -344,7 +344,7 @@ input#inputTime {
   font-size: 16px !important;
 }
 .notification-item:hover {
-  background: linear-gradient(360deg, #4cccd6 -10%, #00327a 100%);
+  background: linear-gradient(90deg, #4cccd6 -50%, #00327a 100%);
   color: white; /* Optional: change text color for better contrast */
 }
 
@@ -445,4 +445,11 @@ input#inputTime {
   font-weight: 700;
   font-size: 19px;
   margin-bottom: 12px !important;
+}
+.dropdown-menu .dropdownValueName {
+  transition: color 0.3s ease;
+}
+
+.dropdown-menu .dropdownValueName:hover {
+  color: blue !important;
 }

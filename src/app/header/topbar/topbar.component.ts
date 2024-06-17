@@ -35,9 +35,9 @@ export class TopbarComponent implements OnInit {
   showconfirmpassword = false;
   showAdditionalInfo: boolean = false;
   normalImage: string = "../../../assets/list_notification.svg";
-  hoverImage: string = "../../../assets/list-white.svg";
+  hoverImage: string = "../../../assets/list_notification.svg";
   normalCross: string = "../../../assets/cross_button.svg";
-  hoverCross: string = "../../../assets/cross-white.svg";
+  hoverCross: string = "../../../assets/cross_button.svg";
   currentImage: string = this.normalImage;
   currentCrossImage: string = this.normalCross;
 
