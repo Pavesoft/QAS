@@ -35,50 +35,37 @@ export class ContactComponent implements OnInit {
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private ecommService: EcommBackendService, private meta:Meta,private router: Router,private renderer: Renderer2) {}
 
   ngOnInit(): void {
-
-   
-    const inputElement = document.querySelector('#businessPhone');
+    const inputElement = document.querySelector("#businessPhone");
     if (inputElement) {
       intlTelInput(inputElement, {
-        initialCountry: 'us',
+        initialCountry: "us",
         separateDialCode: true,
-        utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.8/js/utils.min.js'
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.8/js/utils.min.js",
       });
     }
 
-    this.renderer.setProperty(document.documentElement, 'scrollTop', 0);
-       this.renderer.setProperty(document.body, 'scrollTop', 0);
+    this.renderer.setProperty(document.documentElement, "scrollTop", 0);
+    this.renderer.setProperty(document.body, "scrollTop", 0);
 
     this.route.queryParams.subscribe((params) => {
       this.formName = history.state.contactUsFormName;
     });
-    console.log("form" + this.formName);
+    // console.log("form" + this.formName);
 
     this.form = this.fb.group({
-      fName: [
-        '', Validators.required
-      ],
-      lName: [''],
-      officeEmail: [
-        '',
-        [
-          Validators.required, Validators.email
-        ]
-      ],
-      businessPhone: [
-        '',
-        Validators.required
-      ],
-      jobTitle: [''],
-      categoryId: [''],
-      countryId: [''],
-      companyName: [''],
-      cityName: [''],
-      zipCode: [''],
-      description: [''],
+      fName: ["", Validators.required],
+      lName: [""],
+      officeEmail: ["", [Validators.required, Validators.email]],
+      businessPhone: ["", Validators.required],
+      jobTitle: [""],
+      categoryId: [""],
+      countryId: [""],
+      companyName: [""],
+      cityName: [""],
+      zipCode: [""],
+      description: [""],
     });
-
-    
   }
 
   async onSubmit1() {

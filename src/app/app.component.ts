@@ -85,9 +85,8 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         const currentUrl = new URL(event.url, window.location.origin).href;
-        console.log(currentUrl);
+
         this.urlMappingService.getMapping(currentUrl).subscribe((toUrl) => {
-          console.log(toUrl);
           if (toUrl) {
             window.location.href = toUrl;
           }

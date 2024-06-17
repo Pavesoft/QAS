@@ -26,7 +26,7 @@ export class MarketIntelligenceAnalystComponent implements OnInit {
   uploadResume() {
     if (this.selectedFile) {
       // You can now send this.selectedFile to your server or perform any desired action
-      console.log('Uploading resume:', this.selectedFile);
+      // console.log('Uploading resume:', this.selectedFile);
     } else {
       console.log('No file selected');
     }
