@@ -1181,7 +1181,7 @@ export class SingleBlogComponent {
       if (element["From URL"] === currentUrl){
         // alert("found it")
         const newUrl = element["To URL"];
-        console.log(newUrl)
+        // console.log(newUrl)
         this.router.navigateByUrl(newUrl).then((res:any)=>{
           window.location.reload()
         });
@@ -1203,8 +1203,8 @@ export class SingleBlogComponent {
         
         const matches = id.match(/-(\d+)$/); // Extract numeric part following the last dash "-"
         
-        console.log(matches);
-
+        // console.log(matches);
+// 
         if (matches.length > 1) {
           
           const reportId = matches[1];
@@ -1231,7 +1231,7 @@ export class SingleBlogComponent {
     this.isLoading = true;
     this.ecommBackendService.getPressReleaseById(id).subscribe(
       (response: ApiResponse) => {
-        console.log(response)
+        // console.log(response)
         if (response.success) {
           this.researchMaster = response.singlePressRelease;
           // Handle the successful response here

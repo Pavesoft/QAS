@@ -19,7 +19,7 @@ export class CSSComponent {
   }
 
   downloadForm(formName:string){
-    console.log(formName)
+    // console.log(formName)
     //console.log(research)
 
     const urlFriendlyName = this.getUrlFriendlyString(formName);
@@ -29,13 +29,12 @@ export class CSSComponent {
       //console.log(research.report)
       this.router.navigate([url], {
         state: {
-          contactUsFormName: formName
-        }
+          contactUsFormName: formName,
+        },
       });
     } else {
-      console.error('Selected research not found in the filtered data.');
+      console.error("Selected research not found in the filtered data.");
     }
-
   }
 
   ngOnInit(): void {

@@ -50,7 +50,7 @@ export class AuthService {
 
     return this.http.post(`${baseURl}/users/refreshToken`, body).pipe(
       switchMap((response: any) => {
-        console.log("called function", response.jwtToken);
+        // console.log("called function", response.jwtToken);
         localStorage.setItem("jwtToken", response.jwtToken); // Store the new access token
         return response.jwtToken; // Return the new token
       }),

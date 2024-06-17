@@ -250,9 +250,8 @@ export class ResearchSingleComponent implements OnInit {
     const accessToken = this.authService.getAccessToken();
     this.isLogin = accessToken !== null ? true : false;
     let id = this.route.snapshot.params["reportName-:reportId"];
-    console.log("id", id);
+
     const matches = id.match(/-(\d+)$/); // Extract numeric part following the last dash "-"
-    console.log("matches", matches);
 
     if (matches && matches.length > 1) {
       const reportId = matches[1];
@@ -264,10 +263,10 @@ export class ResearchSingleComponent implements OnInit {
         this.titleService.setTitle(this.Reports.report);
         this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
         this.isLoading = false;
-        console.log(this.Reports);
+
         this.isSubscribed = this.Reports.isSubscribed;
         const newSlug = this.researchHref(this.Reports.report, this.Reports.id);
-        console.log("new slug", newSlug);
+
         this.updateUrlWithReportName(
           newSlug,
           this.Reports.report,
