@@ -39,6 +39,7 @@ export class ResearchSingleComponent implements OnInit {
   alertType = "";
   message = "";
   showOverlay: boolean = false;
+  dataFetched: boolean = false;
   cart: {
     research: ResearchMasterDto;
     quantity: number;
@@ -259,6 +260,8 @@ export class ResearchSingleComponent implements OnInit {
         ? this.apiService.getResearchByIdToken(reportId)
         : this.apiService.getResearchById(reportId);
       apiCall.subscribe((data: any) => {
+        this.dataFetched = true;
+        console.log("data for single report", data.researchMaster);
         this.Reports = data.researchMaster;
         this.titleService.setTitle(this.Reports.report);
         this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
