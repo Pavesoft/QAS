@@ -34,100 +34,106 @@ export class TopbarComponent implements OnInit {
   showpassword = false;
   showconfirmpassword = false;
   showAdditionalInfo: boolean = false;
+  normalImage: string = "../../../assets/list_notification.svg";
+  hoverImage: string = "../../../assets/list-white.svg";
+  normalCross: string = "../../../assets/cross_button.svg";
+  hoverCross: string = "../../../assets/cross-white.svg";
+  currentImage: string = this.normalImage;
+  currentCrossImage: string = this.normalCross;
 
   notificationData = [
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "SPARK Matrix : Governance Risk & Compliance (GRC), 2024",
       status: "Available Now",
       time: "2 Hrs",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/future-trends-in-supply-chain-visibility-and-monitoring-3287",
       name: "Security Compliance Report 2024",
       status: "Available Now",
       time: "1 Hr",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "Annual Risk Assessment 2024",
       status: "Available Now",
       time: "3 Hrs",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "SPARK Matrix : Governance Risk & Compliance (GRC), 2024",
       status: "Available Now",
       time: "2 Hrs",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "Security Compliance Report 2024",
       status: "Available Now",
       time: "1 Hr",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "Security Compliance Report 2024",
       status: "Available Now",
       time: "1 Hr",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "Security Compliance Report 2024",
       status: "Available Now",
       time: "1 Hr",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "Security Compliance Report 2024",
       status: "Available Now",
       time: "1 Hr",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "Security Compliance Report 2024",
       status: "Available Now",
       time: "1 Hr",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "Security Compliance Report 2024",
       status: "Available Now",
       time: "1 Hr",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "Security Compliance Report 2024",
       status: "Available Now",
       time: "1 Hr",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "Security Compliance Report 2024",
       status: "Available Now",
       time: "1 Hr",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "Security Compliance Report 2024",
       status: "Available Now",
       time: "1 Hr",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "Security Compliance Report 2024",
       status: "Available Now",
       time: "1 Hr",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "Security Compliance Report 2024",
       status: "Available Now",
       time: "1 Hr",
     },
     {
-      src: "../../../assets/list_notification.svg",
+      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
       name: "Security Compliance Report 2024",
       status: "Available Now",
       time: "1 Hr",
@@ -364,5 +370,17 @@ export class TopbarComponent implements OnInit {
   }
   toggleConfirmPassword() {
     this.showconfirmpassword = !this.showconfirmpassword;
+  }
+  navigateTo(link: string): void {
+    window.location.href = link;
+  }
+  onMouseEnter() {
+    this.currentImage = this.hoverImage;
+    this.currentCrossImage = this.hoverCross;
+  }
+
+  onMouseLeave() {
+    this.currentImage = this.normalImage;
+    this.currentCrossImage = this.normalCross;
   }
 }
