@@ -1,4 +1,4 @@
-<div class="col-md-12 d-flex cart-container">
+<!-- <div class="col-md-12 d-flex cart-container">
   <div class="col-md-9 p-5">
     <div class="d-flex justify-content-between cart-header">
       <div class="d-flex justify-content-between align-items-center">
@@ -191,6 +191,204 @@
           >
             Proceed Payment
           </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-fluid cart-container">
+  <div class="row">
+    <div class="col-md-9 p-5 price-reports-container">
+      <div class="d-flex justify-content-between cart-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h3 class="m-0 p-3">Reports</h3>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <h3 class="m-0 p-3">Price ( Inclusive of GST )</h3>
+        </div>
+      </div>
+      <div
+        class="d-flex justify-content-center align-items-center"
+        *ngIf="cart.length === 0"
+        style="background-color: white; padding-bottom: 35px"
+      >
+        <p
+          style="
+            padding-top: 150px !important;
+            font-size: 24px;
+            font-weight: 700;
+            color: #00327a;
+          "
+        >
+          Your cart is empty.
+        </p>
+      </div>
+      <div style="background-color: white; padding-bottom: 105px !important">
+        <div
+          [ngClass]="{ 'no-border-bottom': last }"
+          style="border-bottom: 1px #00327a33 solid"
+          class="row mx-4"
+          *ngFor="let item of cart; let last = last"
+        >
+          <div class="col-md-8 col-12 d-flex price-number-container py-4">
+            <div class="d-flex row row-gap-3 w-100">
+              <div class="d-flex">
+                <span class="category-heading">Category:</span>
+                <div *ngFor="let category of item.research.categoryList">
+                  <span class="category-list">{{ category }}</span
+                  ><br />
+                </div>
+              </div>
+              <div>
+                <span class="report-title">{{ item.research.report }}</span>
+              </div>
+              <div class="d-flex">
+                <span class="authors-heading">Authors:</span>
+                <div *ngIf="item.research.authors.length == 0">
+                  <p
+                    class="authors-list"
+                    style="margin-left: 4px; color: #444343; cursor: pointer"
+                  >
+                    NA
+                  </p>
+                </div>
+                <div
+                  class="authors-list"
+                  *ngIf="item.research.authors.length != 0"
+                >
+                  <a
+                    class="authors-list"
+                    *ngFor="
+                      let author of item.research.authors;
+                      let last = last
+                    "
+                  >
+                    <ng-container *ngIf="!last; else lastAuthor">
+                      <span class="authors-list">{{ author }}, </span>
+                    </ng-container>
+                    <ng-template #lastAuthor>
+                      <span class="authors-list">{{ author }}</span>
+                    </ng-template>
+                  </a>
+                </div>
+              </div>
+              <div>
+                <div class="mt-1">
+                  <img
+                    src="../../../../assets/decrement_button.svg"
+                    (click)="decrement(item)"
+                    style="cursor: pointer; margin-top: -9px !important"
+                  />
+                  <span class="count-style">{{ item.count }}</span>
+                  <img
+                    src="../../../../assets/increment_button.svg"
+                    (click)="increment(item)"
+                    style="cursor: pointer; margin-top: -9px !important"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-12 py-4 price-gst-details-container">
+            <div class="d-flex justify-content-between">
+              <div class="d-flex gap-4">
+                <div class="price">${{ item.research.price }}</div>
+                <div style="color: #0972ea">
+                  Details
+                  <img
+                    *ngIf="!item.showGstContainer"
+                    src="../../../../assets/plus-details-icon.svg"
+                    (click)="toggleGstContainer(item)"
+                    style="cursor: pointer"
+                  />
+                  <img
+                    *ngIf="item.showGstContainer"
+                    src="../../../../assets/details-icon.svg"
+                    style="cursor: pointer; margin-left: 2px"
+                    (click)="toggleGstContainer(item)"
+                  />
+                </div>
+              </div>
+              <div>
+                <img
+                  src="../../../../assets/delete_button.svg"
+                  (click)="removeFromCart(item)"
+                  style="cursor: pointer"
+                />
+              </div>
+            </div>
+            <div class="d-flex" *ngIf="item.showGstContainer">
+              <div class="d-flex gst-container row row-gap-3">
+                <div class="d-flex justify-content-between">
+                  <span class="reports-gst-label">Price</span>
+                  <span class="reports-gst-value"
+                    >${{ item.research.price }}</span
+                  >
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span class="reports-gst-label">GST@18%</span>
+                  <span class="reports-gst-value">0</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span class="reports-gst-label">Final Price</span>
+                  <span class="reports-gst-value"
+                    >${{ item.research.price }}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 pt-5 pr-5 payment-summary-container">
+      <div class="d-flex row justify-content-between cart-header">
+        <div class="d-flex justify-content-between cart-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <h3 class="m-0 p-3">Payment Summary</h3>
+          </div>
+        </div>
+        <div
+          class="pb-4"
+          style="background-color: white; height: 320px !important"
+        >
+          <div class="d-flex row row-gap-4 mx-3 mt-3">
+            <div class="d-flex justify-content-between">
+              <span class="payment-label">Total Reports</span
+              ><span class="payment-value">{{ getTotalReports() }}</span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span class="payment-label">Discount</span
+              ><span class="payment-discount-value">$0</span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span class="payment-label">Subtotal</span
+              ><span class="payment-value">${{ getTotalPrice() }}</span>
+            </div>
+            <hr style="width: 95%" />
+          </div>
+          <div
+            class="d-flex justify-content-between mx-2 py-3 px-3"
+            style="background-color: #f3f4f5"
+          >
+            <span class="payment-label">Total</span>
+            <span class="payment-value">${{ getTotalPrice() }}</span>
+          </div>
+          <div>
+            <button
+              type="submit"
+              class="btn btn-primary procced-btn"
+              style="
+                margin-top: 25px !important;
+                border: 0px;
+                font-size: 17px !important;
+              "
+            >
+              Proceed Payment
+            </button>
+          </div>
         </div>
       </div>
     </div>
