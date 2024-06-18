@@ -79,11 +79,11 @@
         >
           <div class="d-flex justify-content-between">
             <h3 class="notification-header">Notifications</h3>
-            <h3 class="notification-header">Mark all as Read</h3>
+            <button class="mark-read-button">Mark all as Read</button>
           </div>
           <div
             *ngFor="let notification of notificationData"
-            class="d-flex pt-3 pb-3 notification-item"
+            class="d-flex pt-2 pb-2 notification-item"
             style="border-bottom: 1px solid #444343"
             (click)="navigateTo(notification.link)"
             (mouseenter)="onMouseEnter()"
@@ -100,7 +100,7 @@
                   class="m-0"
                   style="
                     margin-top: -2px !important;
-                    font-size: 18px !important;
+                    font-size: 16px !important;
                     margin-right: 25px !important;
                   "
                 >
@@ -112,8 +112,10 @@
               <div
                 class="d-flex justify-content-between align-items-center p-0 m-0"
               >
-                <h3 class="m-0">{{ notification.status }}</h3>
-                <h3 class="m-0">{{ notification.time }}</h3>
+                <h3 class="m-0 notification-status">
+                  {{ notification.status }}
+                </h3>
+                <h3 class="m-0 notification-status">{{ notification.time }}</h3>
               </div>
             </div>
           </div>
@@ -126,7 +128,6 @@
         class="login-button"
         data-toggle="modal"
         data-target="#exampleModal1"
-        (click)="toggleLogin()"
       >
         Login /
       </span>
@@ -135,8 +136,7 @@
         style="cursor: pointer; margin-right: 50px"
         class="signup-button"
         data-toggle="modal"
-        data-target="#exampleModal1"
-        (click)="toggleSignup()"
+        data-target="#exampleModal2"
       >
         Sign Up
       </span>
@@ -323,7 +323,7 @@
               />
             </div>
 
-            <div class="d-flex gap-1">
+            <div class="d-flex justify-content-between">
               <div class="form-check mb-2">
                 <input
                   type="checkbox"
@@ -333,8 +333,8 @@
                   (change)="onAdditionalInfoChange($event)"
                 />
                 <label class="form-check-label" for="additionalInfoCheckbox"
-                  >Provide additional information</label
-                >
+                  >Schedule Meet
+                </label>
               </div>
               <div *ngIf="showAdditionalInfo" class="d-flex mb-2">
                 <img
@@ -381,7 +381,7 @@
             id="exampleModalLabel"
             style="font-size: 20px !important"
           >
-            {{ isSignup ? "Sign Up" : "Login" }}
+            Login
           </h1>
           <img src="/assets/Line.png" class="bln" />
 
@@ -395,7 +395,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <h3>{{ isSignup ? "Welcome" : "Welcome Back !" }}</h3>
+          <h3>Welcome Back</h3>
           <form
             *ngIf="!isSignup"
             [formGroup]="loginForm"
@@ -493,18 +493,58 @@
 
             <div class="d-flex justify-content-center align-items-center mb-5">
               <span style="font-size: 15px"> Not registered ? </span
-              ><span class="create-account-navigation" (click)="toggleSignup()"
+              ><span
+                class="create-account-navigation"
+                data-dismiss="modal"
+                data-toggle="modal"
+                data-target="#exampleModal2"
                 >Create an account</span
               >
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="exampleModal2"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel2"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div
+        class="modal-content"
+        style="height: auto !important; background: #ddefed"
+      >
+        <div class="modal-header">
+          <h1
+            class="modal-title ef"
+            id="exampleModalLabel"
+            style="font-size: 20px !important"
+          >
+            Sign Up
+          </h1>
+          <img src="/assets/Line.png" class="bln" />
+
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3>Welcome</h3>
+
           <!-- Signup Form -->
 
-          <form
-            *ngIf="isSignup"
-            [formGroup]="signupForm"
-            (ngSubmit)="onSignup()"
-          >
+          <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
             <div class="mb-3">
               <div class="d-flex">
                 <img
@@ -587,7 +627,7 @@
               />
               <input
                 type="tel"
-                id="businessPhone1"
+                id="businessPhone"
                 maxlength="16"
                 class="form-control"
                 required
@@ -714,17 +754,17 @@
             </button>
 
             <div class="d-flex justify-content-center align-items-center my-3">
-              <span style="font-size: 15px">Already have an account?</span>
-              <span class="create-account-navigation" (click)="toggleSignup()">
-                Log in</span
+              <div style="font-size: 15px">Already have an account?</div>
+              <div
+                class="create-account-navigation"
+                data-dismiss="modal"
+                data-toggle="modal"
+                data-target="#exampleModal1"
               >
+                Log in
+              </div>
             </div>
           </form>
-
-          <!-- Display error message -->
-          <!-- <div *ngIf="errorMessage" class="text-danger">
-            {{ errorMessage }}
-          </div> -->
         </div>
       </div>
     </div>
