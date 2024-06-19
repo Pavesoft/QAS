@@ -9,7 +9,13 @@
   height: 50px;
   background-color: #fff;
 }
+.icon-color-style {
+  color: #44434e !important;
+}
 
+.cart-link:hover .icon-color-style {
+  color: blue !important;
+}
 .chandrayan2 {
   width: 100%;
   height: 35px;
@@ -173,6 +179,11 @@ span.badge.badge-dark {
   top: 45px;
   width: 455px;
 }
+.enquiry-underline {
+  position: absolute;
+  top: 50px;
+  width: 390px;
+}
 
 input#inputName {
   position: relative;
@@ -185,22 +196,12 @@ input#inputName {
   font-size: 14px;
   background-color: #ecfbf8;
 }
-input#businessPhone1 {
-  position: relative;
-  left: -8px;
-  background-size: 40px;
-  background-position: 0px center;
-  border-radius: 0px 8px 8px 0px;
-  background-repeat: no-repeat;
-  height: 42px;
-  font-size: 14px;
-  background-color: #ecfbf8;
-}
+
 #queries {
   background-color: #ecfbf8 !important;
   height: 42px;
-  margin-right: 4px !important;
-  margin-left: -2px !important;
+  margin-right: 3px !important;
+  margin-left: -3px !important;
   border-radius: 0px 8px 8px 0px;
 }
 input#inputEmail {
@@ -428,6 +429,12 @@ input#inputTime {
   nav#tobar {
     height: 50px !important;
   }
+  .common-header-distance {
+    display: inline-block;
+    position: relative;
+    left: 0px;
+    top: 0px;
+  }
 
   a#bec {
     float: left !important;
@@ -466,17 +473,33 @@ input#inputTime {
   cursor: pointer;
 }
 .profile-dropdown-container {
-  width: 312px;
-  background: #c1ece7;
-  top: 12px !important;
+  width: 250px;
+  background: #ddefed;
+  top: 10px !important;
+  padding: 15px !important;
 }
 .notification-dropdown-container {
   width: 430px;
-
+  height: 500px;
+  overflow-y: scroll;
   background: #ddefed;
   top: 10px !important;
   border-radius: 0px !important;
   border: 0px !important;
+}
+.enquiryForm-dropdown-container {
+  width: 430px;
+  padding: 20px !important ;
+  background: #ddefed;
+  top: 10px !important;
+  border-radius: 0px !important;
+  border: 0px !important;
+}
+.enquiry-title {
+  color: #00327a;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 12px !important;
 }
 .notification-header {
   color: #00327a;
@@ -507,7 +530,7 @@ input#inputTime {
   background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
 }
 .mark-read-button:hover {
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
 #logoutDropdown:hover {
   color: blue !important; /* Change this to the desired hover color */
@@ -531,6 +554,15 @@ input#inputTime {
     margin-left: 0%;
     margin-top: 0%;
     background: #ddefed;
+  }
+  .notification-dropdown-container {
+    width: 350px;
+    height: 500px;
+    overflow-y: scroll;
+    background: #ddefed;
+    top: 10px !important;
+    border-radius: 0px !important;
+    border: 0px !important;
   }
 }
 @media screen and (max-width: 1024px) {

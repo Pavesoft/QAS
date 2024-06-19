@@ -143,3 +143,8 @@ input#officeEmail.form-control.ng-dirty.ng-valid.ng-touched {
     width: 100%;
   }
 }
+@media only screen and (max-width: 1024px) {
+  .full-width input {
+    width: 0% !important;
+  }
+}
