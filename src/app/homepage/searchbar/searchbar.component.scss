@@ -9,6 +9,8 @@
 .ident {
   font-family: Arial Nova Bold;
   font-size: 16px;
+  color: white;
+  margin: 0px !important;
 }
 
 .btn.btn-outline-primary {
@@ -40,6 +42,17 @@ input#email {
   .mb {
     position: relative;
     top: -30px;
+  }
+  .subs_button {
+    color: black;
+    background-color: white;
+    border-radius: 0px 8px 8px 0px !important;
+    margin-top: 1px !important;
+    margin-left: 180px !important;
+  }
+  .ident {
+    padding-top: 30px !important;
+    padding-bottom: 5px !important;
   }
 }
 
@@ -113,8 +126,7 @@ input#officeEmail.form-control.ng-dirty.ng-valid.ng-touched {
     display: flex;
     flex-direction: column;
     background: #011f41;
-    margin-left: 0px !important;
-    margin-right: 0px !important;
+    padding: 10px 0px 10px 0px !important;
   }
   .subs {
     margin-top: 2rem;
