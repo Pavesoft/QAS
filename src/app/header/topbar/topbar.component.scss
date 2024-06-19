@@ -187,7 +187,7 @@ input#inputName {
 }
 input#businessPhone1 {
   position: relative;
-  left: -3px;
+  left: -8px;
   background-size: 40px;
   background-position: 0px center;
   border-radius: 0px 8px 8px 0px;
@@ -200,6 +200,7 @@ input#businessPhone1 {
   background-color: #ecfbf8 !important;
   height: 42px;
   margin-right: 4px !important;
+  margin-left: -2px !important;
   border-radius: 0px 8px 8px 0px;
 }
 input#inputEmail {
@@ -325,6 +326,12 @@ input#inputDate {
   font-size: 14px;
   background-color: #ecfbf8;
 }
+.enquiryForm-container {
+  height: auto;
+  margin-left: 80%;
+  margin-top: 9%;
+  background: #ddefed;
+}
 input#inputTime {
   position: relative;
   left: -3px;
@@ -336,16 +343,44 @@ input#inputTime {
   font-size: 14px;
   background-color: #ecfbf8;
 }
-
+.cross-svg .cross-path {
+  width: 17px !important;
+  height: 17px !important;
+}
 .dropdownValueName {
   cursor: pointer;
   color: #444343 !important;
   font-weight: 400;
   font-size: 16px !important;
 }
+
+.notification-name {
+  margin-left: 2px !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  margin-right: 20px !important;
+  color: #444343 !important;
+}
+.notification-status {
+  font-size: 14px;
+  margin-left: 2px !important;
+  color: rgba(68, 67, 67, 0.7);
+}
+
 .notification-item:hover {
-  background: linear-gradient(90deg, #4cccd6 -50%, #00327a 100%);
+  background: linear-gradient(180deg, #4cccd6 -20%, #00327a 100%);
   color: white; /* Optional: change text color for better contrast */
+  fill: red;
+}
+.notification-item:hover .notification-name,
+.notification-item:hover .notification-status {
+  color: #ffffff !important;
+}
+.notification-item:hover .circle-svg .circle {
+  fill: #ffffff !important; /* Change this to the desired hover color */
+}
+.notification-item:hover .cross-svg .cross-path {
+  stroke: #ffffff; /* Change this to the desired hover color (white in this case) */
 }
 
 .fmc {
@@ -437,8 +472,11 @@ input#inputTime {
 }
 .notification-dropdown-container {
   width: 430px;
-  background: #c1ece7;
+
+  background: #ddefed;
   top: 10px !important;
+  border-radius: 0px !important;
+  border: 0px !important;
 }
 .notification-header {
   color: #00327a;
@@ -453,12 +491,53 @@ input#inputTime {
 .dropdown-menu .dropdownValueName:hover {
   color: blue !important;
 }
-.notification-status {
-  font-size: 14px !important;
-}
+
 .mark-read-button {
-  font-size: 14px !important;
-  padding: 0px 5px 0px 5px !important;
+  display: flex;
+  color: white;
   height: 30px;
   border: 0px !important;
+  font-size: 14px;
+  font-family: "Arial Nova";
+  padding: 14px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
+}
+.mark-read-button:hover {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+#logoutDropdown:hover {
+  color: blue !important; /* Change this to the desired hover color */
+}
+.help-desk:hover {
+  color: blue !important; /* Change this to the desired hover color */
+}
+.dropdown-toggle:hover {
+  color: blue !important;
+}
+.common-hover-effect {
+  color: #212529 !important;
+}
+.common-hover-effect:hover {
+  color: blue !important;
+}
+
+@media screen and (max-width: 480px) {
+  .enquiryForm-container {
+    height: auto;
+    margin-left: 0%;
+    margin-top: 0%;
+    background: #ddefed;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .enquiryForm-container {
+    height: auto;
+    margin-left: 0%;
+    margin-top: 8%;
+    background: #ddefed;
+  }
 }

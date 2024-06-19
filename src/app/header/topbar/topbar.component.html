@@ -17,28 +17,28 @@
       class="col-md-6 d-flex"
       style="justify-content: space-between; align-items: center"
     >
-      <ul class="d-flex" style="gap: 30px">
+      <ul class="d-flex" style="gap: 5px">
         <!-- Spacing between items in the list -->
         <li>
           <a
+            class="common-hover-effect"
             routerLink="/press-release"
-            style="color: #011f41"
             data-bs-dismiss="offcanvas"
             >Press Release</a
           >
         </li>
         <li>
           <a
+            class="common-hover-effect"
             routerLink="/career"
-            style="color: #011f41"
             data-bs-dismiss="offcanvas"
             >Career</a
           >
         </li>
         <li>
           <a
+            class="common-hover-effect"
             routerLink="/contact-us"
-            style="color: #011f41"
             data-bs-dismiss="offcanvas"
             >Contact</a
           >
@@ -57,70 +57,136 @@
         style="cursor: pointer"
         data-toggle="modal"
         data-target="#exampleModal"
+        class="help-desk"
       >
-        <img src="../../../assets/headphones.svg" alt="User icon" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-headphones"
+        >
+          <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+          <path
+            d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"
+          ></path>
+        </svg>
       </span>
 
-      <div class="dropdown" style="cursor: pointer; margin-right: 50px">
+      <span class="dropdown" style="cursor: pointer">
         <!-- The icon that triggers the dropdown -->
         <span
           id="logoutDropdown"
           data-toggle="dropdown"
           aria-expanded="false"
-          style="cursor: pointer"
+          style="cursor: pointer; margin-right: 8px !important"
         >
-          <img src="../../../assets/bell.svg" alt="User icon" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-bell"
+          >
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
         </span>
 
         <!-- The dropdown menu -->
         <div
-          class="dropdown-menu dropdown-menu-right notification-dropdown-container p-2"
+          class="dropdown-menu dropdown-menu-right notification-dropdown-container"
           style="height: 500px; overflow-y: scroll"
         >
-          <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between py-1 px-3">
             <h3 class="notification-header">Notifications</h3>
             <button class="mark-read-button">Mark all as Read</button>
           </div>
           <div
             *ngFor="let notification of notificationData"
-            class="d-flex pt-2 pb-2 notification-item"
-            style="border-bottom: 1px solid #444343"
+            class="notification-item"
             (click)="navigateTo(notification.link)"
-            (mouseenter)="onMouseEnter()"
-            (mouseleave)="onMouseLeave()"
           >
-            <div class="col-md-1">
-              <img [src]="currentImage" alt="User icon" />
-            </div>
-            <div class="col-md-11 ml-0">
-              <div
-                class="d-flex justify-content-between align-items-start p-0 m-0"
-              >
-                <h3
-                  class="m-0"
-                  style="
-                    margin-top: -2px !important;
-                    font-size: 16px !important;
-                    margin-right: 25px !important;
-                  "
-                >
-                  {{ notification.name }}
-                </h3>
+            <div>
+              <div class="d-flex pt-3 pb-3">
+                <div class="col-md-1">
+                  <svg
+                    class="circle-svg"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      class="circle"
+                      cx="7.5"
+                      cy="7.5"
+                      r="7.5"
+                      fill="#444343"
+                      fill-opacity="0.75"
+                    />
+                  </svg>
+                </div>
+                <div class="col-md-11 pl-0 ml-0">
+                  <div
+                    class="d-flex justify-content-between align-items-start p-0 m-0"
+                  >
+                    <h3 class="m-0 notification-name">
+                      {{ notification.name }}
+                    </h3>
 
-                <img [src]="currentCrossImage" alt="User icon" />
-              </div>
-              <div
-                class="d-flex justify-content-between align-items-center p-0 m-0"
-              >
-                <h3 class="m-0 notification-status">
-                  {{ notification.status }}
-                </h3>
-                <h3 class="m-0 notification-status">{{ notification.time }}</h3>
+                    <span>
+                      <svg
+                        class="cross-svg"
+                        width="17"
+                        height="17"
+                        viewBox="0 0 17 17"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          class="cross-path"
+                          d="M12.75 4.25L4.25 12.75M12.75 12.75L4.25 4.25"
+                          stroke="#444343"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center p-0 m-0"
+                  >
+                    <h3 class="m-0 notification-status">
+                      {{ notification.status }}
+                    </h3>
+                    <h3 class="m-0 notification-status">
+                      {{ notification.time }}
+                    </h3>
+                  </div>
+                </div>
               </div>
             </div>
+            <hr
+              style="
+                margin: 0px 10px 0px 18px !important;
+                color: rgba(68, 67, 67, 0.5);
+              "
+            />
           </div>
         </div>
-      </div>
+      </span>
 
       <span
         *ngIf="!isLoggedIn"
@@ -133,7 +199,7 @@
       </span>
       <span
         *ngIf="!isLoggedIn"
-        style="cursor: pointer; margin-right: 50px"
+        style="cursor: pointer; margin-left: -7px"
         class="signup-button"
         data-toggle="modal"
         data-target="#exampleModal2"
@@ -206,8 +272,8 @@
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content" style="height: auto; background: #ddefed">
+    <div class="modal-dialog modal-dialog" role="document">
+      <div class="modal-content enquiryForm-container">
         <div class="modal-header">
           <h5 class="modal-title ef" id="exampleModalLabel">Enquiry Form</h5>
           <img src="/assets/Line.png" class="bln" />
@@ -263,7 +329,7 @@
             </div>
             <div class="d-flex mb-2">
               <img
-                style="height: 42px"
+                style="height: 43px"
                 src="../../../assets//Form-Component3.png"
               />
               <input
@@ -278,7 +344,7 @@
             </div>
             <div class="d-flex mb-2">
               <img
-                style="height: 42px"
+                style="height: 45px; margin-top: 1px !important"
                 src="../../../assets//Form-Component4.png"
               />
               <input
@@ -324,7 +390,7 @@
             </div>
 
             <div class="d-flex justify-content-between">
-              <div class="form-check mb-2">
+              <div class="form-check ml-1 mb-2">
                 <input
                   type="checkbox"
                   class="form-check-input"
@@ -338,7 +404,7 @@
               </div>
               <div *ngIf="showAdditionalInfo" class="d-flex mb-2">
                 <img
-                  style="height: 42px"
+                  style="height: 41px"
                   src="../../../assets//date-image.svg"
                 />
                 <input
@@ -555,7 +621,7 @@
                   type="text"
                   class="form-control"
                   id="inputName"
-                  placeholder="FirstName"
+                  placeholder="First Name"
                   formControlName="name"
                   required
                 />
@@ -580,7 +646,7 @@
                   type="text"
                   class="form-control"
                   id="inputName"
-                  placeholder="LastName"
+                  placeholder="Last Name"
                   formControlName="name"
                   required
                 />
