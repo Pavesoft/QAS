@@ -161,18 +161,21 @@ export class ResearchSingleComponent implements OnInit {
     const existingCartItem = cart.find(
       (item) => item.research.id === research.id
     );
-    const Research: any = {
+    const Research: ResearchMasterDto = {
       id: +research.id,
       report: research.report,
       price: +research.price,
-      categoryName: "",
+      categoryName: research.categoryName,
       reportType: "",
       description: "",
-      author: "",
-      mAuthor: "",
+      author: research.author,
+      mAuthor: research.mAuthor,
       publishDate: new Date(),
       price2: 0,
       tableOfContent: "",
+      authors: research.authors,
+
+      categoryList: research.categoryList,
     };
     if (existingCartItem) {
       this.alertType = "Failed";
