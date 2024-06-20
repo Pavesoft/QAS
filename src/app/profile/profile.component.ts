@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -6,16 +6,24 @@ import {
   AbstractControl,
 } from "@angular/forms";
 import * as intlTelInput from "intl-tel-input";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+
+const baseURl = "https://backend.quadrant-solutions.com";
 
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
   styleUrls: ["./profile.component.scss"],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, AfterViewInit {
   content: string = "My Profile";
-  passwordForm: any = FormGroup;
+  passwordForm: FormGroup;
   isEditing = false;
+  isLoading = false; // Add a loading state variable
+  subscriptions: any[] = [];
+  showAllReportsForCategory: { [key: string]: boolean } = {}; // Track show more/less for each category
+
+  constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngAfterViewInit(): void {
     const inputElement = document.querySelector("#businessPhone1");
@@ -28,6 +36,7 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
+
   invoices = [
     {
       title: "Download Invoice",
@@ -45,11 +54,10 @@ export class ProfileComponent implements OnInit {
       downloadImgSrc: "../../assets//invoice-download.svg",
     },
   ];
+
   toggleEdit() {
     this.isEditing = !this.isEditing;
   }
-
-  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.passwordForm = this.fb.group(
@@ -58,8 +66,11 @@ export class ProfileComponent implements OnInit {
         confirmPassword: ["", [Validators.required]],
         email: [
           "",
-          [Validators.required, Validators.email],
-          Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+          [
+            Validators.required,
+            Validators.email,
+            Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+          ],
         ],
       },
       { validator: this.passwordsMatch }
@@ -77,6 +88,33 @@ export class ProfileComponent implements OnInit {
 
   displayContent(content: string) {
     this.content = content;
+    if (content === "Subscription") {
+      this.fetchSubscriptions();
+    }
+  }
+
+  fetchSubscriptions() {
+    this.isLoading = true;
+    const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    this.http
+      .get<any[]>(`${baseURl}/research-masters/research-list-subscribed`, {
+        headers,
+      })
+      .subscribe(
+        (data: any) => {
+          this.subscriptions = data.researchMasterList;
+          console.log(this.subscriptions);
+          this.isLoading = false;
+        },
+        (error: any) => {
+          console.error("Error fetching subscriptions", error);
+          this.isLoading = false;
+        }
+      );
   }
 
   onSubmit() {
@@ -86,5 +124,25 @@ export class ProfileComponent implements OnInit {
     } else {
       console.log("Form is invalid");
     }
+  }
+
+  getUniqueCategories(): string[] {
+    const uniqueCategories = [
+      ...new Set(this.subscriptions.map((sub) => sub.categoryList).flat()),
+    ];
+    console.log(uniqueCategories);
+    return uniqueCategories;
+  }
+
+  // Method to filter subscriptions by category
+  filteredSubscriptions(category: string): any[] {
+    return this.subscriptions.filter((sub) =>
+      sub.categoryList.includes(category)
+    );
+  }
+
+  toggleShowAllReports(category: string) {
+    this.showAllReportsForCategory[category] =
+      !this.showAllReportsForCategory[category];
   }
 }
