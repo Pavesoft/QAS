@@ -198,10 +198,18 @@ export class TopbarComponent implements OnInit {
       : { passwordMismatch: true };
   }
   ngOnInit() {
-    const inputElement = document.querySelector("#businessPhone");
+    const inputElement = document.querySelectorAll("#businessPhone");
 
     if (inputElement) {
-      intlTelInput(inputElement, {
+      intlTelInput(inputElement[0], {
+        initialCountry: "us",
+        separateDialCode: true,
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.8/js/utils.min.js",
+      });
+    }
+    if (inputElement) {
+      intlTelInput(inputElement[1], {
         initialCountry: "us",
         separateDialCode: true,
         utilsScript:
@@ -295,7 +303,7 @@ export class TopbarComponent implements OnInit {
   onLogout() {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("refreshToken");
-    localStorage.removeItem("isSubscribed"); 
+    localStorage.removeItem("isSubscribed");
     this.isLoggedIn = false; // Update the login status
     localStorage.setItem("isLogin", this.isLoggedIn.toString());
     window.location.reload();

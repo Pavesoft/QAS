@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import * as intlTelInput from "intl-tel-input";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import * as _ from "lodash";
 
 const baseURl = "https://backend.quadrant-solutions.com";
 
@@ -19,11 +20,16 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   content: string = "My Profile";
   passwordForm: FormGroup;
   isEditing = false;
+  oldUrlData: any;
   isLoading = false; // Add a loading state variable
   subscriptions: any[] = [];
-  showAllReportsForCategory: { [key: string]: boolean } = {}; // Track show more/less for each category
+  showAllReportsForReportType: { [key: string]: boolean } = {}; // Track show more/less for each report type
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private httpClient: HttpClient
+  ) {}
 
   ngAfterViewInit(): void {
     const inputElement = document.querySelector("#businessPhone1");
@@ -60,6 +66,11 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.httpClient
+      .get<any[]>("assets/fonts/data/oldUrlData.json")
+      .subscribe((data: any) => {
+        this.oldUrlData = data.oldUrlData;
+      });
     this.passwordForm = this.fb.group(
       {
         password: ["", [Validators.required]],
@@ -126,23 +137,50 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getUniqueCategories(): string[] {
-    const uniqueCategories = [
-      ...new Set(this.subscriptions.map((sub) => sub.categoryList).flat()),
+  getUniqueReportTypes(): string[] {
+    const uniqueReportTypes = [
+      ...new Set(this.subscriptions.map((sub) => sub.reportType).flat()),
     ];
-    console.log(uniqueCategories);
-    return uniqueCategories;
+    console.log(uniqueReportTypes);
+    return uniqueReportTypes;
   }
 
   // Method to filter subscriptions by category
-  filteredSubscriptions(category: string): any[] {
+  filteredSubscriptions(reportType: string): any[] {
     return this.subscriptions.filter((sub) =>
-      sub.categoryList.includes(category)
+      sub.reportType.includes(reportType)
     );
   }
 
-  toggleShowAllReports(category: string) {
-    this.showAllReportsForCategory[category] =
-      !this.showAllReportsForCategory[category];
+  toggleShowAllReports(reportType: string) {
+    this.showAllReportsForReportType[reportType] =
+      !this.showAllReportsForReportType[reportType];
+  }
+
+  replaceSpaces(value: string): string {
+    const regexPattern = /[^a-zA-Z0-9\s]/g;
+
+    if (value && typeof value === "string") {
+      return value
+        .replace(regexPattern, " ")
+        .replace(/\s+/g, "-")
+        .toLowerCase();
+    } else {
+      return "";
+    }
+  }
+
+  researchHref(name: string, id: any) {
+    let nameChange = this.replaceSpaces(name);
+    let href = "/market-research/" + nameChange + "-" + id;
+    const objIndex = _.findIndex(
+      this.oldUrlData,
+      (item: any) => item.URL_ID == id
+    );
+    if (objIndex !== -1) {
+      href = this.oldUrlData[objIndex].To_URL;
+    }
+
+    return href;
   }
 }

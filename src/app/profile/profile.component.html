@@ -230,7 +230,7 @@
       <ng-template #subscriptionContent>
         <div class="mr-5 ml-5 mt-0">
           <!-- Filter and display subscriptions by category -->
-          <div class="mb-4" *ngFor="let category of getUniqueCategories()">
+          <div class="mb-4" *ngFor="let category of getUniqueReportTypes()">
             <h4 class="subscription-technology-title m-0">{{ category }}</h4>
             <img src="/assets/underline-subscriptin-technology.svg" />
             <ul class="m-0">
@@ -241,17 +241,24 @@
                 "
               >
                 <li
-                  class="subscription-technology-reports my-2"
-                  *ngIf="showAllReportsForCategory[category] || i < 5"
+                  class="my-2"
+                  *ngIf="showAllReportsForReportType[category] || i < 5"
                 >
-                  {{ subscription.report }}
+                  <a
+                    href="{{
+                      researchHref(subscription.report, subscription.id)
+                    }}"
+                    class="subscription-technology-reports"
+                  >
+                    {{ subscription.report }}
+                  </a>
                 </li>
               </ng-container>
             </ul>
 
             <!-- Show more button only if there are more than 5 reports -->
             <div
-              class="d-flex justify-content-center ml-5"
+              class="d-flex"
               *ngIf="filteredSubscriptions(category).length > 5"
             >
               <button
@@ -259,7 +266,7 @@
                 (click)="toggleShowAllReports(category)"
               >
                 {{
-                  showAllReportsForCategory[category]
+                  showAllReportsForReportType[category]
                     ? "Show less"
                     : "Show more"
                 }}
