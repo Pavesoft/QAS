@@ -51,12 +51,15 @@
   font-size: 16px !important;
 }
 .details-hover:hover {
-  color: black; /* Change text color on hover */
+  color: blue;
 }
 
-.details-hover:hover .svg-icon {
-  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%)
-    contrast(100%); /* Change icon color on hover */
+.details-hover:hover svg path {
+  stroke: blue;
+}
+.details-hover:hover icon-hover-effect {
+  stroke: blue;
+  fill: blue;
 }
 @media screen and (max-width: 480px) {
   .mr {
