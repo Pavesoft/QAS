@@ -307,9 +307,21 @@
               class="col-md-6 my-4 d-flex align-items-center justify-content-end"
             >
               <span class="sb" style="font-size: 16px !important">Sort By</span>
-              <span class="rd" style="font-size: 16px !important">
-                Release Date <i class="fas fa-angle-down"></i>
-              </span>
+              <div class="dropdown">
+                <span
+                  class="rd"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Release Date <i class="fas fa-angle-down"></i>
+                </span>
+                <div class="dropdown-menu dropdown-menu-right releasedate">
+                  <li class="dropdown-item releasedate">Sort by Date</li>
+                  <li class="dropdown-item releasedate">Sort by Price</li>
+                  <li class="dropdown-item releasedate">Sort by Author</li>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -565,7 +577,7 @@
                         </div>
                         <div class="row d-flex justify-content-end">
                           <button
-                            class="bn"
+                            class="btn btn-primary common-button-style"
                             style="
                               font-size: 16px;
                               border: 0px;
@@ -601,7 +613,7 @@
                           <p style="margin: 0px; padding-left: 4px">Download</p>
                         </button>
                         <button
-                          class="btn btn-success bn"
+                          class="btn btn-primary common-button-style"
                           style="
                             margin-bottom: 15px !important;
                             font-size: 16px;

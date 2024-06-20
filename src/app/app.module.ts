@@ -122,6 +122,7 @@ import { MatNativeDateModule } from "@angular/material/core";
 
 import { FilterPipe } from "./filter.pipe";
 import { UrlMappingService } from "./Services/urlMappingService";
+import { ProfileComponent } from "./profile/profile.component";
 
 // const appRoutes:Routes=[
 //   {path:'aboutus' , component: WorkinprogressComponent},
@@ -219,6 +220,7 @@ import { UrlMappingService } from "./Services/urlMappingService";
     ResearchSingleComponent,
     SubscriptionComponent,
     EnquiryformComponent,
+    ProfileComponent,
   ],
   imports: [
     HttpClientModule,

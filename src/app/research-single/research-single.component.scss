@@ -105,6 +105,9 @@
   background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
+.bn:hover {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
 .item-link {
   color: #0972ea;
 }
@@ -203,7 +206,9 @@
   font-weight: 400;
   line-height: normal;
 }
-
+.bt2:hover {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
 .bt2 a {
   text-decoration: none;
   color: #fff;

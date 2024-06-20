@@ -161,7 +161,7 @@ export class ResearchSingleComponent implements OnInit {
     const existingCartItem = cart.find(
       (item) => item.research.id === research.id
     );
-    const Research: ResearchMasterDto = {
+    const Research: any = {
       id: +research.id,
       report: research.report,
       price: +research.price,

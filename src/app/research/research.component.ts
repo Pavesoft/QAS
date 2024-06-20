@@ -365,6 +365,7 @@ export class ResearchComponent implements OnInit {
   }
 
   addToCart(research: ResearchMasterDto): void {
+    console.log(research);
     const cart = this.cartService.getCart();
     const existingCartItem = cart.find(
       (item) => item.research.id === research.id
@@ -373,14 +374,16 @@ export class ResearchComponent implements OnInit {
       id: +research.id,
       report: research.report,
       price: +research.price,
-      categoryName: "",
+      categoryName: research.categoryName,
       reportType: "",
       description: "",
-      author: "",
-      mAuthor: "",
+      author: research.author,
+      mAuthor: research.mAuthor,
       publishDate: new Date(),
       price2: 0,
       tableOfContent: "",
+      categoryList: research.categoryList,
+      authors: research.authors,
     };
 
     // const item = {
@@ -409,14 +412,17 @@ export class ResearchComponent implements OnInit {
       id: +research.id,
       report: research.report,
       price: +research.price,
-      categoryName: "",
+      categoryName: research.categoryName,
       reportType: "",
       description: "",
-      author: "",
-      mAuthor: "",
+      author: research.author,
+      mAuthor: research.mAuthor,
       publishDate: new Date(),
       price2: 0,
       tableOfContent: "",
+      authors: research.authors,
+
+      categoryList: research.categoryList,
     };
     if (existingCartItem) {
       this.alertType = "Failed";

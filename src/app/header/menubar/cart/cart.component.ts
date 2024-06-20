@@ -3,17 +3,22 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ResearchMasterDto } from "src/app/Interfaces/research-master-dto";
 import { CartService } from "src/app/Services/cart.service";
 
+interface CartItem {
+  research: ResearchMasterDto;
+  quantity: number;
+  totalPrice: number;
+  count: number;
+  showGstContainer: boolean;
+}
+
 @Component({
   selector: "app-cart",
   templateUrl: "./cart.component.html",
   styleUrls: ["./cart.component.scss"],
 })
 export class CartComponent {
-  cart: {
-    research: ResearchMasterDto;
-    quantity: number;
-    totalPrice: number;
-  }[] = [];
+  cart: CartItem[] = [];
+  activeItem: CartItem | null = null;
 
   constructor(
     public cartService: CartService,
@@ -22,8 +27,12 @@ export class CartComponent {
   ) {}
 
   ngOnInit(): void {
-    ////console.log(this.cartService.cart);
-    this.cart = this.cartService.cart;
+    this.cart = this.cartService.cart.map((item) => ({
+      ...item,
+      count: 1, // Set count to 1 or appropriate initial value
+      showGstContainer: true, // Initialize the visibility state
+    }));
+
     this.route.queryParams.subscribe((params) => {
       const productId = params["productId"];
       const productName = params["productName"];
@@ -43,39 +52,39 @@ export class CartComponent {
           publishDate: new Date(),
           price2: 0,
           tableOfContent: "",
+          categoryList: [],
+          authors: [],
         };
 
-        const item = {
+        const item: CartItem = {
           research: research,
           quantity: +quantity,
           totalPrice: +price * +quantity,
+          count: 1,
+          showGstContainer: true, // Initialize the visibility state
         };
 
-        // Add the buy now item to the cart
         this.cart.push(item);
       }
-      console.log("thi.cart", this.cart);
     });
   }
 
-  removeFromCart(item: {
-    research: ResearchMasterDto;
-    quantity: number;
-    totalPrice: number;
-  }): void {
-    ////console.log('Before:', this.cart);
-
-    this.cartService.removeFromCart(item);
-
-    ////console.log('After:', this.cart);
+  removeFromCart(item: CartItem): void {
+    const index = this.cart.indexOf(item);
+    if (index !== -1) {
+      this.cart.splice(index, 1);
+      this.cartService.removeFromCart(item);
+      if (this.activeItem === item) {
+        this.activeItem = null; // Reset the active item if it was removed
+      }
+    }
   }
 
   getTotalPrice(): number {
-    let totalPrice = 0;
-    for (const item of this.cart) {
-      totalPrice += item.totalPrice;
-    }
-    return totalPrice;
+    return this.cart.reduce(
+      (total, item) => total + item.research.price * item.count,
+      0
+    );
   }
 
   checkout(totalPrice: any): void {
@@ -86,7 +95,29 @@ export class CartComponent {
     });
   }
 
+  increment(item: CartItem): void {
+    item.count++;
+  }
+
+  decrement(item: CartItem): void {
+    if (item.count > 1) {
+      item.count--;
+    }
+  }
+
   getTotalCartItems(): number {
     return this.cartService.getTotalCartItems();
+  }
+
+  getTotalReports(): number {
+    return this.cart.reduce((total, item) => total + item.count, 0);
+  }
+
+  toggleGstContainer(item: CartItem): void {
+    if (this.activeItem && this.activeItem !== item) {
+      this.activeItem.showGstContainer = true; // Hide the previous active item's container
+    }
+    item.showGstContainer = !item.showGstContainer;
+    this.activeItem = item.showGstContainer ? item : null;
   }
 }

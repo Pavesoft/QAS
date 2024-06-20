@@ -1,0 +1,293 @@
+<!-- app.component.html -->
+<div class="row">
+  <div class="col-md-3 sidebar sticky-div">
+    <div class="d-flex row row-gap-4 p-5">
+      <div class="p-0">
+        <h3 class="sidebar-heading">My Account</h3>
+      </div>
+      <div class="horizontal-line"></div>
+      <div class="p-0">
+        <h3
+          class="sidebar-title common-hover-effect"
+          (click)="displayContent('My Profile')"
+        >
+          My Profile
+        </h3>
+      </div>
+      <div class="horizontal-line"></div>
+      <div class="p-0">
+        <h3
+          class="sidebar-title common-hover-effect"
+          (click)="displayContent('Subscription')"
+        >
+          Subscriptions
+        </h3>
+      </div>
+      <div class="horizontal-line"></div>
+      <div class="p-0">
+        <h3
+          class="sidebar-title common-hover-effect"
+          (click)="displayContent('Download Invoice')"
+        >
+          Download Invoice
+        </h3>
+      </div>
+      <div class="horizontal-line" style="padding-top: 95%"></div>
+      <div class="p-0">
+        <div class="d-flex justify-content-center align-items-center pt-1">
+          <h3
+            class="sidebar-title common-hover-effect"
+            (click)="displayContent('Download Invoice')"
+          >
+            Contact Us
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9 main-container" style="padding-bottom: 100px !important">
+    <app-main-container [content]="content"></app-main-container>
+    <div *ngIf="content === 'My Profile'">
+      <div class="d-flex row row-gap-1 m-5 pr-5">
+        <h3 class="content-title pb-1 p-0 m-0 mb-2">My Profile</h3>
+
+        <div class="p-0 m-0">
+          <form [formGroup]="passwordForm">
+            <!-- <div class="p-0 edit-btn">
+              <button
+                class="btn btn-secondary"
+                style="font-size: 17px !important"
+                (click)="toggleEdit()"
+              >
+                Edit
+              </button>
+            </div> -->
+
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="John"
+                [disabled]="!isEditing"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                placeholder="john@infomatica.com"
+                id="email"
+                [disabled]="!isEditing"
+                required
+              />
+
+              <div *ngIf="passwordForm.controls['email'].errors">
+                <small
+                  class="text-danger"
+                  *ngIf="passwordForm.controls['email'].errors['email']"
+                >
+                  Invalid email address.
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone</label>
+
+              <input
+                type="tel"
+                id="businessPhone1"
+                maxlength="16"
+                class="form-control"
+                required
+                placeholder="Phone*"
+                style="margin-bottom: 20px"
+                onkeyup="this.value = this.value.replace(/[^0-9-]/g, '');"
+                [disabled]="!isEditing"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="company">Company Name</label>
+              <input
+                type="text"
+                id="company"
+                placeholder="Informatica"
+                [disabled]="!isEditing"
+              />
+            </div>
+
+            <div class="col-md-3 mb-3 p-0 horizontal-line-black">
+              <h3 class="password-heading p-0 m-0 mt-3">Change Password</h3>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Current Password</label>
+              <input
+                type="password"
+                id="password"
+                formControlName="currentpassword"
+                placeholder="Informatica123456"
+                [disabled]="!isEditing"
+              />
+              <div
+                *ngIf="
+                  passwordForm.get('password')?.invalid &&
+                  passwordForm.get('password')?.touched
+                "
+                class="text-danger"
+              >
+                Password is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Reset Password</label>
+              <input
+                type="password"
+                id="password"
+                formControlName="password"
+                placeholder="Informatica123456"
+                [disabled]="!isEditing"
+              />
+              <div
+                *ngIf="
+                  passwordForm.get('password')?.invalid &&
+                  passwordForm.get('password')?.touched
+                "
+                class="text-danger"
+              >
+                Password is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                formControlName="confirmPassword"
+                placeholder="Informatica123456"
+                [disabled]="!isEditing"
+              />
+              <div
+                *ngIf="passwordForm.errors?.['mismatch'] && passwordForm.get('confirmPassword')?.touched"
+                class="text-danger"
+              >
+                Passwords must match.
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between pt-1">
+              <div class="pl-4">
+                <!-- <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="checkTerms"
+                  [disabled]="!isEditing"
+                />
+                <label class="form-check-label" for="checkTerms"
+                  >Auto Save all the changes</label
+                > -->
+              </div>
+              <div>
+                <a href="">
+                  <label style="float: right">
+                    <span style="color: black; font-size: "
+                      >For more information</span
+                    >
+                    contact us
+                  </label>
+                </a>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary common-button-style"
+              style="
+                margin-top: 40px !important;
+                margin-bottom: 80px !important;
+                border: 0px;
+                font-size: 17px !important;
+              "
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="content === 'Subscription'">
+      <div class="d-flex row row-gap-1 m-5 mb-3 pr-5">
+        <h3 class="content-title p-0 pb-1 m-0 mb-2">Subscription</h3>
+      </div>
+
+      <div *ngIf="isLoading; else subscriptionContent">
+        <!-- Loading indicator (optional) -->
+      </div>
+
+      <ng-template #subscriptionContent>
+        <div class="mr-5 ml-5 mt-0">
+          <!-- Filter and display subscriptions by category -->
+          <div class="mb-4" *ngFor="let category of getUniqueCategories()">
+            <h4 class="subscription-technology-title m-0">{{ category }}</h4>
+            <img src="/assets/underline-subscriptin-technology.svg" />
+            <ul class="m-0">
+              <ng-container
+                *ngFor="
+                  let subscription of filteredSubscriptions(category);
+                  let i = index
+                "
+              >
+                <li
+                  class="subscription-technology-reports my-2"
+                  *ngIf="showAllReportsForCategory[category] || i < 5"
+                >
+                  {{ subscription.report }}
+                </li>
+              </ng-container>
+            </ul>
+
+            <!-- Show more button only if there are more than 5 reports -->
+            <div
+              class="d-flex justify-content-center ml-5"
+              *ngIf="filteredSubscriptions(category).length > 5"
+            >
+              <button
+                class="show-more-button"
+                (click)="toggleShowAllReports(category)"
+              >
+                {{
+                  showAllReportsForCategory[category]
+                    ? "Show less"
+                    : "Show more"
+                }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+
+    <div *ngIf="content === 'Download Invoice'">
+      <div class="d-flex row row-gap-1 m-5 pr-5">
+        <h3 class="content-title pb-1 p-0 m-0 mb-2">Download Invoice</h3>
+        <div class="mr-5">
+          <div
+            *ngFor="let invoice of invoices"
+            class="d-flex justify-content-between mr-5 my-4 horizontal-line-black"
+          >
+            <div>
+              <li class="invoice-title">{{ invoice.title }}</li>
+            </div>
+            <div class="d-flex column-gap-4 mb-2">
+              <div><img [src]="invoice.imgSrc" /></div>
+              <div><img [src]="invoice.downloadImgSrc" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

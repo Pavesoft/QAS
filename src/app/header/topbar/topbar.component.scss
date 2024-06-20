@@ -9,7 +9,13 @@
   height: 50px;
   background-color: #fff;
 }
+.icon-color-style {
+  color: blue !important;
+}
 
+.cart-link:hover .icon-color-style {
+  color: #27b7e7 !important;
+}
 .chandrayan2 {
   width: 100%;
   height: 35px;
@@ -21,7 +27,12 @@ marquee {
   font-size: 18px;
   margin: 6px;
 }
-
+.signup-button:hover {
+  color: blue;
+}
+.login-button:hover {
+  color: blue;
+}
 .topbar {
   height: 60px;
   background: #0972ea 0% 0% no-repeat padding-box;
@@ -124,10 +135,10 @@ span.badge.badge-dark {
   border-bottom: none;
 }
 
-.btp {
+.signup-btn {
   display: flex;
-  width: 90px;
-  height: 32px;
+  width: 160px;
+  height: 40px;
   font-size: 14px;
   font-family: "Arial Nova";
   padding: 14px 34px;
@@ -151,6 +162,11 @@ span.badge.badge-dark {
   top: 45px;
   width: 455px;
 }
+.enquiry-underline {
+  position: absolute;
+  top: 50px;
+  width: 390px;
+}
 
 input#inputName {
   position: relative;
@@ -164,6 +180,13 @@ input#inputName {
   background-color: #ecfbf8;
 }
 
+#queries {
+  background-color: #ecfbf8 !important;
+  height: 42px;
+  margin-right: 3px !important;
+  margin-left: -3px !important;
+  border-radius: 0px 8px 8px 0px;
+}
 input#inputEmail {
   position: relative;
   left: -3px;
@@ -223,11 +246,126 @@ input#exampleInputPassword1 {
   font-size: 14px;
   background-color: #ecfbf8;
 }
+input#inputPassword {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+.password-toggle-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  height: 20px; /* Adjust the size as needed */
+  width: 20px; /* Adjust the size as needed */
+}
+input#inputConfirmPassword {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+input#inputCompanyName {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+input#businessPhone {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+input#inputDate {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+.enquiryForm-container {
+  height: auto;
+  margin-left: 80%;
+  margin-top: 9%;
+  background: #ddefed;
+}
+input#inputTime {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+.cross-svg .cross-path {
+  width: 17px !important;
+  height: 17px !important;
+}
 .dropdownValueName {
   cursor: pointer;
   color: #444343 !important;
   font-weight: 400;
-  font-size: 19px !important;
+
+  font-size: 16px !important;
+}
+
+.notification-name {
+  margin-left: 2px !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  margin-right: 20px !important;
+  color: #444343 !important;
+}
+.notification-status {
+  font-size: 14px;
+  margin-left: 2px !important;
+  color: rgba(68, 67, 67, 0.7);
+}
+
+.notification-item:hover {
+  background: linear-gradient(180deg, #4cccd6 -20%, #00327a 100%);
+  color: white; /* Optional: change text color for better contrast */
+  fill: red;
+}
+.notification-item:hover .notification-name,
+.notification-item:hover .notification-status {
+  color: #ffffff !important;
+}
+.notification-item:hover .circle-svg .circle {
+  fill: #ffffff !important; /* Change this to the desired hover color */
+}
+.notification-item:hover .cross-svg .cross-path {
+  stroke: #ffffff; /* Change this to the desired hover color (white in this case) */
 }
 
 .fmc {
@@ -260,6 +398,12 @@ input#exampleInputPassword1 {
   outline: none;
   box-shadow: none !important;
 }
+.create-account-navigation {
+  color: #0972ea;
+  font-size: 15px;
+  margin-left: 3px;
+  cursor: pointer;
+}
 
 // .mat-mdc-raised-button.mat-unthemed {
 //     --mdc-protected-button-container-color: none;
@@ -268,6 +412,12 @@ input#exampleInputPassword1 {
 @media screen and (max-width: 480px) {
   nav#tobar {
     height: 50px !important;
+  }
+  .common-header-distance {
+    display: inline-block;
+    position: relative;
+    left: 0px;
+    top: 0px;
   }
 
   a#bec {
@@ -305,4 +455,106 @@ input#exampleInputPassword1 {
 }
 .logout-link {
   cursor: pointer;
+}
+.profile-dropdown-container {
+  width: 250px;
+  background: #ddefed;
+  top: 10px !important;
+  padding: 15px !important;
+}
+.notification-dropdown-container {
+  width: 430px;
+  height: 500px;
+  overflow-y: scroll;
+  background: #ddefed;
+  top: 10px !important;
+  border-radius: 0px !important;
+  border: 0px !important;
+}
+.enquiryForm-dropdown-container {
+  width: 430px;
+  padding: 20px !important ;
+  background: #ddefed;
+  top: 10px !important;
+  border-radius: 0px !important;
+  border: 0px !important;
+}
+.enquiry-title {
+  color: #00327a;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 12px !important;
+}
+.notification-header {
+  color: #00327a;
+  font-weight: 700;
+  font-size: 19px;
+  margin-bottom: 12px !important;
+}
+.dropdown-menu .dropdownValueName {
+  transition: color 0.3s ease;
+}
+
+.dropdown-menu .dropdownValueName:hover {
+  color: blue !important;
+}
+
+.mark-read-button {
+  display: flex;
+  color: white;
+  height: 30px;
+  border: 0px !important;
+  font-size: 14px;
+  font-family: "Arial Nova";
+  padding: 14px 20px;
+  justify-content: center;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
+}
+.mark-read-button:hover {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+#logoutDropdown:hover {
+  color: blue !important; /* Change this to the desired hover color */
+}
+.help-desk:hover {
+  color: blue !important; /* Change this to the desired hover color */
+}
+.dropdown-toggle:hover {
+  color: blue !important;
+}
+.common-hover-effect {
+  color: #212529 !important;
+}
+.common-hover-effect:hover {
+  color: blue !important;
+}
+
+@media screen and (max-width: 480px) {
+  .enquiryForm-container {
+    height: auto;
+    margin-left: 0%;
+    margin-top: 0%;
+    background: #ddefed;
+  }
+  .notification-dropdown-container {
+    width: 350px;
+    height: 500px;
+    overflow-y: scroll;
+    background: #ddefed;
+    top: 10px !important;
+    border-radius: 0px !important;
+    border: 0px !important;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .enquiryForm-container {
+    height: auto;
+    margin-left: 0%;
+    margin-top: 8%;
+    background: #ddefed;
+  }
 }
