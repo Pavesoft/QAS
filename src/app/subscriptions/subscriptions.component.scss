@@ -1,0 +1,195 @@
+$blue-1: #00327a;
+$blue-2: #0972ea;
+$white: #ffffff;
+$grey: #444343;
+
+.sidebar {
+  background: linear-gradient(170deg, #4cccd6 -5%, #00327a 20%);
+  padding: 38px;
+  margin-bottom: 70px !important;
+  height: 100%;
+  padding-left: 40px !important;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+}
+.sticky-div {
+  position: sticky;
+  top: 80px; /* Adjust this value as needed */
+  /* Ensure it stays above other content if necessary */
+  /* Add any additional styling as needed */
+}
+.sidebar-heading {
+  font-size: 25px;
+  color: $white;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 30.24px;
+  margin: 10px 0px 20px 0px;
+}
+.sidebar-title {
+  font-size: 20px;
+  color: $white;
+  cursor: pointer;
+  font-weight: 400;
+  line-height: 24.19px;
+}
+.horizontal-line {
+  border-bottom: 1px solid #ffffff;
+}
+.horizontal-line-black {
+  border-bottom: 1px solid $grey;
+}
+.show-more-button {
+  background-color: #ffffff;
+  // color: $grey;
+  color: $blue-2;
+  border: none !important;
+  padding: 5px 10px;
+  font-size: 14px !important;
+  cursor: pointer;
+}
+.show-more-button:hover {
+  text-decoration: underline 1px $blue-2 !important;
+}
+.subscription-technology-title {
+  font-size: 20px !important;
+  font-weight: 700px !important;
+  line-height: 24.19px;
+  color: $blue-1;
+}
+
+.content-title {
+  font-size: 20px !important;
+  font-weight: 700px !important;
+  line-height: 24.19px;
+  color: $blue-1;
+  border-bottom: 3px solid #00327a;
+  width: 100%;
+}
+.password-heading {
+  font-size: 20px !important;
+  font-weight: 700px !important;
+
+  color: $blue-1;
+}
+.subscription-technology-reports {
+  font-size: 16px !important;
+  font-weight: 400px !important;
+  line-height: 24.19px;
+  color: $grey;
+  text-decoration: none;
+}
+.subscription-technology-reports:hover {
+  text-decoration: underline;
+}
+form {
+  width: 80%;
+  max-width: 800px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  background-color: #d9d9d980;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+input[type="tel"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  background-color: #d9d9d980;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  background-color: #d9d9d980;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  background-color: #d9d9d980;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+label {
+  font-weight: 400;
+  font-size: 16px;
+}
+.submit-btn {
+  display: flex;
+  width: 90px;
+  height: 32px;
+  font-size: 16px;
+  font-family: "Arial Nova";
+  padding: 14px 34px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+.edit-btn {
+  margin-left: 95%;
+}
+.invoice-title {
+  color: $grey;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27.82px;
+}
+.common-hover-effect:hover {
+  text-decoration: underline 1px gray !important;
+}
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+  margin: 20px auto;
+}
+
+.submit-btn:hover {
+  display: flex;
+  width: 90px;
+  height: 32px;
+  font-size: 16px;
+  font-family: "Arial Nova";
+  padding: 14px 34px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  color: white;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}

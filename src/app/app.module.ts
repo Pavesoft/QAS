@@ -123,6 +123,9 @@ import { MatNativeDateModule } from "@angular/material/core";
 import { FilterPipe } from "./filter.pipe";
 import { UrlMappingService } from "./Services/urlMappingService";
 import { ProfileComponent } from "./profile/profile.component";
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
+import { DownloadInvoiceComponent } from './download-invoice/download-invoice.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 // const appRoutes:Routes=[
 //   {path:'aboutus' , component: WorkinprogressComponent},
@@ -221,6 +224,9 @@ import { ProfileComponent } from "./profile/profile.component";
     SubscriptionComponent,
     EnquiryformComponent,
     ProfileComponent,
+    SubscriptionsComponent,
+    DownloadInvoiceComponent,
+    ContactUsComponent,
   ],
   imports: [
     HttpClientModule,
