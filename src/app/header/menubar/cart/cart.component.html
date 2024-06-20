@@ -133,21 +133,22 @@
             <div class="d-flex justify-content-between">
               <div class="d-flex gap-4 details-price-combination">
                 <div class="price">${{ item.research.price }}</div>
-                <div style="color: #0972ea">
+                <div
+                  (click)="toggleGstContainer(item)"
+                  class="details-dropdown details-hover"
+                >
                   Details
                   <img
                     *ngIf="!item.showGstContainer"
                     src="../../../../assets/plus-details-icon.svg"
-                    (click)="toggleGstContainer(item)"
-                    class="svg-icon"
+                    class="svg-icon icon-hover"
                     style="cursor: pointer"
                   />
                   <img
                     *ngIf="item.showGstContainer"
                     src="../../../../assets/details-icon.svg"
                     style="cursor: pointer; margin-left: 2px"
-                    class="svg-icon"
-                    (click)="toggleGstContainer(item)"
+                    class="svg-icon icon-hover"
                   />
                 </div>
               </div>
@@ -235,7 +236,7 @@
           <div>
             <button
               type="submit"
-              class="btn btn-primary procced-btn count-style-increment"
+              class="btn btn-primary common-button-style"
               style="
                 margin-top: 25px !important;
                 border: 0px;

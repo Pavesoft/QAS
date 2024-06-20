@@ -45,9 +45,18 @@
 .count-style-increment:hover {
   box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
-.svg-icon:hover {
-  filter: invert(50%) sepia(100%) saturate(1000%) hue-rotate(90deg)
-    brightness(100%) contrast(100%);
+
+.details-dropdown {
+  color: #0972ea;
+  font-size: 16px !important;
+}
+.details-hover:hover {
+  color: black; /* Change text color on hover */
+}
+
+.details-hover:hover .svg-icon {
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%)
+    contrast(100%); /* Change icon color on hover */
 }
 @media screen and (max-width: 480px) {
   .mr {
