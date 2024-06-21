@@ -176,6 +176,11 @@ label {
   font-size: 16px;
   font-weight: 400;
   line-height: 27.82px;
+  cursor: pointer;
+}
+.invoice-title:hover {
+  color: $blue-2;
+  text-decoration: underline 1px $blue-2 !important;
 }
 .common-hover-effect:hover {
   text-decoration: underline 1px gray !important;

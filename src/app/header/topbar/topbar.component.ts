@@ -234,7 +234,6 @@ export class TopbarComponent implements OnInit {
   checkPasswords(group: FormGroup) {
     const password = group.get("password")?.value;
     const confirmPassword = group.get("confirmPassword")?.value;
-    console.log(password, confirmPassword);
 
     return password === confirmPassword ? null : { notSame: true };
   }
@@ -261,8 +260,7 @@ export class TopbarComponent implements OnInit {
 
   onLogin() {
     if (this.loginForm.invalid) {
-      this.errorMessage =
-        "Invalid input. Please correct the errors and try again.";
+      this.errorMessage = "Invalid input";
       return;
     }
 
@@ -275,7 +273,6 @@ export class TopbarComponent implements OnInit {
       .post(`${baseURl}/users/login`, loginData)
       .pipe(
         catchError((error) => {
-          console.error("Login failed:", error);
           this.errorMessage =
             "Login failed. Please check your credentials and try again.";
           this.loginForm.reset();
