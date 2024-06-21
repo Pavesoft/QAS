@@ -20,6 +20,9 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   content: string = "My Profile";
   passwordForm: FormGroup;
   isEditing = false;
+  showpassword = false;
+  showconfirmpassword = false;
+  newshowpassword = false;
   oldUrlData: any;
   isLoading = false; // Add a loading state variable
   subscriptions: any[] = [];
@@ -43,23 +46,23 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     }
   }
 
-  invoices = [
-    {
-      title: "Download Invoice",
-      imgSrc: "../../assets//file-up.svg",
-      downloadImgSrc: "../../assets//invoice-download.svg",
-    },
-    {
-      title: "Download Invoice",
-      imgSrc: "../../assets//file-up.svg",
-      downloadImgSrc: "../../assets//invoice-download.svg",
-    },
-    {
-      title: "Download Invoice",
-      imgSrc: "../../assets//file-up.svg",
-      downloadImgSrc: "../../assets//invoice-download.svg",
-    },
-  ];
+  // invoices = [
+  //   {
+  //     title: "Download Invoice",
+  //     imgSrc: "../../assets//file-up.svg",
+  //     downloadImgSrc: "../../assets//invoice-download.svg",
+  //   },
+  //   {
+  //     title: "Download Invoice",
+  //     imgSrc: "../../assets//file-up.svg",
+  //     downloadImgSrc: "../../assets//invoice-download.svg",
+  //   },
+  //   {
+  //     title: "Download Invoice",
+  //     imgSrc: "../../assets//file-up.svg",
+  //     downloadImgSrc: "../../assets//invoice-download.svg",
+  //   },
+  // ];
 
   toggleEdit() {
     this.isEditing = !this.isEditing;
@@ -75,6 +78,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       {
         password: ["", [Validators.required]],
         confirmPassword: ["", [Validators.required]],
+        currentpassword: ["", [Validators.required]],
         email: [
           "",
           [
@@ -137,50 +141,13 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getUniqueReportTypes(): string[] {
-    const uniqueReportTypes = [
-      ...new Set(this.subscriptions.map((sub) => sub.reportType).flat()),
-    ];
-    console.log(uniqueReportTypes);
-    return uniqueReportTypes;
+  togglePassword() {
+    this.showpassword = !this.showpassword;
   }
-
-  // Method to filter subscriptions by category
-  filteredSubscriptions(reportType: string): any[] {
-    return this.subscriptions.filter((sub) =>
-      sub.reportType.includes(reportType)
-    );
+  toggleConfirmPassword() {
+    this.showconfirmpassword = !this.showconfirmpassword;
   }
-
-  toggleShowAllReports(reportType: string) {
-    this.showAllReportsForReportType[reportType] =
-      !this.showAllReportsForReportType[reportType];
-  }
-
-  replaceSpaces(value: string): string {
-    const regexPattern = /[^a-zA-Z0-9\s]/g;
-
-    if (value && typeof value === "string") {
-      return value
-        .replace(regexPattern, " ")
-        .replace(/\s+/g, "-")
-        .toLowerCase();
-    } else {
-      return "";
-    }
-  }
-
-  researchHref(name: string, id: any) {
-    let nameChange = this.replaceSpaces(name);
-    let href = "/market-research/" + nameChange + "-" + id;
-    const objIndex = _.findIndex(
-      this.oldUrlData,
-      (item: any) => item.URL_ID == id
-    );
-    if (objIndex !== -1) {
-      href = this.oldUrlData[objIndex].To_URL;
-    }
-
-    return href;
+  toggleNewPassword() {
+    this.newshowpassword = !this.newshowpassword;
   }
 }

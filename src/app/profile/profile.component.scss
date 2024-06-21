@@ -7,7 +7,7 @@ $grey: #444343;
   background: linear-gradient(170deg, #4cccd6 -5%, #00327a 20%);
   padding: 38px;
   margin-bottom: 70px !important;
-  height: 100vh;
+  height: 100%;
   padding-left: 40px !important;
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
@@ -18,6 +18,7 @@ $grey: #444343;
   /* Ensure it stays above other content if necessary */
   /* Add any additional styling as needed */
 }
+
 .sidebar-heading {
   font-size: 18px;
   color: $white;
@@ -124,6 +125,32 @@ input[type="password"] {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px; /* Adjust to make space for the icon */
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  background-color: #d9d9d980;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 10px; /* Adjust the position as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
 
 input[type="text"]:focus {
   outline: none;
@@ -154,9 +181,7 @@ label {
 .common-padding {
   padding: 38px 62px !important;
 }
-.edit-btn {
-  margin-left: 94%;
-}
+
 .invoice-title {
   color: $grey;
   font-size: 18px;
