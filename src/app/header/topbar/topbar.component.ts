@@ -306,7 +306,7 @@ export class TopbarComponent implements OnInit {
     localStorage.removeItem("isSubscribed");
     this.isLoggedIn = false; // Update the login status
     localStorage.setItem("isLogin", this.isLoggedIn.toString());
-    window.location.reload();
+    window.location.href = "/"; // Navigate to the home page
   }
 
   getCartItems(): number {
