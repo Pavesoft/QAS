@@ -38,8 +38,9 @@ export class CartComponent {
       const productName = params["productName"];
       const price = params["price"];
       const quantity = params["quantity"];
+      const price2 = params["price2"];
 
-      if (productId && productName && price && quantity) {
+      if (productId && productName && price && quantity && price2) {
         const research: ResearchMasterDto = {
           id: +productId,
           report: productName,
@@ -50,7 +51,7 @@ export class CartComponent {
           author: "",
           mAuthor: "",
           publishDate: new Date(),
-          price2: 0,
+          price2: +price2,
           tableOfContent: "",
           categoryList: [],
           authors: [],
@@ -119,5 +120,15 @@ export class CartComponent {
     }
     item.showGstContainer = !item.showGstContainer;
     this.activeItem = item.showGstContainer ? item : null;
+  }
+  formatPrice(price: number): string {
+    // Convert the number to a string and add commas every three digits from the right
+    return price.toLocaleString("en-US");
+  }
+  calculateDiscountPercentage(price: number, price2: number): number {
+    if (price > price2) {
+      return ((price - price2) / price) * 100;
+    }
+    return 0;
   }
 }

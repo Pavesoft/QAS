@@ -635,7 +635,26 @@
                       style="color: #212529; font-size: 16px"
                       >Price:
                     </span>
-                    <span class="prc">${{ formatPrice(research.price) }}</span>
+                    <span class="prc d-flex align-items-center">
+                      <ng-container *ngIf="research.price > research.price2">
+                        <span class="strikethrough"
+                          >${{ formatPrice(research.price) }}</span
+                        >
+                        ${{ formatPrice(research.price2) }}
+                        <span class="discount-value"
+                          >Save
+                          {{
+                            calculateDiscountPercentage(
+                              research.price,
+                              research.price2
+                            ) | number : "1.0-2"
+                          }}%</span
+                        >
+                      </ng-container>
+                      <ng-container *ngIf="research.price <= research.price2">
+                        ${{ formatPrice(research.price) }}
+                      </ng-container>
+                    </span>
                   </div>
                   <div
                     class="col-md-3 d-flex align-items-center justify-content-end"
@@ -760,4 +779,3 @@
     </div>
   </div>
 </div>
-

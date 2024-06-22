@@ -101,6 +101,12 @@ export class ResearchSingleComponent implements OnInit {
     // Convert the number to a string and add commas every three digits from the right
     return price.toLocaleString("en-US");
   }
+  calculateDiscountPercentage(price: number, price2: number): number {
+    if (price > price2) {
+      return ((price - price2) / price) * 100;
+    }
+    return 0;
+  }
 
   goToBack() {
     this.router.navigate(["/market-research"]);
@@ -172,7 +178,7 @@ export class ResearchSingleComponent implements OnInit {
       author: research.author,
       mAuthor: research.mAuthor,
       publishDate: new Date(),
-      price2: 0,
+      price2: +research.price2,
       tableOfContent: "",
       authors: research.authors,
 

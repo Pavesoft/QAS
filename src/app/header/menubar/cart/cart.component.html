@@ -131,8 +131,35 @@
           </div>
           <div class="col-md-4 col-12 py-4 price-gst-details-container">
             <div class="d-flex justify-content-between">
-              <div class="d-flex gap-4 details-price-combination">
-                <div class="price">${{ item.research.price }}</div>
+              <div class="d-flex gap-2 details-price-combination">
+                <span class="prc d-flex align-items-center">
+                  <ng-container
+                    *ngIf="item.research.price > item.research.price2"
+                  >
+                    <span class="strikethrough"
+                      >${{ formatPrice(item.research.price) }}</span
+                    >
+                    <span class="discount-price"
+                      >${{ formatPrice(item.research.price2) }}</span
+                    >
+                    <span class="discount-value"
+                      >Save
+                      {{
+                        calculateDiscountPercentage(
+                          item.research.price,
+                          item.research.price2
+                        ) | number : "1.0-2"
+                      }}%</span
+                    >
+                  </ng-container>
+                  <ng-container
+                    *ngIf="item.research.price <= item.research.price2"
+                  >
+                    <div class="price">
+                      ${{ formatPrice(item.research.price) }}
+                    </div>
+                  </ng-container>
+                </span>
                 <div
                   (click)="toggleGstContainer(item)"
                   class="details-dropdown details-hover d-flex align-items-center gap-1"

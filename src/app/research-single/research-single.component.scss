@@ -291,7 +291,21 @@ a.fa.fa-linkedin {
   position: relative;
   top: 10px;
 }
-
+.discount-value {
+  background-color: #ffcd00;
+  color: #00327a;
+  border-radius: 15px;
+  padding: 2px 5px;
+  font-size: 10px;
+  margin-left: 4px;
+}
+.strikethrough {
+  text-decoration: line-through;
+  color: #444343b3 !important;
+  font-family: "Arial Nova" !important;
+  font-weight: 400px !important;
+  margin-right: 8px !important;
+}
 .fa-envelope-open-o {
   color: #00327a;
 }

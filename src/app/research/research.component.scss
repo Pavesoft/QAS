@@ -146,7 +146,21 @@ hr {
 .dropdown-item:hover {
   background: rgba(243, 244, 247, 0.2) !important;
 }
-
+.discount-value {
+  background-color: #ffcd00;
+  color: #00327a;
+  border-radius: 15px;
+  padding: 2px 5px;
+  font-size: 10px;
+  margin-left: 4px;
+}
+.strikethrough {
+  text-decoration: line-through;
+  color: #444343b3 !important;
+  font-family: "Arial Nova" !important;
+  font-weight: 400px !important;
+  margin-right: 8px !important;
+}
 .form-selectt {
   width: 310;
   border-radius: 7px;
