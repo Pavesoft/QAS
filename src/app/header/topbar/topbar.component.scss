@@ -30,6 +30,11 @@ marquee {
 .signup-button:hover {
   color: blue;
 }
+.form-check-label {
+  font-family: "Arial Nova";
+  font-size: 14px;
+  margin-right: 4px !important;
+}
 .login-button:hover {
   color: blue;
 }
@@ -177,13 +182,14 @@ input#inputName {
   background-repeat: no-repeat;
   height: 42px;
   font-size: 14px;
-  background-color: #ecfbf8;
+  background-color: #ecfbf8 !important;
 }
 
 #queries {
   background-color: #ecfbf8 !important;
   height: 42px;
   margin-right: 3px !important;
+  font-size: 14px !important;
   margin-left: -3px !important;
   border-radius: 0px 8px 8px 0px;
 }
@@ -196,19 +202,7 @@ input#inputEmail {
   background-repeat: no-repeat;
   height: 42px;
   font-size: 14px;
-  background-color: #ecfbf8;
-}
-
-input#inputTel {
-  position: relative;
-  left: -3px;
-  background-size: 40px;
-  background-position: 0px center;
-  border-radius: 0px 8px 8px 0px;
-  background-repeat: no-repeat;
-  height: 42px;
-  font-size: 14px;
-  background-color: #ecfbf8;
+  background-color: #ecfbf8 !important;
 }
 
 input#inputMessage {
@@ -220,7 +214,7 @@ input#inputMessage {
   background-repeat: no-repeat;
   height: 42px;
   font-size: 14px;
-  background-color: #ecfbf8;
+  background-color: #ecfbf8 !important;
 }
 
 input#inputCompanyname {
@@ -297,7 +291,7 @@ input#businessPhone {
   background-repeat: no-repeat;
   height: 42px;
   font-size: 14px;
-  background-color: #ecfbf8;
+  background-color: #ecfbf8 !important;
 }
 input#inputDate {
   position: relative;
