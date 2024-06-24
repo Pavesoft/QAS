@@ -249,7 +249,7 @@ input#inputPassword {
   background-repeat: no-repeat;
   height: 42px;
   font-size: 14px;
-  background-color: #ecfbf8;
+  background-color: #ecfbf8 !important;
 }
 .password-toggle-icon {
   position: absolute;
@@ -269,7 +269,7 @@ input#inputConfirmPassword {
   background-repeat: no-repeat;
   height: 42px;
   font-size: 14px;
-  background-color: #ecfbf8;
+  background-color: #ecfbf8 !important;
 }
 input#inputCompanyName {
   position: relative;
