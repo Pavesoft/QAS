@@ -5,7 +5,7 @@ import { ApiService } from "../Services/research-services";
 import { ResearchMasterDto } from "../Interfaces/research-master-dto";
 import { CartService } from "../Services/cart.service";
 import { AuthService } from "../auth.service";
-import { Title } from "@angular/platform-browser";
+import { Title, Meta } from "@angular/platform-browser";
 import * as _ from "lodash";
 
 @Component({
@@ -21,6 +21,7 @@ export class ResearchSingleComponent implements OnInit {
     private apiService: ApiService,
     public authService: AuthService,
     private cartService: CartService,
+    private meta: Meta,
     private titleService: Title
   ) {}
 
@@ -264,6 +265,15 @@ export class ResearchSingleComponent implements OnInit {
         console.log("data for single report", data.researchMaster);
         this.Reports = data.researchMaster;
         this.titleService.setTitle(this.Reports.report);
+        this.meta.updateTag({
+          name: "description",
+          content: this.Reports.report,
+        });
+        this.meta.updateTag({
+          name: "title",
+          property: "og:title",
+          content: this.Reports.report,
+        });
         this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
         this.isLoading = false;
 

@@ -78,14 +78,17 @@ const routes: Routes = [
     path: "",
     pathMatch: "full",
     component: HomepageComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "home",
     component: HomepageComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "wip",
     component: WorkinprogressComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "market-research",
@@ -95,6 +98,7 @@ const routes: Routes = [
   {
     path: "market-research/:reportName-:reportId",
     component: ResearchSingleComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   //   {
   //     path: "market_research/:reportName",
@@ -103,34 +107,43 @@ const routes: Routes = [
   {
     path: "research",
     component: ResearchComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "research-single/:id/:subscribed",
     component: ResearchSingleComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "subscription",
     component: SubscriptionComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "cart",
     component: CartComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
+
   {
     path: "checkout",
     component: CheckoutComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "thank-you",
     component: CheckoutDialogComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "payment-redirect",
     component: PaymentFailedComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "payment",
     component: PaymentComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "contact-us",
@@ -206,6 +219,7 @@ const routes: Routes = [
   {
     path: "market-intelligence-analyst",
     component: MarketIntelligenceAnalystComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "refundpolicy",
