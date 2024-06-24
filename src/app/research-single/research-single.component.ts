@@ -266,6 +266,11 @@ export class ResearchSingleComponent implements OnInit {
         this.Reports = data.researchMaster;
         this.titleService.setTitle(this.Reports.report);
         this.meta.updateTag({
+          name: "description",
+          content: this.Reports.report,
+        });
+        this.meta.updateTag({
+          name: "title",
           property: "og:title",
           content: this.Reports.report,
         });
