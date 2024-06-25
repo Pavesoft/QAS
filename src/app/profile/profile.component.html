@@ -1,4 +1,5 @@
-<!-- app.component.html -->
+<!-- profile.component.html -->
+
 <div class="row">
   <div class="col-md-3 sidebar sticky-div">
     <div class="d-flex row row-gap-4 pl-5 pr-4 pb-0 pt-0">
@@ -40,7 +41,7 @@
         <div class="d-flex justify-content-center align-items-center pt-1">
           <h3
             class="sidebar-title common-hover-effect p-0 m-0"
-            (click)="displayContent('Download Invoice')"
+            (click)="displayContent('Contact Us')"
           >
             Contact Us
           </h3>
@@ -55,13 +56,13 @@
         <h3 class="content-title pb-1 p-0 m-0 mb-2">My Profile</h3>
 
         <div class="p-0 m-0">
-          <form [formGroup]="passwordForm">
+          <form [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="name">Name</label>
               <input
                 type="text"
                 id="name"
-                placeholder="John"
+                placeholder="{{ user.firstName }}"
                 [disabled]="!isEditing"
                 readonly
               />
@@ -71,13 +72,12 @@
               <label for="email">Email</label>
               <input
                 type="email"
-                placeholder="john@infomatica.com"
+                placeholder="{{ user.workEmail }}"
                 id="email"
                 [disabled]="!isEditing"
                 required
                 readonly
               />
-
               <div *ngIf="passwordForm.controls['email'].errors">
                 <small
                   class="text-danger"
@@ -89,9 +89,9 @@
             </div>
 
             <div class="form-group">
-              <label for="phone">Phone</label>
-
+              <label for="businessPhone1">Phone</label>
               <input
+                #phoneInput
                 type="tel"
                 id="businessPhone1"
                 maxlength="16"
@@ -99,7 +99,6 @@
                 required
                 placeholder="Phone*"
                 style="margin-bottom: 20px"
-                onkeyup="this.value = this.value.replace(/[^0-9-]/g, '');"
                 [disabled]="!isEditing"
                 readonly
               />
@@ -110,13 +109,15 @@
               <input
                 type="text"
                 id="company"
-                placeholder="Informatica"
+                placeholder="{{ user.company }}"
                 [disabled]="!isEditing"
                 readonly
               />
             </div>
+
             <div class="p-0 d-flex justify-content-end">
               <button
+                type="button"
                 class="btn btn-secondary"
                 style="font-size: 16px !important"
                 (click)="toggleEdit()"
@@ -124,28 +125,29 @@
                 {{ isEditing ? "Save" : "Edit" }}
               </button>
             </div>
+
             <div class="col-md-3 mb-3 p-0 horizontal-line-black">
               <h3 class="password-heading p-0 m-0 mt-3">Change Password</h3>
             </div>
 
             <div class="form-group">
-              <label for="password">Current Password</label>
+              <label for="currentpassword">Current Password</label>
               <div class="input-container">
                 <input
-                  [type]="showpassword ? 'text' : 'password'"
-                  id="password"
+                  [type]="showPassword ? 'text' : 'password'"
+                  id="currentpassword"
                   formControlName="currentpassword"
                   placeholder="••••••••••"
                   [readonly]="!isEditing"
                 />
                 <img
-                  *ngIf="!showpassword"
+                  *ngIf="!showPassword"
                   (click)="togglePassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye.svg"
                 />
                 <img
-                  *ngIf="showpassword"
+                  *ngIf="showPassword"
                   (click)="togglePassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye-off.svg"
@@ -167,20 +169,20 @@
               <label for="password">New Password</label>
               <div class="input-container">
                 <input
-                  [type]="newshowpassword ? 'text' : 'password'"
+                  [type]="newShowPassword ? 'text' : 'password'"
                   id="password"
                   formControlName="password"
                   placeholder="••••••••••"
                   [readonly]="!isEditing"
                 />
                 <img
-                  *ngIf="!newshowpassword"
+                  *ngIf="!newShowPassword"
                   (click)="toggleNewPassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye.svg"
                 />
                 <img
-                  *ngIf="newshowpassword"
+                  *ngIf="newShowPassword"
                   (click)="toggleNewPassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye-off.svg"
@@ -202,20 +204,20 @@
               <label for="confirmPassword">Confirm Password</label>
               <div class="input-container">
                 <input
-                  [type]="showconfirmpassword ? 'text' : 'password'"
+                  [type]="showConfirmPassword ? 'text' : 'password'"
                   id="confirmPassword"
                   formControlName="confirmPassword"
                   placeholder="••••••••••"
                   [readonly]="!isEditing"
                 />
                 <img
-                  *ngIf="!showconfirmpassword"
+                  *ngIf="!showConfirmPassword"
                   (click)="toggleConfirmPassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye.svg"
                 />
                 <img
-                  *ngIf="showconfirmpassword"
+                  *ngIf="showConfirmPassword"
                   (click)="toggleConfirmPassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye-off.svg"
@@ -230,7 +232,7 @@
             </div>
 
             <div class="d-flex justify-content-end pt-1">
-              <a href="">
+              <a href="#">
                 <label style="float: right">
                   <span style="color: black; font-size: "
                     >For more information</span

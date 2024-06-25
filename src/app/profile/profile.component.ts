@@ -1,4 +1,10 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ElementRef,
+  ViewChild,
+} from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -7,7 +13,6 @@ import {
 } from "@angular/forms";
 import * as intlTelInput from "intl-tel-input";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import * as _ from "lodash";
 
 const baseURl = "https://backend.quadrant-solutions.com";
 
@@ -20,85 +25,66 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   content: string = "My Profile";
   passwordForm: FormGroup;
   isEditing = false;
-  showpassword = false;
-  showconfirmpassword = false;
-  newshowpassword = false;
-  oldUrlData: any;
-  isLoading = false; // Add a loading state variable
+  showPassword = false;
+  showConfirmPassword = false;
+  newShowPassword = false;
+  user = {
+    firstName: "Kate",
+    lastName: "Pelikh",
+    address: "",
+    city: "",
+    state: "",
+    country: null,
+    postalCode: null,
+    mobileNumber: "9999999999", // Assuming this is a string as per typical phone number input handling
+    workEmail: "pelikh1@bpcbt.com",
+    company: "QAS",
+    phoneCountryCode: "+91",
+  };
+  isLoading = false;
   subscriptions: any[] = [];
-  showAllReportsForReportType: { [key: string]: boolean } = {}; // Track show more/less for each report type
+  @ViewChild("phoneInput") phoneInput!: ElementRef;
 
-  constructor(
-    private fb: FormBuilder,
-    private http: HttpClient,
-    private httpClient: HttpClient
-  ) {}
+  constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngAfterViewInit(): void {
-    const inputElement = document.querySelector("#businessPhone1");
+    this.initPhoneNumberInput();
+  }
+
+  initPhoneNumberInput() {
+    const inputElement = this.phoneInput.nativeElement;
     if (inputElement) {
-      intlTelInput(inputElement, {
-        initialCountry: "us",
+      const phoneInput = intlTelInput(inputElement, {
+        initialCountry: this.user.phoneCountryCode.slice(1), // Remove the '+' sign
         separateDialCode: true,
         utilsScript:
           "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.8/js/utils.min.js",
       });
+
+      // Set the default number if provided
+      const defaultNumber = `${this.user.phoneCountryCode}${this.user.mobileNumber}`;
+      phoneInput.setNumber(defaultNumber);
     }
-  }
-
-  // invoices = [
-  //   {
-  //     title: "Download Invoice",
-  //     imgSrc: "../../assets//file-up.svg",
-  //     downloadImgSrc: "../../assets//invoice-download.svg",
-  //   },
-  //   {
-  //     title: "Download Invoice",
-  //     imgSrc: "../../assets//file-up.svg",
-  //     downloadImgSrc: "../../assets//invoice-download.svg",
-  //   },
-  //   {
-  //     title: "Download Invoice",
-  //     imgSrc: "../../assets//file-up.svg",
-  //     downloadImgSrc: "../../assets//invoice-download.svg",
-  //   },
-  // ];
-
-  toggleEdit() {
-    this.isEditing = !this.isEditing;
   }
 
   ngOnInit(): void {
-    this.httpClient
-      .get<any[]>("assets/fonts/data/oldUrlData.json")
-      .subscribe((data: any) => {
-        this.oldUrlData = data.oldUrlData;
-      });
-    this.passwordForm = this.fb.group(
-      {
-        password: ["", [Validators.required]],
-        confirmPassword: ["", [Validators.required]],
-        currentpassword: ["", [Validators.required]],
-        email: [
-          "",
-          [
-            Validators.required,
-            Validators.email,
-            Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
-          ],
+    this.passwordForm = this.fb.group({
+      password: ["", [Validators.required]],
+      confirmPassword: ["", [Validators.required]],
+      currentpassword: ["", [Validators.required]],
+      email: [
+        this.user.workEmail,
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
         ],
-      },
-      { validator: this.passwordsMatch }
-    );
+      ],
+    });
   }
 
-  passwordsMatch(control: AbstractControl): { [key: string]: boolean } | null {
-    const password = control.get("password");
-    const confirmPassword = control.get("confirmPassword");
-    if (password?.value !== confirmPassword?.value) {
-      return { mismatch: true };
-    }
-    return null;
+  toggleEdit() {
+    this.isEditing = !this.isEditing;
   }
 
   displayContent(content: string) {
@@ -142,12 +128,14 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   }
 
   togglePassword() {
-    this.showpassword = !this.showpassword;
+    this.showPassword = !this.showPassword;
   }
+
   toggleConfirmPassword() {
-    this.showconfirmpassword = !this.showconfirmpassword;
+    this.showConfirmPassword = !this.showConfirmPassword;
   }
+
   toggleNewPassword() {
-    this.newshowpassword = !this.newshowpassword;
+    this.newShowPassword = !this.newShowPassword;
   }
 }
