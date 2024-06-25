@@ -1,4 +1,8 @@
 $white: #ffffff;
+$blue: blue;
+$blue-2: #00327a;
+$grey: #444343b3;
+$grey-2: #444343;
 
 .cart-container {
   padding: 20px;
@@ -11,7 +15,7 @@ $white: #ffffff;
 }
 .discount-value {
   background-color: #ffcd00;
-  color: #00327a;
+  color: $blue-2;
   border-radius: 15px;
   padding: 2px 5px;
   font-size: 10px;
@@ -19,12 +23,13 @@ $white: #ffffff;
 }
 .strikethrough {
   text-decoration: line-through;
-  color: #444343b3 !important;
+  color: $grey !important;
   font-family: "Arial Nova" !important;
   font-size: 20px;
   font-weight: 700;
   font-weight: 400px !important;
   margin-right: 8px !important;
+  margin-left: 5px !important;
 }
 .cart-header {
   background-color: #d3d8df;
@@ -71,15 +76,15 @@ $white: #ffffff;
   font-size: 16px !important;
 }
 .details-hover:hover {
-  color: blue;
+  color: $blue;
 }
 
 .details-hover:hover svg path {
-  stroke: blue;
+  stroke: $blue;
 }
 .details-hover:hover icon-hover-effect {
-  stroke: blue;
-  fill: blue;
+  stroke: $blue;
+  fill: $blue;
 }
 @media screen and (max-width: 480px) {
   .mr {
@@ -100,14 +105,25 @@ $white: #ffffff;
     font-weight: bold;
     width: 131px;
   }
-
+  .price {
+    padding-left: 10px !important;
+  }
+  .strikethrough {
+    padding-left: 10px !important;
+    font-size: 18px !important;
+  }
+  .discount-price {
+    font-size: 18px !important;
+  }
   .payment-summary-container {
     padding: 20px !important;
   }
   .price-reports-container {
     padding: 10px !important;
+    padding: 10px 0px 0px 0px !important;
   }
   .price-number-container {
+    padding: 10px 0px 0px 0px !important;
     padding: 10px 0px 0px 0px !important;
   }
   .cart-details-container {
@@ -115,7 +131,7 @@ $white: #ffffff;
     padding: 15px !important;
   }
   .price-gst-details-container {
-    padding: 10px 0px 10px 10px !important;
+    padding: 10px 0px 0px 0px !important;
   }
   .delete-button-mobile {
     visibility: visible !important;
@@ -134,7 +150,7 @@ $white: #ffffff;
 }
 
 .report-title {
-  color: #00327a;
+  color: $blue-2;
   font-size: 18px;
   font-weight: 700;
 }
@@ -148,34 +164,35 @@ $white: #ffffff;
 .category-heading {
   font-size: 16px;
   font-weight: 400;
-  color: #444343bf;
+  color: $grey-2;
 }
 .category-list {
   margin-left: 5px !important;
-  color: #444343;
+  color: $grey-2;
   font-size: 16px;
   font-weight: 400;
 }
 .authors-heading {
   font-size: 16px;
   font-weight: 400;
-  color: #444343bf;
+  color: $grey-2;
 }
 .authors-list {
   margin-left: 2px !important;
-  color: #444343;
+  color: $grey-2;
   font-size: 16px;
   font-weight: 400;
 }
 .price {
   font-size: 20px;
   font-weight: 700;
-  color: #444343;
+  color: $grey-2;
+  padding-left: 5px !important;
 }
 .discount-price {
   font-size: 20px;
   font-weight: 700;
-  color: #444343;
+  color: $grey-2;
 }
 .procced-btn {
   display: flex;
@@ -188,7 +205,7 @@ $white: #ffffff;
   align-items: center;
   gap: 10px;
   border-radius: 5px;
-  background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
+  background: linear-gradient(275deg, #4cd6b0 -6.18%, $blue-2 100%);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   margin-left: auto;
   margin-right: auto;
@@ -197,12 +214,12 @@ $white: #ffffff;
 .payment-label {
   font-size: 18px;
   font-weight: 700;
-  color: #00327a;
+  color: $blue-2;
 }
 .payment-value {
   font-size: 18px;
   font-weight: 700;
-  color: #444343;
+  color: $grey-2;
 }
 .payment-discount-value {
   font-size: 18px;
@@ -212,12 +229,12 @@ $white: #ffffff;
 .reports-gst-label {
   font-size: 16px;
   font-weight: 400;
-  color: #444343;
+  color: $grey-2;
 }
 .reports-gst-value {
   font-size: 16px;
   font-weight: 400;
-  color: #444343;
+  color: $grey-2;
 }
 .count-style {
   font-size: 24px;
@@ -279,7 +296,7 @@ $white: #ffffff;
     align-items: center;
     gap: 10px;
     border-radius: 5px;
-    background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
+    background: linear-gradient(275deg, #4cd6b0 -6.18%, $blue-2 100%);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin-left: auto;
     margin-right: auto;

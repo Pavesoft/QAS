@@ -133,7 +133,7 @@ export class CartComponent {
   }
   getTotalDiscount(): number {
     this.cart.reduce((totalDiscount, item) => {
-      console.log(item); // Debugging: log each item
+      // console.log(item); // Debugging: log each item
       return totalDiscount + item.research.price; // Assuming each item has a 'discount' property
     }, 0);
     return this.cart.reduce((totalDiscount, item) => {
