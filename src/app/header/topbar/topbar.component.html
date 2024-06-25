@@ -439,12 +439,13 @@
             class="close"
             data-dismiss="modal"
             aria-label="Close"
+            (click)="loginForm.reset()"
           >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <h3>Welcome Back</h3>
+        <div class="modal-body pt-0">
+          <h3 class="mb-3">Welcome Back</h3>
           <form
             *ngIf="!isSignup"
             [formGroup]="loginForm"
@@ -582,12 +583,13 @@
             class="close"
             data-dismiss="modal"
             aria-label="Close"
+            (click)="signupForm.reset()"
           >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <h3>Welcome</h3>
+        <div class="modal-body pt-0">
+          <h3 class="mb-3">Welcome</h3>
 
           <!-- Signup Form -->
 
