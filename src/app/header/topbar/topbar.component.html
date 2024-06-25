@@ -502,8 +502,6 @@
                 />
               </div>
               <div *ngIf="loginForm.controls['password'].errors">
-                <!-- <small class="text-danger" *ngIf="loginForm.controls['password'].errors['required']">Password is
-              required.</small> -->
                 <small
                   class="text-danger"
                   *ngIf="loginForm.controls['password'].errors['minlength']"
@@ -605,14 +603,14 @@
                   class="form-control"
                   id="inputName"
                   placeholder="First Name"
-                  formControlName="name"
+                  formControlName="firstName"
                   required
                 />
               </div>
               <div
                 *ngIf="
-                  signupForm.get('name')?.touched &&
-                  signupForm.get('name')?.invalid
+                  signupForm.get('firstName')?.touched &&
+                  signupForm.get('firstName')?.invalid
                 "
                 class="text-danger"
               >
@@ -630,18 +628,18 @@
                   class="form-control"
                   id="inputName"
                   placeholder="Last Name"
-                  formControlName="name"
+                  formControlName="lastName"
                   required
                 />
               </div>
               <div
                 *ngIf="
-                  signupForm.get('name')?.touched &&
-                  signupForm.get('name')?.invalid
+                  signupForm.get('lastName')?.touched &&
+                  signupForm.get('lastName')?.invalid
                 "
                 class="text-danger"
               >
-                Name is required.
+                Last Name is required.
               </div>
             </div>
             <div class="mb-3">
@@ -655,14 +653,14 @@
                   class="form-control"
                   id="inputCompanyName"
                   placeholder="Company"
-                  formControlName="companyname"
+                  formControlName="company"
                   required
                 />
               </div>
               <div
                 *ngIf="
-                  signupForm.get('companyname')?.touched &&
-                  signupForm.get('companyname')?.invalid
+                  signupForm.get('company')?.touched &&
+                  signupForm.get('company')?.invalid
                 "
                 class="text-danger"
               >
@@ -681,6 +679,7 @@
                 class="form-control"
                 required
                 placeholder="Phone*"
+                formControlName="mobileNumber"
                 onkeyup="this.value = this.value.replace(/[^0-9-]/g, '');"
               />
             </div>

@@ -184,9 +184,10 @@ export class TopbarComponent implements OnInit {
 
     this.signupForm = this.fb.group(
       {
-        name: ["", Validators.required],
-        companyname: ["", Validators.required],
-
+        firstName: ["", Validators.required],
+        company: ["", Validators.required],
+        lastName: ["", Validators.required],
+        mobileNumber: ["", Validators.required],
         email: ["", [Validators.required, Validators.email]],
         password: ["", Validators.required],
         confirmPassword: ["", Validators.required],
@@ -283,11 +284,6 @@ export class TopbarComponent implements OnInit {
   }
 
   onLogin() {
-    if (this.loginForm.invalid) {
-      this.errorMessage = "Invalid input";
-      return;
-    }
-
     const loginData = {
       username: this.loginForm.get("email")?.value,
       password: this.loginForm.get("password")?.value,
