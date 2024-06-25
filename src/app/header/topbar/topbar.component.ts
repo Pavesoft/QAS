@@ -40,6 +40,8 @@ export class TopbarComponent implements OnInit {
   hoverCross: string = "../../../assets/cross_button.svg";
   currentImage: string = this.normalImage;
   currentCrossImage: string = this.normalCross;
+  iti: any;
+  itiSignup: any;
 
   notificationData = [
     {
@@ -161,6 +163,7 @@ export class TopbarComponent implements OnInit {
       message: ["", Validators.required],
       queries: ["Queries...", Validators.required],
       provideAdditionalInfo: [false],
+      date: [""],
     });
 
     // Initialize the form with validations
@@ -198,24 +201,25 @@ export class TopbarComponent implements OnInit {
       : { passwordMismatch: true };
   }
   ngOnInit() {
-    const inputElement = document.querySelectorAll("#businessPhone");
+    const enquiryFormPhoneNumber = document.querySelector("#businessPhone");
+    const signupPhoneNumber = document.querySelector("#businessPhone1");
+    if (enquiryFormPhoneNumber) {
+      this.iti = intlTelInput(enquiryFormPhoneNumber, {
+        initialCountry: "us",
+        separateDialCode: true,
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.8/js/utils.min.js",
+      });
+    }
+    if (signupPhoneNumber) {
+      this.itiSignup = intlTelInput(signupPhoneNumber, {
+        initialCountry: "us",
+        separateDialCode: true,
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.8/js/utils.min.js",
+      });
+    }
 
-    if (inputElement) {
-      intlTelInput(inputElement[0], {
-        initialCountry: "us",
-        separateDialCode: true,
-        utilsScript:
-          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.8/js/utils.min.js",
-      });
-    }
-    if (inputElement) {
-      intlTelInput(inputElement[1], {
-        initialCountry: "us",
-        separateDialCode: true,
-        utilsScript:
-          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.8/js/utils.min.js",
-      });
-    }
     this.checkLoginStatus();
     this.updateCartItems();
     this.firstName = localStorage.getItem("fname") || "";
@@ -254,8 +258,28 @@ export class TopbarComponent implements OnInit {
     }
   }
 
+  getSelectedCountryCode() {
+    if (this.iti) {
+      const countryData = this.iti.getSelectedCountryData();
+      // console.log(countryData);
+      return countryData.dialCode;
+    }
+    return "";
+  }
+
+  getSelectedSingUpCountryCode() {
+    if (this.itiSignup) {
+      const countryData = this.itiSignup.getSelectedCountryData();
+      // console.log(countryData);
+      return countryData.dialCode;
+    }
+    return "";
+  }
+
   onSubmitEnquiryForm() {
-    console.log("Form Values:", this.enquiryForm.value);
+    const selectedCountryCode = this.getSelectedCountryCode();
+    // console.log("Selected Country Code:", selectedCountryCode);
+    // console.log("Form Values:", this.enquiryForm.value);
   }
 
   onLogin() {
@@ -349,6 +373,9 @@ export class TopbarComponent implements OnInit {
       mobileNumber: this.signupForm.get("phone")?.value,
       password: this.signupForm.get("password")?.value,
     };
+    const selectedCountryCode = this.getSelectedSingUpCountryCode();
+    // console.log("Selected Country Code:", selectedCountryCode);
+    // console.log(signupData);
 
     this.http
       .post(`${baseURl}/users/new`, signupData)
