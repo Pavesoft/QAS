@@ -65,6 +65,10 @@ export class AuthService {
       })
     );
   }
+  isLoggedIn(): boolean {
+    // For example, you can check if a token is present in localStorage
+    return !!localStorage.getItem("jwtToken");
+  }
 
   // Observable to notify about logout
 }
