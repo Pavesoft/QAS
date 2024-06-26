@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ResearchMasterDto } from "src/app/Interfaces/research-master-dto";
 import { CartService } from "src/app/Services/cart.service";
@@ -16,7 +16,7 @@ interface CartItem {
   templateUrl: "./cart.component.html",
   styleUrls: ["./cart.component.scss"],
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   cart: CartItem[] = [];
   activeItem: CartItem | null = null;
 
@@ -57,15 +57,23 @@ export class CartComponent {
           authors: [],
         };
 
-        const item: CartItem = {
-          research: research,
-          quantity: +quantity,
-          totalPrice: +price * +quantity,
-          count: 1,
-          showGstContainer: true, // Initialize the visibility state
-        };
+        let item = this.cart.find(
+          (cartItem) => cartItem.research.id === +productId
+        );
+        if (item) {
+          item.quantity += +quantity; // Increment quantity if item already exists
+          item.totalPrice += +price * +quantity; // Update total price accordingly
+        } else {
+          item = {
+            research: research,
+            quantity: +quantity,
+            totalPrice: +price * +quantity,
+            count: 1, // Initialize count to 1 here or adjust as needed
+            showGstContainer: true, // Initialize the visibility state
+          };
 
-        this.cart.push(item);
+          this.cart.push(item); // Add new item to cart if it doesn't exist
+        }
       }
     });
   }
@@ -83,7 +91,7 @@ export class CartComponent {
 
   getTotalPrice(): number {
     return this.cart.reduce(
-      (total, item) => total + item.research.price * item.count,
+      (total, item) => total + item.research.price * item.quantity,
       0
     );
   }
@@ -97,12 +105,18 @@ export class CartComponent {
   }
 
   increment(item: CartItem): void {
-    item.count++;
+    this.cartService.addToCartQuantity(item.research);
+    item.quantity++;
+    item.totalPrice += item.research.price;
   }
 
   decrement(item: CartItem): void {
-    if (item.count > 1) {
-      item.count--;
+    if (item.quantity > 1) {
+      item.quantity--;
+      item.totalPrice -= item.research.price;
+      this.cartService.saveCart();
+    } else {
+      this.removeFromCart(item);
     }
   }
 
@@ -111,7 +125,7 @@ export class CartComponent {
   }
 
   getTotalReports(): number {
-    return this.cart.reduce((total, item) => total + item.count, 0);
+    return this.cart.reduce((total, item) => total + item.quantity, 0);
   }
 
   toggleGstContainer(item: CartItem): void {
@@ -121,24 +135,23 @@ export class CartComponent {
     item.showGstContainer = !item.showGstContainer;
     this.activeItem = item.showGstContainer ? item : null;
   }
+
   formatPrice(price: number): string {
     // Convert the number to a string and add commas every three digits from the right
     return price.toLocaleString("en-US");
   }
+
   calculateDiscountPercentage(price: number, price2: number): number {
     if (price > price2) {
       return ((price - price2) / price) * 100;
     }
     return 0;
   }
+
   getTotalDiscount(): number {
-    this.cart.reduce((totalDiscount, item) => {
-      // console.log(item); // Debugging: log each item
-      return totalDiscount + item.research.price; // Assuming each item has a 'discount' property
-    }, 0);
     return this.cart.reduce((totalDiscount, item) => {
       const discount = item.research.price - item.research.price2;
-      return totalDiscount + (discount > 0 ? discount * item.count : 0);
+      return totalDiscount + (discount > 0 ? discount * item.quantity : 0);
     }, 0);
   }
 }

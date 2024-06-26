@@ -57,6 +57,38 @@ export class CartService {
   }[] {
     return this.cart;
   }
+  addToCartQuantity(research: any): void {
+    const cartItem = this.cart.find((item) => item.research.id === research.id);
+
+    if (cartItem) {
+      // Item already exists in cart, increment quantity
+      cartItem.quantity += 1;
+      cartItem.totalPrice += research.price; // Adjust totalPrice if needed
+      this.saveCart();
+      console.log("Item quantity updated in the cart.");
+    } else {
+      // Item does not exist in cart, add it
+      const newCartItem = {
+        research: research,
+        quantity: 1,
+        totalPrice: research.price,
+        id: +research.id,
+        report: research.report,
+        price: +research.price,
+        categoryName: research.categoryName,
+        reportType: research.reportType,
+        description: research.description,
+        author: research.author,
+        mAuthor: research.mAuthor,
+        publishDate: new Date(),
+        price2: 0,
+        tableOfContent: "",
+      };
+      this.cart.push(newCartItem);
+      this.saveCart();
+      console.log("Item added to the cart.");
+    }
+  }
 
   addToCart(research: any): void {
     const cartItem = this.cart.find((item) => item.research.id === research.id);
@@ -77,7 +109,7 @@ export class CartService {
         author: research.author,
         mAuthor: research.mAuthor,
         publishDate: new Date(),
-        price2: 0,
+        price2: +research.price,
         tableOfContent: "",
       };
       this.cart.push(newCartItem);
