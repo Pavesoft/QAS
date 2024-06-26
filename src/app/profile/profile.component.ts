@@ -14,7 +14,7 @@ import {
 import * as intlTelInput from "intl-tel-input";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
-const baseURl = "https://backend.quadrant-solutions.com";
+const baseURl = "http://10.0.51.3:8091";
 
 @Component({
   selector: "app-profile",
@@ -28,19 +28,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   showPassword = false;
   showConfirmPassword = false;
   newShowPassword = false;
-  user = {
-    firstName: "Kate",
-    lastName: "Pelikh",
-    address: "",
-    city: "",
-    state: "",
-    country: null,
-    postalCode: null,
-    mobileNumber: "9999999999", // Assuming this is a string as per typical phone number input handling
-    workEmail: "pelikh1@bpcbt.com",
-    company: "QAS",
-    phoneCountryCode: "+91",
-  };
+  user: any = {};
   isLoading = false;
   subscriptions: any[] = [];
   @ViewChild("phoneInput") phoneInput!: ElementRef;
@@ -81,6 +69,8 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         ],
       ],
     });
+
+    this.fetchUserDetails();
   }
 
   toggleEdit() {
@@ -108,7 +98,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       .subscribe(
         (data: any) => {
           this.subscriptions = data.researchMasterList;
-          console.log(this.subscriptions);
+
           this.isLoading = false;
         },
         (error: any) => {
@@ -118,12 +108,43 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       );
   }
 
+  fetchUserDetails() {
+    this.isLoading = true;
+    const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    this.http.get<any>(`${baseURl}/users/userdetails`, { headers }).subscribe(
+      (data: any) => {
+        this.user = {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          address: data.address,
+          city: data.city,
+          state: data.state,
+          country: data.country,
+          postalCode: data.postalCode,
+          mobileNumber: data.mobileNumber,
+          workEmail: data.workEmail,
+          company: data.company,
+          phoneCountryCode: data.phoneCountryCode,
+        };
+        this.isLoading = false;
+      },
+      (error: any) => {
+        console.error("Error fetching user details", error);
+        this.isLoading = false;
+      }
+    );
+  }
+
   onSubmit() {
     if (this.passwordForm.valid) {
       // Perform the password reset logic
-      console.log("Form Submitted", this.passwordForm.value);
+      // console.log("Form Submitted", this.passwordForm.value);
     } else {
-      console.log("Form is invalid");
+      // console.log("Form is invalid");
     }
   }
 
