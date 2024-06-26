@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { CartService } from "src/app/Services/cart.service"; // Cart service import
 import { MatDialog } from "@angular/material/dialog";
 import * as intlTelInput from "intl-tel-input";
@@ -12,6 +12,7 @@ import {
 import { catchError } from "rxjs/operators";
 import { of } from "rxjs";
 import { baseURl } from "const";
+import * as _ from "lodash";
 
 @Component({
   selector: "app-topbar",
@@ -42,105 +43,107 @@ export class TopbarComponent implements OnInit {
   currentCrossImage: string = this.normalCross;
   iti: any;
   itiSignup: any;
+  notificationData: any[] = [];
+  oldUrlData: any;
 
-  notificationData = [
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "SPARK Matrix : Governance Risk & Compliance (GRC), 2024",
-      status: "Available Now",
-      time: "2 Hrs",
-    },
-    {
-      link: "http://localhost:4200/market-research/future-trends-in-supply-chain-visibility-and-monitoring-3287",
-      name: "Security Compliance Report 2024",
-      status: "Available Now",
-      time: "1 Hr",
-    },
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "Annual Risk Assessment 2024",
-      status: "Available Now",
-      time: "3 Hrs",
-    },
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "SPARK Matrix : Governance Risk & Compliance (GRC), 2024",
-      status: "Available Now",
-      time: "2 Hrs",
-    },
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "Security Compliance Report 2024",
-      status: "Available Now",
-      time: "1 Hr",
-    },
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "Security Compliance Report 2024",
-      status: "Available Now",
-      time: "1 Hr",
-    },
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "Security Compliance Report 2024",
-      status: "Available Now",
-      time: "1 Hr",
-    },
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "Security Compliance Report 2024",
-      status: "Available Now",
-      time: "1 Hr",
-    },
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "Security Compliance Report 2024",
-      status: "Available Now",
-      time: "1 Hr",
-    },
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "Security Compliance Report 2024",
-      status: "Available Now",
-      time: "1 Hr",
-    },
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "Security Compliance Report 2024",
-      status: "Available Now",
-      time: "1 Hr",
-    },
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "Security Compliance Report 2024",
-      status: "Available Now",
-      time: "1 Hr",
-    },
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "Security Compliance Report 2024",
-      status: "Available Now",
-      time: "1 Hr",
-    },
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "Security Compliance Report 2024",
-      status: "Available Now",
-      time: "1 Hr",
-    },
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "Security Compliance Report 2024",
-      status: "Available Now",
-      time: "1 Hr",
-    },
-    {
-      link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-      name: "Security Compliance Report 2024",
-      status: "Available Now",
-      time: "1 Hr",
-    },
-  ]; // For showing error messages
+  // notificationData = [
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "SPARK Matrix : Governance Risk & Compliance (GRC), 2024",
+  //     status: "Available Now",
+  //     time: "2 Hrs",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/future-trends-in-supply-chain-visibility-and-monitoring-3287",
+  //     name: "Security Compliance Report 2024",
+  //     status: "Available Now",
+  //     time: "1 Hr",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "Annual Risk Assessment 2024",
+  //     status: "Available Now",
+  //     time: "3 Hrs",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "SPARK Matrix : Governance Risk & Compliance (GRC), 2024",
+  //     status: "Available Now",
+  //     time: "2 Hrs",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "Security Compliance Report 2024",
+  //     status: "Available Now",
+  //     time: "1 Hr",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "Security Compliance Report 2024",
+  //     status: "Available Now",
+  //     time: "1 Hr",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "Security Compliance Report 2024",
+  //     status: "Available Now",
+  //     time: "1 Hr",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "Security Compliance Report 2024",
+  //     status: "Available Now",
+  //     time: "1 Hr",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "Security Compliance Report 2024",
+  //     status: "Available Now",
+  //     time: "1 Hr",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "Security Compliance Report 2024",
+  //     status: "Available Now",
+  //     time: "1 Hr",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "Security Compliance Report 2024",
+  //     status: "Available Now",
+  //     time: "1 Hr",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "Security Compliance Report 2024",
+  //     status: "Available Now",
+  //     time: "1 Hr",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "Security Compliance Report 2024",
+  //     status: "Available Now",
+  //     time: "1 Hr",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "Security Compliance Report 2024",
+  //     status: "Available Now",
+  //     time: "1 Hr",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "Security Compliance Report 2024",
+  //     status: "Available Now",
+  //     time: "1 Hr",
+  //   },
+  //   {
+  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
+  //     name: "Security Compliance Report 2024",
+  //     status: "Available Now",
+  //     time: "1 Hr",
+  //   },
+  // ]; // For showing error messages
 
   constructor(
     private fb: FormBuilder,
@@ -262,7 +265,7 @@ export class TopbarComponent implements OnInit {
   getSelectedCountryCode() {
     if (this.iti) {
       const countryData = this.iti.getSelectedCountryData();
-      // console.log(countryData);
+
       return countryData.dialCode;
     }
     return "";
@@ -271,7 +274,7 @@ export class TopbarComponent implements OnInit {
   getSelectedSingUpCountryCode() {
     if (this.itiSignup) {
       const countryData = this.itiSignup.getSelectedCountryData();
-      // console.log(countryData);
+
       return countryData.dialCode;
     }
     return "";
@@ -279,8 +282,6 @@ export class TopbarComponent implements OnInit {
 
   onSubmitEnquiryForm() {
     const selectedCountryCode = this.getSelectedCountryCode();
-    // console.log("Selected Country Code:", selectedCountryCode);
-    // console.log("Form Values:", this.enquiryForm.value);
   }
 
   onLogin() {
@@ -370,8 +371,6 @@ export class TopbarComponent implements OnInit {
       password: this.signupForm.get("password")?.value,
     };
     const selectedCountryCode = this.getSelectedSingUpCountryCode();
-    // console.log("Selected Country Code:", selectedCountryCode);
-    // console.log(signupData);
 
     this.http
       .post(`${baseURl}/users/new`, signupData)
@@ -411,5 +410,110 @@ export class TopbarComponent implements OnInit {
   onMouseLeave() {
     this.currentImage = this.normalImage;
     this.currentCrossImage = this.normalCross;
+  }
+
+  fetchNotifications() {
+    const token = localStorage.getItem("jwtToken");
+
+    if (token) {
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      });
+
+      this.http
+        .get(`${baseURl}/notification/get-user-notification`, { headers })
+        .pipe(
+          catchError((error) => {
+            console.error("Error fetching notifications:", error);
+            return of([]);
+          })
+        )
+        .subscribe((response: any) => {
+          this.notificationData = response;
+        });
+    }
+  }
+
+  markNotificationAsRead(notificationId: number) {
+    const token = localStorage.getItem("jwtToken");
+
+    if (token) {
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      });
+
+      this.http
+        .post(
+          `${baseURl}/notification/mark-read/${notificationId}`,
+          {},
+          { headers }
+        )
+        .subscribe(
+          () => {
+            this.fetchNotifications();
+          },
+          (error) => {
+            console.error(
+              `Error marking notification ${notificationId} as read:`,
+              error
+            );
+            // Handle error gracefully
+          }
+        );
+    }
+  }
+
+  markAllNotificationsAsRead() {
+    const token = localStorage.getItem("jwtToken");
+
+    if (token) {
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      });
+
+      this.http
+        .post(`${baseURl}/notification/mark-all-read`, {}, { headers })
+        .subscribe(
+          () => {
+            // Handle success (e.g., update UI, refresh notifications)
+
+            // Optionally, you can refresh notifications after marking all as read
+            this.fetchNotifications();
+          },
+          (error) => {
+            console.error(`Error marking all notifications as read:`, error);
+            // Handle error gracefully
+          }
+        );
+    }
+  }
+  replaceSpaces(value: string): string {
+    const regexPattern = /[^a-zA-Z0-9\s]/g;
+
+    if (value && typeof value === "string") {
+      return value
+        .replace(regexPattern, " ")
+        .replace(/\s+/g, "-")
+        .toLowerCase();
+    } else {
+      return "";
+    }
+  }
+
+  researchHref(name: string, id: any) {
+    let nameChange = this.replaceSpaces(name);
+    let href = "/market-research/" + nameChange + "-" + id;
+    const objIndex = _.findIndex(
+      this.oldUrlData,
+      (item: any) => item.URL_ID == id
+    );
+    if (objIndex !== -1) {
+      href = this.oldUrlData[objIndex].To_URL;
+    }
+
+    return href;
   }
 }
