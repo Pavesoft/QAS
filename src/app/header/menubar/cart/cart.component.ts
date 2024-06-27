@@ -105,12 +105,13 @@ export class CartComponent implements OnInit {
   }
 
   increment(item: CartItem): void {
-    this.cartService.addToCartQuantity(item.research);
+    this.cartService.incrementToCartQuantity(item.research);
     item.quantity++;
     item.totalPrice += item.research.price;
   }
 
   decrement(item: CartItem): void {
+    this.cartService.decrementToCartQuantity(item.research);
     if (item.quantity > 1) {
       item.quantity--;
       item.totalPrice -= item.research.price;
