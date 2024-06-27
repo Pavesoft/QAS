@@ -7,8 +7,7 @@ import {
 } from "@angular/forms";
 import * as intlTelInput from "intl-tel-input";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-
-const baseURl = "http://10.0.51.3:8091";
+import { baseURl } from "const";
 
 @Component({
   selector: "app-profile",
@@ -27,7 +26,7 @@ export class ProfileComponent implements OnInit {
   subscriptions: any[] = [];
   @ViewChild("phoneInput") phoneInput!: ElementRef;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  constructor(private fb: FormBuilder, private httpClient: HttpClient) {}
 
   ngOnInit(): void {
     this.profileDetailsForm = this.fb.group({
@@ -54,27 +53,27 @@ export class ProfileComponent implements OnInit {
       Authorization: `Bearer ${token}`,
     });
 
-    this.http.get<any>(`${baseURl}/users/userdetails`, { headers }).subscribe(
-      (data: any) => {
-        this.user = data;
-        this.isLoading = false;
-        console.log("data for user details", this.user);
+    this.httpClient
+      .get<any>(`${baseURl}/users/userdetails`, { headers })
+      .subscribe(
+        (data: any) => {
+          this.user = data;
+          this.isLoading = false;
 
-        // Call initPhoneNumberInput here, after this.user.phoneCountryCode is set
-        this.initPhoneNumberInput();
-      },
-      (error: any) => {
-        console.error("Error fetching user details", error);
-        this.isLoading = false;
-      }
-    );
+          // Call initPhoneNumberInput here, after this.user.phoneCountryCode is set
+          this.initPhoneNumberInput();
+        },
+        (error: any) => {
+          this.isLoading = false;
+        }
+      );
   }
 
   initPhoneNumberInput() {
     const inputElement = this.phoneInput.nativeElement;
     if (inputElement && this.user && this.user.phoneCountryCode) {
       const phoneInput = intlTelInput(inputElement, {
-        initialCountry: "in", // Remove the '+' sign
+        initialCountry: this.user.phoneCountryCode, // Remove the '+' sign
         separateDialCode: true,
         utilsScript:
           "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.8/js/utils.min.js",
@@ -104,7 +103,7 @@ export class ProfileComponent implements OnInit {
       Authorization: `Bearer ${token}`,
     });
 
-    this.http
+    this.httpClient
       .get<any[]>(`${baseURl}/research-masters/research-list-subscribed`, {
         headers,
       })
@@ -115,7 +114,6 @@ export class ProfileComponent implements OnInit {
           this.isLoading = false;
         },
         (error: any) => {
-          console.error("Error fetching subscriptions", error);
           this.isLoading = false;
         }
       );
@@ -123,10 +121,7 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     if (this.profileDetailsForm.valid) {
-      // Perform the password reset logic
-      // console.log("Form Submitted", this.profileDetailsForm.value);
     } else {
-      // console.log("Form is invalid");
     }
   }
 

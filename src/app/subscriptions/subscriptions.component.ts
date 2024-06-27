@@ -118,11 +118,11 @@ export class SubscriptionsComponent implements OnInit, AfterViewInit {
       .subscribe(
         (data: any) => {
           this.subscriptions = data.researchMasterList;
-          console.log(this.subscriptions);
+          // console.log(this.subscriptions);
           this.isLoading = false;
         },
         (error: any) => {
-          console.error("Error fetching subscriptions", error);
+          // console.error("Error fetching subscriptions", error);
           this.isLoading = false;
         }
       );
@@ -131,9 +131,9 @@ export class SubscriptionsComponent implements OnInit, AfterViewInit {
   onSubmit() {
     if (this.passwordForm.valid) {
       // Perform the password reset logic
-      console.log("Form Submitted", this.passwordForm.value);
+      // console.log("Form Submitted", this.passwordForm.value);
     } else {
-      console.log("Form is invalid");
+      // console.log("Form is invalid");
     }
   }
 
@@ -141,7 +141,7 @@ export class SubscriptionsComponent implements OnInit, AfterViewInit {
     const uniqueReportTypes = [
       ...new Set(this.subscriptions.map((sub) => sub.reportType).flat()),
     ];
-    console.log(uniqueReportTypes);
+    // console.log(uniqueReportTypes);
     return uniqueReportTypes;
   }
 

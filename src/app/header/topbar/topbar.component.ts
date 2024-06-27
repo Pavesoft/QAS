@@ -26,14 +26,15 @@ export class TopbarComponent implements OnInit {
   isSignup = false;
   isLogin = false;
   showDropdownNotificationMenu: boolean = false;
-  showDropProfiledownMenu: boolean = false;
+  showDropProfileDownMenu: boolean = false;
   showAdditionalInputs: boolean = false;
   isLoggedIn = false;
   totalCartItems = 0;
   errorMessage = "";
+  errorMessageSignup = "";
   firstName: string = "";
-  showpassword = false;
-  showconfirmpassword = false;
+  showPassword = false;
+  showConfirmPassword = false;
   showAdditionalInfo: boolean = false;
   normalImage: string = "../../../assets/list_notification.svg";
   hoverImage: string = "../../../assets/list_notification.svg";
@@ -45,105 +46,6 @@ export class TopbarComponent implements OnInit {
   itiSignup: any;
   notificationData: any[] = [];
   oldUrlData: any;
-
-  // notificationData = [
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "SPARK Matrix : Governance Risk & Compliance (GRC), 2024",
-  //     status: "Available Now",
-  //     time: "2 Hrs",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/future-trends-in-supply-chain-visibility-and-monitoring-3287",
-  //     name: "Security Compliance Report 2024",
-  //     status: "Available Now",
-  //     time: "1 Hr",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "Annual Risk Assessment 2024",
-  //     status: "Available Now",
-  //     time: "3 Hrs",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "SPARK Matrix : Governance Risk & Compliance (GRC), 2024",
-  //     status: "Available Now",
-  //     time: "2 Hrs",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "Security Compliance Report 2024",
-  //     status: "Available Now",
-  //     time: "1 Hr",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "Security Compliance Report 2024",
-  //     status: "Available Now",
-  //     time: "1 Hr",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "Security Compliance Report 2024",
-  //     status: "Available Now",
-  //     time: "1 Hr",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "Security Compliance Report 2024",
-  //     status: "Available Now",
-  //     time: "1 Hr",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "Security Compliance Report 2024",
-  //     status: "Available Now",
-  //     time: "1 Hr",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "Security Compliance Report 2024",
-  //     status: "Available Now",
-  //     time: "1 Hr",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "Security Compliance Report 2024",
-  //     status: "Available Now",
-  //     time: "1 Hr",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "Security Compliance Report 2024",
-  //     status: "Available Now",
-  //     time: "1 Hr",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "Security Compliance Report 2024",
-  //     status: "Available Now",
-  //     time: "1 Hr",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "Security Compliance Report 2024",
-  //     status: "Available Now",
-  //     time: "1 Hr",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "Security Compliance Report 2024",
-  //     status: "Available Now",
-  //     time: "1 Hr",
-  //   },
-  //   {
-  //     link: "http://localhost:4200/market-research/spark-matrix-identity-capture-and-verification-2024-3256",
-  //     name: "Security Compliance Report 2024",
-  //     status: "Available Now",
-  //     time: "1 Hr",
-  //   },
-  // ]; // For showing error messages
 
   constructor(
     private fb: FormBuilder,
@@ -249,13 +151,13 @@ export class TopbarComponent implements OnInit {
   toggleDropdownNotificationMenu() {
     this.showDropdownNotificationMenu = !this.showDropdownNotificationMenu;
 
-    if (this.showDropProfiledownMenu === true) {
-      this.showDropProfiledownMenu = false;
+    if (this.showDropProfileDownMenu === true) {
+      this.showDropProfileDownMenu = false;
     }
   }
 
   toggleDropdownProfileMenu() {
-    this.showDropProfiledownMenu = !this.showDropProfiledownMenu;
+    this.showDropProfileDownMenu = !this.showDropProfileDownMenu;
 
     if (this.showDropdownNotificationMenu === true) {
       this.showDropdownNotificationMenu = false;
@@ -275,7 +177,7 @@ export class TopbarComponent implements OnInit {
     if (this.itiSignup) {
       const countryData = this.itiSignup.getSelectedCountryData();
 
-      return countryData.dialCode;
+      return countryData.iso2;
     }
     return "";
   }
@@ -292,14 +194,6 @@ export class TopbarComponent implements OnInit {
 
     this.http
       .post(`${baseURl}/users/login`, loginData)
-      .pipe(
-        catchError((error) => {
-          this.errorMessage =
-            "Login failed. Please check your credentials and try again.";
-          this.loginForm.reset();
-          return of(null);
-        })
-      )
       .subscribe((response: any) => {
         if (response && response.jwtToken) {
           localStorage.setItem("jwtToken", response.jwtToken);
@@ -363,41 +257,31 @@ export class TopbarComponent implements OnInit {
         "Invalid input. Please correct the errors and try again.";
       return;
     }
-
-    const signupData = {
-      firstName: this.signupForm.get("name")?.value,
-      workEmail: this.signupForm.get("email")?.value,
-      mobileNumber: this.signupForm.get("phone")?.value,
-      password: this.signupForm.get("password")?.value,
-    };
     const selectedCountryCode = this.getSelectedSingUpCountryCode();
+    const signupData = {
+      firstName: this.signupForm.get("firstName")?.value,
+      lastName: this.signupForm.get("lastName")?.value,
+      company: this.signupForm.get("company")?.value,
+      workEmail: this.signupForm.get("email")?.value,
+      mobileNumber: this.signupForm.get("mobileNumber")?.value,
+      phoneCountryCode: selectedCountryCode,
+      password: this.signupForm.get("password")?.value,
+
+      confirmPassword: this.signupForm.get("confirmPassword")?.value,
+    };
 
     this.http
       .post(`${baseURl}/users/new`, signupData)
-      .pipe(
-        catchError((error) => {
-          console.error("Signup failed:", error);
-          this.errorMessage =
-            "Signup failed. Please check your details and try again.";
-          return of(null);
-        })
-      )
       .subscribe((response: any) => {
-        if (response) {
-          this.errorMessage = "Signup successful! You can now log in.";
-          this.isSignup = false;
-          this.signupForm.reset();
-        } else {
-          this.errorMessage = "Signup failed. Please try again.";
-        }
+        this.signupForm.reset();
       });
   }
 
   togglePassword() {
-    this.showpassword = !this.showpassword;
+    this.showPassword = !this.showPassword;
   }
   toggleConfirmPassword() {
-    this.showconfirmpassword = !this.showconfirmpassword;
+    this.showConfirmPassword = !this.showConfirmPassword;
   }
   navigateTo(link: string): void {
     window.location.href = link;
@@ -423,15 +307,10 @@ export class TopbarComponent implements OnInit {
 
       this.http
         .get(`${baseURl}/notification/get-user-notification`, { headers })
-        .pipe(
-          catchError((error) => {
-            console.error("Error fetching notifications:", error);
-            return of([]);
-          })
-        )
+
         .subscribe((response: any) => {
           this.notificationData = response;
-          console.log(this.notificationData);
+          // console.log(this.notificationData);
         });
     }
   }
@@ -456,10 +335,10 @@ export class TopbarComponent implements OnInit {
             this.fetchNotifications();
           },
           (error) => {
-            console.error(
-              `Error marking notification ${notificationId} as read:`,
-              error
-            );
+            // console.error(
+            //   `Error marking notification ${notificationId} as read:`,
+            //   error
+            // );
             // Handle error gracefully
           }
         );
@@ -485,7 +364,7 @@ export class TopbarComponent implements OnInit {
             this.fetchNotifications();
           },
           (error) => {
-            console.error(`Error marking all notifications as read:`, error);
+            // console.error(`Error marking all notifications as read:`, error);
             // Handle error gracefully
           }
         );

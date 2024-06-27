@@ -278,7 +278,9 @@
             class="d-flex justify-content-center align-items-center"
             *ngIf="!canMarkAllAsRead()"
           >
-            <h3 class="m-0">No New Notifications Found</h3>
+            <h3 class="m-0" style="padding: 10px 0px">
+              No notifications to display
+            </h3>
           </div>
           <div
             *ngFor="let notification of notificationData"
@@ -509,7 +511,7 @@
                   src="../../../assets/Password-icon.png"
                 />
                 <input
-                  [type]="showpassword ? 'text' : 'password'"
+                  [type]="showPassword ? 'text' : 'password'"
                   class="form-control"
                   id="inputPassword"
                   placeholder="Password"
@@ -517,13 +519,13 @@
                   required
                 />
                 <img
-                  *ngIf="!showpassword"
+                  *ngIf="!showPassword"
                   (click)="togglePassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye.svg"
                 />
                 <img
-                  *ngIf="showpassword"
+                  *ngIf="showPassword"
                   (click)="togglePassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye-off.svg"
@@ -746,7 +748,7 @@
                   src="../../../assets/Password-icon.png"
                 />
                 <input
-                  [type]="showpassword ? 'text' : 'password'"
+                  [type]="showPassword ? 'text' : 'password'"
                   class="form-control"
                   id="inputPassword"
                   placeholder="Password"
@@ -754,13 +756,13 @@
                   required
                 />
                 <img
-                  *ngIf="!showpassword"
+                  *ngIf="!showPassword"
                   (click)="togglePassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye.svg"
                 />
                 <img
-                  *ngIf="showpassword"
+                  *ngIf="showPassword"
                   (click)="togglePassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye-off.svg"
@@ -784,7 +786,7 @@
                 />
 
                 <input
-                  [type]="showconfirmpassword ? 'text' : 'password'"
+                  [type]="showConfirmPassword ? 'text' : 'password'"
                   class="form-control"
                   id="inputConfirmPassword"
                   placeholder="Confirm Password"
@@ -792,13 +794,13 @@
                   required
                 />
                 <img
-                  *ngIf="!showconfirmpassword"
+                  *ngIf="!showConfirmPassword"
                   (click)="toggleConfirmPassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye.svg"
                 />
                 <img
-                  *ngIf="showconfirmpassword"
+                  *ngIf="showConfirmPassword"
                   (click)="toggleConfirmPassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye-off.svg"
@@ -806,21 +808,32 @@
               </div>
               <div
                 *ngIf="
-                  signupForm.get('confirmPassword')?.touched &&
-                  signupForm.get('confirmPassword')?.invalid
-                "
+      signupForm.get('confirmPassword')?.touched &&
+      signupForm.get('confirmPassword')?.invalid &&
+      !signupForm.errors?.['passwordMismatch']
+    "
                 class="text-danger"
               >
                 Confirm Password is required.
               </div>
               <div
-                *ngIf="signupForm.errors?.['passwordMismatch'] && signupForm.get('confirmPassword')?.touched"
+                *ngIf="
+      signupForm.errors?.['passwordMismatch'] &&
+      signupForm.get('confirmPassword')?.touched
+    "
                 class="text-danger"
               >
                 Passwords do not match.
               </div>
             </div>
 
+            <div
+              *ngIf="errorMessageSignup"
+              style="margin-left: 100px"
+              class="text-danger"
+            >
+              {{ errorMessageSignup }}
+            </div>
             <button
               type="submit"
               class="btn btn-primary common-button-style"
