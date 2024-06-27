@@ -277,78 +277,97 @@ const routes: Routes = [
   {
     path: "domains/banking-and-financial-services",
     component: BankingAndFinancialServicesComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/cloud-management",
     component: CloudManagementComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/communication-collaboration",
     component: CommunicationCollaborationComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/cx-and-martech",
     component: CxAndMartechComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/data-analytics-and-artificial-intelligence",
     component: DataAnalyticsAndArtificialIntelligenceComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/data-management-service",
     component: DataManagementServiceComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/enterprise-it-services",
     component: EnterpriseItServicesComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/enterprise-architecture-planning",
     component: EnterpriseArchitecturePlanningComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/financial-crime-and-compliance",
     component: FinancialCrimeAndComplianceComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/hrtech",
     component: HrtechComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/information-security",
     component: InformationSecurityComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/integrated-risk-management",
     component: IntegratedRiskManagementComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/internet-of-things-and-digitization",
     component: InternetOfThingsAndDigitizationComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/it-infrastructure-and-networking",
     component: ItInfrastructureAndNetworkingComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/privacy-data-management",
     component: PrivacyDataManagementComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/procurement-management",
     component: ProcurementManagementComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/project-and-portfolio-management",
     component: ProjectAndPortfolioManagementComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/retail-and-ecommerce",
     component: RetailAndEcommerceComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/supply-chain-management",
     component: SupplyChainManagementComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "press-release",
@@ -358,6 +377,7 @@ const routes: Routes = [
   {
     path: "press-release/:pressReleseName-:pressReleseId",
     component: SinglePressReleseComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "blogs",
@@ -368,90 +388,111 @@ const routes: Routes = [
     path: "blogs/:blogName-:blogId",
     pathMatch: "full",
     component: SingleBlogComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "blogs/:blogName",
     pathMatch: "full",
     component: OldPressReleseRedirectComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/business-process-management-automation",
     component: BusinessProcessManagementAutomationComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "download-form",
     component: DownloadFormComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "download-form/:formName",
     component: DownloadFormComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "download-form/:path/:formName",
     component: DownloadFormComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "register",
     component: RegisterComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "login",
     component: LoginComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "press-release/:pressReleseName",
     component: SinglePressReleseComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "business-process-management-automation",
     component: BusinessProcessManagementAutomationComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "client-partner",
     component: ClientPartnerComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "quadrant-research-methodologies",
     component: QuadrantResearchMethodologiesComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "marineform",
     component: MarineformComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "enquiryform",
     component: EnquiryformComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
 
   {
     path: "citation-policy",
     component: CitationPolicyComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "domains/application-development",
     component: ApplicationDevelopmentComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "video-gallery",
     component: VideoGalleryComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "podcasts",
     component: PodcastsComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "webinar",
     component: WebinarComponent,
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "**",
     component: OldPressReleseRedirectComponent,
     canActivate: [UrlMappingGuard],
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "not-found",
     component: OldPressReleseRedirectComponent,
     canActivate: [UrlMappingGuard],
+    title: "Business Management Consultants | Quadrant Solutions",
   },
   {
     path: "**",
