@@ -57,8 +57,9 @@
       <span class="dropdown" style="cursor: pointer">
         <!-- The icon that triggers the dropdown -->
         <span
-          id="logoutDropdown"
-          data-toggle="dropdown"
+          id="dropdownMenuClickableInside"
+          data-bs-toggle="dropdown"
+          data-bs-auto-close="outside"
           aria-expanded="false"
           style="cursor: pointer"
         >
@@ -84,6 +85,7 @@
         <!-- The dropdown menu -->
         <div
           class="dropdown-menu dropdown-menu-right enquiryForm-dropdown-container"
+          aria-labelledby="dropdownMenuClickableInside"
         >
           <h5 class="enquiry-title">Enquiry Form</h5>
           <img src="/assets/Line.png" class="enquiry-underline" />
@@ -379,8 +381,8 @@
         <!-- The icon that triggers the dropdown -->
         <span
           class="dropdown-toggle"
-          id="logoutDropdown"
-          data-toggle="dropdown"
+          id="dropdownMenuClickableInside"
+          data-bs-toggle="dropdown"
           aria-expanded="false"
           style="cursor: pointer"
         >

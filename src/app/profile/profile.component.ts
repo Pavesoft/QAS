@@ -21,7 +21,7 @@ const baseURl = "http://10.0.51.3:8091";
   templateUrl: "./profile.component.html",
   styleUrls: ["./profile.component.scss"],
 })
-export class ProfileComponent implements OnInit, AfterViewInit {
+export class ProfileComponent implements OnInit {
   content: string = "My Profile";
   passwordForm: FormGroup;
   isEditing = false;
@@ -34,26 +34,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   @ViewChild("phoneInput") phoneInput!: ElementRef;
 
   constructor(private fb: FormBuilder, private http: HttpClient) {}
-
-  ngAfterViewInit(): void {
-    this.initPhoneNumberInput();
-  }
-
-  initPhoneNumberInput() {
-    const inputElement = this.phoneInput.nativeElement;
-    if (inputElement) {
-      const phoneInput = intlTelInput(inputElement, {
-        initialCountry: this.user.phoneCountryCode.slice(1), // Remove the '+' sign
-        separateDialCode: true,
-        utilsScript:
-          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.8/js/utils.min.js",
-      });
-
-      // Set the default number if provided
-      const defaultNumber = `${this.user.phoneCountryCode}${this.user.mobileNumber}`;
-      phoneInput.setNumber(defaultNumber);
-    }
-  }
 
   ngOnInit(): void {
     this.passwordForm = this.fb.group({
@@ -70,7 +50,58 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       ],
     });
 
-    this.fetchUserDetails();
+    this.fetchUserDetails(); // Call fetchUserDetails to get user data
+  }
+
+  fetchUserDetails() {
+    this.isLoading = true;
+    const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    this.http.get<any>(`${baseURl}/users/userdetails`, { headers }).subscribe(
+      (data: any) => {
+        this.user = {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          address: data.address,
+          city: data.city,
+          state: data.state,
+          country: data.country,
+          postalCode: data.postalCode,
+          mobileNumber: data.mobileNumber,
+          workEmail: data.workEmail,
+          company: data.company,
+          phoneCountryCode: data.phoneCountryCode,
+        };
+        this.isLoading = false;
+        console.log("data for user details", this.user);
+
+        // Call initPhoneNumberInput here, after this.user.phoneCountryCode is set
+        this.initPhoneNumberInput();
+      },
+      (error: any) => {
+        console.error("Error fetching user details", error);
+        this.isLoading = false;
+      }
+    );
+  }
+
+  initPhoneNumberInput() {
+    const inputElement = this.phoneInput.nativeElement;
+    if (inputElement && this.user && this.user.phoneCountryCode) {
+      const phoneInput = intlTelInput(inputElement, {
+        initialCountry: this.user.phoneCountryCode.slice(1), // Remove the '+' sign
+        separateDialCode: true,
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.8/js/utils.min.js",
+      });
+
+      // Set the default number if provided
+      const defaultNumber = `${this.user.phoneCountryCode}${this.user.mobileNumber}`;
+      phoneInput.setNumber(defaultNumber);
+    }
   }
 
   toggleEdit() {
@@ -106,37 +137,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
         }
       );
-  }
-
-  fetchUserDetails() {
-    this.isLoading = true;
-    const token = localStorage.getItem("jwtToken");
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-
-    this.http.get<any>(`${baseURl}/users/userdetails`, { headers }).subscribe(
-      (data: any) => {
-        this.user = {
-          firstName: data.firstName,
-          lastName: data.lastName,
-          address: data.address,
-          city: data.city,
-          state: data.state,
-          country: data.country,
-          postalCode: data.postalCode,
-          mobileNumber: data.mobileNumber,
-          workEmail: data.workEmail,
-          company: data.company,
-          phoneCountryCode: data.phoneCountryCode,
-        };
-        this.isLoading = false;
-      },
-      (error: any) => {
-        console.error("Error fetching user details", error);
-        this.isLoading = false;
-      }
-    );
   }
 
   onSubmit() {
