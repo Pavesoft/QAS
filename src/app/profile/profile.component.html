@@ -56,7 +56,7 @@
         <h3 class="content-title pb-1 p-0 m-0 mb-2">My Profile</h3>
 
         <div class="p-0 m-0">
-          <form [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="profileDetailsForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="name">Name</label>
               <input
@@ -78,10 +78,10 @@
                 required
                 readonly
               />
-              <div *ngIf="passwordForm.controls['email'].errors">
+              <div *ngIf="profileDetailsForm.controls['email'].errors">
                 <small
                   class="text-danger"
-                  *ngIf="passwordForm.controls['email'].errors['email']"
+                  *ngIf="profileDetailsForm.controls['email'].errors['email']"
                 >
                   Invalid email address.
                 </small>
@@ -156,8 +156,8 @@
               <div
                 *ngIf="
                   isEditing &&
-                  passwordForm.get('currentpassword')?.invalid &&
-                  passwordForm.get('currentpassword')?.touched
+                  profileDetailsForm.get('currentpassword')?.invalid &&
+                  profileDetailsForm.get('currentpassword')?.touched
                 "
                 class="text-danger"
               >
@@ -191,8 +191,8 @@
               <div
                 *ngIf="
                   isEditing &&
-                  passwordForm.get('password')?.invalid &&
-                  passwordForm.get('password')?.touched
+                  profileDetailsForm.get('password')?.invalid &&
+                  profileDetailsForm.get('password')?.touched
                 "
                 class="text-danger"
               >
@@ -224,7 +224,7 @@
                 />
               </div>
               <div
-                *ngIf="passwordForm.errors?.['mismatch'] && passwordForm.get('confirmPassword')?.touched"
+                *ngIf="profileDetailsForm.errors?.['mismatch'] && profileDetailsForm.get('confirmPassword')?.touched"
                 class="text-danger"
               >
                 Passwords must match.

@@ -89,14 +89,21 @@ export class ResearchSingleComponent implements OnInit {
     }
   }
   showCustomAlert(): void {
-    this.showOverlay = true;
+    this.showOverlay = true; // Assuming this is for showing an overlay or backdrop
+
     setTimeout(() => {
       const customAlert = document.getElementById("customAlert");
       if (customAlert) {
         customAlert.style.display = "block";
+
+        setTimeout(() => {
+          customAlert.style.display = "none"; // Hide the alert after one second
+          this.showOverlay = false; // Hide the overlay as well, if applicable
+        }, 1000);
       }
-    }, 100);
+    }, 1000);
   }
+
   formatPrice(price: number): string {
     // Convert the number to a string and add commas every three digits from the right
     return price.toLocaleString("en-US");

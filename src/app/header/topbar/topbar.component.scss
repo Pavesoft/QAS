@@ -350,6 +350,20 @@ input#inputTime {
   line-height: 20px !important;
   margin-right: 20px !important;
   color: #444343 !important;
+
+  text-decoration: none !important;
+}
+.no-notification {
+  margin-left: 2px !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  margin-right: 20px !important;
+  margin-top: 10px !important;
+  padding-left: 100px !important;
+  padding-right: 100px !important;
+  margin-left: 20px !important;
+  text-align: center;
+  color: #0972ea !important;
   text-decoration: none !important;
 }
 .notification-name:hover {
@@ -555,6 +569,12 @@ input#inputTime {
 }
 .mark-read-button:hover {
   box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+.mark-read-button[disabled] {
+  background-color: #cccccc; /* Change background color when disabled */
+  color: white; /* Change text color when disabled */
+  box-shadow: none; /* Remove box shadow when disabled */
+  cursor: not-allowed; /* Change cursor to not-allowed when disabled */
 }
 #logoutDropdown:hover {
   color: blue !important; /* Change this to the desired hover color */

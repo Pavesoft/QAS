@@ -131,7 +131,7 @@
             </div>
             <div class="d-flex mb-2">
               <img
-                style="height: 43px"
+                style="height: 42px"
                 src="../../../assets//Form-Component3.png"
               />
               <input
@@ -147,7 +147,7 @@
             </div>
             <div class="d-flex mb-2">
               <img
-                style="height: 45px; margin-top: 1px !important"
+                style="height: 42px; margin-top: 1px !important"
                 src="../../../assets//Form-Component4.png"
               />
               <input
@@ -193,6 +193,19 @@
             </div>
 
             <div class="d-flex justify-content-between">
+              <div *ngIf="showAdditionalInfo" class="d-flex mb-2 mt-1">
+                <img
+                  style="height: 42px"
+                  src="../../../assets//date-image.svg"
+                />
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="inputDate"
+                  formControlName="date"
+                  required
+                />
+              </div>
               <div class="form-check ml-1 mt-1 mb-2">
                 <input
                   type="checkbox"
@@ -204,19 +217,6 @@
                 <label class="form-check-label" for="additionalInfoCheckbox"
                   >Schedule Meet
                 </label>
-              </div>
-              <div *ngIf="showAdditionalInfo" class="d-flex mb-2 mt-1">
-                <img
-                  style="height: 41px"
-                  src="../../../assets//date-image.svg"
-                />
-                <input
-                  type="datetime-local"
-                  class="form-control"
-                  id="inputDate"
-                  formControlName="date"
-                  required
-                />
               </div>
             </div>
             <button
@@ -230,7 +230,7 @@
         </div>
       </span>
 
-      <div class="dropdown" style="cursor: pointer">
+      <div *ngIf="isLoggedIn" class="dropdown" style="cursor: pointer">
         <span
           id="dropdownMenuClickableInside"
           data-bs-toggle="dropdown"
@@ -268,11 +268,17 @@
             </h3>
             <button
               class="mark-read-button"
-              aria-disabled="true"
+              [disabled]="!canMarkAllAsRead()"
               (click)="markAllNotificationsAsRead()"
             >
               Mark all as Read
             </button>
+          </div>
+          <div
+            class="d-flex justify-content-center align-items-center"
+            *ngIf="!canMarkAllAsRead()"
+          >
+            <h3 class="m-0">No New Notifications Found</h3>
           </div>
           <div
             *ngFor="let notification of notificationData"

@@ -431,6 +431,7 @@ export class TopbarComponent implements OnInit {
         )
         .subscribe((response: any) => {
           this.notificationData = response;
+          console.log(this.notificationData);
         });
     }
   }
@@ -489,6 +490,11 @@ export class TopbarComponent implements OnInit {
           }
         );
     }
+  }
+
+  canMarkAllAsRead(): boolean {
+    // Check if there are any unread notifications
+    return this.notificationData.some((notification) => !notification.isRead);
   }
   replaceSpaces(value: string): string {
     const regexPattern = /[^a-zA-Z0-9\s]/g;

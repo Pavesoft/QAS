@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  ElementRef,
-  ViewChild,
-} from "@angular/core";
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -23,7 +17,7 @@ const baseURl = "http://10.0.51.3:8091";
 })
 export class ProfileComponent implements OnInit {
   content: string = "My Profile";
-  passwordForm: FormGroup;
+  profileDetailsForm: FormGroup;
   isEditing = false;
   showPassword = false;
   showConfirmPassword = false;
@@ -36,7 +30,7 @@ export class ProfileComponent implements OnInit {
   constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.passwordForm = this.fb.group({
+    this.profileDetailsForm = this.fb.group({
       password: ["", [Validators.required]],
       confirmPassword: ["", [Validators.required]],
       currentpassword: ["", [Validators.required]],
@@ -62,19 +56,7 @@ export class ProfileComponent implements OnInit {
 
     this.http.get<any>(`${baseURl}/users/userdetails`, { headers }).subscribe(
       (data: any) => {
-        this.user = {
-          firstName: data.firstName,
-          lastName: data.lastName,
-          address: data.address,
-          city: data.city,
-          state: data.state,
-          country: data.country,
-          postalCode: data.postalCode,
-          mobileNumber: data.mobileNumber,
-          workEmail: data.workEmail,
-          company: data.company,
-          phoneCountryCode: data.phoneCountryCode,
-        };
+        this.user = data;
         this.isLoading = false;
         console.log("data for user details", this.user);
 
@@ -92,14 +74,14 @@ export class ProfileComponent implements OnInit {
     const inputElement = this.phoneInput.nativeElement;
     if (inputElement && this.user && this.user.phoneCountryCode) {
       const phoneInput = intlTelInput(inputElement, {
-        initialCountry: this.user.phoneCountryCode.slice(1), // Remove the '+' sign
+        initialCountry: "in", // Remove the '+' sign
         separateDialCode: true,
         utilsScript:
           "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.8/js/utils.min.js",
       });
 
       // Set the default number if provided
-      const defaultNumber = `${this.user.phoneCountryCode}${this.user.mobileNumber}`;
+      const defaultNumber = `${this.user.mobileNumber}`;
       phoneInput.setNumber(defaultNumber);
     }
   }
@@ -140,9 +122,9 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.passwordForm.valid) {
+    if (this.profileDetailsForm.valid) {
       // Perform the password reset logic
-      // console.log("Form Submitted", this.passwordForm.value);
+      // console.log("Form Submitted", this.profileDetailsForm.value);
     } else {
       // console.log("Form is invalid");
     }
