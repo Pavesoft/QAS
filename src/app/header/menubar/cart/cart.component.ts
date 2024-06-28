@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ResearchMasterDto } from "src/app/Interfaces/research-master-dto";
 import { CartService } from "src/app/Services/cart.service";
+import { AuthService } from "src/app/auth.service";
 
 interface CartItem {
   research: ResearchMasterDto;
@@ -23,7 +24,8 @@ export class CartComponent implements OnInit {
   constructor(
     public cartService: CartService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -154,5 +156,9 @@ export class CartComponent implements OnInit {
       const discount = item.research.price - item.research.price2;
       return totalDiscount + (discount > 0 ? discount * item.quantity : 0);
     }, 0);
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 }

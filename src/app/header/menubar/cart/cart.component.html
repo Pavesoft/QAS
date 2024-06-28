@@ -303,8 +303,23 @@
           </div>
           <div>
             <button
+              *ngIf="isLoggedIn()"
               type="submit"
               class="btn btn-primary common-button-style"
+              style="
+                margin-top: 25px !important;
+                border: 0px;
+                font-size: 17px !important;
+              "
+            >
+              Proceed Payment
+            </button>
+            <button
+              *ngIf="!isLoggedIn()"
+              type="submit"
+              class="btn btn-primary common-button-style"
+              data-toggle="modal"
+              data-target="#exampleModal1"
               style="
                 margin-top: 25px !important;
                 border: 0px;
