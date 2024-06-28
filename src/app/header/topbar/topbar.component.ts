@@ -119,7 +119,6 @@ export class TopbarComponent implements OnInit {
     this.checkLoginStatus();
     this.updateCartItems();
     this.firstName = localStorage.getItem("fname") || "";
-    this.fetchNotifications(); // Fetch notifications on component initialization
   }
 
   checkLoginStatus() {
