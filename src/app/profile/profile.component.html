@@ -60,10 +60,9 @@
             <div class="form-group">
               <label for="name">Name</label>
               <input
-                type="text"
-                id="name"
+                id="firstName"
                 placeholder="{{ user.firstName }}"
-                [disabled]="!isEditing"
+                [disabled]="true"
                 readonly
               />
             </div>
@@ -74,7 +73,7 @@
                 type="email"
                 placeholder="{{ user.workEmail }}"
                 id="email"
-                [disabled]="!isEditing"
+                [disabled]="true"
                 required
                 readonly
               />
@@ -99,7 +98,7 @@
                 required
                 placeholder="Phone*"
                 style="margin-bottom: 20px"
-                [disabled]="!isEditing"
+                [disabled]="true"
                 readonly
               />
             </div>
@@ -107,10 +106,9 @@
             <div class="form-group">
               <label for="company">Company Name</label>
               <input
-                type="text"
                 id="company"
                 placeholder="{{ user.company }}"
-                [disabled]="!isEditing"
+                [disabled]="true"
                 readonly
               />
             </div>
@@ -118,11 +116,11 @@
             <div class="p-0 d-flex justify-content-end">
               <button
                 type="button"
-                class="btn btn-secondary"
+                class="btn btn-primary edit-button-style"
                 style="font-size: 16px !important"
                 (click)="toggleEdit()"
               >
-                {{ isEditing ? "Save" : "Edit" }}
+                {{ isEditing ? "Cancel" : "Edit" }}
               </button>
             </div>
 
@@ -141,7 +139,7 @@
                   [readonly]="!isEditing"
                 />
                 <img
-                  *ngIf="!showPassword"
+                  *ngIf="!showPassword && isEditing"
                   (click)="togglePassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye.svg"
@@ -176,7 +174,7 @@
                   [readonly]="!isEditing"
                 />
                 <img
-                  *ngIf="!newShowPassword"
+                  *ngIf="!newShowPassword && isEditing"
                   (click)="toggleNewPassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye.svg"
@@ -211,7 +209,7 @@
                   [readonly]="!isEditing"
                 />
                 <img
-                  *ngIf="!showConfirmPassword"
+                  *ngIf="!showConfirmPassword && isEditing"
                   (click)="toggleConfirmPassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye.svg"
@@ -223,11 +221,25 @@
                   src="../../../assets/eye-off.svg"
                 />
               </div>
+
               <div
-                *ngIf="profileDetailsForm.errors?.['mismatch'] && profileDetailsForm.get('confirmPassword')?.touched"
+                *ngIf=" isEditing &&
+     profileDetailsForm.get('confirmPassword')?.touched &&
+     profileDetailsForm.get('confirmPassword')?.invalid &&
+      !profileDetailsForm.errors?.['passwordMismatch']
+    "
                 class="text-danger"
               >
-                Passwords must match.
+                Confirm Password is required.
+              </div>
+              <div
+                *ngIf="isEditing &&
+     profileDetailsForm.errors?.['passwordMismatch'] &&
+      profileDetailsForm.get('confirmPassword')?.touched
+    "
+                class="text-danger"
+              >
+                Passwords do not match.
               </div>
             </div>
 

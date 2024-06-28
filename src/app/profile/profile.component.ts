@@ -4,6 +4,7 @@ import {
   FormGroup,
   Validators,
   AbstractControl,
+  ValidationErrors,
 } from "@angular/forms";
 import * as intlTelInput from "intl-tel-input";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
@@ -29,21 +30,33 @@ export class ProfileComponent implements OnInit {
   constructor(private fb: FormBuilder, private httpClient: HttpClient) {}
 
   ngOnInit(): void {
-    this.profileDetailsForm = this.fb.group({
-      password: ["", [Validators.required]],
-      confirmPassword: ["", [Validators.required]],
-      currentpassword: ["", [Validators.required]],
-      email: [
-        this.user.workEmail,
-        [
-          Validators.required,
-          Validators.email,
-          Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+    this.profileDetailsForm = this.fb.group(
+      {
+        password: ["", [Validators.required]],
+        confirmPassword: ["", [Validators.required]],
+        currentpassword: ["", [Validators.required]],
+        email: [
+          this.user.workEmail,
+          [
+            Validators.required,
+            Validators.email,
+            Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+          ],
         ],
-      ],
-    });
+      },
+      { validator: this.passwordsMatch }
+    );
 
     this.fetchUserDetails(); // Call fetchUserDetails to get user data
+  }
+
+  passwordsMatch(control: AbstractControl): ValidationErrors | null {
+    const password = control.get("password");
+    const confirmPassword = control.get("confirmPassword");
+    if (password?.value !== confirmPassword?.value) {
+      return { mismatch: true };
+    }
+    return null;
   }
 
   fetchUserDetails() {
@@ -72,7 +85,7 @@ export class ProfileComponent implements OnInit {
   initPhoneNumberInput() {
     const inputElement = this.phoneInput.nativeElement;
     if (inputElement && this.user && this.user.phoneCountryCode) {
-      const phoneInput = intlTelInput(inputElement, {
+      const phoneInputInstance = intlTelInput(inputElement, {
         initialCountry: this.user.phoneCountryCode, // Remove the '+' sign
         separateDialCode: true,
         utilsScript:
@@ -81,7 +94,7 @@ export class ProfileComponent implements OnInit {
 
       // Set the default number if provided
       const defaultNumber = `${this.user.mobileNumber}`;
-      phoneInput.setNumber(defaultNumber);
+      phoneInputInstance.setNumber(defaultNumber);
     }
   }
 
@@ -121,7 +134,9 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     if (this.profileDetailsForm.valid) {
+      // Handle form submission
     } else {
+      // Handle form validation errors
     }
   }
 

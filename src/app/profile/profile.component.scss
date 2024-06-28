@@ -154,7 +154,72 @@ input[type="text"] {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+#firstName {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px; /* Adjust to make space for the icon */
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  background-color: #d9d9d980;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#company {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px; /* Adjust to make space for the icon */
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  background-color: #d9d9d980;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#firstName[disabled] {
+  background-color: #cccccc !important; /* Change background color when disabled */
+  color: light-dark(
+    rgb(84, 84, 84),
+    rgb(170, 170, 170)
+  ); /* Change text color when disabled */
+  box-shadow: none !important; /* Remove box shadow when disabled */
+  cursor: not-allowed;
+  opacity: 0.6;
+  /* Change cursor to not-allowed when disabled */
+}
+#company[disabled] {
+  background-color: #cccccc !important; /* Change background color when disabled */
+  color: light-dark(
+    rgb(84, 84, 84),
+    rgb(170, 170, 170)
+  ); /* Change text color when disabled */
+  box-shadow: none !important; /* Remove box shadow when disabled */
+  cursor: not-allowed;
+  opacity: 0.6;
+  /* Change cursor to not-allowed when disabled */
+}
 
+input[type="tel"],
+input[type="email"][disabled] {
+  background-color: #cccccc !important; /* Change background color when disabled */
+  color: light-dark(
+    rgb(84, 84, 84),
+    rgb(170, 170, 170)
+  ); /* Change text color when disabled */
+  box-shadow: none !important; /* Remove box shadow when disabled */
+  cursor: not-allowed;
+  opacity: 0.6;
+  /* Change cursor to not-allowed when disabled */
+}
+input[type="password"][readonly] {
+  background-color: #cccccc !important; /* Change background color when disabled */
+  color: light-dark(
+    rgb(84, 84, 84),
+    rgb(170, 170, 170)
+  ); /* Change text color when disabled */
+  box-shadow: none !important; /* Remove box shadow when disabled */
+  cursor: not-allowed;
+  opacity: 0.6;
+  /* Change cursor to not-allowed when disabled */
+}
 .password-toggle-icon {
   position: absolute;
   right: 10px; /* Adjust the position as needed */
@@ -204,6 +269,22 @@ label {
 }
 .common-hover-effect:hover {
   text-decoration: underline 1px gray !important;
+}
+.edit-button-style {
+  display: flex;
+  font-size: 14px;
+  font-family: "Arial Nova";
+  padding: 8px 20px;
+  border: 0px !important;
+  gap: 10px;
+  border-radius: 5px;
+  background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  margin-top: 20px;
+}
+.edit-button-style:hover {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5) !important;
 }
 .submit-btn:hover {
   display: flex;
