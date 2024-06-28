@@ -286,7 +286,7 @@
             *ngFor="let notification of notificationData"
             class="notification-item"
           >
-            <div *ngIf="!notification.isRead" class="d-flex pt-3 pb-3">
+            <div *ngIf="!notification.isRead" class="d-flex pt-2 pb-2">
               <div class="col-md-1 col-1">
                 <svg
                   class="circle-svg"
@@ -317,6 +317,9 @@
                         notification.researchId
                       )
                     "
+                    (click)="
+                      markNotificationAsRead(notification.notificationId)
+                    "
                     class="notification-name m-0"
                   >
                     {{ notification.researchName }}
@@ -346,11 +349,9 @@
                 <div
                   class="d-flex justify-content-between align-items-center p-0 m-0"
                 >
+                  <h3 class="m-0 notification-status">Available now</h3>
                   <h3 class="m-0 notification-status">
-                    <!-- {{ notification.status }} -->
-                  </h3>
-                  <h3 class="m-0 notification-status">
-                    <!-- {{ notification.time }} -->
+                    {{ getTimeDifference(notification.createdOn) }}
                   </h3>
                 </div>
               </div>
