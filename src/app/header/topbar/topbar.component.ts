@@ -1,18 +1,16 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { CartService } from "src/app/Services/cart.service"; // Cart service import
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { HttpClient } from "@angular/common/http";
+import { catchError } from "rxjs/operators";
+import { CartService } from "src/app/Services/cart.service";
 import { MatDialog } from "@angular/material/dialog";
 import * as intlTelInput from "intl-tel-input";
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  AbstractControl,
-} from "@angular/forms";
-import { catchError } from "rxjs/operators";
 import { of } from "rxjs";
-import { baseURl } from "const";
+
 import * as _ from "lodash";
+import { TopbarService } from "src/app/Services/topbar.service";
+
+import { baseURl } from "const";
 
 @Component({
   selector: "app-topbar",
@@ -51,7 +49,8 @@ export class TopbarComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private cartService: CartService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private topbarService: TopbarService // Service for managing notifications // Service for general API calls
   ) {
     this.enquiryForm = this.fb.group({
       name: ["", Validators.required],
@@ -71,7 +70,6 @@ export class TopbarComponent implements OnInit {
       date: [""],
     });
 
-    // Initialize the form with validations
     this.loginForm = this.fb.group({
       email: [
         "",
@@ -81,10 +79,7 @@ export class TopbarComponent implements OnInit {
           Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
         ],
       ],
-      password: [
-        "",
-        [Validators.required, Validators.minLength(10)], // At least 10 characters and required
-      ],
+      password: ["", [Validators.required, Validators.minLength(10)]],
     });
 
     this.signupForm = this.fb.group(
@@ -101,11 +96,6 @@ export class TopbarComponent implements OnInit {
     );
   }
 
-  passwordMatchValidator(form: FormGroup) {
-    return form.get("password")?.value === form.get("confirmPassword")?.value
-      ? null
-      : { passwordMismatch: true };
-  }
   ngOnInit() {
     const enquiryFormPhoneNumber = document.querySelector("#businessPhone");
     const signupPhoneNumber = document.querySelector("#businessPhone1");
@@ -129,11 +119,12 @@ export class TopbarComponent implements OnInit {
     this.checkLoginStatus();
     this.updateCartItems();
     this.firstName = localStorage.getItem("fname") || "";
+    this.fetchNotifications(); // Fetch notifications on component initialization
   }
 
   checkLoginStatus() {
-    const token = localStorage.getItem("jwtToken"); // Check for JWT token in local storage
-    this.isLoggedIn = !!token; // If the token exists, set `isLoggedIn` to true
+    const token = localStorage.getItem("jwtToken");
+    this.isLoggedIn = !!token;
     localStorage.setItem("isLogin", this.isLoggedIn.toString());
   }
 
@@ -141,11 +132,10 @@ export class TopbarComponent implements OnInit {
     this.showAdditionalInfo = event.target.checked;
   }
 
-  checkPasswords(group: FormGroup) {
-    const password = group.get("password")?.value;
-    const confirmPassword = group.get("confirmPassword")?.value;
-
-    return password === confirmPassword ? null : { notSame: true };
+  passwordMatchValidator(form: FormGroup) {
+    return form.get("password")?.value === form.get("confirmPassword")?.value
+      ? null
+      : { passwordMismatch: true };
   }
 
   toggleDropdownNotificationMenu() {
@@ -167,7 +157,6 @@ export class TopbarComponent implements OnInit {
   getSelectedCountryCode() {
     if (this.iti) {
       const countryData = this.iti.getSelectedCountryData();
-
       return countryData.dialCode;
     }
     return "";
@@ -176,7 +165,6 @@ export class TopbarComponent implements OnInit {
   getSelectedSingUpCountryCode() {
     if (this.itiSignup) {
       const countryData = this.itiSignup.getSelectedCountryData();
-
       return countryData.iso2;
     }
     return "";
@@ -184,9 +172,15 @@ export class TopbarComponent implements OnInit {
 
   onSubmitEnquiryForm() {
     const selectedCountryCode = this.getSelectedCountryCode();
+    // Implement form submission logic as needed
   }
 
   onLogin() {
+    if (this.loginForm.invalid) {
+      this.errorMessage = "Invalid input.Please enter all details";
+      return;
+    }
+
     const loginData = {
       username: this.loginForm.get("email")?.value,
       password: this.loginForm.get("password")?.value,
@@ -194,6 +188,15 @@ export class TopbarComponent implements OnInit {
 
     this.http
       .post(`${baseURl}/users/login`, loginData)
+      .pipe(
+        catchError((error) => {
+          console.error("Login failed:", error);
+          this.errorMessage =
+            "Login failed. Please check your credentials and try again.";
+          this.loginForm.reset();
+          return of(null);
+        })
+      )
       .subscribe((response: any) => {
         if (response && response.jwtToken) {
           localStorage.setItem("jwtToken", response.jwtToken);
@@ -216,9 +219,9 @@ export class TopbarComponent implements OnInit {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("isSubscribed");
-    this.isLoggedIn = false; // Update the login status
+    this.isLoggedIn = false;
     localStorage.setItem("isLogin", this.isLoggedIn.toString());
-    window.location.href = "/"; // Navigate to the home page
+    window.location.href = "/";
   }
 
   getCartItems(): number {
@@ -227,17 +230,17 @@ export class TopbarComponent implements OnInit {
   }
 
   updateCartItems() {
-    this.totalCartItems = this.cartService.getTotalCartItems(); // Update the cart items
+    this.totalCartItems = this.cartService.getTotalCartItems();
   }
 
   closeModal(modalId: string) {
     const modal = document.getElementById(modalId);
     if (modal) {
-      modal.classList.remove("show"); // Hide the modal
-      document.body.classList.remove("modal-open"); // Remove 'modal-open' class from body
+      modal.classList.remove("show");
+      document.body.classList.remove("modal-open");
       const backdrop = document.querySelector(".modal-backdrop");
       if (backdrop) {
-        backdrop.remove(); // Remove the backdrop
+        backdrop.remove();
       }
     }
   }
@@ -246,6 +249,7 @@ export class TopbarComponent implements OnInit {
     this.isLogin = false;
     this.isSignup = !this.isSignup;
   }
+
   toggleLogin() {
     this.isSignup = false;
     this.isLogin = !this.isLogin;
@@ -253,8 +257,7 @@ export class TopbarComponent implements OnInit {
 
   onSignup() {
     if (this.signupForm.invalid) {
-      this.errorMessage =
-        "Invalid input. Please correct the errors and try again.";
+      this.errorMessage = "Invalid input.Please enter all details";
       return;
     }
     const selectedCountryCode = this.getSelectedSingUpCountryCode();
@@ -266,7 +269,6 @@ export class TopbarComponent implements OnInit {
       mobileNumber: this.signupForm.get("mobileNumber")?.value,
       phoneCountryCode: selectedCountryCode,
       password: this.signupForm.get("password")?.value,
-
       confirmPassword: this.signupForm.get("confirmPassword")?.value,
     };
 
@@ -280,12 +282,15 @@ export class TopbarComponent implements OnInit {
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
+
   toggleConfirmPassword() {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
+
   navigateTo(link: string): void {
     window.location.href = link;
   }
+
   onMouseEnter() {
     this.currentImage = this.hoverImage;
     this.currentCrossImage = this.hoverCross;
@@ -297,79 +302,27 @@ export class TopbarComponent implements OnInit {
   }
 
   fetchNotifications() {
-    const token = localStorage.getItem("jwtToken");
-
-    if (token) {
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      });
-
-      this.http
-        .get(`${baseURl}/notification/get-user-notification`, { headers })
-
-        .subscribe((response: any) => {
-          this.notificationData = response;
-          // console.log(this.notificationData);
-        });
-    }
+    this.topbarService.fetchNotifications().subscribe((response: any) => {
+      this.notificationData = response;
+    });
   }
 
   markNotificationAsRead(notificationId: number) {
-    const token = localStorage.getItem("jwtToken");
-
-    if (token) {
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      });
-
-      this.http
-        .post(
-          `${baseURl}/notification/mark-read/${notificationId}`,
-          {},
-          { headers }
-        )
-        .subscribe(
-          (response) => {
-            console.log(response);
-            this.fetchNotifications();
-          },
-          (error) => {
-            this.fetchNotifications();
-          }
-        );
-    }
+    this.topbarService.markNotificationAsRead(notificationId).subscribe(() => {
+      this.fetchNotifications();
+    });
   }
 
   markAllNotificationsAsRead() {
-    const token = localStorage.getItem("jwtToken");
-
-    if (token) {
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      });
-
-      this.http
-        .post(`${baseURl}/notification/mark-all-read`, {}, { headers })
-        .subscribe(
-          (response) => {
-            console.log(response);
-            // Optionally, you can refresh notifications after marking all as read
-            this.fetchNotifications();
-          },
-          (error) => {
-            this.fetchNotifications();
-          }
-        );
-    }
+    this.topbarService.markAllNotificationsAsRead().subscribe(() => {
+      this.fetchNotifications();
+    });
   }
 
   canMarkAllAsRead(): boolean {
-    // Check if there are any unread notifications
-    return this.notificationData.some((notification) => !notification.isRead);
+    return this.topbarService.canMarkAllAsRead(this.notificationData);
   }
+
   replaceSpaces(value: string): string {
     const regexPattern = /[^a-zA-Z0-9\s]/g;
 
