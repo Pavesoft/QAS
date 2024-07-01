@@ -262,9 +262,13 @@ export class ResearchSingleComponent implements OnInit {
         : this.apiService.getResearchById(reportId);
       apiCall.subscribe((data: any) => {
         this.dataFetched = true;
-        console.log("data for single report", data.researchMaster);
+
         this.Reports = data.researchMaster;
         this.titleService.setTitle(this.Reports.report);
+        this.meta.updateTag({
+          property: "og:site_name",
+          content: this.Reports.report,
+        });
         this.meta.updateTag({
           name: "description",
           content: this.Reports.report,
@@ -274,6 +278,7 @@ export class ResearchSingleComponent implements OnInit {
           property: "og:title",
           content: this.Reports.report,
         });
+
         this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
         this.isLoading = false;
 
