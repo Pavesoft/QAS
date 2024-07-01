@@ -20,8 +20,7 @@ export class AppComponent implements OnInit {
     private meta: Meta,
     private router: Router,
     private ecommBackendService: EcommBackendService,
-    private urlMappingService: UrlMappingService,
-    private titleService: Title
+    private urlMappingService: UrlMappingService
   ) {}
 
   title = "Quadrant-Solutions";
@@ -83,7 +82,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle(this.title);
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         const currentUrl = new URL(event.url, window.location.origin).href;
