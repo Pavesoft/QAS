@@ -132,7 +132,7 @@
               <label for="currentpassword">Current Password</label>
               <div class="input-container">
                 <input
-                  [type]="showPassword ? 'text' : 'password'"
+                  [type]="showPassword && isEditing ? 'text' : 'password'"
                   id="currentpassword"
                   formControlName="currentpassword"
                   placeholder="••••••••••"
@@ -145,7 +145,7 @@
                   src="../../../assets/eye.svg"
                 />
                 <img
-                  *ngIf="showPassword"
+                  *ngIf="showPassword && isEditing"
                   (click)="togglePassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye-off.svg"
@@ -167,7 +167,7 @@
               <label for="password">New Password</label>
               <div class="input-container">
                 <input
-                  [type]="newShowPassword ? 'text' : 'password'"
+                  [type]="newShowPassword && isEditing ? 'text' : 'password'"
                   id="password"
                   formControlName="password"
                   placeholder="••••••••••"
@@ -180,7 +180,7 @@
                   src="../../../assets/eye.svg"
                 />
                 <img
-                  *ngIf="newShowPassword"
+                  *ngIf="newShowPassword && isEditing"
                   (click)="toggleNewPassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye-off.svg"
@@ -202,7 +202,9 @@
               <label for="confirmPassword">Confirm Password</label>
               <div class="input-container">
                 <input
-                  [type]="showConfirmPassword ? 'text' : 'password'"
+                  [type]="
+                    showConfirmPassword && isEditing ? 'text' : 'password'
+                  "
                   id="confirmPassword"
                   formControlName="confirmPassword"
                   placeholder="••••••••••"
@@ -215,7 +217,7 @@
                   src="../../../assets/eye.svg"
                 />
                 <img
-                  *ngIf="showConfirmPassword"
+                  *ngIf="showConfirmPassword && isEditing"
                   (click)="toggleConfirmPassword()"
                   class="password-toggle-icon"
                   src="../../../assets/eye-off.svg"
@@ -233,7 +235,7 @@
                 Confirm Password is required.
               </div>
               <div
-                *ngIf="isEditing &&
+                *ngIf=" isEditing &&
      profileDetailsForm.errors?.['passwordMismatch'] &&
       profileDetailsForm.get('confirmPassword')?.touched
     "

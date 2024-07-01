@@ -44,19 +44,16 @@ export class ProfileComponent implements OnInit {
           ],
         ],
       },
-      { validator: this.passwordsMatch }
+      { validator: this.passwordMatchValidator }
     );
 
     this.fetchUserDetails(); // Call fetchUserDetails to get user data
   }
 
-  passwordsMatch(control: AbstractControl): ValidationErrors | null {
-    const password = control.get("password");
-    const confirmPassword = control.get("confirmPassword");
-    if (password?.value !== confirmPassword?.value) {
-      return { mismatch: true };
-    }
-    return null;
+  passwordMatchValidator(form: FormGroup) {
+    return form.get("password")?.value === form.get("confirmPassword")?.value
+      ? null
+      : { passwordMismatch: true };
   }
 
   fetchUserDetails() {
@@ -99,6 +96,7 @@ export class ProfileComponent implements OnInit {
   }
 
   toggleEdit() {
+    this.profileDetailsForm.reset();
     this.isEditing = !this.isEditing;
   }
 

@@ -306,10 +306,24 @@ export class TopbarComponent implements OnInit {
     });
   }
 
-  markNotificationAsRead(notificationId: number) {
-    this.topbarService.markNotificationAsRead(notificationId).subscribe(() => {
-      this.fetchNotifications();
-    });
+  // markNotificationAsRead(notificationId: number) {
+  //   this.topbarService.markNotificationAsRead(notificationId).subscribe(() => {
+  //     this.fetchNotifications();
+  //   });
+  // }
+  markNotificationAsRead(notificationId: number): void {
+    this.topbarService.markNotificationAsRead(notificationId).subscribe(
+      (response: any) => {
+        this.fetchNotifications();
+        console.log("Notification marked as read:", response);
+        // Handle success here
+      },
+      (error) => {
+        this.fetchNotifications();
+        console.error("Error marking notification as read:", error);
+        // Handle error here
+      }
+    );
   }
 
   markAllNotificationsAsRead() {
