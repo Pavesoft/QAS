@@ -224,6 +224,31 @@ label {
   color: white;
   box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
+.common-gap {
+  padding: 100% !important;
+}
+
+@media (max-width: 480px) {
+  .profile-container {
+    padding: 10px !important;
+    margin: 10px !important;
+  }
+  .upper-container {
+    padding: 10px !important;
+    margin: 10px !important;
+  }
+  .common-gap {
+    padding: 0% !important;
+  }
+  .sticky-div {
+    position: static;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+  .content-title {
+    margin: 10px !important;
+  }
+}
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .sidebar {
