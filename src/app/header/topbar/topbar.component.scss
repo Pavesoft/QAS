@@ -447,11 +447,20 @@ input#inputTime {
   nav#tobar {
     height: 50px !important;
   }
+  .top-menu-items {
+    flex-direction: row-reverse;
+  }
+  .bottom-menu-items {
+    margin-right: 10px !important;
+    padding-right: 20px !important;
+  }
   .common-header-distance {
     display: inline-block;
     position: relative;
     left: 0px;
     top: 0px;
+    padding: 0px !important;
+    margin: 0px !important;
   }
 
   a#bec {
