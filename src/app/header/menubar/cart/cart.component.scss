@@ -105,8 +105,11 @@ $grey-2: #444343;
     font-weight: bold;
     width: 131px;
   }
+  .prc {
+    padding-left: 8px !important;
+  }
   .price {
-    padding-left: 10px !important;
+    padding-left: 8px !important;
   }
   .strikethrough {
     padding-left: 10px !important;
