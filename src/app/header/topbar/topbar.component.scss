@@ -27,6 +27,7 @@ marquee {
   font-size: 18px;
   margin: 6px;
 }
+
 .signup-button:hover {
   color: #0972ea;
   cursor: pointer;
@@ -451,6 +452,16 @@ input#inputTime {
   }
   .top-menu-items {
     flex-direction: row-reverse;
+  }
+  .topbar-upperMenu {
+    flex-direction: row-reverse;
+    padding-right: 35px !important;
+    padding-top: 5px !important;
+    padding-bottom: 2px !important;
+  }
+  .topbar-downMenu {
+    padding-right: 35px !important;
+    padding-bottom: 5px !important;
   }
   .signup-button:hover {
     color: #0972ea;

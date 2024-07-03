@@ -225,7 +225,7 @@ label {
   box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
 .common-gap {
-  padding: 100% !important;
+  padding-top: 100% !important;
 }
 @media (max-width: 480px) {
   .subscription-technology-container {
@@ -236,12 +236,13 @@ label {
     padding: 10px !important;
     margin: 10px !important;
   }
+
   .upper-container {
     padding: 10px !important;
     margin: 20px !important;
   }
   .common-gap {
-    padding: 0% !important;
+    padding-top: 0% !important;
   }
   .sticky-div {
     position: static;
