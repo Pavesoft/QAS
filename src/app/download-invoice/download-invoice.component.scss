@@ -27,7 +27,12 @@ $grey: #444343;
 .icon-container:hover path {
   stroke: $blue-2;
 }
-
+.icon-container:hover polyline {
+  stroke: $blue-2;
+}
+.icon-container:hover line {
+  stroke: $blue-2;
+}
 .sticky-div {
   position: sticky;
   top: 80px; /* Adjust this value as needed */

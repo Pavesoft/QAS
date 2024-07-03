@@ -45,17 +45,20 @@ export class DownloadInvoiceComponent implements OnInit, AfterViewInit {
 
   invoices = [
     {
-      title: "Download Invoice",
+      title:
+        "Exploring the Joint Capabilities of Service Mesh and API Management",
       imgSrc: "../../assets//file-up.svg",
       downloadImgSrc: "../../assets//invoice-download.svg",
     },
     {
-      title: "Download Invoice",
+      title:
+        "Revolutionizing the Payments Landscape: Exploring the Power of Artificial Intelligence (AI) and Taking the Next Leap with Generative AI",
       imgSrc: "../../assets//file-up.svg",
       downloadImgSrc: "../../assets//invoice-download.svg",
     },
     {
-      title: "Download Invoice",
+      title:
+        "How Generative AI Transforms and Enhances Enterprise Architecture",
       imgSrc: "../../assets//file-up.svg",
       downloadImgSrc: "../../assets//invoice-download.svg",
     },
