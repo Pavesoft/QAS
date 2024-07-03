@@ -28,7 +28,9 @@ marquee {
   margin: 6px;
 }
 .signup-button:hover {
-  color: blue;
+  color: #0972ea;
+  cursor: pointer;
+  margin-left: -17px !important;
 }
 .form-check-label {
   font-family: "Arial Nova";
@@ -36,7 +38,7 @@ marquee {
   margin-right: 4px !important;
 }
 .login-button:hover {
-  color: blue;
+  color: #0972ea;
 }
 .topbar {
   height: 60px;
@@ -450,6 +452,11 @@ input#inputTime {
   .top-menu-items {
     flex-direction: row-reverse;
   }
+  .signup-button:hover {
+    color: #0972ea;
+    cursor: pointer;
+    margin-left: 0px;
+  }
   .bottom-menu-items {
     margin-right: 10px !important;
     padding-right: 20px !important;
@@ -552,7 +559,7 @@ input#inputTime {
   gap: 5px;
 }
 .topsideMenuRight {
-  gap: 7px;
+  gap: 23px;
   height: 40px !important;
 }
 .notification-header {
@@ -563,9 +570,11 @@ input#inputTime {
 .dropdown-menu .dropdownValueName {
   transition: color 0.3s ease;
 }
-
+.hover-icon:hover svg {
+  stroke: #0972ea;
+}
 .dropdown-menu .dropdownValueName:hover {
-  color: blue !important;
+  color: #0972ea !important;
 }
 
 .mark-read-button {
@@ -595,19 +604,19 @@ input#inputTime {
   /* Change cursor to not-allowed when disabled */
 }
 #logoutDropdown:hover {
-  color: blue !important; /* Change this to the desired hover color */
+  color: #0972ea !important; /* Change this to the desired hover color */
 }
 .help-desk:hover {
-  color: blue !important; /* Change this to the desired hover color */
+  color: #0972ea !important; /* Change this to the desired hover color */
 }
 .dropdown-toggle:hover {
-  color: blue !important;
+  color: #0972ea !important;
 }
 .common-hover-effect {
   color: #212529 !important;
 }
 .common-hover-effect:hover {
-  color: blue !important;
+  color: #0972ea !important;
 }
 
 @media screen and (max-width: 480px) {
@@ -621,9 +630,10 @@ input#inputTime {
   }
   .topsideMenus {
     gap: 0px;
+    margin-left: 2px !important;
   }
   .topsideMenuRight {
-    gap: 4px;
+    gap: 8px;
     margin-right: 10px !important;
     height: 40px !important;
   }

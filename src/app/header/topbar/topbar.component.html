@@ -48,10 +48,11 @@
         </ul>
       </div>
       <div class="d-flex align-items-center topsideMenuRight">
-        <span class="dropdown" style="cursor: pointer; margin-right: 5px">
+        <span class="dropdown" style="cursor: pointer">
           <!-- The icon that triggers the dropdown -->
           <span
             id="dropdownMenuClickableInside"
+            class="hover-icon"
             data-bs-toggle="dropdown"
             data-bs-auto-close="outside"
             aria-expanded="false"
@@ -225,21 +226,15 @@
           </div>
         </span>
 
-        <div
-          *ngIf="isLoggedIn"
-          class="dropdown"
-          style="
-            cursor: pointer;
-            margin-left: -6px !important;
-            margin-right: 5px !important;
-          "
-        >
+        <div *ngIf="isLoggedIn" class="dropdown" style="cursor: pointer">
           <span
             id="dropdownMenuClickableInside"
+            class="hover-icon"
             data-bs-toggle="dropdown"
             data-bs-auto-close="outside"
             aria-expanded="false"
             (click)="fetchNotifications()"
+            style="cursor: pointer"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -257,6 +252,7 @@
               <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
             </svg>
           </span>
+
           <ul
             class="dropdown-menu dropdown-menu-right notification-dropdown-container"
             aria-labelledby="dropdownMenuClickableInside"
@@ -381,7 +377,7 @@
         </span>
         <span
           *ngIf="!isLoggedIn"
-          style="cursor: pointer; margin-left: -2px"
+          style="cursor: pointer; margin-left: -17px"
           class="signup-button"
           data-toggle="modal"
           data-target="#exampleModal2"

@@ -108,7 +108,7 @@
               <label for="company">Company Name</label>
               <input
                 id="company"
-                placeholder="{{ user.company }}"
+                [placeholder]="user.company || 'Company Name'"
                 [disabled]="true"
                 readonly
               />
@@ -247,12 +247,14 @@
             </div>
 
             <div class="d-flex justify-content-end pt-1">
-              <a href="#">
+              <a>
                 <label style="float: right">
                   <span style="color: black; font-size: "
-                    >For more information</span
+                    >For more information ,</span
                   >
-                  contact us
+                  <a class="contactusbottombutton" routerLink="/contact-us"
+                    >Contact Us</a
+                  >
                 </label>
               </a>
             </div>

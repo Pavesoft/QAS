@@ -306,6 +306,7 @@
               *ngIf="isLoggedIn()"
               type="submit"
               class="btn btn-primary common-button-style"
+              [disabled]="getTotalReports() === 0"
               style="
                 margin-top: 25px !important;
                 border: 0px;
@@ -321,6 +322,7 @@
               class="btn btn-primary common-button-style"
               data-toggle="modal"
               data-target="#exampleModal1"
+              [disabled]="getTotalReports() === 0"
               style="
                 margin-top: 25px !important;
                 border: 0px;

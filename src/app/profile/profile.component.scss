@@ -65,7 +65,9 @@ $grey: #444343;
   line-height: 24.19px;
   color: $blue-1;
 }
-
+.contactusbottombutton:hover {
+  text-decoration: underline !important;
+}
 .content-title {
   font-size: 20px !important;
   font-weight: 700px !important;
@@ -150,7 +152,7 @@ input[type="text"] {
   padding-right: 40px; /* Adjust to make space for the icon */
   margin-bottom: 5px;
   box-sizing: border-box;
-  background-color: #d9d9d980;
+  background-color: white;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -308,6 +310,13 @@ label {
 }
 .common-gap {
   padding-top: 100% !important;
+}
+.contactusbottombutton {
+  color: #0d6efd;
+  font-size: 16px;
+  font-family: "Arial Nova";
+  text-decoration: none;
+  margin-left: 3px !important;
 }
 /* Media Queries for Responsiveness */
 @media (max-width: 480px) {
