@@ -44,6 +44,7 @@ export class TopbarComponent implements OnInit {
   itiSignup: any;
   notificationData: any[] = [];
   oldUrlData: any;
+  minDateTime: any;
 
   constructor(
     private fb: FormBuilder,
@@ -119,6 +120,7 @@ export class TopbarComponent implements OnInit {
     this.checkLoginStatus();
     this.updateCartItems();
     this.firstName = localStorage.getItem("fname") || "";
+    this.setMinDateTime();
   }
 
   checkLoginStatus() {
@@ -380,5 +382,16 @@ export class TopbarComponent implements OnInit {
     } else {
       return `${seconds} second${seconds > 1 ? "s" : ""} ago`;
     }
+  }
+
+  setMinDateTime(): void {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, "0");
+    const day = now.getDate().toString().padStart(2, "0");
+    const hours = now.getHours().toString().padStart(2, "0");
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+
+    this.minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
   }
 }
