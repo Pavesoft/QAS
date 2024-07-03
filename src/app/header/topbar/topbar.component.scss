@@ -548,6 +548,13 @@ input#inputTime {
   font-size: 20px;
   margin-bottom: 12px !important;
 }
+.topsideMenus {
+  gap: 5px;
+}
+.topsideMenuRight {
+  gap: 7px;
+  height: 40px !important;
+}
 .notification-header {
   color: #00327a;
   font-weight: 700;
@@ -604,11 +611,24 @@ input#inputTime {
 }
 
 @media screen and (max-width: 480px) {
-  .enquiryForm-container {
-    height: auto;
-    margin-left: 0%;
-    margin-top: 0%;
+  .enquiryForm-dropdown-container {
+    width: 350px;
+    padding: 20px !important ;
     background: #ddefed;
+    top: 8px !important;
+    border-radius: 0px !important;
+    border: 0px !important;
+  }
+  .topsideMenus {
+    gap: 0px;
+  }
+  .topsideMenuRight {
+    gap: 4px;
+    margin-right: 10px !important;
+    height: 40px !important;
+  }
+  .common-hover-effect {
+    padding: 2px 4px !important;
   }
   .notification-dropdown-container {
     width: 350px;

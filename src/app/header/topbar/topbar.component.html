@@ -13,429 +13,428 @@
 >
   <div class="row p-0">
     <!-- Justify content for the first column -->
-    <div
-      class="col-md-6 col-12 d-flex top-menu-items"
-      style="justify-content: space-between; align-items: center"
-    >
-      <ul class="d-flex" style="gap: 5px">
-        <!-- Spacing between items in the list -->
-        <li>
-          <a
-            class="common-hover-effect"
-            routerLink="/press-release"
-            data-bs-dismiss="offcanvas"
-            >Press Release</a
-          >
-        </li>
-        <li>
-          <a
-            class="common-hover-effect"
-            routerLink="/career"
-            data-bs-dismiss="offcanvas"
-            >Career</a
-          >
-        </li>
-        <li>
-          <a
-            class="common-hover-effect"
-            routerLink="/contact-us"
-            data-bs-dismiss="offcanvas"
-            >Contact</a
-          >
-        </li>
-        <!-- <li><a routerLink="#" style="color: #011f41">Blue Folder</a></li> -->
-      </ul>
-    </div>
 
     <!-- Content for the second column -->
-    <div
-      class="col-md-6 col-12 d-flex bottom-menu-items"
-      style="justify-content: flex-end; align-items: center; gap: 10px"
-    >
+    <div class="d-flex justify-content-between align-items-center">
       <!-- Flex with gap -->
-
-      <span class="dropdown" style="cursor: pointer">
-        <!-- The icon that triggers the dropdown -->
-        <span
-          id="dropdownMenuClickableInside"
-          data-bs-toggle="dropdown"
-          data-bs-auto-close="outside"
-          aria-expanded="false"
-          style="cursor: pointer"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="feather feather-headphones"
+      <div class="d-flex">
+        <ul class="d-flex topsideMenus">
+          <!-- Spacing between items in the list -->
+          <li>
+            <a
+              class="common-hover-effect"
+              routerLink="/press-release"
+              data-bs-dismiss="offcanvas"
+              >Press Release</a
+            >
+          </li>
+          <li>
+            <a
+              class="common-hover-effect"
+              routerLink="/career"
+              data-bs-dismiss="offcanvas"
+              >Career</a
+            >
+          </li>
+          <li>
+            <a
+              class="common-hover-effect"
+              routerLink="/contact-us"
+              data-bs-dismiss="offcanvas"
+              >Contact</a
+            >
+          </li>
+          <!-- <li><a routerLink="#" style="color: #011f41">Blue Folder</a></li> -->
+        </ul>
+      </div>
+      <div class="d-flex align-items-center topsideMenuRight">
+        <span class="dropdown" style="cursor: pointer">
+          <!-- The icon that triggers the dropdown -->
+          <span
+            id="dropdownMenuClickableInside"
+            data-bs-toggle="dropdown"
+            data-bs-auto-close="outside"
+            aria-expanded="false"
+            style="cursor: pointer"
           >
-            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-            <path
-              d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"
-            ></path>
-          </svg>
-        </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-headphones"
+            >
+              <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+              <path
+                d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"
+              ></path>
+            </svg>
+          </span>
 
-        <!-- The dropdown menu -->
-        <div
-          class="dropdown-menu dropdown-menu-right enquiryForm-dropdown-container"
-          aria-labelledby="dropdownMenuClickableInside"
-        >
-          <h5 class="enquiry-title">Enquiry Form</h5>
-          <img src="/assets/Line.png" class="enquiry-underline" />
-          <form [formGroup]="enquiryForm" (ngSubmit)="onSubmitEnquiryForm()">
-            <div class="d-flex pt-2 mb-2">
-              <img
-                style="height: 42px"
-                src="../../../assets//Form-component.png"
-              />
-              <input
-                type="text"
-                class="form-control"
-                id="inputName"
-                placeholder="Name"
-                formControlName="name"
-                required
-              />
-            </div>
-
-            <div class="mb-2">
-              <div class="d-flex">
+          <!-- The dropdown menu -->
+          <div
+            class="dropdown-menu dropdown-menu-right enquiryForm-dropdown-container"
+            aria-labelledby="dropdownMenuClickableInside"
+          >
+            <h5 class="enquiry-title">Enquiry Form</h5>
+            <img src="/assets/Line.png" class="enquiry-underline" />
+            <form [formGroup]="enquiryForm" (ngSubmit)="onSubmitEnquiryForm()">
+              <div class="d-flex pt-2 mb-2">
                 <img
                   style="height: 42px"
-                  src="../../../assets/Form-Component2.png"
+                  src="../../../assets//Form-component.png"
                 />
                 <input
-                  type="email"
+                  type="text"
                   class="form-control"
-                  id="inputEmail"
-                  placeholder="Email"
-                  formControlName="email"
+                  id="inputName"
+                  placeholder="Name"
+                  formControlName="name"
                   required
                 />
               </div>
-              <div *ngIf="enquiryForm.controls['email'].errors">
-                <small
-                  class="text-danger"
-                  *ngIf="enquiryForm.controls['email'].errors['email']"
-                >
-                  Invalid email address.
-                </small>
-              </div>
-            </div>
-            <div class="d-flex mb-2">
-              <img
-                style="height: 42px"
-                src="../../../assets//Form-Component3.png"
-              />
-              <input
-                type="tel"
-                id="businessPhone"
-                maxlength="16"
-                class="form-control"
-                formControlName="contact"
-                required
-                placeholder="Phone*"
-                onkeyup="this.value = this.value.replace(/[^0-9-]/g, '');"
-              />
-            </div>
-            <div class="d-flex mb-2">
-              <img
-                style="height: 42px; margin-top: 1px !important"
-                src="../../../assets//Form-Component4.png"
-              />
-              <input
-                type="text"
-                class="form-control"
-                id="inputCompanyname"
-                placeholder="Company name"
-                formControlName="companyname"
-                required
-              />
-            </div>
 
-            <div class="d-flex mb-2">
-              <img
-                style="height: 42px"
-                src="../../../assets//Form-Component5.png"
-              />
-              <select
-                class="form-select"
-                id="queries"
-                formControlName="queries"
-              >
-                <option selected>Queries...</option>
-                <option value="1">Connect to Analyst</option>
-                <option value="2">Connect to Account Manager</option>
-                <option value="3">Custom Request</option>
-                <option value="4">Inqueries Related to Deliverables</option>
-              </select>
-            </div>
-            <div class="d-flex mb-2">
-              <img
-                style="height: 42px"
-                src="../../../assets//Form-Component6.png"
-              />
-              <input
-                type="text"
-                class="form-control"
-                id="inputMessage"
-                placeholder="Message"
-                formControlName="message"
-                required
-              />
-            </div>
-
-            <div class="d-flex justify-content-between">
-              <div *ngIf="showAdditionalInfo" class="d-flex mb-2 mt-1">
-                <img
-                  style="height: 42px"
-                  src="../../../assets//date-image.svg"
-                />
-                <input
-                  type="datetime-local"
-                  class="form-control"
-                  id="inputDate"
-                  formControlName="date"
-                  required
-                />
-              </div>
-              <div class="form-check ml-1 mt-1 mb-2">
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  id="additionalInfoCheckbox"
-                  formControlName="provideAdditionalInfo"
-                  (change)="onAdditionalInfoChange($event)"
-                />
-                <label class="form-check-label" for="additionalInfoCheckbox"
-                  >Schedule Meet
-                </label>
-              </div>
-            </div>
-            <button
-              type="submit"
-              class="btn btn-primary common-button-style btp"
-              style="border: 0"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
-      </span>
-
-      <div *ngIf="isLoggedIn" class="dropdown" style="cursor: pointer">
-        <span
-          id="dropdownMenuClickableInside"
-          data-bs-toggle="dropdown"
-          data-bs-auto-close="outside"
-          aria-expanded="false"
-          (click)="fetchNotifications()"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="feather feather-bell"
-          >
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-          </svg>
-        </span>
-        <ul
-          class="dropdown-menu dropdown-menu-right notification-dropdown-container"
-          aria-labelledby="dropdownMenuClickableInside"
-          [ngClass]="{
-            'auto-height': notificationData.length <= 4,
-            'fixed-height': notificationData.length > 4
-          }"
-        >
-          <div class="d-flex justify-content-between pt-2 pb-2 px-3">
-            <h3 class="notification-header d-flex align-items-center m-0">
-              Notifications
-            </h3>
-            <button
-              class="mark-read-button"
-              [disabled]="!canMarkAllAsRead()"
-              (click)="markAllNotificationsAsRead()"
-            >
-              Mark all as Read
-            </button>
-          </div>
-          <div
-            class="d-flex justify-content-center align-items-center"
-            *ngIf="!canMarkAllAsRead()"
-          >
-            <h3 class="m-0" style="padding: 10px 0px">
-              No notifications to display
-            </h3>
-          </div>
-          <div
-            *ngFor="let notification of notificationData"
-            class="notification-item"
-          >
-            <div *ngIf="!notification.isRead" class="d-flex pt-2 pb-2">
-              <div class="col-md-1 col-1">
-                <svg
-                  class="circle-svg"
-                  width="15"
-                  height="15"
-                  viewBox="0 0 15 15"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle
-                    class="circle"
-                    cx="7.5"
-                    cy="7.5"
-                    r="7.5"
-                    fill="#444343"
-                    fill-opacity="0.75"
+              <div class="mb-2">
+                <div class="d-flex">
+                  <img
+                    style="height: 42px"
+                    src="../../../assets/Form-Component2.png"
                   />
-                </svg>
-              </div>
-              <div class="col-md-11 col-11 pl-0 ml-0">
-                <div
-                  class="d-flex justify-content-between align-items-start p-0 m-0"
-                >
-                  <a
-                    [href]="
-                      researchHref(
-                        notification.researchName,
-                        notification.researchId
-                      )
-                    "
-                    (click)="
-                      markNotificationAsRead(notification.notificationId)
-                    "
-                    class="notification-name m-0"
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="inputEmail"
+                    placeholder="Email"
+                    formControlName="email"
+                    required
+                  />
+                </div>
+                <div *ngIf="enquiryForm.controls['email'].errors">
+                  <small
+                    class="text-danger"
+                    *ngIf="enquiryForm.controls['email'].errors['email']"
                   >
-                    {{ notification.researchName }}
-                  </a>
-                  <button class="cross-button">
-                    <svg
+                    Invalid email address.
+                  </small>
+                </div>
+              </div>
+              <div class="d-flex mb-2">
+                <img
+                  style="height: 42px"
+                  src="../../../assets//Form-Component3.png"
+                />
+                <input
+                  type="tel"
+                  id="businessPhone"
+                  maxlength="16"
+                  class="form-control"
+                  formControlName="contact"
+                  required
+                  placeholder="Phone*"
+                  onkeyup="this.value = this.value.replace(/[^0-9-]/g, '');"
+                />
+              </div>
+              <div class="d-flex mb-2">
+                <img
+                  style="height: 42px; margin-top: 1px !important"
+                  src="../../../assets//Form-Component4.png"
+                />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputCompanyname"
+                  placeholder="Company name"
+                  formControlName="companyname"
+                  required
+                />
+              </div>
+
+              <div class="d-flex mb-2">
+                <img
+                  style="height: 42px"
+                  src="../../../assets//Form-Component5.png"
+                />
+                <select
+                  class="form-select"
+                  id="queries"
+                  formControlName="queries"
+                >
+                  <option selected>Queries...</option>
+                  <option value="1">Connect to Analyst</option>
+                  <option value="2">Connect to Account Manager</option>
+                  <option value="3">Custom Request</option>
+                  <option value="4">Inqueries Related to Deliverables</option>
+                </select>
+              </div>
+              <div class="d-flex mb-2">
+                <img
+                  style="height: 42px"
+                  src="../../../assets//Form-Component6.png"
+                />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputMessage"
+                  placeholder="Message"
+                  formControlName="message"
+                  required
+                />
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <div *ngIf="showAdditionalInfo" class="d-flex mb-2 mt-1">
+                  <img
+                    style="height: 42px"
+                    src="../../../assets//date-image.svg"
+                  />
+                  <input
+                    type="datetime-local"
+                    class="form-control"
+                    id="inputDate"
+                    formControlName="date"
+                    required
+                  />
+                </div>
+                <div class="form-check ml-1 mt-1 mb-2">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="additionalInfoCheckbox"
+                    formControlName="provideAdditionalInfo"
+                    (change)="onAdditionalInfoChange($event)"
+                  />
+                  <label class="form-check-label" for="additionalInfoCheckbox"
+                    >Schedule Meet
+                  </label>
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary common-button-style btp"
+                style="border: 0"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </span>
+
+        <div *ngIf="isLoggedIn" class="dropdown" style="cursor: pointer">
+          <span
+            id="dropdownMenuClickableInside"
+            data-bs-toggle="dropdown"
+            data-bs-auto-close="outside"
+            aria-expanded="false"
+            (click)="fetchNotifications()"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-bell"
+            >
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+          </span>
+          <ul
+            class="dropdown-menu dropdown-menu-right notification-dropdown-container"
+            aria-labelledby="dropdownMenuClickableInside"
+            [ngClass]="{
+              'auto-height': notificationData.length <= 4,
+              'fixed-height': notificationData.length > 4
+            }"
+          >
+            <div class="d-flex justify-content-between pt-2 pb-2 px-3">
+              <h3 class="notification-header d-flex align-items-center m-0">
+                Notifications
+              </h3>
+              <button
+                class="mark-read-button"
+                [disabled]="!canMarkAllAsRead()"
+                (click)="markAllNotificationsAsRead()"
+              >
+                Mark all as Read
+              </button>
+            </div>
+            <div
+              class="d-flex justify-content-center align-items-center"
+              *ngIf="!canMarkAllAsRead()"
+            >
+              <h3 class="m-0" style="padding: 10px 0px">
+                No notifications to display
+              </h3>
+            </div>
+            <div
+              *ngFor="let notification of notificationData"
+              class="notification-item"
+            >
+              <div *ngIf="!notification.isRead" class="d-flex pt-2 pb-2">
+                <div class="col-md-1 col-1">
+                  <svg
+                    class="circle-svg"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      class="circle"
+                      cx="7.5"
+                      cy="7.5"
+                      r="7.5"
+                      fill="#444343"
+                      fill-opacity="0.75"
+                    />
+                  </svg>
+                </div>
+                <div class="col-md-11 col-11 pl-0 ml-0">
+                  <div
+                    class="d-flex justify-content-between align-items-start p-0 m-0"
+                  >
+                    <a
+                      [href]="
+                        researchHref(
+                          notification.researchName,
+                          notification.researchId
+                        )
+                      "
                       (click)="
                         markNotificationAsRead(notification.notificationId)
                       "
-                      class="cross-svg"
-                      width="17"
-                      height="17"
-                      viewBox="0 0 17 17"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+                      class="notification-name m-0"
                     >
-                      <path
-                        class="cross-path"
-                        d="M12.75 4.25L4.25 12.75M12.75 12.75L4.25 4.25"
-                        stroke="#444343"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                      />
-                    </svg>
-                  </button>
-                </div>
-                <div
-                  class="d-flex justify-content-between align-items-center p-0 m-0"
-                >
-                  <h3 class="m-0 notification-status">Available now</h3>
-                  <h3 class="m-0 notification-status">
-                    {{ getTimeDifference(notification.createdOn) }}
-                  </h3>
+                      {{ notification.researchName }}
+                    </a>
+                    <button class="cross-button">
+                      <svg
+                        (click)="
+                          markNotificationAsRead(notification.notificationId)
+                        "
+                        class="cross-svg"
+                        width="17"
+                        height="17"
+                        viewBox="0 0 17 17"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          class="cross-path"
+                          d="M12.75 4.25L4.25 12.75M12.75 12.75L4.25 4.25"
+                          stroke="#444343"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center p-0 m-0"
+                  >
+                    <h3 class="m-0 notification-status">Available now</h3>
+                    <h3 class="m-0 notification-status">
+                      {{ getTimeDifference(notification.createdOn) }}
+                    </h3>
+                  </div>
                 </div>
               </div>
+              <hr
+                *ngIf="!notification.isRead"
+                style="
+                  margin: 0px 10px 0px 18px !important;
+                  color: rgba(68, 67, 67, 0.5);
+                "
+              />
             </div>
-            <hr
-              *ngIf="!notification.isRead"
-              style="
-                margin: 0px 10px 0px 18px !important;
-                color: rgba(68, 67, 67, 0.5);
-              "
-            />
-          </div>
-        </ul>
-      </div>
+          </ul>
+        </div>
 
-      <span
-        *ngIf="!isLoggedIn"
-        style="cursor: pointer"
-        class="login-button"
-        data-toggle="modal"
-        data-target="#exampleModal1"
-      >
-        Login /
-      </span>
-      <span
-        *ngIf="!isLoggedIn"
-        style="cursor: pointer; margin-left: -7px"
-        class="signup-button"
-        data-toggle="modal"
-        data-target="#exampleModal2"
-      >
-        Sign Up
-      </span>
-
-      <div class="dropdown" *ngIf="isLoggedIn" style="cursor: pointer">
-        <!-- The icon that triggers the dropdown -->
         <span
-          class="dropdown-toggle"
-          id="dropdownMenuClickableInside"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
+          *ngIf="!isLoggedIn"
           style="cursor: pointer"
+          class="login-button"
+          data-toggle="modal"
+          data-target="#exampleModal1"
         >
-          <img src="/assets/ellipse.png" style="width: 25px" alt="User icon" />
-          <span style="margin: 4px !important">Hi, {{ firstName }}</span>
+          Login /
+        </span>
+        <span
+          *ngIf="!isLoggedIn"
+          style="cursor: pointer; margin-left: -7px"
+          class="signup-button"
+          data-toggle="modal"
+          data-target="#exampleModal2"
+        >
+          Sign Up
         </span>
 
-        <!-- The dropdown menu -->
-        <div
-          class="dropdown-menu dropdown-menu-right profile-dropdown-container"
-        >
-          <div class="d-flex column-gap-3 mt-2">
-            <img src="../../../assets/profile_icon.svg" alt="User icon" />
-            <span routerLink="/profile" class="dropdownValueName"
-              >Your Profile</span
-            >
-          </div>
-          <div class="d-flex column-gap-3 mt-4">
-            <img src="../../../assets/subscribed_logo.svg" alt="User icon" />
-            <span routerLink="/market-research" class="dropdownValueName"
-              >Subscribed Research</span
-            >
-          </div>
-          <div class="d-flex column-gap-3 mt-4">
-            <img src="../../../assets/all_research.svg" alt="User icon" />
-            <span routerLink="/market-research" class="dropdownValueName"
-              >All Research</span
-            >
-          </div>
-          <div class="d-flex column-gap-3 mt-4">
-            <img src="../../../assets/logout.svg" alt="User icon" />
-            <span (click)="onLogout()" class="dropdownValueName">Logout</span>
-          </div>
-        </div>
-      </div>
+        <div class="dropdown" *ngIf="isLoggedIn" style="cursor: pointer">
+          <!-- The icon that triggers the dropdown -->
+          <span
+            class="dropdown-toggle"
+            id="dropdownMenuClickableInside"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            style="cursor: pointer"
+          >
+            <img
+              src="/assets/ellipse.png"
+              style="width: 25px"
+              alt="User icon"
+            />
+            <span style="margin: 4px !important">Hi, {{ firstName }}</span>
+          </span>
 
-      <a routerLink="/cart" class="cart-link" style="text-decoration: none">
-        <div class="d-flex">
-          <i class="fa fa-cart-plus fa-2x fa-fw icon-color-style"> </i>
-          <p class="icon-color-style">
-            {{ getCartItems() }}
-          </p>
+          <!-- The dropdown menu -->
+          <div
+            class="dropdown-menu dropdown-menu-right profile-dropdown-container"
+          >
+            <div class="d-flex column-gap-3 mt-2">
+              <img src="../../../assets/profile_icon.svg" alt="User icon" />
+              <span routerLink="/profile" class="dropdownValueName"
+                >Your Profile</span
+              >
+            </div>
+            <div class="d-flex column-gap-3 mt-4">
+              <img src="../../../assets/subscribed_logo.svg" alt="User icon" />
+              <span routerLink="/market-research" class="dropdownValueName"
+                >Subscribed Research</span
+              >
+            </div>
+            <div class="d-flex column-gap-3 mt-4">
+              <img src="../../../assets/all_research.svg" alt="User icon" />
+              <span routerLink="/market-research" class="dropdownValueName"
+                >All Research</span
+              >
+            </div>
+            <div class="d-flex column-gap-3 mt-4">
+              <img src="../../../assets/logout.svg" alt="User icon" />
+              <span (click)="onLogout()" class="dropdownValueName">Logout</span>
+            </div>
+          </div>
         </div>
-      </a>
+
+        <a routerLink="/cart" class="cart-link" style="text-decoration: none">
+          <div class="d-flex">
+            <i class="fa fa-cart-plus fa-2x fa-fw icon-color-style"> </i>
+            <p class="icon-color-style">
+              {{ getCartItems() }}
+            </p>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 
