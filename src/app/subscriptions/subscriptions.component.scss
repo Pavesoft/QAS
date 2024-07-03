@@ -228,13 +228,17 @@ label {
   padding: 100% !important;
 }
 @media (max-width: 480px) {
+  .subscription-technology-container {
+    padding: 10px !important;
+    margin: 10px !important;
+  }
   .profile-container {
     padding: 10px !important;
     margin: 10px !important;
   }
   .upper-container {
     padding: 10px !important;
-    margin: 10px !important;
+    margin: 20px !important;
   }
   .common-gap {
     padding: 0% !important;
@@ -245,42 +249,19 @@ label {
     margin: 0px !important;
   }
   .content-title {
-    margin: 10px !important;
+    margin: 0px !important;
+    font-size: 18px !important;
   }
-}
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-  .sidebar {
-    padding: 20px;
-    margin-bottom: 20px !important;
-    padding-left: 20px !important;
-    position: static; /* Ensure the sidebar is not sticky */
+  .invoice-title {
+    font-size: 16px !important;
   }
-
-  .sticky-div {
-    position: static; /* Ensure the sidebar is not sticky */
+  .horizontal-line-black {
+    margin: 10px 0px !important;
+    padding: 10px 0px !important;
   }
-
-  .sidebar-heading,
-  .sidebar-title {
-    font-size: 14px;
-  }
-
-  .main-container {
-    padding: 0px;
-  }
-
   form {
     width: 100%;
     max-width: 100%;
     padding: 10px;
-  }
-
-  .content-title {
-    font-size: 18px !important;
-  }
-
-  .password-heading {
-    font-size: 18px !important;
   }
 }

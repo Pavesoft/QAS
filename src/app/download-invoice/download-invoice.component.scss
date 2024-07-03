@@ -12,20 +12,28 @@ $grey: #444343;
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
 }
-.iti__flag-container {
-  font-family: inherit !important;
-  font-size: inherit !important;
-  line-height: inherit !important;
-  color: light-dark(rgb(84, 84, 84), rgb(170, 170, 170)) !important;
+.icon-container {
+  cursor: pointer;
 }
+
+.icon {
+  /* Default fill color */
+  transition: fill 0.3s; /* Smooth transition for color change */
+}
+
+.icon-container:hover .icon {
+  stroke: $blue-2; /* Change the fill color on hover */
+}
+.icon-container:hover path {
+  stroke: $blue-2;
+}
+
 .sticky-div {
-  position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 80px; /* Adjust this value as needed */
   /* Ensure it stays above other content if necessary */
   /* Add any additional styling as needed */
 }
-
 .sidebar-heading {
   font-size: 18px;
   color: $white;
@@ -104,20 +112,14 @@ input[type="text"] {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
 input[type="tel"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 5px;
-  height: 42px !important;
   box-sizing: border-box;
   background-color: #d9d9d980;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-family: inherit !important;
-  font-size: inherit !important;
-  line-height: inherit !important;
-  color: light-dark(rgb(84, 84, 84), rgb(170, 170, 170));
 }
 input[type="email"] {
   width: 100%;
@@ -137,33 +139,6 @@ input[type="password"] {
   background-color: #d9d9d980;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-.input-container {
-  position: relative;
-  width: 100%;
-}
-
-input[type="password"],
-input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  padding-right: 40px; /* Adjust to make space for the icon */
-  margin-bottom: 5px;
-  box-sizing: border-box;
-  background-color: #d9d9d980;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.password-toggle-icon {
-  position: absolute;
-  right: 10px; /* Adjust the position as needed */
-  top: 45%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  width: 20px;
-  padding-top: -40px !important;
-  height: 20px;
 }
 
 input[type="text"]:focus {
@@ -192,50 +167,37 @@ label {
   margin-right: auto;
   margin-top: 20px;
 }
-.common-padding {
-  padding: 38px 62px !important;
-}
 
+.edit-btn {
+  margin-left: 95%;
+}
 .invoice-title {
   color: $grey;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 27.82px;
+  cursor: pointer;
+}
+.invoice-title:hover {
+  color: $blue-2;
+  text-decoration: underline 1px $blue-2 !important;
 }
 .common-hover-effect:hover {
   text-decoration: underline 1px gray !important;
 }
-.submit-btn:hover {
-  display: flex;
-  width: 90px;
-  height: 32px;
-  font-size: 16px;
-  font-family: "Arial Nova";
-  padding: 14px 34px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 5px;
-  background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
-
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  color: white;
-  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
-}
 .common-gap {
-  padding: 100% !important;
+  padding-top: 100% !important;
 }
-
 @media (max-width: 480px) {
+  .sidebar {
+  }
   .profile-container {
     padding: 10px !important;
-    margin: 10px !important;
+    margin: 12px !important;
   }
   .upper-container {
     padding: 10px !important;
-    margin: 10px !important;
+    margin: 20px !important;
   }
   .common-gap {
     padding: 0% !important;
@@ -246,42 +208,19 @@ label {
     margin: 0px !important;
   }
   .content-title {
-    margin: 10px !important;
+    margin: 0px !important;
+    font-size: 18px !important;
   }
-}
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-  .sidebar {
-    padding: 20px;
-    margin-bottom: 20px !important;
-    padding-left: 20px !important;
-    position: static; /* Ensure the sidebar is not sticky */
+  .invoice-title {
+    font-size: 16px !important;
   }
-
-  .sticky-div {
-    position: static; /* Ensure the sidebar is not sticky */
+  .horizontal-line-black {
+    margin: 10px 0px !important;
+    padding: 10px 0px !important;
   }
-
-  .sidebar-heading,
-  .sidebar-title {
-    font-size: 14px;
-  }
-
-  .main-container {
-    padding: 0px;
-  }
-
   form {
     width: 100%;
     max-width: 100%;
     padding: 10px;
-  }
-
-  .content-title {
-    font-size: 18px !important;
-  }
-
-  .password-heading {
-    font-size: 18px !important;
   }
 }
