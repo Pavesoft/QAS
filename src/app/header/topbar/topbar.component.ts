@@ -32,6 +32,7 @@ export class TopbarComponent implements OnInit {
   errorMessage = "";
   errorMessageSignup = "";
   successMessageSignup = "";
+  successMessageEnquiry = "";
   firstName: string = "";
   showPassword = false;
   showConfirmPassword = false;
@@ -185,12 +186,15 @@ export class TopbarComponent implements OnInit {
       message: this.enquiryForm.get("message")?.value,
       meetDateTime: this.enquiryForm.get("date")?.value,
     };
-    console.log(enquiryData);
 
     // Additional handling if needed before sending to API
     this.topbarService.submitEnquiry(enquiryData).subscribe(
       (response) => {
-        console.log("Enquiry submitted successfully:", response);
+        this.successMessageEnquiry =
+          "Your Form has been submitted successfully.";
+        setTimeout(() => {
+          this.successMessageEnquiry = "";
+        }, 3000);
         // Reset form or show success message
         this.enquiryForm.reset();
       },
@@ -309,7 +313,6 @@ export class TopbarComponent implements OnInit {
 
     this.http.post(`${baseURl}/users/new`, signupData).subscribe(
       (response: any) => {
-        console.log(response);
         this.signupForm.reset();
         this.successMessageSignup = "Your account was created successfully.";
         setTimeout(() => {
@@ -362,7 +365,6 @@ export class TopbarComponent implements OnInit {
   markNotificationAsRead(notificationId: number): void {
     this.topbarService.markNotificationAsRead(notificationId).subscribe(
       (response: any) => {
-        // console.log("Notification marked as read:", response);
         this.fetchNotifications();
       },
       (error) => {

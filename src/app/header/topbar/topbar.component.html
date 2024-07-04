@@ -208,7 +208,6 @@
                   class="form-control"
                   id="inputDate"
                   formControlName="date"
-                  required
                 />
               </div>
               <div class="form-check ml-1 mt-1 mb-2">
@@ -224,10 +223,18 @@
                 </label>
               </div>
             </div>
+            <div
+              *ngIf="successMessageEnquiry"
+              class="text-success d-flex justify-content-center align-items-center"
+            >
+              {{ successMessageEnquiry }}
+            </div>
+
             <button
               type="submit"
               class="btn btn-primary common-button-style btp"
               style="border: 0"
+              [disabled]="!enquiryForm.valid"
             >
               Submit
             </button>
@@ -582,6 +589,7 @@
                 data-dismiss="modal"
                 data-toggle="modal"
                 data-target="#exampleModal2"
+                (click)="signupForm.reset()"
                 >Create an account</span
               >
             </div>
@@ -863,6 +871,7 @@
                 data-dismiss="modal"
                 data-toggle="modal"
                 data-target="#exampleModal1"
+                (click)="loginForm.reset()"
               >
                 Log in
               </div>
