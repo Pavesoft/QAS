@@ -172,10 +172,14 @@
                 formControlName="queries"
               >
                 <option selected>Queries...</option>
-                <option value="1">Connect to Analyst</option>
-                <option value="2">Connect to Account Manager</option>
-                <option value="3">Custom Request</option>
-                <option value="4">Inqueries Related to Deliverables</option>
+                <option value="Connect to Analyst">Connect to Analyst</option>
+                <option value="Connect to Account Manager">
+                  Connect to Account Manager
+                </option>
+                <option value="Custom Request">Custom Request</option>
+                <option value="Inqueries Related to Deliverables">
+                  Inqueries Related to Deliverables
+                </option>
               </select>
             </div>
             <div class="d-flex mb-2">
@@ -832,11 +836,17 @@
 
             <div
               *ngIf="errorMessageSignup"
-              style="margin-left: 100px"
-              class="text-danger"
+              class="text-danger d-flex justify-content-center align-items-center"
             >
               {{ errorMessageSignup }}
             </div>
+            <div
+              *ngIf="successMessageSignup"
+              class="text-success d-flex justify-content-center align-items-center"
+            >
+              {{ successMessageSignup }}
+            </div>
+
             <button
               type="submit"
               class="btn btn-primary common-button-style"

@@ -131,11 +131,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.profileDetailsForm.valid) {
-      // Handle form submission
-    } else {
-      // Handle form validation errors
-    }
+    console.log(this.profileDetailsForm.value);
   }
 
   togglePassword() {

@@ -53,4 +53,7 @@ export class TopbarService {
   canMarkAllAsRead(notifications: any[]): boolean {
     return notifications.some((notification) => !notification.isRead);
   }
+  submitEnquiry(data: any): Observable<any> {
+    return this.http.post(`${baseURl}/enquiry/submit`, data);
+  }
 }

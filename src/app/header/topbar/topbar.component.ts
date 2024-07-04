@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { catchError } from "rxjs/operators";
 import { CartService } from "src/app/Services/cart.service";
 import { MatDialog } from "@angular/material/dialog";
+
 import * as intlTelInput from "intl-tel-input";
 import { of } from "rxjs";
 
@@ -30,6 +31,7 @@ export class TopbarComponent implements OnInit {
   totalCartItems = 0;
   errorMessage = "";
   errorMessageSignup = "";
+  successMessageSignup = "";
   firstName: string = "";
   showPassword = false;
   showConfirmPassword = false;
@@ -171,14 +173,40 @@ export class TopbarComponent implements OnInit {
     return "";
   }
 
-  onSubmitEnquiryForm() {
+  onSubmitEnquiryForm(): void {
     const selectedCountryCode = this.getSelectedCountryCode();
-    // Implement form submission logic as needed
+    const enquiryData = {
+      name: this.enquiryForm.get("name")?.value,
+      workEmail: this.enquiryForm.get("email")?.value,
+      mobileNumber: this.enquiryForm.get("contact")?.value,
+      company: this.enquiryForm.get("companyname")?.value,
+      phoneCountryCode: selectedCountryCode,
+      queries: this.enquiryForm.get("queries")?.value,
+      message: this.enquiryForm.get("message")?.value,
+      meetDateTime: this.enquiryForm.get("date")?.value,
+    };
+    console.log(enquiryData);
+
+    // Additional handling if needed before sending to API
+    this.topbarService.submitEnquiry(enquiryData).subscribe(
+      (response) => {
+        console.log("Enquiry submitted successfully:", response);
+        // Reset form or show success message
+        this.enquiryForm.reset();
+      },
+      (error) => {
+        console.error("Error submitting enquiry:", error);
+        // Handle error, show error message, etc.
+      }
+    );
   }
 
   onLogin() {
     if (this.loginForm.invalid) {
       this.errorMessage = "Invalid input.Please enter all details";
+      setTimeout(() => {
+        this.errorMessage = "";
+      }, 3000);
       return;
     }
 
@@ -195,6 +223,9 @@ export class TopbarComponent implements OnInit {
           this.errorMessage =
             "Login failed. Please check your credentials and try again.";
           this.loginForm.reset();
+          setTimeout(() => {
+            this.errorMessage = "";
+          }, 3000);
           return of(null);
         })
       )
@@ -212,6 +243,9 @@ export class TopbarComponent implements OnInit {
           this.errorMessage = "";
         } else {
           this.errorMessage = "Incorrect email or password. Please try again.";
+          setTimeout(() => {
+            this.errorMessage = "";
+          }, 3000);
         }
       });
   }
@@ -258,7 +292,7 @@ export class TopbarComponent implements OnInit {
 
   onSignup() {
     if (this.signupForm.invalid) {
-      this.errorMessage = "Invalid input.Please enter all details";
+      this.errorMessageSignup = "Invalid input. Please enter all details";
       return;
     }
     const selectedCountryCode = this.getSelectedSingUpCountryCode();
@@ -273,11 +307,23 @@ export class TopbarComponent implements OnInit {
       confirmPassword: this.signupForm.get("confirmPassword")?.value,
     };
 
-    this.http
-      .post(`${baseURl}/users/new`, signupData)
-      .subscribe((response: any) => {
+    this.http.post(`${baseURl}/users/new`, signupData).subscribe(
+      (response: any) => {
+        console.log(response);
         this.signupForm.reset();
-      });
+        this.successMessageSignup = "Your account was created successfully.";
+        setTimeout(() => {
+          this.successMessageSignup = "";
+        }, 3000); // Clear success message after 3 seconds
+      },
+      (error: any) => {
+        this.errorMessageSignup = "A user with this email already exists.";
+        this.signupForm.reset();
+        setTimeout(() => {
+          this.errorMessageSignup = "";
+        }, 3000); // Clear error message after 3 seconds
+      }
+    );
   }
 
   togglePassword() {
@@ -316,14 +362,11 @@ export class TopbarComponent implements OnInit {
   markNotificationAsRead(notificationId: number): void {
     this.topbarService.markNotificationAsRead(notificationId).subscribe(
       (response: any) => {
+        // console.log("Notification marked as read:", response);
         this.fetchNotifications();
-        console.log("Notification marked as read:", response);
-        // Handle success here
       },
       (error) => {
-        this.fetchNotifications();
         console.error("Error marking notification as read:", error);
-        // Handle error here
       }
     );
   }
