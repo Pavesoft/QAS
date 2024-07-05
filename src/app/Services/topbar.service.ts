@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { baseURl } from "const";
+import { baseURl } from "const"; // Correct the import path for baseURL
 
 @Injectable({
   providedIn: "root",
@@ -53,7 +53,16 @@ export class TopbarService {
   canMarkAllAsRead(notifications: any[]): boolean {
     return notifications.some((notification) => !notification.isRead);
   }
+
   submitEnquiry(data: any): Observable<any> {
     return this.http.post(`${baseURl}/enquiry/submit`, data);
+  }
+
+  logout(bearerToken: string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${bearerToken}`,
+    });
+
+    return this.http.post<any>(`${baseURl}/users/logout`, {}, { headers });
   }
 }

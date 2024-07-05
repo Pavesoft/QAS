@@ -255,12 +255,21 @@ export class TopbarComponent implements OnInit {
   }
 
   onLogout() {
-    localStorage.removeItem("jwtToken");
-    localStorage.removeItem("refreshToken");
-    localStorage.removeItem("isSubscribed");
-    this.isLoggedIn = false;
-    localStorage.setItem("isLogin", this.isLoggedIn.toString());
-    window.location.href = "/";
+    const bearerToken: any = localStorage.getItem("jwtToken"); // Assuming you store your JWT token here
+
+    this.topbarService.logout(bearerToken).subscribe(
+      (response) => {
+        // Handle successful logout response
+        console.log("Logout successful");
+        localStorage.clear(); // Clear all local storage on successful logout
+        window.location.href = "/"; // Redirect to home or login page
+      },
+      (error) => {
+        // Handle error if logout fails
+        console.error("Logout failed", error);
+        // Optionally handle error response here
+      }
+    );
   }
 
   getCartItems(): number {
