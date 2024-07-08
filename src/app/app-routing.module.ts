@@ -98,7 +98,6 @@ const routes: Routes = [
   {
     path: "market-research/:reportName-:reportId",
     component: ResearchSingleComponent,
-    title: "Business Management Consultants | Quadrant Solutions",
   },
   //   {
   //     path: "market_research/:reportName",
