@@ -83,7 +83,7 @@ export class TopbarComponent implements OnInit {
           Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
         ],
       ],
-      password: ["", [Validators.required, Validators.minLength(10)]],
+      password: ["", [Validators.required, Validators.minLength(8)]],
     });
 
     this.signupForm = this.fb.group(
@@ -93,8 +93,8 @@ export class TopbarComponent implements OnInit {
         lastName: ["", Validators.required],
         mobileNumber: ["", Validators.required],
         email: ["", [Validators.required, Validators.email]],
-        password: ["", Validators.required],
-        confirmPassword: ["", Validators.required],
+        password: ["", Validators.required, Validators.minLength(8)],
+        confirmPassword: ["", Validators.required, Validators.minLength(8)],
       },
       { validator: this.passwordMatchValidator }
     );

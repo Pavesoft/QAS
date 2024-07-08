@@ -52,6 +52,21 @@
   </div>
   <div class="col-md-9 main-container">
     <app-main-container [content]="content"></app-main-container>
+    <div *ngIf="showPasswordChangeSuccessModal" class="custom-modal">
+      <div class="modal-content">
+        <h1>Password Changed Successfully</h1>
+        <p>Your password has been changed successfully.</p>
+        <div class="modal-actions">
+          <button
+            class="modal-button btn btn-primary edit-button-style"
+            (click)="onClose()"
+          >
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div *ngIf="content === 'My Profile'">
       <div class="d-flex row row-gap-1 m-5 pr-5 profile-container">
         <h3 class="content-title pb-1 p-0 m-0 mb-2">My Profile</h3>
@@ -114,6 +129,9 @@
               />
             </div>
 
+            <div class="col-md-3 mb-3 p-0 horizontal-line-black">
+              <h3 class="password-heading p-0 m-0 mt-3">Change Password</h3>
+            </div>
             <div class="p-0 d-flex justify-content-end">
               <button
                 type="button"
@@ -124,11 +142,6 @@
                 {{ isEditing ? "Cancel" : "Edit" }}
               </button>
             </div>
-
-            <div class="col-md-3 mb-3 p-0 horizontal-line-black">
-              <h3 class="password-heading p-0 m-0 mt-3">Change Password</h3>
-            </div>
-
             <div class="form-group">
               <label for="currentpassword">Current Password</label>
               <div class="input-container">

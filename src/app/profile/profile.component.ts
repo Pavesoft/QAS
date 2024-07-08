@@ -9,6 +9,8 @@ import {
 import * as intlTelInput from "intl-tel-input";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { baseURl } from "const";
+import { MatDialog } from "@angular/material/dialog";
+import { TopbarService } from "../Services/topbar.service";
 
 @Component({
   selector: "app-profile",
@@ -25,9 +27,15 @@ export class ProfileComponent implements OnInit {
   user: any = {};
   isLoading = false;
   subscriptions: any[] = [];
+  showPasswordChangeSuccessModal = false;
   @ViewChild("phoneInput") phoneInput!: ElementRef;
 
-  constructor(private fb: FormBuilder, private httpClient: HttpClient) {}
+  constructor(
+    private fb: FormBuilder,
+    private httpClient: HttpClient,
+    private dialog: MatDialog,
+    private topbarService: TopbarService
+  ) {}
 
   ngOnInit(): void {
     this.profileDetailsForm = this.fb.group(
@@ -132,6 +140,51 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     console.log(this.profileDetailsForm.value);
+    const token = localStorage.getItem("jwtToken");
+    console.log(token);
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    const changePasswordData = {
+      currentPassword: this.profileDetailsForm.value.currentpassword,
+      newPassword: this.profileDetailsForm.value.password,
+      confirmNewPassword: this.profileDetailsForm.value.confirmPassword,
+    };
+
+    this.httpClient
+      .post<any>(`${baseURl}/users/changePassword`, changePasswordData, {
+        headers,
+      })
+      .subscribe(
+        (response: any) => {
+          this.showPasswordChangeSuccessModal = true;
+
+          this.toggleEdit();
+        },
+        (error: any) => {
+          console.log("error", error);
+        }
+      );
+  }
+
+  onClose(): void {
+    this.showPasswordChangeSuccessModal = false;
+    const bearerToken: any = localStorage.getItem("jwtToken"); // Assuming you store your JWT token here
+
+    this.topbarService.logout(bearerToken).subscribe(
+      (response) => {
+        // Handle successful logout response
+        console.log("Logout successful");
+        localStorage.clear(); // Clear all local storage on successful logout
+        window.location.href = "/"; // Redirect to home or login page
+      },
+      (error) => {
+        // Handle error if logout fails
+        console.error("Logout failed", error);
+        // Optionally handle error response here
+      }
+    );
   }
 
   togglePassword() {
