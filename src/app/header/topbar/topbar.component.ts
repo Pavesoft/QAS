@@ -304,9 +304,17 @@ export class TopbarComponent implements OnInit {
   }
 
   onSignup() {
-    if (this.signupForm.invalid) {
-      this.errorMessageSignup = "Invalid input. Please enter all details";
-      return;
+    this.errorMessageSignup = "";
+
+    // Check if any form control is empty or null
+    for (const controlName in this.signupForm.controls) {
+      if (this.signupForm.controls.hasOwnProperty(controlName)) {
+        const control = this.signupForm.get(controlName);
+        if (!control?.value) {
+          this.errorMessageSignup = "Invalid input. Please enter all details";
+          return;
+        }
+      }
     }
     const selectedCountryCode = this.getSelectedSingUpCountryCode();
     const signupData = {
