@@ -121,11 +121,11 @@ export class DownloadInvoiceComponent implements OnInit, AfterViewInit {
       .subscribe(
         (data: any) => {
           this.subscriptions = data.researchMasterList;
-          console.log(this.subscriptions);
+          // console.log(this.subscriptions);
           this.isLoading = false;
         },
         (error: any) => {
-          console.error("Error fetching subscriptions", error);
+          // console.error("Error fetching subscriptions", error);
           this.isLoading = false;
         }
       );

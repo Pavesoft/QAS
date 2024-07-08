@@ -278,7 +278,7 @@ export class CartComponent implements OnInit {
         }
       },
       (error: any) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   }
@@ -286,7 +286,7 @@ export class CartComponent implements OnInit {
   saveOrderData(orderData: any): void {
     this.ecommService.createOrder(orderData).subscribe(
       (response: ApiResponse) => {
-        console.log(response);
+        // console.log(response);
       },
       (error: any) => {
         console.error("Failed to create order:", error);

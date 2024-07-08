@@ -178,10 +178,10 @@ export class ResearchListComponent implements OnInit {
       // Check for query parameters and apply filters accordingly
       if (params["reportType"]) {
         console.clear();
-        console.log(params);
+        // console.log(params);
         this.selectedReportType = params["reportType"];
 
-        console.log(this.selectedReportType);
+        // console.log(this.selectedReportType);
       }
       if (params["categories"]) {
         const categoryNames = params["categories"].split(",");
@@ -321,13 +321,13 @@ export class ResearchListComponent implements OnInit {
 
   applyFilters() {
     // Filter the originalCollection based on selectedReportType and selectedCategories
-    console.log(this.selectedCategories);
+    // console.log(this.selectedCategories);
 
     const selectedCategoryNames = Object.keys(this.selectedCategories).filter(
       (categoryName) => this.selectedCategories[categoryName]
     );
 
-    console.log(selectedCategoryNames);
+    // console.log(selectedCategoryNames);
 
     this.collection = this.originalCollection.filter((research: any) => {
       const reportTypeMatch = this.selectedReportType
@@ -450,12 +450,12 @@ export class ResearchListComponent implements OnInit {
 
     this.setResearchService.setResearchDetails(research);
 
-    console.log(this.setResearchService.getResearchId());
+    // console.log(this.setResearchService.getResearchId());
 
     const urlFriendlyName = this.getUrlFriendlyString(research.report);
 
     const url = `/market-research/${urlFriendlyName}-${research.id}`;
-    console.log(history);
+    // console.log(history);
     if (research && research.id && research.report) {
       this.router.navigate([url], {
         state: {

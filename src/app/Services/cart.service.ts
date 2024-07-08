@@ -65,7 +65,6 @@ export class CartService {
       cartItem.quantity += 1;
       cartItem.totalPrice += research.price; // Adjust totalPrice if needed
       this.saveCart();
-      console.log("Item quantity updated in the cart.");
     } else {
       // Item does not exist in cart, add it
       const newCartItem = {
@@ -86,7 +85,6 @@ export class CartService {
       };
       this.cart.push(newCartItem);
       this.saveCart();
-      console.log("Item added to the cart.");
     }
   }
   decrementToCartQuantity(research: any): void {
@@ -97,7 +95,6 @@ export class CartService {
       cartItem.quantity -= 1;
       cartItem.totalPrice -= research.price; // Adjust totalPrice if needed
       this.saveCart();
-      console.log("Item quantity updated in the cart.");
     } else {
       // Item does not exist in cart, add it
       const newCartItem = {
@@ -118,7 +115,6 @@ export class CartService {
       };
       this.cart.push(newCartItem);
       this.saveCart();
-      console.log("Item added to the cart.");
     }
   }
   addToCart(research: any): void {
@@ -126,7 +122,6 @@ export class CartService {
     if (cartItem) {
       alert("This item is already in the cart.");
     } else {
-      console.log(research);
       const newCartItem = {
         research: research,
         quantity: 1,

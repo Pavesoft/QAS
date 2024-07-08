@@ -139,9 +139,8 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.profileDetailsForm.value);
     const token = localStorage.getItem("jwtToken");
-    console.log(token);
+
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -175,7 +174,7 @@ export class ProfileComponent implements OnInit {
     this.topbarService.logout(bearerToken).subscribe(
       (response) => {
         // Handle successful logout response
-        console.log("Logout successful");
+
         localStorage.clear(); // Clear all local storage on successful logout
         window.location.href = "/"; // Redirect to home or login page
       },

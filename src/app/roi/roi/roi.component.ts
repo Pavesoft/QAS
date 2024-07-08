@@ -1,25 +1,23 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-roi',
-  templateUrl: './roi.component.html',
-  styleUrls: ['./roi.component.scss']
+  selector: "app-roi",
+  templateUrl: "./roi.component.html",
+  styleUrls: ["./roi.component.scss"],
 })
 export class RoiComponent {
-
-  constructor(private router: Router){}
+  constructor(private router: Router) {}
 
   private getUrlFriendlyString(input: string): string {
     // Replace special characters with dashes and convert to lowercase
     return input
       .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/[\s_-]+/g, '-');
+      .replace(/[^\w\s-]/g, "")
+      .replace(/[\s_-]+/g, "-");
   }
 
-  downloadForm(formName:string){
-    console.log(formName)
+  downloadForm(formName: string) {
     //console.log(research)
 
     const urlFriendlyName = this.getUrlFriendlyString(formName);
@@ -29,32 +27,24 @@ export class RoiComponent {
       //console.log(research.report)
       this.router.navigate([url], {
         state: {
-          contactUsFormName: formName
-        }
+          contactUsFormName: formName,
+        },
       });
     } else {
-      console.error('Selected research not found in the filtered data.');
+      console.error("Selected research not found in the filtered data.");
     }
-
   }
-
 }
-
-
-  
-  
 
 //   router: any;
 //   researchMaster:any={}
 //   downloadForm(research:any){
 
-    
-
 //     const urlFriendlyName = this.getUrlFriendlyString(research.report);
 //     const url = `/download-form/${urlFriendlyName}-${research.id}`;
 
 //     if (research && research.id && research.report) {
-   
+
 //       this.router.navigate([url], {
 //         state: {
 //           researchData: research

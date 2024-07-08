@@ -260,7 +260,7 @@ export class TopbarComponent implements OnInit {
     this.topbarService.logout(bearerToken).subscribe(
       (response) => {
         // Handle successful logout response
-        console.log("Logout successful");
+
         localStorage.clear(); // Clear all local storage on successful logout
         window.location.href = "/"; // Redirect to home or login page
       },

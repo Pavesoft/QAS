@@ -72,7 +72,6 @@ export class ResearchSingleComponent implements OnInit {
   }
 
   addToCart(research: ResearchMasterDto): void {
-    console.log(research);
     const cart = this.cartService.getCart();
     const existingCartItem = cart.find(
       (item) => item.research.id === research.id
@@ -205,8 +204,6 @@ export class ResearchSingleComponent implements OnInit {
   }
 
   downloadForm(research: any) {
-    console.log(research);
-
     const urlFriendlyName = this.getUrlFriendlyString(research.report);
     const url = `/download-form/market-research/${urlFriendlyName}-${research.id}`;
 
@@ -253,7 +250,7 @@ export class ResearchSingleComponent implements OnInit {
     if (objIndex !== -1) {
       href = this.oldUrlData[objIndex].To_URL;
     }
-    console.log("href", href);
+
     // this.updateUrlWithReportName(this.Reports.report, this.Reports.id);
     return href;
   }
@@ -278,7 +275,7 @@ export class ResearchSingleComponent implements OnInit {
         : this.apiService.getResearchById(reportId);
       apiCall.subscribe((data: any) => {
         this.dataFetched = true;
-        console.log("data for single report", data.researchMaster);
+
         this.Reports = data.researchMaster;
         this.titleService.setTitle(this.Reports.report);
         this.meta.updateTag({
@@ -348,7 +345,6 @@ export class ResearchSingleComponent implements OnInit {
     reportName: string,
     reportId: string
   ) {
-    console.log("new slug in single report", newSlug);
     const newUrl = `/${newSlug}`;
     this.router.navigate([newUrl], {
       relativeTo: this.route,
