@@ -7,6 +7,7 @@ import { CartService } from "../Services/cart.service";
 import { AuthService } from "../auth.service";
 import { Title, Meta } from "@angular/platform-browser";
 import * as _ from "lodash";
+import { MetaDataService } from "../core/meta-data.service";
 
 @Component({
   selector: "app-research-single",
@@ -22,7 +23,8 @@ export class ResearchSingleComponent implements OnInit {
     public authService: AuthService,
     private cartService: CartService,
     private meta: Meta,
-    private titleService: Title
+    private titleService: Title,
+    private metaDataService: MetaDataService
   ) {}
 
   research: any;
@@ -264,20 +266,9 @@ export class ResearchSingleComponent implements OnInit {
         this.dataFetched = true;
 
         this.Reports = data.researchMaster;
+        this.metaDataService.updateMetaData(this.Reports.report);
 
         this.titleService.setTitle(this.Reports.report);
-        this.meta.updateTag({
-          name: "description",
-          content: this.Reports.report,
-        });
-        this.meta.updateTag({
-          property: "og:title",
-          content: this.Reports.report,
-        });
-        this.meta.updateTag({
-          property: "og:description",
-          content: this.Reports.report,
-        });
 
         this.Reports.publishDate = this.epochToDate(this.Reports.publishDate);
         this.isLoading = false;
