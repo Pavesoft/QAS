@@ -312,6 +312,9 @@ export class TopbarComponent implements OnInit {
         const control = this.signupForm.get(controlName);
         if (!control?.value) {
           this.errorMessageSignup = "Invalid input. Please enter all details";
+          setTimeout(() => {
+            this.errorMessageSignup = "";
+          }, 3000);
           return;
         }
       }
