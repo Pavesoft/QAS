@@ -154,7 +154,7 @@
                     </span>
 
                     <span class="prc d-flex align-items-center">
-                      <ng-container *ngIf="Reports.price > Reports.price2">
+                      <ng-container *ngIf="Reports.price <= Reports.price2">
                         <span class="strikethrough"
                           >${{ formatPrice(Reports.price) }}</span
                         >
@@ -169,7 +169,7 @@
                           }}%</span
                         >
                       </ng-container>
-                      <ng-container *ngIf="Reports.price <= Reports.price2">
+                      <ng-container *ngIf="Reports.price > Reports.price2">
                         ${{ formatPrice(Reports.price) }}
                       </ng-container>
                     </span>
