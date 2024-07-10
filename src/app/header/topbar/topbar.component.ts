@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { catchError } from "rxjs/operators";
 import { CartService } from "src/app/Services/cart.service";
 import { MatDialog } from "@angular/material/dialog";
+import { Router } from "@angular/router";
 
 import * as intlTelInput from "intl-tel-input";
 import { of } from "rxjs";
@@ -54,7 +55,8 @@ export class TopbarComponent implements OnInit {
     private http: HttpClient,
     private cartService: CartService,
     public dialog: MatDialog,
-    private topbarService: TopbarService // Service for managing notifications // Service for general API calls
+    private topbarService: TopbarService,
+    private router: Router // Service for managing notifications // Service for general API calls
   ) {
     this.enquiryForm = this.fb.group({
       name: ["", Validators.required],
@@ -259,6 +261,7 @@ export class TopbarComponent implements OnInit {
 
     this.topbarService.logout(bearerToken).subscribe(
       (response) => {
+        console.log("Logout successful");
         // Handle successful logout response
 
         localStorage.clear(); // Clear all local storage on successful logout
@@ -267,6 +270,8 @@ export class TopbarComponent implements OnInit {
       (error) => {
         // Handle error if logout fails
         console.error("Logout failed", error);
+        localStorage.clear(); // Clear all local storage on successful logout
+        window.location.href = "/";
         // Optionally handle error response here
       }
     );
@@ -458,5 +463,24 @@ export class TopbarComponent implements OnInit {
     const minutes = now.getMinutes().toString().padStart(2, "0");
 
     this.minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+  }
+  updateSubscription(): void {
+    localStorage.setItem("isSubscribed", "true");
+    this.reloadRoute("/market-research");
+  }
+
+  updateAllSubscription(): void {
+    localStorage.setItem("isSubscribed", "false");
+    this.reloadRoute("/market-research");
+  }
+
+  private reloadRoute(route: string): void {
+    if (this.router.url === route) {
+      this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
+        this.router.navigate([route]);
+      });
+    } else {
+      this.router.navigate([route]);
+    }
   }
 }
