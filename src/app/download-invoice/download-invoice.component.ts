@@ -8,8 +8,7 @@ import {
 import * as intlTelInput from "intl-tel-input";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import * as _ from "lodash";
-
-const baseURl = "https://backend.quadrant-solutions.com";
+import { baseURl } from "const";
 
 @Component({
   selector: "app-download-invoice",
@@ -18,12 +17,13 @@ const baseURl = "https://backend.quadrant-solutions.com";
 })
 export class DownloadInvoiceComponent implements OnInit, AfterViewInit {
   content: string = "Download Invoice";
-  passwordForm: FormGroup;
+
   isEditing = false;
   oldUrlData: any;
-  isLoading = false; // Add a loading state variable
+  isLoading = false;
   subscriptions: any[] = [];
-  showAllReportsForReportType: { [key: string]: boolean } = {}; // Track show more/less for each report type
+  showAllReportsForReportType: { [key: string]: boolean } = {};
+  download_invoices: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -43,27 +43,6 @@ export class DownloadInvoiceComponent implements OnInit, AfterViewInit {
     }
   }
 
-  invoices = [
-    {
-      title:
-        "Exploring the Joint Capabilities of Service Mesh and API Management",
-      imgSrc: "../../assets//file-up.svg",
-      downloadImgSrc: "../../assets//invoice-download.svg",
-    },
-    {
-      title:
-        "Revolutionizing the Payments Landscape: Exploring the Power of Artificial Intelligence (AI) and Taking the Next Leap with Generative AI",
-      imgSrc: "../../assets//file-up.svg",
-      downloadImgSrc: "../../assets//invoice-download.svg",
-    },
-    {
-      title:
-        "How Generative AI Transforms and Enhances Enterprise Architecture",
-      imgSrc: "../../assets//file-up.svg",
-      downloadImgSrc: "../../assets//invoice-download.svg",
-    },
-  ];
-
   toggleEdit() {
     this.isEditing = !this.isEditing;
   }
@@ -74,21 +53,9 @@ export class DownloadInvoiceComponent implements OnInit, AfterViewInit {
       .subscribe((data: any) => {
         this.oldUrlData = data.oldUrlData;
       });
-    this.passwordForm = this.fb.group(
-      {
-        password: ["", [Validators.required]],
-        confirmPassword: ["", [Validators.required]],
-        email: [
-          "",
-          [
-            Validators.required,
-            Validators.email,
-            Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
-          ],
-        ],
-      },
-      { validator: this.passwordsMatch }
-    );
+
+    // Fetch download invoices data
+    this.fetchDownloadInvoices();
   }
 
   passwordsMatch(control: AbstractControl): { [key: string]: boolean } | null {
@@ -102,53 +69,77 @@ export class DownloadInvoiceComponent implements OnInit, AfterViewInit {
 
   displayContent(content: string) {
     this.content = content;
-    if (content === "Subscription") {
-      this.fetchSubscriptions();
-    }
   }
 
-  fetchSubscriptions() {
+  fetchDownloadInvoices() {
     this.isLoading = true;
     const token = localStorage.getItem("jwtToken");
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
 
-    this.http
-      .get<any[]>(`${baseURl}/research-masters/research-list-subscribed`, {
-        headers,
-      })
-      .subscribe(
-        (data: any) => {
-          this.subscriptions = data.researchMasterList;
-          // console.log(this.subscriptions);
-          this.isLoading = false;
-        },
-        (error: any) => {
-          // console.error("Error fetching subscriptions", error);
-          this.isLoading = false;
-        }
-      );
+    this.http.get<any[]>(`${baseURl}/orders`, { headers }).subscribe(
+      (data: any) => {
+        this.download_invoices = data.body;
+        this.isLoading = false;
+      },
+      (error: any) => {
+        this.isLoading = false;
+      }
+    );
   }
 
-  onSubmit() {
-    if (this.passwordForm.valid) {
-      // Perform the password reset logic
-      console.log("Form Submitted", this.passwordForm.value);
-    } else {
-      console.log("Form is invalid");
-    }
+  downloadInvoice(orderId: string) {
+    const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    this.http
+      .get(`${baseURl}/invoice?orderId=${orderId}`, {
+        headers,
+        responseType: "blob",
+      })
+      .subscribe((response: Blob) => {
+        const url = window.URL.createObjectURL(response);
+        window.open(url);
+      });
+  }
+
+  downloadReport(orderId: string, fileName: string) {
+    const token = localStorage.getItem("jwtToken");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    this.http
+      .get(`${baseURl}/invoice?orderId=${orderId}`, {
+        headers,
+        responseType: "blob", // Ensure responseType is blob for binary data like PDF
+      })
+      .subscribe((response: Blob) => {
+        // Create a new Blob object and initiate a download
+        const blob = new Blob([response], { type: "application/pdf" });
+        const url = window.URL.createObjectURL(blob);
+
+        // Create a link element, set its href and download attributes, then click it programmatically
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = fileName; // Specify the filename you want to download as
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a); // Clean up the DOM after the download
+        window.URL.revokeObjectURL(url); // Release the object URL
+      });
   }
 
   getUniqueReportTypes(): string[] {
     const uniqueReportTypes = [
       ...new Set(this.subscriptions.map((sub) => sub.reportType).flat()),
     ];
-    console.log(uniqueReportTypes);
     return uniqueReportTypes;
   }
 
-  // Method to filter subscriptions by category
   filteredSubscriptions(reportType: string): any[] {
     return this.subscriptions.filter((sub) =>
       sub.reportType.includes(reportType)

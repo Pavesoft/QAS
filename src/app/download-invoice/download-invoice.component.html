@@ -57,14 +57,16 @@
         <h3 class="content-title pb-1 p-0 m-0 mb-2">Download Invoice</h3>
         <div class="mr-5">
           <div
-            *ngFor="let invoice of invoices"
+            *ngFor="let invoice of download_invoices"
             class="d-flex justify-content-between mr-5 my-4 horizontal-line-black"
           >
             <div>
-              <li class="invoice-title">{{ invoice.title }}</li>
+              <li (click)="downloadInvoice(invoice.id)" class="invoice-title">
+                {{ invoice.id }}
+              </li>
             </div>
             <div class="d-flex column-gap-3 mb-2">
-              <div class="icon-container">
+              <div class="icon-container" (click)="downloadInvoice(invoice.id)">
                 <svg
                   viewBox="0 0 24 24"
                   width="24"
@@ -84,7 +86,10 @@
                 </svg>
               </div>
 
-              <div class="icon-container">
+              <div
+                class="icon-container"
+                (click)="downloadReport(invoice.id, invoice.id)"
+              >
                 <svg
                   viewBox="0 0 24 24"
                   width="24"
