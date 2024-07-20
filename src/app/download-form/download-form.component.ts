@@ -80,6 +80,8 @@ export class DownloadFormComponent implements OnInit {
       cityName: [""],
       zipCode: [""],
       description: [""],
+      reportId: [""],
+      downloadSampleReport: [""],
     });
 
     if (
@@ -223,9 +225,11 @@ export class DownloadFormComponent implements OnInit {
       const cityName = this.form.value["cityName"];
       const zipCode = this.form.value["zipCode"];
       const description = this.form.value["description"];
+      const reportId = this.result.id;
+      const downloadSampleReport = true;
       url: window.location.href;
       // const formCategory = "download-form" ;
-
+      console.log("form data", reportId, downloadSampleReport);
       this.ecommService
         .saveFormData(
           id,
@@ -239,7 +243,9 @@ export class DownloadFormComponent implements OnInit {
           companyName,
           cityName,
           zipCode,
-          description
+          description,
+          reportId,
+          downloadSampleReport
         )
         .subscribe(
           (response: ApiResponse) => {
