@@ -39,6 +39,8 @@ export class SearchbarComponent implements OnInit {
       cityName: [""],
       zipCode: [""],
       description: [""],
+      reportId: [""],
+      downloadSampleReport: [""],
     });
   }
 
@@ -85,6 +87,8 @@ export class SearchbarComponent implements OnInit {
         const cityName = this.form.value["cityName"];
         const zipCode = this.form.value["zipCode"];
         const description = this.form.value["description"];
+        const reportId = "";
+        const downloadSampleReport = false;
 
         this.ecommService
           .saveFormData(
@@ -99,7 +103,9 @@ export class SearchbarComponent implements OnInit {
             companyName,
             cityName,
             zipCode,
-            description
+            description,
+            reportId,
+            downloadSampleReport
           )
           .subscribe(
             (response: ApiResponse) => {
