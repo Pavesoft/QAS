@@ -158,13 +158,15 @@
             class="form-selectt dropdown-menu"
             aria-labelledby="dropdownMenuButton"
             style="
-              width: 100%;
-              background: linear-gradient(
-                118deg,
-                rgba(100, 100, 100, 0.6) 30%,
-                rgba(200, 200, 200, 0.1) 109.82%
-              );
-            "
+            max-height: 250px;
+            overflow-y: auto;
+            width: 100%;
+            background: linear-gradient(
+              118deg,
+              rgba(100, 100, 100, 0.6) 30%,
+              rgba(200, 200, 200, 0.1) 109.82%
+            );
+          "
           >
             <label class="dropdown-item" *ngFor="let option of regionData">
               <input
