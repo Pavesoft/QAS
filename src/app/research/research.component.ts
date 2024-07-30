@@ -646,6 +646,7 @@ export class ResearchComponent implements OnInit {
               };
             });
             this.currentPage = data.pagination.currentPage + 1;
+            this.mappedReports.sort((a, b) => b.publishDate - a.publishDate);
             this.itemsPerPage = data.pagination.pageSize;
             this.totalPages = data.pagination.totalPages;
           },
