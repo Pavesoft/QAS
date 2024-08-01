@@ -158,15 +158,15 @@
             class="form-selectt dropdown-menu"
             aria-labelledby="dropdownMenuButton"
             style="
-            max-height: 250px;
-            overflow-y: auto;
-            width: 100%;
-            background: linear-gradient(
-              118deg,
-              rgba(100, 100, 100, 0.6) 30%,
-              rgba(200, 200, 200, 0.1) 109.82%
-            );
-          "
+              max-height: 250px;
+              overflow-y: auto;
+              width: 100%;
+              background: linear-gradient(
+                118deg,
+                rgba(100, 100, 100, 0.6) 30%,
+                rgba(200, 200, 200, 0.1) 109.82%
+              );
+            "
           >
             <label class="dropdown-item" *ngFor="let option of regionData">
               <input
@@ -309,9 +309,21 @@
               class="col-md-6 my-4 d-flex align-items-center justify-content-end"
             >
               <span class="sb" style="font-size: 16px !important">Sort By</span>
-              <span class="rd" style="font-size: 16px !important">
-                Release Date <i class="fas fa-angle-down"></i>
-              </span>
+              <div class="dropdown">
+                <span
+                  class="rd"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Release Date <i class="fas fa-angle-down"></i>
+                </span>
+                <div class="dropdown-menu dropdown-menu-right releasedate">
+                  <li class="dropdown-item releasedate">Sort by Date</li>
+                  <li class="dropdown-item releasedate">Sort by Price</li>
+                  <li class="dropdown-item releasedate">Sort by Author</li>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -567,7 +579,7 @@
                         </div>
                         <div class="row d-flex justify-content-end">
                           <button
-                            class="bn"
+                            class="btn btn-primary common-button-style"
                             style="
                               font-size: 16px;
                               border: 0px;
@@ -603,7 +615,7 @@
                           <p style="margin: 0px; padding-left: 4px">Download</p>
                         </button>
                         <button
-                          class="btn btn-success bn"
+                          class="btn btn-primary common-button-style"
                           style="
                             margin-bottom: 15px !important;
                             font-size: 16px;
@@ -625,7 +637,26 @@
                       style="color: #212529; font-size: 16px"
                       >Price:
                     </span>
-                    <span class="prc">${{ formatPrice(research.price) }}</span>
+                    <span class="prc d-flex align-items-center">
+                      <ng-container *ngIf="research.price > research.price2">
+                        <span class="strikethrough"
+                          >${{ formatPrice(research.price) }}</span
+                        >
+                        ${{ formatPrice(research.price2) }}
+                        <span class="discount-value"
+                          >Save
+                          {{
+                            calculateDiscountPercentage(
+                              research.price,
+                              research.price2
+                            ) | number : "1.0-2"
+                          }}%</span
+                        >
+                      </ng-container>
+                      <ng-container *ngIf="research.price <= research.price2">
+                        ${{ formatPrice(research.price) }}
+                      </ng-container>
+                    </span>
                   </div>
                   <div
                     class="col-md-3 d-flex align-items-center justify-content-end"
@@ -750,4 +781,3 @@
     </div>
   </div>
 </div>
-

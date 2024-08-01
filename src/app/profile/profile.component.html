@@ -1,0 +1,293 @@
+<!-- profile.component.html -->
+
+<div class="row">
+  <div class="col-md-3 sidebar sticky-div">
+    <div class="d-flex row row-gap-4 pl-5 pr-4 pb-0 pt-0 upper-container">
+      <div class="p-0">
+        <h3 class="sidebar-heading p-0 m-0">My Account</h3>
+      </div>
+      <div class="horizontal-line"></div>
+      <div class="p-0">
+        <h3
+          class="sidebar-title common-hover-effect p-0 m-0"
+          (click)="displayContent('My Profile')"
+          routerLink="/profile"
+        >
+          My Profile
+        </h3>
+      </div>
+      <div class="horizontal-line"></div>
+      <div class="p-0">
+        <h3
+          class="sidebar-title common-hover-effect p-0 m-0"
+          (click)="displayContent('Subscription')"
+          routerLink="/subscriptions"
+        >
+          My Subscriptions
+        </h3>
+      </div>
+      <div class="horizontal-line"></div>
+      <div class="p-0">
+        <h3
+          class="sidebar-title common-hover-effect p-0 m-0"
+          (click)="displayContent('Download Invoice')"
+          routerLink="/download-invoice"
+        >
+          Download Invoice
+        </h3>
+      </div>
+      <div class="horizontal-line common-gap"></div>
+      <div class="p-0">
+        <div class="d-flex justify-content-center align-items-center pt-1">
+          <h3
+            class="sidebar-title common-hover-effect p-0 m-0"
+            (click)="displayContent('Contact Us')"
+            routerLink="/contact-us"
+          >
+            Contact Us
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9 main-container">
+    <app-main-container [content]="content"></app-main-container>
+    <div *ngIf="showPasswordChangeSuccessModal" class="custom-modal">
+      <div class="modal-content">
+        <h1>Password Changed Successfully</h1>
+        <p>Your password has been changed successfully.</p>
+        <div class="modal-actions">
+          <button
+            class="modal-button btn btn-primary edit-button-style"
+            (click)="onClose()"
+          >
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="content === 'My Profile'">
+      <div class="d-flex row row-gap-1 m-5 pr-5 profile-container">
+        <h3 class="content-title pb-1 p-0 m-0 mb-2">My Profile</h3>
+
+        <div class="p-0 m-0">
+          <form [formGroup]="profileDetailsForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                id="firstName"
+                placeholder="{{ user.firstName }}"
+                [disabled]="true"
+                readonly
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                placeholder="{{ user.workEmail }}"
+                id="email"
+                [disabled]="true"
+                required
+                readonly
+              />
+              <div *ngIf="profileDetailsForm.controls['email'].errors">
+                <small
+                  class="text-danger"
+                  *ngIf="profileDetailsForm.controls['email'].errors['email']"
+                >
+                  Invalid email address.
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="businessPhone1">Phone</label>
+              <input
+                #phoneInput
+                type="tel"
+                id="businessPhone1"
+                maxlength="16"
+                class="form-control"
+                required
+                placeholder="Phone*"
+                style="margin-bottom: 20px"
+                [disabled]="true"
+                readonly
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="company">Company Name</label>
+              <input
+                id="company"
+                [placeholder]="user.company || 'Company Name'"
+                [disabled]="true"
+                readonly
+              />
+            </div>
+
+            <div class="col-md-3 mb-3 p-0 horizontal-line-black">
+              <h3 class="password-heading p-0 m-0 mt-3">Change Password</h3>
+            </div>
+            <div class="p-0 d-flex justify-content-end">
+              <button
+                type="button"
+                class="btn btn-primary edit-button-style"
+                style="font-size: 16px !important"
+                (click)="toggleEdit()"
+              >
+                {{ isEditing ? "Cancel" : "Edit" }}
+              </button>
+            </div>
+            <div class="form-group">
+              <label for="currentpassword">Current Password</label>
+              <div class="input-container">
+                <input
+                  [type]="showPassword && isEditing ? 'text' : 'password'"
+                  id="currentpassword"
+                  formControlName="currentpassword"
+                  placeholder="••••••••••"
+                  [readonly]="!isEditing"
+                />
+                <img
+                  *ngIf="!showPassword && isEditing"
+                  (click)="togglePassword()"
+                  class="password-toggle-icon"
+                  src="../../../assets/eye.svg"
+                />
+                <img
+                  *ngIf="showPassword && isEditing"
+                  (click)="togglePassword()"
+                  class="password-toggle-icon"
+                  src="../../../assets/eye-off.svg"
+                />
+              </div>
+              <div
+                *ngIf="
+                  isEditing &&
+                  profileDetailsForm.get('currentpassword')?.invalid &&
+                  profileDetailsForm.get('currentpassword')?.touched
+                "
+                class="text-danger"
+              >
+                Password is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password">New Password</label>
+              <div class="input-container">
+                <input
+                  [type]="newShowPassword && isEditing ? 'text' : 'password'"
+                  id="password"
+                  formControlName="password"
+                  placeholder="••••••••••"
+                  [readonly]="!isEditing"
+                />
+                <img
+                  *ngIf="!newShowPassword && isEditing"
+                  (click)="toggleNewPassword()"
+                  class="password-toggle-icon"
+                  src="../../../assets/eye.svg"
+                />
+                <img
+                  *ngIf="newShowPassword && isEditing"
+                  (click)="toggleNewPassword()"
+                  class="password-toggle-icon"
+                  src="../../../assets/eye-off.svg"
+                />
+              </div>
+              <div
+                *ngIf="
+                  isEditing &&
+                  profileDetailsForm.get('password')?.invalid &&
+                  profileDetailsForm.get('password')?.touched
+                "
+                class="text-danger"
+              >
+                Password is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <div class="input-container">
+                <input
+                  [type]="
+                    showConfirmPassword && isEditing ? 'text' : 'password'
+                  "
+                  id="confirmPassword"
+                  formControlName="confirmPassword"
+                  placeholder="••••••••••"
+                  [readonly]="!isEditing"
+                />
+                <img
+                  *ngIf="!showConfirmPassword && isEditing"
+                  (click)="toggleConfirmPassword()"
+                  class="password-toggle-icon"
+                  src="../../../assets/eye.svg"
+                />
+                <img
+                  *ngIf="showConfirmPassword && isEditing"
+                  (click)="toggleConfirmPassword()"
+                  class="password-toggle-icon"
+                  src="../../../assets/eye-off.svg"
+                />
+              </div>
+
+              <div
+                *ngIf=" isEditing &&
+     profileDetailsForm.get('confirmPassword')?.touched &&
+     profileDetailsForm.get('confirmPassword')?.invalid &&
+      !profileDetailsForm.errors?.['passwordMismatch']
+    "
+                class="text-danger"
+              >
+                Confirm Password is required.
+              </div>
+              <div
+                *ngIf=" isEditing &&
+     profileDetailsForm.errors?.['passwordMismatch'] &&
+      profileDetailsForm.get('confirmPassword')?.touched
+    "
+                class="text-danger"
+              >
+                Passwords do not match.
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end pt-1">
+              <a>
+                <label style="float: right">
+                  <span style="color: black; font-size: "
+                    >For more information ,</span
+                  >
+                  <a class="contactusbottombutton" routerLink="/contact-us"
+                    >Contact Us</a
+                  >
+                </label>
+              </a>
+            </div>
+
+            <button
+              type="submit"
+              [disabled]="!isEditing"
+              class="btn btn-primary common-button-style"
+              style="
+                margin-top: 40px !important;
+                margin-bottom: 80px !important;
+                border: 0px;
+                font-size: 17px !important;
+              "
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

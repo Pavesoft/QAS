@@ -1,8 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid no-backdrop">
-    <a routerLink="/home"
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-light common-header-distance py-2"
+>
+  <div class="container-fluid no-backdrop p-0">
+    <span style="cursor: pointer" routerLink="/home"
       ><img src="assets/QKS_Logo.png" alt="Logo" style="width: 8pc"
-    /></a>
+    /></span>
 
     <button
       class="navbar-toggler"
@@ -57,17 +59,17 @@
           </li>
 
           <li class="nav-item form-select">
-            <a
+            <span
               class="nav-link dropdown-toggle"
               id="navbarDropdown"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Curated Offerings</a
+              Curated Offerings</span
             >
 
-            <div class="mega-box">
+            <div class="mega-box" aria-labelledby="navbarDropdown">
               <div class="content1">
                 <div class="main">
                   <p><b>Services</b></p>
@@ -76,6 +78,7 @@
                       <a
                         routerLink="/content-strategy-services"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Content Strategy Services
                       </a>
@@ -85,12 +88,17 @@
                       <a
                         routerLink="/advisoryservices"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Quadrant Advisory Services
                       </a>
                     </li>
                     <li>
-                      <a routerLink="/technonxt" data-bs-dismiss="offcanvas">
+                      <a
+                        routerLink="/technonxt"
+                        data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
+                      >
                         TechnoNXT
                       </a>
                     </li>
@@ -102,6 +110,7 @@
                     <li>
                       <a
                         routerLink="/marine-market-intelligence-epitome"
+                        class="navlink-dropdown-items"
                         data-bs-dismiss="offcanvas"
                       >
                         MARINE
@@ -111,6 +120,7 @@
                       <a
                         routerLink="/roi-benchmark-report"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         ROI Benchmark
                       </a>
@@ -119,6 +129,7 @@
                       <a
                         routerLink="/whao-assessment"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         WHAO Assessment
                       </a>
@@ -127,6 +138,7 @@
                       <a
                         routerLink="/report_type/spark-matrix"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         SPARK Matrix
                       </a>
@@ -137,7 +149,7 @@
             </div>
           </li>
           <li class="nav-item form-select">
-            <a class="nav-link">Insights</a>
+            <a class="nav-link" style="cursor: pointer">Insights</a>
             <div class="mega-box">
               <div class="content">
                 <div class="main">
@@ -145,27 +157,39 @@
                   <ul class="mega-links mit">
                     <b>Thought Leadership</b>
                     <li>
-                      <a href="#"> Market Insights </a>
+                      <a href="#" class="navlink-dropdown-items">
+                        Market Insights
+                      </a>
                     </li>
                     <li>
-                      <a href="#"> Strategy Reports </a>
+                      <a href="#" class="navlink-dropdown-items">
+                        Strategy Reports
+                      </a>
                     </li>
                     <li>
-                      <a href="#"> User Survey Reports </a>
+                      <a href="#" class="navlink-dropdown-items">
+                        User Survey Reports
+                      </a>
                     </li>
                     <li>
-                      <a href="#"> Webinar </a>
+                      <a href="#" class="navlink-dropdown-items"> Webinar </a>
                     </li>
                     <li>
-                      <a href="#"> SPARK Matrix </a>
+                      <a href="#" class="navlink-dropdown-items">
+                        SPARK Matrix
+                      </a>
                     </li>
                     <br />
                     <b>Market Intelligence</b>
                     <li>
-                      <a href="#"> Market Forecast </a>
+                      <a href="#" class="navlink-dropdown-items">
+                        Market Forecast
+                      </a>
                     </li>
                     <li>
-                      <a href="#"> Market Share </a>
+                      <a href="#" class="navlink-dropdown-items">
+                        Market Share
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -175,6 +199,7 @@
                       <a
                         routerLink="domains/application-development"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Application Development
                       </a>
@@ -183,6 +208,7 @@
                       <a
                         routerLink="domains/banking-and-financial-services"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Banking & Financial Services
                       </a>
@@ -191,6 +217,7 @@
                       <a
                         routerLink="domains/business-process-management-automation"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         BPM & Process Automation
                       </a>
@@ -199,6 +226,7 @@
                       <a
                         routerLink="domains/cloud-management"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Cloud Management
                       </a>
@@ -207,6 +235,7 @@
                       <a
                         routerLink="domains/communication-collaboration"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Communication & Collaboration
                       </a>
@@ -215,6 +244,7 @@
                       <a
                         routerLink="domains/cx-and-martech"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         CX and MarTech
                       </a>
@@ -223,6 +253,7 @@
                       <a
                         routerLink="domains/data-analytics-and-artificial-intelligence"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Data, Analytics, and AI
                       </a>
@@ -231,6 +262,7 @@
                       <a
                         routerLink="domains/data-management-service"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Data Management Service
                       </a>
@@ -239,6 +271,7 @@
                       <a
                         routerLink="domains/enterprise-architecture-planning"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Enterprise Architecture Planning
                       </a>
@@ -247,6 +280,7 @@
                       <a
                         routerLink="domains/enterprise-it-services"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Enterprise IT Services
                       </a>
@@ -255,6 +289,7 @@
                       <a
                         routerLink="domains/financial-crime-and-compliance"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Financial Crime & Compliance
                       </a>
@@ -268,6 +303,7 @@
                       <a
                         routerLink="domains/hrtech"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         HRTech
                       </a>
@@ -276,6 +312,7 @@
                       <a
                         routerLink="domains/information-security"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Information Security
                       </a>
@@ -284,6 +321,7 @@
                       <a
                         routerLink="domains/integrated-risk-management"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Integrated Risk Management
                       </a>
@@ -292,6 +330,7 @@
                       <a
                         routerLink="domains/internet-of-things-and-digitization"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         IoT & Digitalization
                       </a>
@@ -300,6 +339,7 @@
                       <a
                         routerLink="domains/it-infrastructure-and-networking"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         IT Infrastructure & Networking
                       </a>
@@ -308,6 +348,7 @@
                       <a
                         routerLink="domains/privacy-data-management"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Privacy Data Management
                       </a>
@@ -316,6 +357,7 @@
                       <a
                         routerLink="domains/procurement-management"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Procurement Management
                       </a>
@@ -324,6 +366,7 @@
                       <a
                         routerLink="domains/project-and-portfolio-management"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Project & Portfolio Management
                       </a>
@@ -332,6 +375,7 @@
                       <a
                         routerLink="domains/retail-and-ecommerce"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Retail & eCommerce
                       </a>
@@ -340,6 +384,7 @@
                       <a
                         routerLink="domains/supply-chain-management"
                         data-bs-dismiss="offcanvas"
+                        class="navlink-dropdown-items"
                       >
                         Supply Chain Management
                       </a>
@@ -378,7 +423,7 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
                 <a
-                  class="dropdown-item"
+                  class="dropdown-item navlink-dropdown-items"
                   routerLink="/blogs"
                   data-bs-dismiss="offcanvas"
                 >
@@ -387,7 +432,7 @@
               </li>
               <li>
                 <a
-                  class="dropdown-item"
+                  class="dropdown-item navlink-dropdown-items"
                   routerLink="/press-release"
                   data-bs-dismiss="offcanvas"
                 >
@@ -400,7 +445,7 @@
 
               <li>
                 <a
-                  class="dropdown-item"
+                  class="dropdown-item navlink-dropdown-items"
                   routerLink="/video-gallery"
                   data-bs-dismiss="offcanvas"
                   >Videos</a
@@ -409,7 +454,7 @@
 
               <li>
                 <a
-                  class="dropdown-item"
+                  class="dropdown-item navlink-dropdown-items"
                   routerLink="/podcasts"
                   data-bs-dismiss="offcanvas"
                 >

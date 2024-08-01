@@ -113,14 +113,9 @@ export class ApiService {
           );
           const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
           const matches = filenameRegex.exec(contentDisposition);
-          console.log("fileName regex", filenameRegex);
-          console.log("matches", matches);
+
           const filename = `${reportName}.pdf`;
 
-          console.log("contentDisposition", contentDisposition);
-          console.log("filename regex", filenameRegex);
-          console.log("matches", matches);
-          console.log("filename", filename);
           return {
             blob: response.body,
             filename: filename,

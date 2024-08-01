@@ -152,7 +152,27 @@
                       style="color: #212529; margin-top: 1px"
                       >Price:
                     </span>
-                    <span class="prc">${{ formatPrice(Reports.price) }}</span>
+
+                    <span class="prc d-flex align-items-center">
+                      <ng-container *ngIf="Reports.price > Reports.price2">
+                        <span class="strikethrough"
+                          >${{ formatPrice(Reports.price) }}</span
+                        >
+                        ${{ formatPrice(Reports.price2) }}
+                        <span class="discount-value"
+                          >Save
+                          {{
+                            calculateDiscountPercentage(
+                              Reports.price,
+                              Reports.price2
+                            ) | number : "1.0-2"
+                          }}%</span
+                        >
+                      </ng-container>
+                      <ng-container *ngIf="Reports.price <= Reports.price2">
+                        ${{ formatPrice(Reports.price) }}
+                      </ng-container>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -176,6 +196,7 @@
                       padding-top: 10px;
                       padding-left: 8px;
                       font-size: 17px;
+                      border: 0px !important;
                     "
                   >
                     Download
@@ -269,7 +290,7 @@
       >
         <button
           class="btn btn-success bt2"
-          style="padding: 15px"
+          style="padding: 15px; border: 0px !important"
           (click)="downloadForm(Reports)"
         >
           <img class="dic" src="/assets/download-01.png" />Download Sample

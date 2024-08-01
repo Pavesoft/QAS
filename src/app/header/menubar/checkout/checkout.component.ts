@@ -124,7 +124,7 @@ export class CheckoutComponent {
   placeOrder(): void {
     this.cartService.getCart().forEach((element) => {
       this.reportName.push(element.research.report);
-      console.log(this.reportName);
+      // console.log(this.reportName);
     });
 
     const description = this.reportName.join(", ");
@@ -170,8 +170,8 @@ export class CheckoutComponent {
           setTimeout(() => {
             this.isLoading = false;
             this.res = response;
-            console.log(response);
-            console.log(response.session.session.id);
+            // console.log(response);
+            // console.log(response.session.session.id);
             localStorage.setItem("Origin", window.location.host);
             localStorage.setItem("HDFCSessionID", response.session.session.id);
             localStorage.setItem("HDFCOrderID", orderId);
@@ -195,7 +195,7 @@ export class CheckoutComponent {
         }
       },
       (error: any) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   }
