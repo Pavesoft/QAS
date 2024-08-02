@@ -1,26 +1,27 @@
-import { HostListener, Injectable } from '@angular/core';
-import { ResearchMasterDto } from '../Interfaces/research-master-dto';
+import { HostListener, Injectable } from "@angular/core";
+import { ResearchMasterDto } from "../Interfaces/research-master-dto";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CartService {
-  cart: { research: ResearchMasterDto, quantity: number, totalPrice: number }[] = [];
+  cart: {
+    research: ResearchMasterDto;
+    quantity: number;
+    totalPrice: number;
+  }[] = [];
   user: any; // Modify the user property type as per your requirements
 
-  
-  private cartKey = 'cart';
-  private userKey = 'user';
+  private cartKey = "cart";
+  private userKey = "user";
 
   constructor() {
     this.loadCart();
-    window.onbeforeunload = function() {
+    window.onbeforeunload = function () {
       localStorage.clear();
-      return '';
+      return "";
     };
   }
-  
-
 
   loadCart(): void {
     const cartData = localStorage.getItem(this.cartKey);
@@ -49,27 +50,107 @@ export class CartService {
     return this.user;
   }
 
-  getCart(): { research: ResearchMasterDto, quantity: number, totalPrice: number }[] {
+  getCart(): {
+    research: ResearchMasterDto;
+    quantity: number;
+    totalPrice: number;
+  }[] {
     return this.cart;
   }
+  incrementToCartQuantity(research: any): void {
+    const cartItem = this.cart.find((item) => item.research.id === research.id);
 
-  addToCart(research: any): void {
-    const cartItem = this.cart.find(item => item.research.id === research.id);
     if (cartItem) {
-      alert('This item is already in the cart.');
+      // Item already exists in cart, increment quantity
+      cartItem.quantity += 1;
+      cartItem.totalPrice += research.price; // Adjust totalPrice if needed
+      this.saveCart();
+    } else {
+      // Item does not exist in cart, add it
+      const newCartItem = {
+        research: research,
+        quantity: 1,
+        totalPrice: research.price,
+        id: +research.id,
+        report: research.report,
+        price: +research.price,
+        categoryName: research.categoryName,
+        reportType: research.reportType,
+        description: research.description,
+        author: research.author,
+        mAuthor: research.mAuthor,
+        publishDate: new Date(),
+        price2: 0,
+        tableOfContent: "",
+      };
+      this.cart.push(newCartItem);
+      this.saveCart();
+    }
+  }
+  decrementToCartQuantity(research: any): void {
+    const cartItem = this.cart.find((item) => item.research.id === research.id);
+
+    if (cartItem) {
+      // Item already exists in cart, increment quantity
+      cartItem.quantity -= 1;
+      cartItem.totalPrice -= research.price; // Adjust totalPrice if needed
+      this.saveCart();
+    } else {
+      // Item does not exist in cart, add it
+      const newCartItem = {
+        research: research,
+        quantity: 1,
+        totalPrice: research.price,
+        id: +research.id,
+        report: research.report,
+        price: +research.price,
+        categoryName: research.categoryName,
+        reportType: research.reportType,
+        description: research.description,
+        author: research.author,
+        mAuthor: research.mAuthor,
+        publishDate: new Date(),
+        price2: 0,
+        tableOfContent: "",
+      };
+      this.cart.push(newCartItem);
+      this.saveCart();
+    }
+  }
+  addToCart(research: any): void {
+    const cartItem = this.cart.find((item) => item.research.id === research.id);
+    if (cartItem) {
+      alert("This item is already in the cart.");
     } else {
       const newCartItem = {
         research: research,
         quantity: 1,
-        totalPrice: research.price
+        totalPrice: research.price,
+        id: +research.id,
+        report: research.report,
+        price: +research.price,
+        categoryName: research.categoryName,
+        reportType: research.reportType,
+        description: research.description,
+        author: research.author,
+        mAuthor: research.mAuthor,
+        publishDate: new Date(),
+        price2: +research.price,
+        tableOfContent: "",
       };
       this.cart.push(newCartItem);
       this.saveCart();
     }
   }
 
-  removeFromCart(item: { research: ResearchMasterDto, quantity: number, totalPrice: number }): void {
-    const index = this.cart.findIndex(cartItem => cartItem.research.id === item.research.id);
+  removeFromCart(item: {
+    research: ResearchMasterDto;
+    quantity: number;
+    totalPrice: number;
+  }): void {
+    const index = this.cart.findIndex(
+      (cartItem) => cartItem.research.id === item.research.id
+    );
     if (index !== -1) {
       this.cart.splice(index, 1);
       this.saveCart();
@@ -87,9 +168,8 @@ export class CartService {
   getTotalPrice(): number {
     let totalPrice = 0;
     for (const item of this.cart) {
-        totalPrice += item.totalPrice;
+      totalPrice += item.totalPrice;
     }
     return totalPrice;
-}
-
+  }
 }

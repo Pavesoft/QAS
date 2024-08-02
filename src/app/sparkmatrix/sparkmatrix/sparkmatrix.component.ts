@@ -1,25 +1,23 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-sparkmatrix',
-  templateUrl: './sparkmatrix.component.html',
-  styleUrls: ['./sparkmatrix.component.scss']
+  selector: "app-sparkmatrix",
+  templateUrl: "./sparkmatrix.component.html",
+  styleUrls: ["./sparkmatrix.component.scss"],
 })
 export class SparkmatrixComponent {
-
-  constructor(private router: Router){}
+  constructor(private router: Router) {}
 
   private getUrlFriendlyString(input: string): string {
     // Replace special characters with dashes and convert to lowercase
     return input
       .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/[\s_-]+/g, '-');
+      .replace(/[^\w\s-]/g, "")
+      .replace(/[\s_-]+/g, "-");
   }
 
-  downloadForm(formName:string){
-    console.log(formName)
+  downloadForm(formName: string) {
     //console.log(research)
 
     const urlFriendlyName = this.getUrlFriendlyString(formName);
@@ -29,14 +27,11 @@ export class SparkmatrixComponent {
       //console.log(research.report)
       this.router.navigate([url], {
         state: {
-          contactUsFormName: formName
-        }
+          contactUsFormName: formName,
+        },
       });
     } else {
-      console.error('Selected research not found in the filtered data.');
+      console.error("Selected research not found in the filtered data.");
     }
-
   }
-
 }
-

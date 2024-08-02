@@ -1,122 +1,118 @@
 .fa-facebook {
-    background: #011F41;
-    color: white;
-  }
-  
-  .fa-twitter {
-    background: #011F41;
-    color: white;
-  }
-  
-  .fa-google {
-    background: #011F41;
-    color: white;
-  }
-  
-  .fa-linkedin {
-    background: #011F41;
-    color: white;
-  }
-  
-  .fa-youtube {
-    background: #011F41;
-    color: white;
-  }
-  
-  .fa-instagram {
-    background: #011F41;
-    color: white;
-  }
-
-  .fa {
-    padding: 5px;
-    font-size: 18px;
-    width: 30px;
-    text-align: center;
-    text-decoration: none;
-    margin: 0px 2px;
-    border-radius: 16px;
-  }
-
-  .quadrant{
-    font-family: "Arial Nova";
-    font-size: 16px;
-  }
-  .Quick{
-    font-family: "Arial Nova Bold";
-    font-size: 22px;
-
-  }
-  .links{
-    font-family: "Arial Nova";
-    font-size: 16px;
-  }
-
-  .text-left .links{
-
-    font-family: "Arial Nova";
-    font-size: 16px;
-
-  }
-
-  .copyright{
-    font-family: "Arial Nova";
-    font-size: 16px;
-    padding-left: 50px;
-  }
-
-  .copyrights{
-    font-family: "Arial Nova";
-    font-size: 11px;
-    float:right!important;
-    padding-right: 60px;
-
-  }
-  a.email{
-    font-size: 14px;
-  }
-
-  li.ter2 a {
-    margin-left: -49px;
-    
+  background: #011f41;
+  color: white;
 }
 
-  @media screen and (max-width: 480px){
+.fa-twitter {
+  background: #011f41;
+  color: white;
+}
 
-    a.email{
-      font-size: 13px!important;
-    }
-    .copyright{
-      text-align: left!important;
-      font-size: 12px!important;
+.fa-google {
+  background: #011f41;
+  color: white;
+}
 
-    }
-    .copyrights{
-      display: -webkit-box !important;
-      padding-right: 80px !important;
-      // line-height: 0px !important;
-      font-size: 10px;
-      left: 20px;
-      position: relative;
+.fa-linkedin {
+  background: #011f41;
+  color: white;
+}
 
-    }
+.fa-youtube {
+  background: #011f41;
+  color: white;
+}
 
-    .copyrights li{
-      padding-left: 3px!important;
-    }
-    li.ter {
-     
-      padding: 5px;
-      margin-left: 0px;
-      font-size: 10px!important;
+.fa-instagram {
+  background: #011f41;
+  color: white;
+}
+
+.fa {
+  padding: 5px;
+  font-size: 18px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 0px 2px;
+  border-radius: 16px;
+}
+
+.quadrant {
+  font-family: "Arial Nova";
+  font-size: 16px;
+}
+.Quick {
+  font-family: "Arial Nova Bold";
+  font-size: 22px;
+}
+.links {
+  font-family: "Arial Nova";
+  font-size: 16px;
+}
+
+.text-left .links {
+  font-family: "Arial Nova";
+  font-size: 16px;
+}
+
+.copyright {
+  font-family: "Arial Nova";
+  font-size: 16px;
+  padding-left: 50px;
+}
+
+.copyrights {
+  font-family: "Arial Nova";
+  font-size: 11px;
+  float: right !important;
+  padding-right: 60px;
+}
+a.email {
+  font-size: 14px;
+}
+
+li.ter2 a {
+  margin-left: -49px;
+}
+
+@media screen and (max-width: 480px) {
+  .container-fluid {
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+  }
+
+  a.email {
+    font-size: 13px !important;
+  }
+  .copyright {
+    text-align: left !important;
+    font-size: 12px !important;
+  }
+  .copyrights {
+    display: -webkit-box !important;
+    padding-right: 80px !important;
+    // line-height: 0px !important;
+    font-size: 10px;
+    left: 20px;
+    position: relative;
+  }
+
+  .copyrights li {
+    padding-left: 3px !important;
+  }
+  li.ter {
+    padding: 5px;
+    margin-left: 0px;
+    font-size: 10px !important;
   }
   li.ter1 {
     padding: 5px;
     margin-left: -92px;
     font-size: 10px !important;
     margin-top: 20px;
-}
-.ter2{
-  margin-top: 4px;
-}
   }
+  .ter2 {
+    margin-top: 4px;
+  }
+}

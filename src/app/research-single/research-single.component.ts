@@ -72,7 +72,6 @@ export class ResearchSingleComponent implements OnInit {
   }
 
   addToCart(research: ResearchMasterDto): void {
-    console.log(research);
     const cart = this.cartService.getCart();
     const existingCartItem = cart.find(
       (item) => item.research.id === research.id
@@ -89,17 +88,30 @@ export class ResearchSingleComponent implements OnInit {
     }
   }
   showCustomAlert(): void {
-    this.showOverlay = true;
+    this.showOverlay = true; // Assuming this is for showing an overlay or backdrop
+
     setTimeout(() => {
       const customAlert = document.getElementById("customAlert");
       if (customAlert) {
         customAlert.style.display = "block";
+
+        setTimeout(() => {
+          customAlert.style.display = "none"; // Hide the alert after one second
+          this.showOverlay = false; // Hide the overlay as well, if applicable
+        }, 1000);
       }
-    }, 100);
+    }, 1000);
   }
+
   formatPrice(price: number): string {
     // Convert the number to a string and add commas every three digits from the right
     return price.toLocaleString("en-US");
+  }
+  calculateDiscountPercentage(price: number, price2: number): number {
+    if (price > price2) {
+      return ((price - price2) / price) * 100;
+    }
+    return 0;
   }
 
   goToBack() {
@@ -166,14 +178,17 @@ export class ResearchSingleComponent implements OnInit {
       id: +research.id,
       report: research.report,
       price: +research.price,
-      categoryName: "",
+      categoryName: research.categoryName,
       reportType: "",
       description: "",
-      author: "",
-      mAuthor: "",
+      author: research.author,
+      mAuthor: research.mAuthor,
       publishDate: new Date(),
-      price2: 0,
+      price2: +research.price2,
       tableOfContent: "",
+      authors: research.authors,
+
+      categoryList: research.categoryList,
     };
     if (existingCartItem) {
       this.alertType = "Failed";
@@ -189,8 +204,6 @@ export class ResearchSingleComponent implements OnInit {
   }
 
   downloadForm(research: any) {
-    console.log(research);
-
     const urlFriendlyName = this.getUrlFriendlyString(research.report);
     const url = `/download-form/market-research/${urlFriendlyName}-${research.id}`;
 
@@ -237,7 +250,7 @@ export class ResearchSingleComponent implements OnInit {
     if (objIndex !== -1) {
       href = this.oldUrlData[objIndex].To_URL;
     }
-    console.log("href", href);
+
     // this.updateUrlWithReportName(this.Reports.report, this.Reports.id);
     return href;
   }
@@ -262,7 +275,7 @@ export class ResearchSingleComponent implements OnInit {
         : this.apiService.getResearchById(reportId);
       apiCall.subscribe((data: any) => {
         this.dataFetched = true;
-        console.log("data for single report", data.researchMaster);
+
         this.Reports = data.researchMaster;
         this.titleService.setTitle(this.Reports.report);
         this.meta.updateTag({
@@ -336,7 +349,6 @@ export class ResearchSingleComponent implements OnInit {
     reportName: string,
     reportId: string
   ) {
-    console.log("new slug in single report", newSlug);
     const newUrl = `/${newSlug}`;
     this.router.navigate([newUrl], {
       relativeTo: this.route,

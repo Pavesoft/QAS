@@ -9,7 +9,13 @@
   height: 50px;
   background-color: #fff;
 }
+.icon-color-style {
+  color: blue !important;
+}
 
+.cart-link:hover .icon-color-style {
+  color: #0972ea !important;
+}
 .chandrayan2 {
   width: 100%;
   height: 35px;
@@ -22,6 +28,19 @@ marquee {
   margin: 6px;
 }
 
+.signup-button:hover {
+  color: #0972ea;
+  cursor: pointer;
+  margin-left: -17px !important;
+}
+.form-check-label {
+  font-family: "Arial Nova";
+  font-size: 14px;
+  margin-right: 4px !important;
+}
+.login-button:hover {
+  color: #0972ea;
+}
 .topbar {
   height: 60px;
   background: #0972ea 0% 0% no-repeat padding-box;
@@ -124,10 +143,10 @@ span.badge.badge-dark {
   border-bottom: none;
 }
 
-.btp {
+.signup-btn {
   display: flex;
-  width: 90px;
-  height: 32px;
+  width: 160px;
+  height: 40px;
   font-size: 14px;
   font-family: "Arial Nova";
   padding: 14px 34px;
@@ -151,6 +170,11 @@ span.badge.badge-dark {
   top: 45px;
   width: 455px;
 }
+.enquiry-underline {
+  position: absolute;
+  top: 50px;
+  width: 390px;
+}
 
 input#inputName {
   position: relative;
@@ -161,9 +185,17 @@ input#inputName {
   background-repeat: no-repeat;
   height: 42px;
   font-size: 14px;
-  background-color: #ecfbf8;
+  background-color: #ecfbf8 !important;
 }
 
+#queries {
+  background-color: #ecfbf8 !important;
+  height: 42px;
+  margin-right: 3px !important;
+  font-size: 14px !important;
+  margin-left: -3px !important;
+  border-radius: 0px 8px 8px 0px;
+}
 input#inputEmail {
   position: relative;
   left: -3px;
@@ -173,19 +205,7 @@ input#inputEmail {
   background-repeat: no-repeat;
   height: 42px;
   font-size: 14px;
-  background-color: #ecfbf8;
-}
-
-input#inputTel {
-  position: relative;
-  left: -3px;
-  background-size: 40px;
-  background-position: 0px center;
-  border-radius: 0px 8px 8px 0px;
-  background-repeat: no-repeat;
-  height: 42px;
-  font-size: 14px;
-  background-color: #ecfbf8;
+  background-color: #ecfbf8 !important;
 }
 
 input#inputMessage {
@@ -197,7 +217,7 @@ input#inputMessage {
   background-repeat: no-repeat;
   height: 42px;
   font-size: 14px;
-  background-color: #ecfbf8;
+  background-color: #ecfbf8 !important;
 }
 
 input#inputCompanyname {
@@ -223,11 +243,166 @@ input#exampleInputPassword1 {
   font-size: 14px;
   background-color: #ecfbf8;
 }
+input#inputPassword {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8 !important;
+}
+.password-toggle-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  height: 20px; /* Adjust the size as needed */
+  width: 20px; /* Adjust the size as needed */
+}
+input#inputConfirmPassword {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8 !important;
+}
+input#inputCompanyName {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+input#businessPhone {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8 !important;
+}
+input#businessPhone1 {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8 !important;
+}
+input#inputDate {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+.enquiryForm-container {
+  height: auto;
+  margin-left: 80%;
+  margin-top: 9%;
+  background: #ddefed;
+}
+input#inputTime {
+  position: relative;
+  left: -3px;
+  background-size: 40px;
+  background-position: 0px center;
+  border-radius: 0px 8px 8px 0px;
+  background-repeat: no-repeat;
+  height: 42px;
+  font-size: 14px;
+  background-color: #ecfbf8;
+}
+.cross-svg .cross-path {
+  width: 17px !important;
+  height: 17px !important;
+}
 .dropdownValueName {
   cursor: pointer;
   color: #444343 !important;
   font-weight: 400;
-  font-size: 19px !important;
+
+  font-size: 16px !important;
+}
+
+.notification-name {
+  margin-left: 2px !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  margin-right: 20px !important;
+  color: #444343 !important;
+
+  text-decoration: none !important;
+}
+.no-notification {
+  margin-left: 2px !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  margin-right: 20px !important;
+  margin-top: 10px !important;
+  padding-left: 100px !important;
+  padding-right: 100px !important;
+  margin-left: 20px !important;
+  text-align: center;
+  color: #0972ea !important;
+  text-decoration: none !important;
+}
+.notification-name:hover {
+  text-decoration: underline !important;
+}
+.readNotification-name {
+  margin-left: 2px !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  margin-right: 20px !important;
+  color: rgba(68, 67, 67, 0.7) !important;
+}
+.notification-status {
+  font-size: 14px;
+  margin-left: 2px !important;
+  color: rgba(156, 151, 151, 0.7);
+}
+
+.notification-item:hover {
+  background: linear-gradient(180deg, #4cccd6 -20%, #00327a 100%);
+  color: white; /* Optional: change text color for better contrast */
+  fill: red;
+}
+.notification-item:hover .notification-name,
+.notification-item:hover .notification-status {
+  color: #ffffff !important;
+}
+.notification-item:hover .readNotification-name,
+.notification-item:hover .notification-status {
+  color: #ffffff !important;
+}
+.notification-item:hover .circle-svg .circle {
+  fill: #ffffff !important; /* Change this to the desired hover color */
+}
+.notification-item:hover .cross-svg .cross-path {
+  stroke: #ffffff; /* Change this to the desired hover color (white in this case) */
 }
 
 .fmc {
@@ -260,6 +435,12 @@ input#exampleInputPassword1 {
   outline: none;
   box-shadow: none !important;
 }
+.create-account-navigation {
+  color: #0972ea;
+  font-size: 15px;
+  margin-left: 3px;
+  cursor: pointer;
+}
 
 // .mat-mdc-raised-button.mat-unthemed {
 //     --mdc-protected-button-container-color: none;
@@ -268,6 +449,36 @@ input#exampleInputPassword1 {
 @media screen and (max-width: 480px) {
   nav#tobar {
     height: 50px !important;
+  }
+  .top-menu-items {
+    flex-direction: row-reverse;
+  }
+  .topbar-upperMenu {
+    flex-direction: row-reverse;
+    padding-right: 35px !important;
+    padding-top: 5px !important;
+    padding-bottom: 2px !important;
+  }
+  .topbar-downMenu {
+    padding-right: 35px !important;
+    padding-bottom: 5px !important;
+  }
+  .signup-button:hover {
+    color: #0972ea;
+    cursor: pointer;
+    margin-left: 0px;
+  }
+  .bottom-menu-items {
+    margin-right: 10px !important;
+    padding-right: 20px !important;
+  }
+  .common-header-distance {
+    display: inline-block;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    padding: 0px !important;
+    margin: 0px !important;
   }
 
   a#bec {
@@ -305,4 +516,156 @@ input#exampleInputPassword1 {
 }
 .logout-link {
   cursor: pointer;
+}
+.profile-dropdown-container {
+  width: 250px;
+  background: #ddefed;
+  top: 9px !important;
+  padding: 15px !important;
+  border-radius: 0px !important;
+  border: 0px !important;
+}
+.notification-dropdown-container {
+  width: 430px;
+  overflow-y: scroll;
+  background: #ddefed;
+  top: 9px !important;
+  border-radius: 0px !important;
+  border: 0px !important;
+}
+
+.cross-button {
+  border: none !important;
+  background: none !important;
+  color: #000 !important;
+  cursor: pointer;
+}
+.cross-button:hover .cross-path,
+.cross-svg:hover .cross-path {
+  stroke: red;
+}
+.fixed-height {
+  height: 500px; /* Fixed height when notificationData.length >= 4 */
+}
+
+.auto-height {
+  height: auto; /* Auto height when notificationData.length < 4 */
+}
+
+.enquiryForm-dropdown-container {
+  width: 430px;
+  padding: 20px !important ;
+  background: #ddefed;
+  top: 8px !important;
+  border-radius: 0px !important;
+  border: 0px !important;
+}
+.enquiry-title {
+  color: #00327a;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 12px !important;
+}
+.topsideMenus {
+  gap: 5px;
+}
+.topsideMenuRight {
+  gap: 23px;
+  height: 40px !important;
+}
+.notification-header {
+  color: #00327a;
+  font-weight: 700;
+  font-size: 19px;
+}
+.dropdown-menu .dropdownValueName {
+  transition: color 0.3s ease;
+}
+.hover-icon:hover svg {
+  stroke: #0972ea;
+}
+.dropdown-menu .dropdownValueName:hover {
+  color: #0972ea !important;
+}
+
+.mark-read-button {
+  display: flex;
+  color: white;
+  height: 30px;
+  border: 0px !important;
+  font-size: 14px;
+  font-family: "Arial Nova";
+  padding: 14px 20px;
+  justify-content: center;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  background: linear-gradient(275deg, #4cd6b0 -6.18%, #00327a 100%);
+}
+.mark-read-button:hover {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+.mark-read-button[disabled] {
+  background-color: #cccccc !important; /* Change background color when disabled */
+  color: white; /* Change text color when disabled */
+  box-shadow: none !important; /* Remove box shadow when disabled */
+  cursor: not-allowed;
+  opacity: 0.6;
+  /* Change cursor to not-allowed when disabled */
+}
+#logoutDropdown:hover {
+  color: #0972ea !important; /* Change this to the desired hover color */
+}
+.help-desk:hover {
+  color: #0972ea !important; /* Change this to the desired hover color */
+}
+.dropdown-toggle:hover {
+  color: #0972ea !important;
+}
+.common-hover-effect {
+  color: #212529 !important;
+}
+.common-hover-effect:hover {
+  color: #0972ea !important;
+}
+
+@media screen and (max-width: 480px) {
+  .enquiryForm-dropdown-container {
+    width: 350px;
+    padding: 20px !important ;
+    background: #ddefed;
+    top: 8px !important;
+    border-radius: 0px !important;
+    border: 0px !important;
+  }
+  .topsideMenus {
+    gap: 0px;
+    margin-left: 2px !important;
+  }
+  .topsideMenuRight {
+    gap: 8px;
+    margin-right: 10px !important;
+    height: 40px !important;
+  }
+  .common-hover-effect {
+    padding: 2px 4px !important;
+  }
+  .notification-dropdown-container {
+    width: 350px;
+    height: 500px;
+    overflow-y: scroll;
+    background: #ddefed;
+    top: 10px !important;
+    border-radius: 0px !important;
+    border: 0px !important;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .enquiryForm-container {
+    height: auto;
+    margin-left: 0%;
+    margin-top: 8%;
+    background: #ddefed;
+  }
 }

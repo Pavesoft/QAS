@@ -10,10 +10,9 @@ import { baseURl } from "const";
   providedIn: "root",
 })
 export class EcommBackendService {
+  // private apiUrl = 'http://10.0.51.3:8090/';
 
-   // private apiUrl = 'http://10.0.51.3:8090/';
-
-   //private apiUrl = 'http://localhost:8090';
+  //private apiUrl = 'http://localhost:8090';
   //private apiUrl='http://localhost:8090/QuadrantEcom-0.0.1-SNAPSHOT'
 
   constructor(private http: HttpClient) {}
@@ -35,12 +34,14 @@ export class EcommBackendService {
     companyName: any,
     cityName: any,
     zipCode: any,
-    description: any
+    description: any,
+    reportId: any,
+    downloadSampleReport: any
   ) {
     //
     const headers = new HttpHeaders({ "Content-Type": "application/json" });
     return this.http.post<ApiResponse>(
-      `${baseURl}/form-data/save-form-details?fName=${fName}&lName=${lName}&officeEmail=${officeEmail}&businessPhone=${businessPhone}&jobTitle=${jobTitle}&formCategory=${formCategory}&countryId=${countryId}&companyName=${companyName}&cityName=${cityName}&zipCode=${zipCode}&description=${description}`,
+      `${baseURl}/form-data/save-form-details?fName=${fName}&lName=${lName}&officeEmail=${officeEmail}&businessPhone=${businessPhone}&jobTitle=${jobTitle}&formCategory=${formCategory}&countryId=${countryId}&companyName=${companyName}&cityName=${cityName}&zipCode=${zipCode}&description=${description}&reportId=${reportId}&downloadSampleReport=${downloadSampleReport}`,
       { headers }
     );
   }

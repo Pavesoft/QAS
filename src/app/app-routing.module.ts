@@ -71,6 +71,11 @@ import { SubscriptionComponent } from "./subscription/subscription.component";
 import { ThankyouComponent } from "./thankyou/thankyou.component";
 import { EnquiryformComponent } from "./enquiryform/enquiryform.component";
 import { UrlMappingGuard } from "./url-mapping.guard";
+import { ProfileComponent } from "./profile/profile.component";
+import { SubscriptionsComponent } from "./subscriptions/subscriptions.component";
+import { DownloadInvoiceComponent } from "./download-invoice/download-invoice.component";
+import { ContactUsComponent } from "./contact-us/contact-us.component";
+import { AuthGuard } from "./auth.guard";
 
 // const routes: Routes = [];
 const routes: Routes = [
@@ -123,6 +128,22 @@ const routes: Routes = [
     path: "cart",
     component: CartComponent,
     title: "Business Management Consultants | Quadrant Solutions",
+  },
+
+  {
+    path: "profile",
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "download-invoice",
+    component: DownloadInvoiceComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "subscriptions",
+    component: SubscriptionsComponent,
+    canActivate: [AuthGuard],
   },
 
   {

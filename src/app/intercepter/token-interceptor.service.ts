@@ -28,7 +28,6 @@ export class TokenInterceptor implements HttpInterceptor {
       catchError((error) => {
         // Check if the error is due to an expired access token
         if (error.status === 0) {
-          console.log("error.status", error);
           return this.authService.refreshAccessToken().pipe(
             switchMap((newAccessToken: any) => {
               // Retry the request with the new access token

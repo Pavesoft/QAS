@@ -181,6 +181,12 @@ export class ResearchComponent implements OnInit {
     // Convert the number to a string and add commas every three digits from the right
     return price.toLocaleString("en-US");
   }
+  calculateDiscountPercentage(price: number, price2: number): number {
+    if (price > price2) {
+      return ((price - price2) / price) * 100;
+    }
+    return 0;
+  }
   onDateRangeChange() {
     const startDate = new Date(this.range.value.start).toLocaleDateString(
       "en-GB",
@@ -369,20 +375,22 @@ export class ResearchComponent implements OnInit {
     const existingCartItem = cart.find(
       (item) => item.research.id === research.id
     );
+
     const Research: ResearchMasterDto = {
       id: +research.id,
       report: research.report,
       price: +research.price,
-      categoryName: "",
+      categoryName: research.categoryName,
       reportType: "",
       description: "",
-      author: "",
-      mAuthor: "",
+      author: research.author,
+      mAuthor: research.mAuthor,
       publishDate: new Date(),
-      price2: 0,
+      price2: +research.price2,
       tableOfContent: "",
+      categoryList: research.categoryList,
+      authors: research.authors,
     };
-
     // const item = {
     //   research: research,
     //   quantity: +1,
@@ -409,14 +417,17 @@ export class ResearchComponent implements OnInit {
       id: +research.id,
       report: research.report,
       price: +research.price,
-      categoryName: "",
+      categoryName: research.categoryName,
       reportType: "",
       description: "",
-      author: "",
-      mAuthor: "",
+      author: research.author,
+      mAuthor: research.mAuthor,
       publishDate: new Date(),
-      price2: 0,
+      price2: +research.price2,
       tableOfContent: "",
+      authors: research.authors,
+
+      categoryList: research.categoryList,
     };
     if (existingCartItem) {
       this.alertType = "Failed";
@@ -432,13 +443,10 @@ export class ResearchComponent implements OnInit {
   }
 
   downloadForm(research: any) {
-    //console.log(research)
-
     const urlFriendlyName = this.getUrlFriendlyString(research.report);
     const url = `/download-form/market-research/${urlFriendlyName}-${research.id}`;
 
     if (research && research.id && research.report) {
-      //console.log(research.report)
       this.router.navigate([url], {
         state: {
           researchData: research,
@@ -725,7 +733,7 @@ export class ResearchComponent implements OnInit {
     this.isLoading = true;
     this.isSubscribed =
       localStorage.getItem("isSubscribed") === "true" ? true : false;
-    console.log(this.isSubscribed);
+
     const apiCall = this.isSubscribed
       ? this.apiService.getReseachListSubscribed(
           this.currentPage,
@@ -747,7 +755,7 @@ export class ResearchComponent implements OnInit {
           this.authorsSet.add(item.mauthor);
         }
       });
-      // console.log("author array", this.authorsArray);
+
       this.mappedReports.sort((a, b) => b.publishDate - a.publishDate);
       this.mappedReports = this.mappedReports.map((report: any) => {
         return {
@@ -849,13 +857,19 @@ export class ResearchComponent implements OnInit {
   }
 
   showCustomAlert(): void {
-    this.showOverlay = true;
+    this.showOverlay = true; // Assuming this is for showing an overlay or backdrop
+
     setTimeout(() => {
       const customAlert = document.getElementById("customAlert");
       if (customAlert) {
         customAlert.style.display = "block";
+
+        setTimeout(() => {
+          customAlert.style.display = "none"; // Hide the alert after one second
+          this.showOverlay = false; // Hide the overlay as well, if applicable
+        }, 1000);
       }
-    }, 100);
+    }, 1000);
   }
 
   closeCustomAlert(): void {

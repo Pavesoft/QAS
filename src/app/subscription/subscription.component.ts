@@ -32,7 +32,7 @@ export class SubscriptionComponent implements OnInit {
   }
 
   apply() {
-    console.log("Selected options:", this.selectedOptions);
+    // console.log("Selected options:", this.selectedOptions);
   }
 
   constructor(private httpClient: HttpClient, private router: Router) {}
