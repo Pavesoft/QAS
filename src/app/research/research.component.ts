@@ -315,28 +315,42 @@ export class ResearchComponent implements OnInit {
   onItemsPerPageChange(itemsPerPage: any): void {
     this.itemsPerPage = itemsPerPage;
     this.currentPage = 1; // Reset to the first page when items per page changes
-    if (this.searchObject.searchCriteriaList.length > 0) {
+    this.isLoading = true; // Set loading state to true
+
+    if (
+      this.selectedOptions.length > 0 ||
+      this.searchObject.searchCriteriaList.length > 0
+    ) {
       this.apiService
         .serachFilters(this.searchObject, this.currentPage, this.itemsPerPage)
-        .subscribe((response) => {
-          this.mappedReports = response.researchMasterList;
-          this.mappedReports.sort((a, b) => b.publishDate - a.publishDate);
-          this.mappedReports = this.mappedReports.map((report: any) => {
-            return {
+        .subscribe(
+          (data) => {
+            // Handle API response
+            this.mappedReports = data.researchMasterList.map((report: any) => ({
               ...report,
               publishDate: this.epochToDate(report.publishDate),
-            };
-          });
-          // this.totalPages =
-          //   response.researchMasterList.length / this.itemsPerPage;
-          this.currentPage = response.pagination.currentPage + 1;
-          this.itemsPerPage = response.pagination.pageSize;
-          this.totalPages = response.pagination.totalPages;
-        });
+            }));
+
+            // Sort reports by publishDate
+            this.mappedReports.sort((a, b) => b.publishDate - a.publishDate);
+
+            // Update pagination details
+            this.currentPage = data.pagination.currentPage + 1;
+            this.itemsPerPage = data.pagination.pageSize;
+            this.totalPages = data.pagination.totalPages;
+
+            this.isLoading = false; // Set loading state to false after processing
+            this.onPageChange(this.currentPage); // Update page state with the new currentPage
+          },
+          (error) => {
+            console.error("API error:", error);
+            this.isLoading = false; // Ensure loading state is reset on error
+          }
+        );
     } else {
       this.loadResearchData();
+      this.isLoading = false; // Set loading state to false when loading default data
     }
-    this.applyPagination();
   }
 
   getPages(): number[] {
@@ -653,17 +667,27 @@ export class ResearchComponent implements OnInit {
                 publishDate: this.epochToDate(report.publishDate),
               };
             });
-            this.currentPage = data.pagination.currentPage + 1;
+
+            // Sort the reports by publishDate
             this.mappedReports.sort((a, b) => b.publishDate - a.publishDate);
+
+            // Update pagination details
+            this.currentPage = data.pagination.currentPage + 1;
             this.itemsPerPage = data.pagination.pageSize;
             this.totalPages = data.pagination.totalPages;
+
+            // Set loading to false after processing the response
+            this.isLoading = false;
+
+            // Call onPageChange after data is sorted
+            this.onPageChange(1);
           },
           (error) => {
             console.error("API error:", error);
+            // Set loading to false in case of error
+            this.isLoading = false;
           }
         );
-      this.isLoading = false;
-      this.onPageChange(1);
     } else {
       this.loadResearchData();
     }
@@ -745,29 +769,35 @@ export class ResearchComponent implements OnInit {
 
     apiCall.subscribe((data: any) => {
       this.Reports = data.researchMasterList;
-      this.mappedReports = this.Reports;
+      this.mappedReports = [...this.Reports];
 
-      data.researchMasterList.forEach((item: any) => {
-        if (!this.authorsSet.has(item.author)) {
+      // Apply filters if any
+      // Example: this.mappedReports = this.mappedReports.filter(...);
+
+      // Collect unique authors
+      this.mappedReports.forEach((item: any) => {
+        if (item.author && !this.authorsSet.has(item.author)) {
           this.authorsSet.add(item.author);
         }
-        if (!this.authorsSet.has(item.mauthor)) {
+        if (item.mauthor && !this.authorsSet.has(item.mauthor)) {
           this.authorsSet.add(item.mauthor);
         }
       });
 
-      this.mappedReports.sort((a, b) => b.publishDate - a.publishDate);
-      this.mappedReports = this.mappedReports.map((report: any) => {
-        return {
-          ...report,
-          publishDate: this.epochToDate(report.publishDate),
-        };
-      });
+      // Ensure publishDate is treated as a number for sorting
+      this.mappedReports = this.mappedReports.map((report: any) => ({
+        ...report,
+        publishDate: this.epochToDate(report.publishDate),
+      }));
 
-      // this.totalPages = data.researchMasterList.length / this.itemsPerPage;
+      // Sort reports by publishDate
+      this.mappedReports.sort((a, b) => b.publishDate - a.publishDate);
+
+      // Update pagination info
       this.currentPage = data.pagination.currentPage + 1;
       this.itemsPerPage = data.pagination.pageSize;
       this.totalPages = data.pagination.totalPages;
+
       this.isLoading = false;
     });
   }
