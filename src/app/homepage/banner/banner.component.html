@@ -1,10 +1,10 @@
-<div id="video-carousel-example" class="carousel slide carousel-fade" data-ride="carousel">
-        <!-- <ol class="carousel-indicators">
+<!-- <div id="video-carousel-example" class="carousel slide carousel-fade" data-ride="carousel">
+        <ol class="carousel-indicators">
           <li data-target="#video-carousel-example" data-slide-to="0" class="active"></li>
           <li data-target="#video-carousel-example" data-slide-to="1" class="active"></li>
           <li data-target="#video-carousel-example" data-slide-to="2" class="active"></li>
 
-        </ol> -->
+        </ol>
         <style>
           #myVideo{
             width: 100%;
@@ -27,4 +27,34 @@
           
         </div>
 
-      </div>
+      </div> -->
+
+<div class="banner-container">
+  <div class="message">
+    <h2 class="topHeading">
+      We're about to take a <span class="highlight">Big Leap</span>!
+    </h2>
+    <h2 class="topHeading">Stay tuned for our exciting new direction.</h2>
+  </div>
+  <div class="d-flex column-gap-5 mt-5">
+    <div>
+      <div class="time">{{ days }}</div>
+      <div class="label">Days</div>
+    </div>
+    <div class="separator">:</div>
+    <div>
+      <div class="time">{{ hours }}</div>
+      <div class="label">Hours</div>
+    </div>
+    <div class="separator">:</div>
+    <div>
+      <div class="time">{{ minutes }}</div>
+      <div class="label">Minutes</div>
+    </div>
+    <div class="separator">:</div>
+    <div>
+      <div class="time">{{ seconds }}</div>
+      <div class="label">Seconds</div>
+    </div>
+  </div>
+</div>
