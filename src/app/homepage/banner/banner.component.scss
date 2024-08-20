@@ -1,35 +1,93 @@
-.t1{
-    position: relative;
-    bottom: 180px;
-    right: 100px;
-    color: #ffffff;
-    font-size: 34px;
-    font-family: 'Arial Nova';
-    background-color: #00327A;
-    width: 148px;
-    height: 35px;
+.t1 {
+  position: relative;
+  bottom: 180px;
+  right: 100px;
+  color: #ffffff;
+  font-size: 34px;
+  font-family: "Arial Nova";
+  background-color: #00327a;
+  width: 148px;
+  height: 35px;
 }
-.t2{
-    position: relative;
-    bottom: 185px;
-    right: 100px;
-    color: #ffffff;
-    font-size: 46px;
-    font-family: "Arial Nova Bold";
-    background-color: #011F41;
-    width: 290px;
-    height: 45px;
-    letter-spacing: 3.84px;
+.t2 {
+  position: relative;
+  bottom: 185px;
+  right: 100px;
+  color: #ffffff;
+  font-size: 46px;
+  font-family: "Arial Nova Bold";
+  background-color: #011f41;
+  width: 290px;
+  height: 45px;
+  letter-spacing: 3.84px;
 }
 
-@media screen and (max-width: 480px){
+@media screen and (max-width: 480px) {
+  .t1 {
+    right: 0px !important;
+  }
 
-    .t1{
-        right:0px!important;
-    }
+  .t2 {
+    right: 0px !important;
+  }
+}
+.banner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: url("../../../assets/Countdownbanner.webp");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+}
 
-    .t2{
-        right:0px!important;
-    }
+.message h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
 
+.message .highlight {
+  color: #22c1c3; /* Customize as needed */
+}
+
+.message p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.time {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-top: px;
+}
+
+.label {
+  font-size: 18px;
+  font-family: "Arial Nova";
+  color: #ffffff;
+  font-weight: 300 !important;
+  margin-top: 30px;
+}
+
+.separator {
+  font-size: 4rem;
+}
+
+.topHeading {
+  color: white;
+  font-size: 36px;
+  font-family: "Arial Nova";
+  font-weight: 700;
+  line-height: 40px;
 }
